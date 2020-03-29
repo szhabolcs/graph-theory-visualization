@@ -1,0 +1,68 @@
+body {
+    height: 100vh;
+}
+#side-menu {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 110px; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #1e88e5;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding: 20px;
+}
+#container {
+    padding: 20px;
+    margin-left: 100px; /* Same as the width of the sidebar */
+    height: 100%;
+}
+.draggable {
+    min-height: 100px;
+    width: 100px;
+    background: white;
+    border-radius: 5px;
+    position: absolute;
+}
+.bi-caret-down-fill {
+    width: 20px;
+    left: 3px;
+    top: 35px;
+    position: relative;
+}
+.form-control {
+    width: 50px;
+    height: 50px;
+    top: -7px;
+    font-size: 1.5em;
+}
+.smooth-shadow {
+    box-shadow: 0 0.9px 2.2px rgba(0, 0, 0, 0.016),
+        0 3.9px 5.3px rgba(0, 0, 0, 0.022), 0 9.7px 10px rgba(0, 0, 0, 0.025),
+        0 19.3px 17.9px rgba(0, 0, 0, 0.027),
+        0 35.6px 33.4px rgba(0, 0, 0, 0.03), 0 74px 80px rgba(0, 0, 0, 0.04);
+}
+.centered {
+    top: 50%;
+}
+.btn {
+    background-color: #64b5f6;
+    border-color: #42a5f5;
+    height: fit-content;
+}
+.btn:hover {
+    background-color: #1565c0;
+}
+.grid {
+    background-size: 50px 50px;
+    background-image: linear-gradient(to right, lightgrey 1px, transparent 1px),
+        linear-gradient(to bottom, lightgrey 1px, transparent 1px);
+    opacity: 0.7;
+}
+.custom-switch {
+    padding-top: 20px;
+    color: white;
+}
+.custom-control-input:checked ~ .custom-control-label::before {
+    background-color: #1565c0;
+}
