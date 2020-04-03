@@ -1,6 +1,40 @@
+html[data-theme='dark'] {   /* Dark theme variables */
+    --background-color: #3e3e3e;
+    --secondary-color: #f48401;
+    --secondary-color-highlight: #ffb259;
+    --text-color: #313131;
+    --node-background-color: #f48401;
+
+    --grid-color: #7b7b7b;
+
+    --connector-color: #445566;
+}
+
+html[data-theme='light'] {  /* Light theme variables */
+    --background-color: white;
+    --secondary-color: #1e88e5;
+    --secondary-color-highlight: #89c8ff;
+    --text-color: white;
+    --node-background-color: white;
+
+    --grid-color: lightgrey;
+
+    --connector-color: #445566;
+}
+
+html.color-theme-in-transition,
+html.color-theme-in-transition *,
+html.color-theme-in-transition *:before,
+html.color-theme-in-transition *:after {    /* Switch dark and light theme with fading */
+  transition: all 750ms !important;
+  transition-delay: 0 !important;
+}
+
 body {
     height: 100vh;
+    color: var(--text-color);
 }
+
 #side-menu {
     height: 100%; /* Full-height: remove this if you want "auto" height */
     width: 110px; /* Set the width of the sidebar */
@@ -8,61 +42,105 @@ body {
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: #1e88e5;
+    background-color: var(--secondary-color);
     overflow-x: hidden; /* Disable horizontal scroll */
     padding: 20px;
 }
+
 #container {
     padding: 20px;
-    margin-left: 100px; /* Same as the width of the sidebar */
+    margin-left: 110px; /* Same as the width of the sidebar */
     height: 100%;
+    background-color: var(--background-color);
 }
-.draggable {
+
+.node {
     min-height: 100px;
     width: 100px;
-    background: white;
+    background: var(--node-background-color);
     border-radius: 5px;
     position: absolute;
 }
+
 .bi-caret-down-fill {
     width: 20px;
     left: 77px;
     top: 35px;
     position: relative;
+    color: var(--connector-color);
 }
+
 .form-control {
     width: 50px;
     height: 50px;
     top: -7px;
     font-size: 1.5em;
 }
+
 .smooth-shadow {
     box-shadow: 0 0.9px 2.2px rgba(0, 0, 0, 0.016),
         0 3.9px 5.3px rgba(0, 0, 0, 0.022), 0 9.7px 10px rgba(0, 0, 0, 0.025),
         0 19.3px 17.9px rgba(0, 0, 0, 0.027),
         0 35.6px 33.4px rgba(0, 0, 0, 0.03), 0 74px 80px rgba(0, 0, 0, 0.04);
 }
+
 .centered {
     top: 50%;
 }
+
 .btn {
-    background-color: #64b5f6;
-    border-color: #42a5f5;
+    background-color: var(--secondary-color-highlight);
+    border-color: var(--secondary-color);
     height: fit-content;
+    color: var(--text-color);
 }
+
 .btn:hover {
-    background-color: #1565c0;
+    background-color: var(--secondary-color);
 }
+
 .grid {
     background-size: 50px 50px;
-    background-image: linear-gradient(to right, lightgrey 1px, transparent 1px),
-        linear-gradient(to bottom, lightgrey 1px, transparent 1px);
-    opacity: 0.7;
+    background-image: linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
 }
-.custom-switch {
-    padding-top: 20px;
-    color: white;
+
+/* Switch CSS */
+.onoffswitch {
+    position: relative; width: 55px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+    margin-top: 10px;
 }
-.custom-control-input:checked ~ .custom-control-label::before {
-    background-color: #1565c0;
+.onoffswitch-checkbox {
+    display: none;
+}
+.onoffswitch-label {
+    display: block; overflow: hidden; cursor: pointer;
+    height: 20px; padding: 0; line-height: 20px;
+    border: 0px solid var(--secondary-color-highlight); border-radius: 30px;
+    background-color: #9E9E9E;
+}
+.onoffswitch-label:before {
+    content: "";
+    display: block; width: 30px; margin: -5px;
+    background: var(--secondary-color-highlight);
+    position: absolute; top: 0; bottom: 0;
+    right: 31px;
+    border-radius: 30px;
+    box-shadow: 0 6px 12px 0px #757575;
+    transition: all 0.3s ease-in 0s !important;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label {
+    background-color: var(--secondary-color-highlight);
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+   border-color: var(--secondary-color-highlight);
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label:before {
+    right: 0px; 
+    background-color: var(--secondary-color); 
+    box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);
 }
