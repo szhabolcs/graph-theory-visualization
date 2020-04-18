@@ -16,6 +16,19 @@ const node = "<div class='node smooth-shadow centered' >" +
 var jspNode;
 var DOMContainer;
 
+//Base and helper functions
+
+function setZoom(scale) {
+    if (DOMContainer === undefined)
+        console.error("Container DOM element hasn't been initialized yet!");
+    else {
+        DOMContainer.css({
+            transform: "scale(" + scale + ')'
+        });
+        jspNode.setZoom(scale);
+    }
+}
+
 /**
  * This function initializes jsPlumb, and sets up it's initial settings
  * @param DOMContainer the DOM element for the container in which the jsPlumb is used
