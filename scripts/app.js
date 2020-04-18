@@ -115,10 +115,10 @@ $(document).ready(function () {
     $("#grid-switch").change(function () {      /* Grid Switch listener */
         if ($("#grid-switch").is(":checked")) {
             gridSwitch = false;
-            $("#container").addClass("grid");
+            DOMContainer.addClass("grid");
         } else {
             gridSwitch = true;
-            $("#container").removeClass("grid");
+            DOMContainer.removeClass("grid");
         }
     });
 
