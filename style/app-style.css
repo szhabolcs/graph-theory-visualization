@@ -33,6 +33,7 @@ html.color-theme-in-transition *:after {    /* Switch dark and light theme with 
 body {
     height: 100vh;
     color: var(--text-color);
+    overflow: hidden;           /* Fixes container overflow due to scaling */
 }
 
 #side-menu {
