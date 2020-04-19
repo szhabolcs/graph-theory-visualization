@@ -47,35 +47,35 @@ function initJsPlumb(DOMContainer) {
  * @param top position relative to the top left corner of the document
  * @param left position relative to the top left corner of the document
  */
-function addNode(top = "50%", left = "50%") {     /*Inserts new node*/
+function addNode(top = "50%", left = "50%") {
     //Declarations
     //Init of the JsPlumb Instance
-    let insertedBox;
+    let insertedNode;
 
     //Insertion of the box into the container
     $(node).hide().appendTo("#container").fadeIn(150);
-    insertedBox = DOMContainer.children(".node").last();
+    insertedNode = DOMContainer.children(".node").last();
 
-    insertedBox.css({
+    insertedNode.css({
         top: top,
         left: left
     });
 
-    jspNode.draggable(insertedBox, {
+    jspNode.draggable(insertedNode, {
         grid: [10, 10]
     });
 
-    jspNode.addEndpoint(insertedBox, {
+    jspNode.addEndpoint(insertedNode, {
         isSource: true,
         anchor: [0.2, 1, -1, -1],
         connector: "Straight"
     });
-    jspNode.addEndpoint(insertedBox, {
+    jspNode.addEndpoint(insertedNode, {
         isSource: true,
         anchor: [0.8, 1, -1, -1],
         connector: "Straight"
     });
-    jspNode.addEndpoint(insertedBox, {
+    jspNode.addEndpoint(insertedNode, {
         isTarget: true,
         anchor: [
             [0.5, 0, 0, 0],
@@ -92,7 +92,7 @@ function addNode(top = "50%", left = "50%") {     /*Inserts new node*/
  */
 $(document).ready(function () {
     //Declarations
-    // Light and dark theme switch
+    //Light and dark theme switch
     let theme = 'light';
     let gridSwitch = false;
 
@@ -125,7 +125,8 @@ $(document).ready(function () {
     //click event listener, for adding a node
     $(".add").click(() => addNode(DOMContainer, "40%", "30%"));
 
-    $("#grid-switch").change(function () {      /* Grid Switch listener */
+    //change event listener, for toggling the grid
+    $("#grid-switch").change(function () {
         if ($("#grid-switch").is(":checked")) {
             gridSwitch = false;
             DOMContainer.addClass("grid");
@@ -134,6 +135,4 @@ $(document).ready(function () {
             DOMContainer.removeClass("grid");
         }
     });
-
-
 });
