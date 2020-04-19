@@ -7,19 +7,35 @@
 </head>
 
 <body>
-
-    <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div id="side-nav">
         <a href="#">About</a>
         <a href="#">Services</a>
         <a href="#">Clients</a>
         <a href="#">Contact</a>
     </div>
-    <a href="./app/"><h1>App</h1></a>
 
-    <h2>Animated Sidenav Example</h2>
-    <p>Click on the element below to open the side navigation menu.</p>
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+    <div id="main-content">
+        <div class="navbar">
+            <a href="#home" onclick="changeNav()">
+                <svg style="height: 28px;padding: 0px;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
+                <span style="position: relative;top: -8px;padding-left: 5px;">Tartalom</span>
+            </a>
+            <a href="./app/">
+                <img src="./images/logo@2x.png" style="height: 28px;position: relative;top: 3px;">
+                <!-- <span style="position: relative;top: -8px;padding-left: 5px;">Applikáció</span> -->
+            </a>
+        </div>
+
+        <div id="sub-content">
+            <span id="header">
+                <img src="./images/logo@10x.png">
+                <br>
+                <h1>Egy interaktiv és modern gráf oktató applikáció.</h1>
+            </span>
+        </div>
+
+    </div>
+
 </body>
 <script  src="./scripts/homepage.js"></script>
 </html>
