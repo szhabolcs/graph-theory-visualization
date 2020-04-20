@@ -124,12 +124,19 @@ body {
 }
 
 /* Side menu components */
-.side-section{
- font-size: 16px !important;
+.side-section-1{
+ font-size: 20px !important;
  padding-left: 50px !important;
  padding-top: 0px !important;
  word-break: break-word;
 }
+
+.side-section-2{
+  font-size: 16px !important;
+  padding-left: 80px !important;
+  padding-top: 0px !important;
+  word-break: break-word;
+ }
 
 /* Main content components */
 h1{
