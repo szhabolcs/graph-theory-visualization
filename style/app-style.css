@@ -55,6 +55,7 @@ body {
     background-color: var(--background-color);
     position: absolute;
     width: 100%;
+    transition: all .2s;    /* Makes zooming smooth */
 }
 
 .node {
