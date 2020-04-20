@@ -8,8 +8,8 @@ function changeNav() {
         menuIsOpen = false;
     }
     else{
-        document.getElementById("side-nav").style.width = "250px";
-        document.getElementById("main-content").style.marginLeft = "250px";
+        document.getElementById("side-nav").style.width = "400px";
+        document.getElementById("main-content").style.marginLeft = "400px";
 
         menuIsOpen = true;
     }
