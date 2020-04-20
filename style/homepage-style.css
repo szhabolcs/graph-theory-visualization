@@ -65,6 +65,7 @@ body {
   top: 0;
   width: 100%;
   height: fit-content;
+  z-index: 10;
 }
 .navbar a {
   float: left;
@@ -92,6 +93,7 @@ body {
 #header{
   text-align: center;
   display: block;
+  margin-top: 60px;
 }
 #header img{
   height: 100px;
@@ -101,7 +103,8 @@ body {
 }
 @media only screen and (max-width: 768px) {
   #header img{height: 50px;}
-  #sub-content{margin-top: 130px; padding: 10px;}
+  #header{margin-top: 0px;}
+  #sub-content{margin-top: 50px; padding: 10px;}
 }
 
 /* Custom scrollbar */
@@ -113,7 +116,8 @@ body {
 
 ::-webkit-scrollbar
 {
-	width: 8px;
+  width: 8px;
+  height: 8px;
   background-color: var(--gray);
 }
 
