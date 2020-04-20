@@ -1,4 +1,4 @@
-html[data-theme='dark'] {   /* Dark theme variables */
+html[data-theme='dark'] { /* Dark theme variables */
     --background-color: #3e3e3e;
     --secondary-color: #f48401;
     --secondary-color-highlight: #ffb259;
@@ -10,7 +10,7 @@ html[data-theme='dark'] {   /* Dark theme variables */
     --connector-color: #445566;
 }
 
-html[data-theme='light'] {  /* Light theme variables */
+html[data-theme='light'] { /* Light theme variables */
     --background-color: white;
     --secondary-color: #1e88e5;
     --secondary-color-highlight: #89c8ff;
@@ -25,14 +25,15 @@ html[data-theme='light'] {  /* Light theme variables */
 html.color-theme-in-transition,
 html.color-theme-in-transition *,
 html.color-theme-in-transition *:before,
-html.color-theme-in-transition *:after {    /* Switch dark and light theme with fading */
-  transition: all 750ms !important;
-  transition-delay: 0 !important;
+html.color-theme-in-transition *:after { /* Switch dark and light theme with fading */
+    transition: all 750ms !important;
+    transition-delay: 0 !important;
 }
 
 body {
     height: 100vh;
     color: var(--text-color);
+    overflow: hidden;
 }
 
 #side-menu {
@@ -52,6 +53,8 @@ body {
     margin-left: 110px; /* Same as the width of the sidebar */
     height: 100%;
     background-color: var(--background-color);
+    position: absolute;
+    width: 100%;
 }
 
 .node {
@@ -79,9 +82,9 @@ body {
 
 .smooth-shadow {
     box-shadow: 0 0.9px 2.2px rgba(0, 0, 0, 0.016),
-        0 3.9px 5.3px rgba(0, 0, 0, 0.022), 0 9.7px 10px rgba(0, 0, 0, 0.025),
-        0 19.3px 17.9px rgba(0, 0, 0, 0.027),
-        0 35.6px 33.4px rgba(0, 0, 0, 0.03), 0 74px 80px rgba(0, 0, 0, 0.04);
+    0 3.9px 5.3px rgba(0, 0, 0, 0.022), 0 9.7px 10px rgba(0, 0, 0, 0.025),
+    0 19.3px 17.9px rgba(0, 0, 0, 0.027),
+    0 35.6px 33.4px rgba(0, 0, 0, 0.03), 0 74px 80px rgba(0, 0, 0, 0.04);
 }
 
 .centered {
@@ -102,45 +105,65 @@ body {
 .grid {
     background-size: 50px 50px;
     background-image: linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
 }
 
 /* Switch CSS */
 .onoffswitch {
-    position: relative; width: 55px;
-    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+    position: relative;
+    width: 55px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     margin-top: 10px;
 }
+
 .onoffswitch-checkbox {
     display: none;
 }
+
 .onoffswitch-label {
-    display: block; overflow: hidden; cursor: pointer;
-    height: 20px; padding: 0; line-height: 20px;
-    border: 0px solid var(--secondary-color-highlight); border-radius: 30px;
+    display: block;
+    overflow: hidden;
+    cursor: pointer;
+    height: 20px;
+    padding: 0;
+    line-height: 20px;
+    border: 0px solid var(--secondary-color-highlight);
+    border-radius: 30px;
     background-color: #9E9E9E;
 }
+
 .onoffswitch-label:before {
     content: "";
-    display: block; width: 30px; margin: -5px;
+    display: block;
+    width: 30px;
+    margin: -5px;
     background: var(--secondary-color-highlight);
-    position: absolute; top: 0; bottom: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
     right: 31px;
     border-radius: 30px;
     box-shadow: 0 6px 12px 0px #757575;
     transition: all 0.3s ease-in 0s !important;
 }
+
 .onoffswitch-checkbox:checked + .onoffswitch-label {
     background-color: var(--secondary-color-highlight);
 }
+
 .onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
-   border-color: var(--secondary-color-highlight);
+    border-color: var(--secondary-color-highlight);
 }
+
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
     margin-left: 0;
 }
+
 .onoffswitch-checkbox:checked + .onoffswitch-label:before {
-    right: 0px; 
-    background-color: var(--secondary-color); 
+    right: 0px;
+    background-color: var(--secondary-color);
     box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);
 }
+

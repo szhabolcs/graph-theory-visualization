@@ -1,0 +1,3 @@
+//CONSTANTS
+const MIN_ZOOM_VALUE = 30;
+const MAX_ZOOM_VALUE = 300;

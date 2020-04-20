@@ -15,9 +15,31 @@ const node = "<div class='node smooth-shadow centered' >" +
 //Global variables
 var jspNode;
 var DOMContainer;
+var iZoom;
 
 //Base and helper functions
 
+
+/**
+ * Called when scroll event is triggered on the container
+ * @param event
+ */
+function onScroll(event) {
+
+    const scrollDirection = event.originalEvent.deltaY;
+    if (scrollDirection < 0 && iZoom < MAX_ZOOM_VALUE)
+        iZoom += 10;
+    else if (scrollDirection>0 && iZoom >= MIN_ZOOM_VALUE)
+        iZoom -= 10;
+
+    setZoom(iZoom/100);
+
+}
+
+/**
+ * Zooms the container to a given scale
+ * @param scale
+ */
 function setZoom(scale) {
     if (DOMContainer === undefined)
         console.error("Container DOM element hasn't been initialized yet!");
@@ -26,6 +48,7 @@ function setZoom(scale) {
             transform: "scale(" + scale + ')'
         });
         jspNode.setZoom(scale);
+        jspNode.repaintEverything();
     }
 }
 
@@ -38,7 +61,12 @@ function initJsPlumb(DOMContainer) {
     const jspNode = jsPlumb.getInstance();
     //Setting up the container for JsPlumb
     jspNode.setContainer(DOMContainer);
-
+    /*jspNode.draggable(DOMContainer, {
+        /*stop:function(){
+            jspNode.repaintEverything();
+        }
+        //filter:".jtk-endpoint"
+    });//*/
     return jspNode;
 }
 
@@ -62,7 +90,8 @@ function addNode(top = "50%", left = "50%") {     /*Inserts new node*/
     });
 
     jspNode.draggable(insertedBox, {
-        grid: [10, 10]
+        grid: [10, 10],
+        containment: "container"
     });
 
     jspNode.addEndpoint(insertedBox, {
@@ -91,6 +120,7 @@ function addNode(top = "50%", left = "50%") {     /*Inserts new node*/
  * Code executes when the Document Object Model is constructed by the browser
  */
 $(document).ready(function () {
+
     //Declarations
     // Light and dark theme switch
     let theme = 'light';
@@ -121,6 +151,9 @@ $(document).ready(function () {
     //init JsPlumb
     jspNode = initJsPlumb(DOMContainer);
 
+    //set initial zoom in percentage
+    iZoom = 100;
+
     //Set up the Listeners
     //click event listener, for adding a node
     $(".add").click(() => addNode(DOMContainer, "40%", "30%"));
@@ -134,6 +167,7 @@ $(document).ready(function () {
             DOMContainer.removeClass("grid");
         }
     });
+    DOMContainer.bind("mousewheel", (event) => onScroll(event));
 
 
 });
