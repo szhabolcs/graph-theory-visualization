@@ -58,7 +58,8 @@ body {
     width: 200%;
     top: -50%;      /* Pushes back the container */
     left: -50%;     /* so the view can be in the middle*/
-    transition: all .2s;    /* Makes zooming smooth */
+    transition: transform .2s, margin .2s;    /* Makes zooming smooth */
+    border: 2px solid var(--grid-color);      /* Bounding box for container */
 }
 
 .node {
@@ -108,8 +109,10 @@ body {
 
 .grid {
     background-size: 50px 50px;
-    background-image: linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
-    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    background-image: linear-gradient(to right, var(--grid-color) 2px, transparent 2px),
+    linear-gradient(to bottom, var(--grid-color) 2px, transparent 2px);
+    border-top: 0px !important;     /* Bounding box for container */
+    border-left: 0px !important;
 }
 
 /* Switch CSS */
@@ -171,3 +174,6 @@ body {
     box-shadow: 3px 6px 18px 0px rgba(0, 0, 0, 0.2);
 }
 
+.slow-transition{
+    transition: transform .2s, margin .5s !important;  /* Makes setting back the container smooth */
+}

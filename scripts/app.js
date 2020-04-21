@@ -43,7 +43,6 @@ function bindEventsForDrag() {
  * @param event
  */
 function onMouseUp(event) {
-    //console.log("Mouse up");
     unbindEventsForDrag();
     event.preventDefault();
 }
@@ -77,8 +76,8 @@ function onMouseMove(event) {
  * @param event
  */
 function onMouseDown(event) {
-    //console.log("Mouse down");
     bindEventsForDrag();
+    DOMContainer.removeClass("slow-transition");
     event.preventDefault();
 }
 
@@ -93,7 +92,6 @@ function onScroll(event) {
         iZoom += 10;
     else if (scrollDirection > 0 && iZoom > MIN_ZOOM_VALUE)
         iZoom -= 10;
-
     setZoom(iZoom / 100);
 
 }
@@ -124,23 +122,25 @@ function refitContainer() {
     //Fitting horizontally
     if (iMarginX < iMinMarginX) {
         iMarginX = iMinMarginX;
+        DOMContainer.addClass("slow-transition");
         DOMContainer.css("margin-left", iMarginX);
     }
     if (iMarginX > iMaxMarginX) {
         iMarginX = iMaxMarginX;
+        DOMContainer.addClass("slow-transition");
         DOMContainer.css("margin-left", iMarginX);
     }
     //Fitting Vertically
     if (iMarginY < iMinMarginY) {
         iMarginY = iMinMarginY;
+        DOMContainer.addClass("slow-transition");
         DOMContainer.css("margin-top", iMarginY);
     }
     if (iMarginY > iMaxMarginY) {
         iMarginY = iMaxMarginY;
+        DOMContainer.addClass("slow-transition");
         DOMContainer.css("margin-top", iMarginY);
     }
-
-
 }
 
 /**
@@ -157,7 +157,6 @@ function setZoom(scale) {
             transform: "scale(" + scale + ')'
         });
         jspNode.setZoom(scale);
-        jspNode.repaintEverything();
     }
 }
 
