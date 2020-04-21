@@ -58,7 +58,7 @@ body {
     width: 200%;
     top: -50%;      /* Pushes back the container */
     left: -50%;     /* so the view can be in the middle*/
-    transition: transform .2s, margin .2s;    /* Makes zooming smooth */
+    transition: transform .2s;    /* Makes zooming smooth */
     border: 2px solid var(--grid-color);      /* Bounding box for container */
 }
 
@@ -176,4 +176,8 @@ body {
 
 .slow-transition{
     transition: transform .2s, margin .5s !important;  /* Makes setting back the container smooth */
+}
+
+.container-dragging{
+    cursor: move;
 }

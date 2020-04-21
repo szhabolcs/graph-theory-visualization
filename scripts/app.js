@@ -28,6 +28,7 @@ var iMarginStartY;
 function unbindEventsForDrag() {
     $Document.off("mousemove", "div#container");
     $Document.off("mouseup", "div#container");
+    DOMContainer.removeClass("container-dragging");
 }
 
 /**
@@ -36,6 +37,7 @@ function unbindEventsForDrag() {
 function bindEventsForDrag() {
     $Document.on("mousemove", "div#container", (event) => onMouseMove(event));
     $Document.on("mouseup", "div#container", (event) => onMouseUp(event));
+    DOMContainer.addClass("container-dragging");
 }
 
 /**
