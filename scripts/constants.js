@@ -1,5 +1,5 @@
 //CONSTANTS
-const MIN_ZOOM_VALUE = 60;
+const MIN_ZOOM_VALUE = 50;
 const MAX_ZOOM_VALUE = 300;
 
 //HTML code of the node
