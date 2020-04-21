@@ -282,7 +282,8 @@ $(document).ready(function () {
         }
     });
     DOMContainer.on("mousewheel", (event) => onScroll(event));
-    $Document.on("mousedown", "div#container", (event) => onMouseDown(event));
+    $Document.on("mousedown", "#container", (event) => onMouseDown(event));
+    $Document.on("mouseleave", "#container", () => unbindEventsForDrag());
 
 
 });
