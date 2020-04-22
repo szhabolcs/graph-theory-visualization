@@ -66,7 +66,7 @@
     <div id="main-content">
         <div class="navbar">
             <a onclick="changeNav()">
-                <svg style="height: 28px;padding: 0px;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
+                <svg style="height: 28px;padding: 0px;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><pathfill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
                 <span style="position: relative;top: -8px;padding-left: 5px;">Tartalom</span>
             </a>
             <a href="./app/">
@@ -109,7 +109,7 @@
         
             <ol> 
                 <li><b>Facebook</b></li>
-                    <div style="padding-left: 30px;">
+                    <div style="padding-left: 30px; margin-top: 5px;">
                         <p>A Facebook közösségi portálhoz kapcsolható példa segítségével a gráfelmélet alapfogalmai nagyon jól szemléltethetőek.</p>
                         <p>A Facebook-felhasználók a gráf csúcsai. Bejelölésről vagy megjelölésről akkor beszélhetünk, ha egy személy ismerősnek kér fel egy másik embert. Ebben az esetben a kapcsolat még nem kölcsönös, hanem csak egy irányú, amit irányított élek használatával szemléltethetünk. Az irányított él a bejelölő személy felől a megjelölt személy irányába mutat. Az ismeretségek a gráf (irányítatlan) élei.</p>
                         <p>Ha az egyik ember megjelöli a másikat vagy felkéri ismerősnek, úgy a kapcsolat még nem kölcsönös viszont ha a megjelölt személy visszajelöli az őt megjelölő személyt, akkor felőle egy irányított él fog az eredetileg megjelölő személy felé mutatni. Így a két csúcs között már két él van, irányuk ellentétes. A Facebook ezt a zavaró helyzetet a két irányított él „összeolvadásával" oldja fel, és egy irányítatlan él keletkezik, a két személy egymás ismerőse lesz. Ha már két személy ismerős, akkor nem lehet visszakövetni, hogy ki kezdeményezte a kapcsolatot.</p>
@@ -119,9 +119,8 @@
                 <li><b>családfa</b></li>
                 <li><b>településeket összekötő utak</b></li>
                 <li><b>térképek színezése</b></li>
-                <div style="padding-left: 30px;">
-                    <p>Minimálisan, hány színt  lehet használni úgy hogy két azonos szín ne legyen egymás mellett. </p>
-                </div> 
+                    <p style="padding-left: 30px; margin-top: 5px;">Minimálisan, hány színt  lehet használni úgy hogy két azonos szín ne legyen egymás mellett. </p>
+                
             </ol>
             
             <h1 id="section-2">Alapfogalmak</h1>
@@ -144,206 +143,340 @@
 
             
             <h1 id="section-3">Irányított és nem irányított gráfok</h1>
-                <p><i style="color: green;">Irányított gráfoknak</i> nevezzük azokat a gráfokat, amelyeket csak az irányok betartásával lehet bejárni, nincs oda-vissza út. (pl. G<sub>2</sub>)</p>
+                <p><i style="color: var(--dark-green);">Irányított gráfoknak</i> nevezzük azokat a gráfokat, amelyeket csak az irányok betartásával lehet bejárni, nincs oda-vissza út. (pl. G<sub>2</sub>)</p>
                 <p style="padding-left: 40px;">pl. lehetséges bejárás: x<sub>1</sub> e<sub>1</sub> x<sub>6</sub> e<sub>3</sub> x<sub>2</sub> e<sub>6</sub> x<sub>5</sub> e<sub>10</sub> x<sub>4</sub> e<sub>9</sub> x<sub>3</sub> e<sub>8</sub> x<sub>4</sub></p>
-                <p style="padding-left: 100px; font-size:80%;">x<sub>1</sub>-ből eljuthatunk x<sub>6</sub>-ba, viszont fordítva nem az e1 élen keresztül</p>
-                <p><i style="color:green">Nem irányított gráfoknak</i>nevezzük azokat a gráfokat, amelyek nincsenek iránnyal ellátva, és működik az oda-vissza út. (pl. G<sub>1</sub>)</p>
+                <p style="padding-left: 100px; font-size:80%;">x<sub>1</sub>-ből eljuthatunk x<sub>6</sub>-ba, viszont fordítva nem az e<sub>1</sub> élen keresztül</p>
+                <p><i style="color: var(--dark-green);">Nem irányított gráfoknak</i>nevezzük azokat a gráfokat, amelyek nincsenek iránnyal ellátva, és működik az oda-vissza út. (pl. G<sub>1</sub>)</p>
                 <p style="padding-left: 40px;">pl. lehetséges bejárás: x<sub>1</sub>e<sub>1</sub> x<sub>2</sub> e<sub>7</sub> x<sub>5</sub> e<sub>8</sub> x<sub>1</sub> e<sub>6</sub> x<sub>4</sub> e<sub>3</sub> x<sub>3</sub></p>
-                <p style="padding-left: 100px; font-size:80%;">x<sub>1</sub>-ből eljuthatunk x<sub>2</sub>-be és fordítva is az e<sub>1</sub> élen keresztül</p>
+                <p style="padding-left: 100px; font-size:80%; padding-top: 0px;">x<sub>1</sub>-ből eljuthatunk x<sub>2</sub>-be és fordítva is az e<sub>1</sub> élen keresztül</p>
             
             <h1 id="section-4">Gráfok ábrázolási módjai</h1>
             <img src="images/info1.jpg" style="margin: 10px;">
 
                 <h2>Illeszkedési mátrix (pont-él mátrix, incidencia mátrix)</h2>
                 <p>Adott egy gráf, amelynek <i>n</i> pontja és <i>m</i> éle van. Az adott gráfhoz hozzárendelhető egy <i>n</i> sorból és <i>m</i> oszlopból álló kétdimenziós tömb az alábbi szabály alapján: </p>
-                <img src="images/fgvszeruseg.jpg">
+                <img src="images/fgvszeruseg.jpg" class="margin-auto-center">
 
-                <style type="text/css">
-                    .tg  {border-collapse:collapse;border-spacing:0;}
-                    .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-                    .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-                    .tg .tg-5w05{background-color:rgb(0, 173, 181);color:rgb(0, 0, 0);text-align:left;vertical-align:middle}
-                    .tg .tg-exjq{color:rgb(0, 0, 0);text-align:left;vertical-align:middle}
-                    </style>
-                    <table class="tg">
-                      <tr>
-                        <th class="tg-5w05">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;</th>
-                        <th class="tg-5w05">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</th>
-                        <th class="tg-5w05">&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;</th>
-                        <th class="tg-5w05">&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;</th>
-                        <th class="tg-5w05">&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;</th>
-                        <th class="tg-5w05">&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;</th>
-                        <th class="tg-5w05">&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;</th>
-                        <th class="tg-5w05">&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;</th>
-                        <th class="tg-5w05">&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;</th>
+    
+               <div>
+                    <table style="float: left;">
+                      <tr style="background-color: var(--dark-green);">
+                        <th> </th>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
                       </tr>
                       <tr>
-                        <td class="tg-5w05">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                        <th style="background-color: var(--dark-green);">1</th>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
                       </tr>
                       <tr>
-                        <td class="tg-5w05">&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <th style="background-color: var(--dark-green);">2</th>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
                       </tr>
                       <tr>
-                        <td class="tg-5w05">&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <th style="background-color: var(--dark-green);">3</th>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
                       </tr>
                       <tr>
-                        <td class="tg-5w05">&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <th style="background-color: var(--dark-green);">4</th>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>0</td>
                       </tr>
                       <tr>
-                        <td class="tg-5w05">&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                        <th style="background-color: var(--dark-green);">5</th>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
                       </tr>
                     </table>
 
-                    <style type="text/css">
-                        .tg  {border-collapse:collapse;border-spacing:0;}
-                        .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-                        .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-                        .tg .tg-h9il{background-color:rgb(0, 173, 181);color:rgb(0, 0, 0);text-align:center;vertical-align:top}
-                        .tg .tg-5w05{background-color:rgb(0, 173, 181);color:rgb(0, 0, 0);text-align:left;vertical-align:middle}
-                        .tg .tg-lu0m{color:rgb(0, 0, 0);text-align:left;vertical-align:top}
-                        .tg .tg-thtx{background-color:rgb(0, 173, 181);color:rgb(0, 0, 0);text-align:left;vertical-align:top}
-                        .tg .tg-exjq{color:rgb(0, 0, 0);text-align:left;vertical-align:middle}
-                        </style>
-                        <table class="tg">
-                          <tr>
-                            <th class="tg-5w05">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;</th>
-                            <th class="tg-5w05">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</th>
-                            <th class="tg-5w05">&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;</th>
-                            <th class="tg-5w05">&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;</th>
-                            <th class="tg-5w05">&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;</th>
-                            <th class="tg-5w05">&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;</th>
-                            <th class="tg-5w05">&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;</th>
-                            <th class="tg-5w05">&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;</th>
-                            <th class="tg-5w05">&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;</th>
-                            <th class="tg-thtx">&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;</th>
-                            <th class="tg-h9il">10</th>
-                            <th class="tg-thtx">&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;</th>
+
+                    
+                    <table style="float: right;">
+                          <tr style="background-color: var(--dark-green);">
+                            <th> </th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>8</th>
+                            <th>9</th>
+                            <th>10</th>
+                            <th>11</th>
                           </tr>
                           <tr>
-                            <td class="tg-5w05">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <th style="background-color: var(--dark-green);">1</th>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
                           </tr>
                           <tr>
-                            <td class="tg-5w05">&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <th style="background-color: var(--dark-green);">2</th>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
                           </tr>
                           <tr>
-                            <td class="tg-5w05">&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <th style="background-color: var(--dark-green);">3</th>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
                           </tr>
                           <tr>
-                            <td class="tg-5w05">&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <th style="background-color: var(--dark-green);">4</th>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
                           </tr>
                           <tr>
-                            <td class="tg-5w05">&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <th style="background-color: var(--dark-green);">5</th>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>1</td>
+                            <td>1</td>
                           </tr>
                           <tr>
-                            <td class="tg-thtx">&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
-                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <th style="background-color: var(--dark-green);">6</th>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>1</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
                           </tr>
-                        </table>
+                    </table>
+                </div>
+              <br> <br> <br> <br> <br> <br> <br> <br>
+
+               <p style="color: red; margin-bottom: 5px;"><i>Megjegyzések</i></p>
+                <ul>
+                  <li>Az i. sorban levő számok összege megadja a sor sorszámának megfelelő x<sub>i</sub>. pont fokszámát.</li>
+                  <li>Bármely oszlopban található számok összege 2, mivel bármely élhez 2 pont illeszkedik (kivétel hurokél).</li>
+                  <li>Irányított gráfok esetén, nagyon sok feladat megoldásánál fontos ismerni az élek irányítását, ezért ilyen esetekben a pontok kezdőpontját 1-gyel, a végpontját pedig -1-gyel jelölhetjük.</li>
+                </ul>
+              
+            <h2>Éllista</h2>
+            <p>Adott egy gráf, amelynek <i>n</i> pontja és <i>m</i> éle van. Az adott gráfhoz hozzárendelhető egy <i>m</i> sorból és 2 oszlopból álló kétdimenziós tömb, amelynek minden sorában az adott sorszámú él egyik végpontja az első oszlopban, és a másik végpontja a második oszlopban található.  </p>
+          
+            <div class="margin-auto-center" style="width: 330px;">
+              <table style="float: left; margin-right: 30px;">
+                <tr>
+                  <th style="background-color: var(--dark-green);">1</th>
+                  <td>1</td>
+                  <td>2</td>
+                </tr>
+
+                <tr>
+                  <th style="background-color: var(--dark-green); text-align: center;">2</th>
+                  <td>2</td>
+                  <td>3</td>
+                </tr>
+
+                <tr>
+                  <th style="background-color: var(--dark-green);">3</th>
+                  <td>3</td>
+                  <td>4</td>
+                  
+                </tr>
+
+                <tr>
+                  <th style="background-color: var(--dark-green);">4</th>
+                  <td>2</td>
+                  <td>4</td>
+                  
+                </tr>
+
+                <tr>
+                  <th style="background-color: var(--dark-green);">5</th>
+                  <td>4</td>
+                  <td>5</td>
+                  
+                </tr>
+
+                <tr >
+                  <th style="background-color: var(--dark-green);">6</th>
+                  <td>1</td>
+                  <td>4</td>                
+                </tr>
+
+                <tr >
+                  <th style="background-color: var(--dark-green);">7</th>
+                  <td>2</td>
+                  <td>5</td>                
+                </tr>
+
+                <tr >
+                  <th style="background-color: var(--dark-green);">8</th>
+                  <td>1</td>
+                  <td>5</td>                
+                </tr>
+
+              </table>
+
+              <table style="float: left;">
+                <tr >
+                  <th style="background-color: var(--dark-green);">1</th>
+                  <td>1</td>
+                  <td>6</td>                
+                </tr>
+
+                <tr>
+                  <th style="background-color: var(--dark-green);">2</th>
+                  <td>3</td>
+                  <td>6</td>
+                </tr>
+
+                <tr>
+                  <th style="background-color: var(--dark-green);">3</th>
+                  <td>6</td>
+                  <td>2</td>
+                  
+                </tr>
+
+                <tr>
+                  <th style="background-color: var(--dark-green);">4</th>
+                  <td>2</td>
+                  <td>3</td>
+                  
+                </tr>
+
+                <tr>
+                  <th style="background-color: var(--dark-green);">5</th>
+                  <td>1</td>
+                  <td>5</td>
+                  
+                </tr>
+
+                <tr >
+                  <th style="background-color: var(--dark-green);">6</th>
+                  <td>2</td>
+                  <td>5</td>                
+                </tr>
+
+                <tr >
+                  <th style="background-color: var(--dark-green);">7</th>
+                  <td>4</td>
+                  <td>2</td>                
+                </tr>
+
+                <tr >
+                  <th style="background-color: var(--dark-green);">8</th>
+                  <td>3</td>
+                  <td>4</td>                
+                </tr>
+
+                <tr >
+                  <th style="background-color: var(--dark-green);">9</th>
+                  <td>4</td>
+                  <td>3</td>                
+                </tr>
+
+                <tr >
+                  <th style="background-color: var(--dark-green);">10</th>
+                  <td>5</td>
+                  <td>4</td>                
+                </tr>
+
+                <tr >
+                  <th style="background-color: var(--dark-green);">11</th>
+                  <td>5</td>
+                  <td>5</td>                
+                </tr>
+
+              </table>
+          </div>
+         
+          <br> <br> <br> <br> <br> <br> <br> <br> 
+         
+
+
+
+
 
         </div>
 

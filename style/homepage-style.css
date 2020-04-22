@@ -145,4 +145,22 @@ body {
 /* Main content components */
 h1{
   font-size: 2.5em;
+  border-bottom: 3px solid var(--dark-green);
+}
+
+table{
+  position: relative;
+  border-collapse: collapse;
+  border: solid 3px var(--dark-black);
+}
+
+.margin-auto-center{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th, td{
+  padding: 5px;
+  text-align: center;
 }
