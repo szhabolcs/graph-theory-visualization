@@ -75,7 +75,7 @@ function onMouseMove(event) {
 function onMouseDown(event) {
     bindEventsForDrag();
     DOMContainer.removeClass("slow-transition");
-    event.preventDefault();
+
 }
 
 /**
