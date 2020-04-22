@@ -158,6 +158,193 @@
                 <p>Adott egy gráf, amelynek <i>n</i> pontja és <i>m</i> éle van. Az adott gráfhoz hozzárendelhető egy <i>n</i> sorból és <i>m</i> oszlopból álló kétdimenziós tömb az alábbi szabály alapján: </p>
                 <img src="images/fgvszeruseg.jpg">
 
+                <style type="text/css">
+                    .tg  {border-collapse:collapse;border-spacing:0;}
+                    .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+                    .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+                    .tg .tg-5w05{background-color:rgb(0, 173, 181);color:rgb(0, 0, 0);text-align:left;vertical-align:middle}
+                    .tg .tg-exjq{color:rgb(0, 0, 0);text-align:left;vertical-align:middle}
+                    </style>
+                    <table class="tg">
+                      <tr>
+                        <th class="tg-5w05">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;</th>
+                        <th class="tg-5w05">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</th>
+                        <th class="tg-5w05">&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;</th>
+                        <th class="tg-5w05">&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;</th>
+                        <th class="tg-5w05">&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;</th>
+                        <th class="tg-5w05">&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;</th>
+                        <th class="tg-5w05">&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;</th>
+                        <th class="tg-5w05">&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;</th>
+                        <th class="tg-5w05">&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;</th>
+                      </tr>
+                      <tr>
+                        <td class="tg-5w05">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td class="tg-5w05">&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td class="tg-5w05">&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td class="tg-5w05">&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td class="tg-5w05">&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                        <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                      </tr>
+                    </table>
+
+                    <style type="text/css">
+                        .tg  {border-collapse:collapse;border-spacing:0;}
+                        .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+                        .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+                        .tg .tg-h9il{background-color:rgb(0, 173, 181);color:rgb(0, 0, 0);text-align:center;vertical-align:top}
+                        .tg .tg-5w05{background-color:rgb(0, 173, 181);color:rgb(0, 0, 0);text-align:left;vertical-align:middle}
+                        .tg .tg-lu0m{color:rgb(0, 0, 0);text-align:left;vertical-align:top}
+                        .tg .tg-thtx{background-color:rgb(0, 173, 181);color:rgb(0, 0, 0);text-align:left;vertical-align:top}
+                        .tg .tg-exjq{color:rgb(0, 0, 0);text-align:left;vertical-align:middle}
+                        </style>
+                        <table class="tg">
+                          <tr>
+                            <th class="tg-5w05">&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;</th>
+                            <th class="tg-5w05">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</th>
+                            <th class="tg-5w05">&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;</th>
+                            <th class="tg-5w05">&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;</th>
+                            <th class="tg-5w05">&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;</th>
+                            <th class="tg-5w05">&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;</th>
+                            <th class="tg-5w05">&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;</th>
+                            <th class="tg-5w05">&nbsp;&nbsp;&nbsp;7&nbsp;&nbsp;&nbsp;</th>
+                            <th class="tg-5w05">&nbsp;&nbsp;&nbsp;8&nbsp;&nbsp;&nbsp;</th>
+                            <th class="tg-thtx">&nbsp;&nbsp;&nbsp;9&nbsp;&nbsp;&nbsp;</th>
+                            <th class="tg-h9il">10</th>
+                            <th class="tg-thtx">&nbsp;&nbsp;&nbsp;11&nbsp;&nbsp;&nbsp;</th>
+                          </tr>
+                          <tr>
+                            <td class="tg-5w05">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td class="tg-5w05">&nbsp;&nbsp;&nbsp;2&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td class="tg-5w05">&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td class="tg-5w05">&nbsp;&nbsp;&nbsp;4&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td class="tg-5w05">&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-exjq">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                          </tr>
+                          <tr>
+                            <td class="tg-thtx">&nbsp;&nbsp;&nbsp;6&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;1&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                            <td class="tg-lu0m">&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;</td>
+                          </tr>
+                        </table>
+
         </div>
 
     </div>
