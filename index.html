@@ -15,7 +15,7 @@
         <div style="margin-bottom: 90px;">
             <a href="#sub-content">Az applikációról</a>
 
-            <a href="#">Általános Gráfok:</a>
+            <a href="#sub-content">Általános Gráfok:</a>
             <a href="#section-1" class="side-section-1">1. Mire használjuk a gráfokat?</a>
 
             <a href="#section-2" class="side-section-1">2. Alapfogalmak</a>
@@ -66,7 +66,7 @@
     <div id="main-content">
         <div class="navbar">
             <a onclick="changeNav()">
-                <svg style="height: 28px;padding: 0px;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><pathfill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
+                <svg style="height: 28px;padding: 0px;" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" class="svg-inline--fa fa-bars fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path></svg>
                 <span style="position: relative;top: -8px;padding-left: 5px;">Tartalom</span>
             </a>
             <a href="./app/">
@@ -81,25 +81,7 @@
                 <br>
                 <h1>Egy interaktiv és modern gráf oktató applikáció.</h1>
             </span>
-            <pre class="lang-cpp language-markup line-numbers">
-                <code>
-                   <script type="text/plain">
-                    void pont_el(int n, int pp_mat[100][100], int pe_mat[100][100] )
-                    {
-                        int ind=0;
-                        for(int i=0; i < n ; i++)
-                            for(int j=0; j < n; j++)
-                                if(pp_mat[i][j] == 1)
-                                {
-                                    pe_mat[i][ind] = 1;
-                                    pe_mat[j][ind++] = 1;
-                                }
-                    }
-                   </script>
-                 </code>
-            </pre>
-
-            
+          
             <h1 id="section-1">Mire használjuk a gráfokat?</h1>
             <img src="images/grafalk.png" style="float: right; margin: 10px;">
             
@@ -153,13 +135,13 @@
             <h1 id="section-4">Gráfok ábrázolási módjai</h1>
             <img src="images/info1.jpg" style="margin: 10px;">
 
-                <h2>Illeszkedési mátrix (pont-él mátrix, incidencia mátrix)</h2>
+                <h2 id="section-4-1">Illeszkedési mátrix (pont-él mátrix, incidencia mátrix)</h2>
                 <p>Adott egy gráf, amelynek <i>n</i> pontja és <i>m</i> éle van. Az adott gráfhoz hozzárendelhető egy <i>n</i> sorból és <i>m</i> oszlopból álló kétdimenziós tömb az alábbi szabály alapján: </p>
                 <img src="images/fgvszeruseg.jpg" class="margin-auto-center">
 
     
-               <div>
-                    <table style="float: left;">
+               <div style="height: 50px; width: 900px;" class="margin-auto-center">
+                    <table style="float: left; margin-right: 350px; border: solid 3px var(--dark-black);">
                       <tr style="background-color: var(--dark-green);">
                         <th> </th>
                         <th>1</th>
@@ -228,9 +210,7 @@
                       </tr>
                     </table>
 
-
-                    
-                    <table style="float: right;">
+                    <table style="float: left; border: solid 3px var(--dark-black);">
                           <tr style="background-color: var(--dark-green);">
                             <th> </th>
                             <th>1</th>
@@ -340,11 +320,11 @@
                   <li>Irányított gráfok esetén, nagyon sok feladat megoldásánál fontos ismerni az élek irányítását, ezért ilyen esetekben a pontok kezdőpontját 1-gyel, a végpontját pedig -1-gyel jelölhetjük.</li>
                 </ul>
               
-            <h2>Éllista</h2>
+            <h2 id="section-4-2">Éllista</h2>
             <p>Adott egy gráf, amelynek <i>n</i> pontja és <i>m</i> éle van. Az adott gráfhoz hozzárendelhető egy <i>m</i> sorból és 2 oszlopból álló kétdimenziós tömb, amelynek minden sorában az adott sorszámú él egyik végpontja az első oszlopban, és a másik végpontja a második oszlopban található.  </p>
           
-            <div class="margin-auto-center" style="width: 330px;">
-              <table style="float: left; margin-right: 30px;">
+            <div class="margin-auto-center" style="width: 400px;">
+              <table style="float: left; margin-right: 180px; border: solid 3px var(--dark-black);">
                 <tr>
                   <th style="background-color: var(--dark-green);">1</th>
                   <td>1</td>
@@ -398,7 +378,7 @@
 
               </table>
 
-              <table style="float: left;">
+              <table style="float: left; border: solid 3px var(--dark-black);">
                 <tr >
                   <th style="background-color: var(--dark-green);">1</th>
                   <td>1</td>
@@ -471,12 +451,733 @@
               </table>
           </div>
          
-          <br> <br> <br> <br> <br> <br> <br> <br> 
+          <br> <br> <br> <br> <br> <br> <br> <br>  <br> <br> <br> <br> <br> <br> <br> <br> 
          
+         <h2 id="section-4-3">Boole-mátrix (szomszédsági mátrix, adjacenciamátrix)</h2>
+         <p>Adott egy gráf, amelynek <i>n</i> pontja és <i>m</i> éle van. Az adott gráfhoz hozzárendelhető egy <i>n</i> sorból és <i>n</i> oszlopból álló kétdimenziós tömb az alábbi szabály alapján: </p>
+         <img src="images/fgvszeruseg2.jpg" class="margin-auto-center">
+          
+         <div style="height: 50px; width: 600px;" class="margin-auto-center">
+          <table style="float: left; margin-right: 100px; border: solid 3px var(--dark-black);">
+            <tr style="background-color: var(--dark-green);">
+              <th> </th>
+              <th>1</th>
+              <th>2</th>
+              <th>3</th>
+              <th>4</th>
+              <th>5</th>
+            </tr>
 
+            <tr>
+              <th style="background-color: var(--dark-green);">1</th>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+            </tr>
 
+            <tr>
+              <th style="background-color: var(--dark-green);">2</th>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+            </tr>
 
+            <tr>
+              <th style="background-color: var(--dark-green);">3</th>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+            </tr>
 
+            <tr>
+              <th style="background-color: var(--dark-green);">4</th>
+              <td>1</td>
+              <td>1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+            </tr>
+            <tr>
+              <th style="background-color: var(--dark-green);">5</th>
+              <td>1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+            </tr>
+          </table>
+
+          <table style="float: left; margin-left: 180px; border: solid 3px var(--dark-black);">
+                <tr style="background-color: var(--dark-green);">
+                  <th> </th>
+                  <th>1</th>
+                  <th>2</th>
+                  <th>3</th>
+                  <th>4</th>
+                  <th>5</th>
+                  <th>6</th>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">1</th>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">2</th>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">3</th>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>0</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">4</th>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">5</th>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>0</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">6</th>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                </tr>
+          </table>
+        </div>
+        <br> <br> <br> <br> <br> <br> <br> <br>
+  
+        <p style="color: red; margin-bottom: 5px;"><i>Megjegyzések</i></p>
+                <ul>
+                  <li>Nem irányított gráfban az i. sorban és az i. oszlopban található összeg megegyezik az x<sub>i</sub> pont fokszámával. A mátrix szimmetrikus a főátlóra nézve.</li>
+                  <li>Nem irányított gráfban az i. sorban és az i. oszlopban található összeg megegyezik az x<sub>i</sub> pont fokszámával. A mátrix szimmetrikus a főátlóra nézve. Irányított gráfban az i. sorban/oszlopban található 1-ek száma megegyezik az x_i pont ki/be fokszámával. Ha a főátlón csak zérósok szerepelnek, akkor nincs hurokél.</li>
+                  <li>Súlyozott gráf esetén az 1-ek helyett az adott él súlyát tüntetjük fel. Nem létező élek esetén, a mátrix megfelelő helyére ∞-t írunk.</li>
+                </ul>
+        
+         <h2 id="section-4-4">Szomszédsági lista (adjacencialista)</h2>
+         <p>Adott egy gráf, amelynek <i>n</i> pontja van. Az adott gráfhoz hozzárendelhető egy <i>n</i> sorból és maximum <i>m</i> oszlopból álló kétdimenziós tömb, amelynek minden sorában az adott sorszámú ponttal szomszédos végpontok sorozata található. </p>
+
+         <div style="height: 50px; width: 600px;" class="margin-auto-center">
+          <table style="float: left; margin-right: 100px;">
+            <tr>
+              <th style="background-color: var(--dark-green);">1</th>
+              <td>2</td>
+              <td>4</td>
+              <td>5</td>
+            </tr>
+
+            <tr>
+              <th style="background-color: var(--dark-green);">2</th>
+              <td>1</td>
+              <td>3</td>
+              <td>4</td>
+              <td>5</td>
+            </tr>
+
+            <tr>
+              <th style="background-color: var(--dark-green);">3</th>
+              <td>2</td>
+              <td>4</td>
+            </tr>
+
+            <tr>
+              <th style="background-color: var(--dark-green);">4</th>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+              <td>5</td>
+            </tr>
+
+            <tr>
+              <th style="background-color: var(--dark-green);">5</th>
+              <td>1</td>
+              <td>2</td>
+              <td>4</td>
+            </tr>
+          </table>
+
+          <table style="float: left; margin-left: 180px;">
+                <tr>
+                  <th style="background-color: var(--dark-green);">1</th>
+                  <td>5</td>
+                  <td>6</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">2</th>
+                  <td>3</td>
+                  <td>5</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">3</th>
+                  <td>4</td>
+                  <td>6</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">4</th>
+                  <td>2</td>
+                  <td>3</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">5</th>
+                  <td>4</td>
+                  <td>5</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">6</th>
+                  <td>2</td>
+                </tr>
+          </table>
+        </div>
+        <br> <br> <br> <br> <br> <br> <br> <br>       
+
+        <h1 id="section-5">Átalakítások</h1>
+          <h2 id="section-5-1">Boole-mátrix → Pont-él mátrix</h2>
+
+            <pre class="lang-cpp language-markup line-numbers">
+             <code>
+              <script type="text/plain">
+                void pont_el_alakit (int n, int pp_mat[100][100], int pe_mat[100][100] )
+                {
+                    int ind=0;
+                      for(int i=0; i < n; i++)
+                          for(int j=0; j < n; j++)
+                            if(pp_mat[i][j] == 1)
+                            {
+                                pe_mat[i][ind] = 1;
+                                pe_mat[j][ind++] = 1;
+                            }
+                } </script></code>
+              </pre>
+             
+          <h2 id="section-5-2">Boole-mátrix → Éllista</h2>
+            <pre class="lang-cpp language-markup line-numbers">
+            <code>
+             <script type="text/plain">
+              void ellista_alakit (int n, int t[100][2], int mat[100][100])
+              {
+                  int i, j, ind=0;
+              
+                    for(i=0; i < n; i++)
+                      for(j=0; j < n; j++)
+                        {
+                            if(mat[i][j] == 1)
+                          {
+                              t[ind][0] = i+1;
+                              t[ind][1] = j+1;
+                              ind++;
+                          }
+                        }
+              }</script></code>
+             </pre>
+
+          <h2 id="section-5-3">Boole-mátrix → Szomszédsági lista</h2>
+            <pre class="lang-cpp language-markup line-numbers">
+            <code>
+             <script type="text/plain">
+              void szl_alakit (int szl[100][100], int ppm[100][100], int n)
+              {
+                  for(int i=1; i <= n; i++)
+                      for(int j=1; j <= n; j++)
+                      {
+                          if(ppm[i][j] == 1)
+                          {
+                              szl[i][0]++;
+                              szl[i][szl[i][0]] = j;
+                          }
+                      }
+              }</script></code>
+             </pre>
+
+          <h2 id="section-5-4">Éllista → Szomszédsági lista</h2>
+            <pre class="lang-cpp language-markup line-numbers">
+            <code>
+             <script type="text/plain">
+              void alakit ( int m, int el[100][2], int szl[100][100])
+              {
+                  for(int i=1; i <= m; i++)
+                  {
+                      //elso
+                      szl [el[i][1]] [0] ++;  
+                      szl [el[i][1]] [szl[el[i][1]][0]] = el[i][2];
+
+                      //masodik
+                      szl[el[i][2]][0]++;
+                      szl[el[i][2]][szl[el[i][2]][0]] = el[i][1];
+                  }
+              }
+
+              void bblsort(int t[100][100], int i)
+              {
+                int ok=0, s;
+
+                while (ok == 0)
+                  {         
+                    ok=1;
+                    for (int j=1; j < t[i][0]; j++)
+                      if (t[i][j] > t[i][j+1]) { swap(t[i][j],t[i][j+1]); ok = 0; }
+                }
+              }
+
+              void rendezes (int szl[100][100], int n)
+              {
+                  for(int i=1; i <= n; i++)
+                  {
+                      bblsort(szl, i);
+                  }
+              }</script></code>
+             </pre>
+
+          <h2 id="section-5-5">Pont-él matrix → Éllista</h2>
+            <pre class="lang-cpp language-markup line-numbers">
+            <code>
+             <script type="text/plain">
+              void ellista_alakit(int n, int m, int pe_mat[100][100], int el_mat[100][2])
+              {
+                  for(int j=0; j < m; j++)
+                  {
+                      int ok=0;
+                      for(int i=0; i < n; i++)
+                          {
+                            if(pe_mat[i][j] == 1) el_mat[j][0] = i+1;
+                              else if(pe_mat[i][j] == -1) {el_mat[j][1] = i+1; ok = 1;}
+                            if(ok == 0) el_mat[j][1] = el_mat[j][0];
+                          }
+                  }
+              }</script></code>
+             </pre>
+
+          <h2 id="section-5-6">Szomszédsági lista → Boole-mátrix</h2>
+           <pre class="lang-cpp language-markup line-numbers">
+            <code>
+             <script type="text/plain">
+              void boole_alakit (int n, int szl[][100], int ppm[][100])
+              {    
+                for(int i=1; i <= n; i++)
+                  {   
+                    for(int j=1; j <= n; j++)
+                      if(szl[i][j] != 0) ppm[szl[i][j]][i]++;
+                  }
+              }</script></code>
+             </pre>
+
+          <h2 id="section-5-7">Pont-él matrix → Szomszédsági lista</h2>
+           <pre class="lang-cpp language-markup line-numbers">
+            <code>
+             <script type="text/plain">
+              void tolt (int n, int m, int pem[100][100], int szl[100][100])
+              {
+                  int e, u; 
+                  for(int j=1; j <= m; j++)
+                  {
+                      e=0; u=0;
+                
+                      for(int i=1; i <= n; i++)
+                      {
+                          if(e == 0 && pem[i][j] == 1) e = i;
+                          else if(u == 0 && pem[i][j] == 1) u = i;
+                      }
+
+                      //elso
+                      szl[e][0]++;
+                      szl[e][szl[e][0]] = u;
+
+                      //utolso
+                      szl[u][0]++;
+                      szl[u][szl[u][0]] = e;
+
+                  }
+              }</script></code>
+             </pre>
+
+          <h2 id="section-5-8">Szomszédsági lista → Éllista</h2>
+           <pre class="lang-cpp language-markup line-numbers">
+            <code>
+             <script type="text/plain">
+              int tolt (int szl[100][100], int el[100][3], int n)
+              {
+                  int index=1;
+
+                    for(int i=1; i <= n; i++)
+                    {
+                        for(int j=1; j <= szl[i][0]; j++)
+                          {
+                              if(i > szl[i][j])
+                              {
+                                  el[index][1] = szl[i][j];
+                                  el[index][2] = i;
+
+                                  index++;
+                              }
+                          }
+                    }
+
+                    return index;
+              }</script></code>
+             </pre>
+
+          <h2 id="section-5-9">Szomszédsági lista → Pont-él mátrix</h2>
+           <pre class="lang-cpp language-markup line-numbers">
+            <code>
+             <script type="text/plain">
+              int tolt (int szl[100][100], int pem[100][100], int n)
+              {
+                  int index = 1; //elek szama
+
+                  for(int i=1; i <= n; i++)
+                  {
+                      for(int j=1; j <= szl[i][0]; j++)
+                  {
+                            if(i > szl[i][j])
+                        {
+                            pem[szl[i][j]][index] = 1;
+                            pem[i][index] = 1;
+
+                            index++;
+                        }
+                      }
+                  }
+                  return index;
+              }</script></code>
+             </pre>
+
+        <h1 id="section-6">Gráfok bejárása </h1>
+          <h2 id="section-6-1">Szélességi bejárás</h2>
+             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate; float: right; margin: 30px;" viewBox="416 -360 284 213.5" width="284pt" height="213.5pt"><defs><clipPath id="_clipPath_4tAaRcY8aOxFVgkhSWWIYVYsQRn2Jvbz"><rect x="416" y="-360" width="284" height="213.5"/></clipPath></defs><g clip-path="url(#_clipPath_4tAaRcY8aOxFVgkhSWWIYVYsQRn2Jvbz)"><line x1="497" y1="-163" x2="436" y2="-228" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="439" y1="-228" x2="529" y2="-339" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="679" y1="-257" x2="447" y2="-300" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="497" y1="-167" x2="627" y2="-320.935" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="436" y1="-228" x2="447" y2="-300" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="683" y1="-257" x2="623" y2="-167" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="497" y1="-163" x2="623" y2="-173" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="529" y1="-339" x2="619" y2="-173" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="679" y1="-257" x2="631" y2="-320.935" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><circle vector-effect="non-scaling-stroke" cx="530" cy="-340.00000000000006" r="20.000000000000085" fill="rgb(57,62,70)"/><text transform="matrix(1,0,0,1,523,-333.164)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">1</text><circle vector-effect="non-scaling-stroke" cx="622.6060568360257" cy="-169.99999999999997" r="20.000000000000114" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="498" cy="-166.49999999999997" r="20.000000000000085" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="680.0000000000001" cy="-256.99999999999994" r="20.000000000000114" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="449" cy="-300.93470371729416" r="20.000000000000057" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="435.99999999999983" cy="-230.00000000000017" r="20.000000000000057" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="627.9253420655218" cy="-320.9347037172942" r="20.000000000000114" fill="rgb(57,62,70)"/><text transform="matrix(1,0,0,1,672,-249.136)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">3</text><text transform="matrix(1,0,0,1,615.106,-164.945)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">4</text><text transform="matrix(1,0,0,1,490.25,-158.945)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">5</text><text transform="matrix(1,0,0,1,442,-292.38)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">7</text><text transform="matrix(1,0,0,1,429.75,-222.136)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">6</text><text transform="matrix(1,0,0,1,620,-314.021)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">2</text></g></svg>
+             <p><b>út:</b> 1 4 6 3 5 7 2</p>
+             <ul>
+               <li>Kiválasztjuk a kiinduló csomópontot és elhelyezzük az <i>út</i> tömbben (+<i>freq</i> tömb).</li>
+               <li>Az <i>út</i> tömbben elhelyezett minden elem esetén keressük az olyan egy él távolságra helyezkedő szomszédját, amely még nincs benne az <i>út</i> tömbben.</li>
+             </ul>  
+             <p><b>Adatszerkezet</b></p>
+               <ul>
+                 <li>a gráf tárolása (pl. szomszédsági lista)</li>
+                 <li>az út tárolása → vektor</li>
+                 <li>frekvencia tömb</li>
+                 <li>e – jelöli a feldolgozás alatt levő elem helyét az <i>út</i> tömbben</li>
+                 <li>u – jelöli az utolsó elem helyét az <i>út</i> tömbben</li>
+               </ul>
+               
+               <div style="height: 40px; width: 600px;">
+                <table style="float: left; margin-right: 100px; margin-top: 50px;">
+                  <tr>
+                    <th style="background-color: var(--dark-green);"></th>
+                    <th style="background-color: var(--dark-green);">0</th>
+                    <th style="background-color: var(--dark-green);">1</th>
+                    <th style="background-color: var(--dark-green);">2</th>
+                    <th style="background-color: var(--dark-green);">3</th>
+                  </tr>
+      
+                  <tr>
+                    <th style="background-color: var(--dark-green);">1</th>
+                    <td style="background-color: var(--pastel-green);">2</td>
+                    <td>4</td>
+                    <td>6</td>
+                  </tr>
+      
+                  <tr>
+                    <th style="background-color: var(--dark-green);">2</th>
+                    <td style="background-color: var(--pastel-green);">2</td>
+                    <td>3</td>
+                    <td>5</td>
+                  </tr>
+      
+                  <tr>
+                    <th style="background-color: var(--dark-green);">3</th>
+                    <td style="background-color: var(--pastel-green);">3</td>
+                    <td>2</td>
+                    <td>4</td>
+                    <td>7</td>
+                  </tr>
+      
+                  <tr>
+                    <th style="background-color: var(--dark-green);">4</th>
+                    <td style="background-color: var(--pastel-green);">3</td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>5</td>
+                  </tr>
+                </table>
+      
+              </div>
+              
+              <pre class="lang-cpp language-markup line-numbers">
+                <code>
+                 <script type="text/plain">
+                  void szelessegi (int szl[][50], int n, int kp)
+                  {
+                    int e=0, u=0, csp;
+                    int freq[50] = {0}, ut[50];
+
+                    //kezdoertekek
+                    ut[0] = kp;
+                    freq[kp]++;
+
+                    while (e <= u)
+                     {
+                        csp = ut[e];
+                        for (int i=1; i<=szl[csp][0]; i++)
+                          {
+                             if (freq[ szl[csp][i] ] == 0)
+                            {
+                                ut[++u] = szl[csp][i];
+                                freq[ szl[csp][i] ]++;
+                            }
+                           }
+                        e++;
+                     }
+                  }</script></code>
+                 </pre>
+
+          <h2 id="section-6-2">Mélységi bejárás </h2>
+             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate; float: right;" viewBox="416 -360 284 213.5" width="284pt" height="213.5pt"><defs><clipPath id="_clipPath_4RAJ5SBxuKD59pSKUFX6v5BnX2N2s4FQ"><rect x="416" y="-360" width="284" height="213.5"/></clipPath></defs><g clip-path="url(#_clipPath_4RAJ5SBxuKD59pSKUFX6v5BnX2N2s4FQ)"><line x1="497" y1="-163" x2="436" y2="-228" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="439" y1="-228" x2="529" y2="-339" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="679" y1="-257" x2="447" y2="-300" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="683" y1="-257" x2="623" y2="-167" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="529" y1="-339" x2="619" y2="-173" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="679" y1="-257" x2="631" y2="-320.935" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><circle vector-effect="non-scaling-stroke" cx="530" cy="-340.00000000000006" r="20.000000000000085" fill="rgb(57,62,70)"/><text transform="matrix(1,0,0,1,523,-333.164)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">1</text><circle vector-effect="non-scaling-stroke" cx="622.6060568360257" cy="-169.99999999999997" r="20.000000000000114" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="498" cy="-166.49999999999997" r="20.000000000000085" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="680.0000000000001" cy="-256.99999999999994" r="20.000000000000114" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="449" cy="-300.93470371729416" r="20.000000000000057" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="435.99999999999983" cy="-230.00000000000017" r="20.000000000000057" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="627.9253420655218" cy="-320.9347037172942" r="20.000000000000114" fill="rgb(57,62,70)"/><text transform="matrix(1,0,0,1,672,-249.136)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">3</text><text transform="matrix(1,0,0,1,615.106,-164.945)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">4</text><text transform="matrix(1,0,0,1,490.25,-158.945)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">5</text><text transform="matrix(1,0,0,1,442,-292.38)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">7</text><text transform="matrix(1,0,0,1,429.75,-222.136)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">6</text><text transform="matrix(1,0,0,1,620,-314.021)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">2</text></g></svg>
+             <p><b>út:</b> 1 4 3 2 7 6 5</p>
+             <ul>
+               <li>Kiválasztjuk a kiinduló csomópontot és elhelyezzük az <i>út</i> tömbben (+<il>freq</il> tömb).</li>
+               <li>Mindig a verem tetején elhelyezendő elem esetén kivesszük az olyan egy él távolságra helyezkedő szomszédját, aki nem került még be az <il>út</il> tömbbe.</li>
+               <li>Az algoritmusnak akkor lesz vége, ha visszaléptünk a verem 0. szintjére.</li>
+             </ul>  
+             <p><b>Adatszerkezet</b></p>
+               <ul>
+                 <li>a gráf tárolása (pl. szomszédsági lista)</li>
+                 <li>az út tárolása → vektor</li>
+                 <li>frekvencia tömb</li>
+                 <li>verem adatszerkezet → vektor</li>
+                 <li>e – jelöli, hogy hol van az éppen feldolgozás alatt álló elem a veremben</li>
+               </ul>
+               
+               <div style="height: 40px; width: 600px;">
+                <table style="float: left; margin-right: 100px; margin-top: 50px;">
+                  <tr>
+                    <th style="background-color: var(--dark-green);"></th>
+                    <th style="background-color: var(--dark-green);">0</th>
+                    <th style="background-color: var(--dark-green);">1</th>
+                    <th style="background-color: var(--dark-green);">2</th>
+                    <th style="background-color: var(--dark-green);">3</th>
+                  </tr>      
+                  <tr>
+                    <th style="background-color: var(--dark-green);">1</th>
+                    <td style="background-color: var(--pastel-green);">2</td>
+                    <td>4</td>
+                    <td>6</td>
+                  </tr>      
+                  <tr>
+                    <th style="background-color: var(--dark-green);">2</th>
+                    <td style="background-color: var(--pastel-green);">1</td>
+                    <td>3</td>
+                  </tr>      
+                  <tr>
+                    <th style="background-color: var(--dark-green);">3</th>
+                    <td style="background-color: var(--pastel-green);">3</td>
+                    <td>2</td>
+                    <td>4</td>
+                    <td>7</td>
+                  </tr>
+                  <tr>
+                    <th style="background-color: var(--dark-green);">4</th>
+                    <td style="background-color: var(--pastel-green);">2</td>
+                    <td>1</td>
+                    <td>3</td>
+                  </tr>
+                  <tr>
+                    <th style="background-color: var(--dark-green);">5</th>
+                    <td style="background-color: var(--pastel-green);">1</td>
+                    <td>6</td>
+                  </tr>
+                  <tr>
+                    <th style="background-color: var(--dark-green);">6</th>
+                    <td style="background-color: var(--pastel-green);">2</td>
+                    <td>1</td>
+                    <td>5</td>
+                  </tr>
+                  <tr>
+                    <th style="background-color: var(--dark-green);">7</th>
+                    <td style="background-color: var(--pastel-green);">1</td>
+                    <td>3</td>
+                  </tr>
+                </table>
+      
+              </div>
+              
+              <pre class="lang-cpp language-markup line-numbers">
+                <code>
+                 <script type="text/plain">
+                  void melysegi (int szl[50][50], int n, int kp)
+                  {
+                      int e=0, u=1, ok=0;
+                      int freq[50]={0}, verem[50], ut[50];
+
+                      //kezdoertekek
+                      ut[0] = kp;
+                      freq[kp]++;
+                      verem[0] = kp;
+
+                      int csp;
+                      while (e >= 0)
+                      {
+                          csp = verem[e];
+                          ok=0;
+
+                          for(int i=1; i <= szl[csp][0] && ok == 0; i++)
+                          {
+                              if (freq[ szl[csp][i] ] == 0)
+                              {
+                                  ok=1;
+                                  verem[++e] = szl[csp][i];
+                                  ut[u++] = szl[csp][i];
+                                  freq[ szl[csp][i] ]++;
+                              }
+                          }
+
+                          if (ok == 0) e--;
+                      }
+                  }</script></code>
+                 </pre>       
+
+            <h2 id="section-6-3">Útmátrix</h2>
+             <p>Egy adott gráfhoz hozzárendelhető egy n sorból és oszlopból álló kétdimenzióstömb, a következő szabályok alapján:</p>
+             <img src="images/fgvszeruseg3.jpg">
+             
+
+             <div style="height: 50px; width: 900px; padding-left: 80px;">
+              
+              <table style="float: left; margin-right: 350px; border: solid 3px var(--dark-black);">
+                <tr style="background-color: var(--dark-green);">
+                  <th> </th>
+                  <th>1</th>
+                  <th>2</th>
+                  <th>3</th>
+                  <th>4</th>
+                  <th>5</th>
+                  <th>6</th>
+                  <th>7</th>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">1</th>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">2</th>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">3</th>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">4</th>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">5</th>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">6</th>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">7</th>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+              </table> 
+              <img src="images/info2.jpg" style="float: right; width: 30%; padding-right: 80px;" >
+          </div>
+          <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+          <ul>
+            <li>Az útmátrix meghatározására a <b><i>Roy-Warshall</i></b> algoritmust használjuk. Az algoritmus meghatározza az adott gráfban található sétákat, tehát, azt hogy egy pontból eljuthatunk-e egy másikba</li>
+            <li>A gráfot boole-mátrix segítségével tároljuk.</li>
+          </ul>
+
+          <pre class="lang-cpp language-markup line-numbers">
+            <code>
+             <script type="text/plain">
+              void roy_warshall (int n, int utm[100][100])   
+              {
+                  int i, j, k;
+
+                  for(k=1; k <= n; k++)
+                  for(i=1; i <= n; i++)
+                    for(j=1; j <= n; j++)
+                      if(utm[i][j] == 0 and i != j and utm[i][k] > 0 and utm[k][j] > 0)
+                        utm[i][j] = utm[i][k] + utm[k][j];
+              }</script></code>
+          </pre>
 
         </div>
 
@@ -486,3 +1187,4 @@
 <script src="./scripts/prism.js"></script>
 <script  src="./scripts/homepage.js"></script>
 </html>
+

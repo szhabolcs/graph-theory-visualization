@@ -5,6 +5,7 @@
   --dark-green: #00ADB5;
   --white: #FFFFFF;
   --gray: #EEEEEE;
+  --pastel-green: #A8D08D;
 }
 
 body {
@@ -151,7 +152,6 @@ h1{
 table{
   position: relative;
   border-collapse: collapse;
-  border: solid 3px var(--dark-black);
 }
 
 .margin-auto-center{
