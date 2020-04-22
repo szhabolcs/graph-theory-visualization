@@ -11,15 +11,12 @@ html[data-theme='dark'] { /* Dark theme variables */
 }
 
 html[data-theme='light'] { /* Light theme variables */
-    --background-color: white;
-    --secondary-color: #1e88e5;
-    --secondary-color-highlight: #89c8ff;
-    --text-color: white;
-    --node-background-color: white;
-
-    --grid-color: lightgrey;
-
-    --connector-color: #445566;
+    --black: #393E46;
+    --dark-black: #222831;
+    --light-green: #2BCED6;
+    --dark-green: #00ADB5;
+    --white: #FFFFFF;
+    --gray: #EEEEEE;
 }
 
 html.color-theme-in-transition,
@@ -37,21 +34,8 @@ body {
     background-color: var(--background-color);
 }
 
-#side-menu {
-    height: 100%; /* Full-height: remove this if you want "auto" height */
-    width: 110px; /* Set the width of the sidebar */
-    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1; /* Stay on top */
-    top: 0; /* Stay at the top */
-    left: 0;
-    background-color: var(--secondary-color);
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding: 20px;
-}
-
 #container {
     padding: 20px;
-    margin-left: 110px; /* Same as the width of the sidebar */
     background-color: var(--background-color);
     position: absolute;
     height: 200%;
@@ -180,4 +164,22 @@ body {
 
 .container-dragging{
     cursor: move;
+}
+
+.navbar-nav{
+    flex-direction: row;    /* Overrides default flex-direction: column;*/
+}
+.navbar{
+    height: 65px;
+    background-color: var(--light-green);
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.nav-item div{
+    font-size: 39px;
+    color: var(--black);
+    margin-right: 50px;
+}
+.nav-item div svg{
+    vertical-align: 0px !important;
 }
