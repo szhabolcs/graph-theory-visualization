@@ -82,8 +82,8 @@ $(document).ready(function () {
 
     document.documentElement.setAttribute('data-theme', theme);
 
-    $("#theme-switch").change(function () {
-        if ($("#theme-switch").is(":checked")) {
+    $("#theme-btn").click(function () {
+        if (theme == 'light') {
             theme = 'dark';
             document.documentElement.classList.add('color-theme-in-transition');
             document.documentElement.setAttribute('data-theme', theme);
@@ -96,6 +96,8 @@ $(document).ready(function () {
         window.setTimeout(function () {
             document.documentElement.classList.remove('color-theme-in-transition')
         }, 1000);
+
+        $(this).find("i").toggleClass("far fas");
     });
 
 

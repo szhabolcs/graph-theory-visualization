@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Graph Theory Visualization</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i&display=swap" rel="stylesheet">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   <link rel="stylesheet" href="../style/app-style.css">
@@ -11,13 +12,13 @@
   <nav class="navbar fixed-bottom">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <div><i class="far fa-moon"></i></div>
+          <div id="theme-btn"><i class="far fa-moon"></i></div>
         </li>
         <li class="nav-item">
-          <div><i class="fas fa-border-none"></i></div>
+          <div id="grid-btn"><i class="fas fa-border-none"></i></div>
         </li>
         <li class="nav-item">
-          <div style="width: 39px; height: 39px;">
+          <div id="edit-btn" style="width: 30px; height: 30px;">
             <svg style="fill: var(--black);" version="1.1" id="Layer_1" focusable="false" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                x="0px" y="0px" viewBox="0 0 511.9 512" style="enable-background:new 0 0 511.9 512;" xml:space="preserve">
             <path d="M490.9,176.2L167.7,499.4L56.4,511.7c-32.2,3.6-59.7-23.6-56.1-56.1l12.3-111.3L335.8,21.1C364-7,409.5-7,437.6,21.1
@@ -27,13 +28,39 @@
           </div>
         </li>
         <li class="nav-item">
-          <div style="width: 5px;background: var(--black);height: 47px;border-radius: 10px;margin-top: 1px;"></div>
+          <div style="width: 5px;background: var(--black);height: 40px;border-radius: 10px;margin-top: -1px;"></div>
+        </li>
+        <li class="nav-item">
+          <span id="current-operation">Current operation</span>
+        </li>
+        <li class="nav-item">
+          <div>
+            <i id="restart-btn" class="fas fa-redo" style="margin-right: 5px;"></i>
+            <i id="play-btn" class="fas fa-play"></i>
+            <i id="step-bw-btn" class="fas fa-step-backward"></i>
+            <i id="step-fw-btn" class="fas fa-step-forward"></i>
+          </div>
         </li>
     </ul>
     <span class="navbar-text">
-      
+      <div id="menu-btn"><i class="fas fa-chevron-up"></i></div>
     </span>
   </nav>
+
+
+  <div id="representation" class="floating-dropdown">
+    Ábrázolások 
+    <div><i class="fas fa-chevron-down"></i></div> 
+  </div>
+
+  <div id="steps" class="floating-dropdown">
+    Lépések 
+    <div><i class="fas fa-chevron-down"></i></div> 
+  </div>
+
+  <div id="output" class="floating-dropdown">
+    <div><i class="fas fa-stream"></i></div> 
+  </div>
 
 <div id="container" class="grid">
 
