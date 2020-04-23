@@ -6,6 +6,7 @@
   --white: #FFFFFF;
   --gray: #EEEEEE;
   --pastel-green: #A8D08D;
+  --light-gray: #AEAAAA;
 }
 
 body {
@@ -147,11 +148,13 @@ body {
 h1{
   font-size: 2.5em;
   border-bottom: 3px solid var(--dark-green);
+  padding-top: 50px;
 }
 
 table{
   position: relative;
   border-collapse: collapse;
+  border: solid 3px var(--dark-black);
 }
 
 .margin-auto-center{
@@ -161,6 +164,11 @@ table{
 }
 
 th, td{
-  padding: 5px;
+  padding: 10px;
   text-align: center;
 }
+
+h2{
+  padding-top: 50px;
+}
+
