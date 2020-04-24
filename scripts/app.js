@@ -78,16 +78,16 @@ $(document).ready(function () {
     //Declarations
     // Light and dark theme switch
     let theme = 'light';
-    let gridSwitch = false;
 
     document.documentElement.setAttribute('data-theme', theme);
 
     $("#theme-btn").click(function () {
+        $(this).find("i").toggleClass("far fas");
+
         if (theme == 'light') {
             theme = 'dark';
             document.documentElement.classList.add('color-theme-in-transition');
             document.documentElement.setAttribute('data-theme', theme);
-
         } else {
             theme = 'light';
             document.documentElement.classList.add('color-theme-in-transition');
@@ -96,8 +96,6 @@ $(document).ready(function () {
         window.setTimeout(function () {
             document.documentElement.classList.remove('color-theme-in-transition')
         }, 1000);
-
-        $(this).find("i").toggleClass("far fas");
     });
 
 
@@ -112,19 +110,61 @@ $(document).ready(function () {
     loadMotionControls();
 
     //Set up the Listeners
-    //click event listener, for adding a node
+    /**
+     * Node adding listener
+     */
     $(".add").click(() => addNode(DOMContainer, "40%", "30%"));
 
-    $("#grid-switch").change(function () {      /* Grid Switch listener */
-        if ($("#grid-switch").is(":checked")) {
-            gridSwitch = false;
-            DOMContainer.addClass("grid");
-        } else {
-            gridSwitch = true;
-            DOMContainer.removeClass("grid");
-        }
+    /**
+     * Grid toggler
+     */
+    $("#grid-btn").click( () => {
+        DOMContainer.toggleClass("grid");
+        $("#grid-btn > i").toggleClass("grid-btn-on");
+    });
+    
+    /**
+     * Edit mode toggler
+     */
+    $("#edit-btn").click( () => {
+        $("#edit-btn > svg").toggleClass("edit-btn-on");
     });
 
+    /**
+     * Representation body div toggler
+     */
+    $("#representation > span > div .fa-chevron-down").click( () => {
+        $("#representation-body").toggleClass("dropdown-body-closed dropdown-representation-body-open");
+        $("#representation > span > div .fa-chevron-down").toggleClass("fa-rotate-180");
+        $("#representation").toggleClass("dropdown-border-radius");
+        $("#representation").toggleClass("dropdown-open");
+    });
 
+    /**
+     * Steps body div toggler
+     */
+    $("#steps > span > div .fa-chevron-down").click( () => {
+        $("#steps-body").toggleClass("dropdown-body-closed dropdown-steps-body-open");
+        $("#steps > span > div .fa-chevron-down").toggleClass("fa-rotate-180");
+        $("#steps").toggleClass("dropdown-border-radius");
+        $("#steps").toggleClass("dropdown-open");
+    });
 
+    /**
+     * Output body div toggler
+     */
+    $("#output > span > div .fa-stream").click( () => {
+        $("#output-body").toggleClass("dropdown-body-closed dropdown-output-body-open");
+        $("#output").toggleClass("dropdown-border-radius");
+        $("#output").toggleClass("dropdown-open");
+    });
+
+    /**
+     * Navbar toggler
+     */
+    $("#navbar-btn").click( () => {
+        $(".navbar").toggleClass("navbar-open");
+        $("#navbar-btn > i").toggleClass("fa-rotate-180");
+        $("#navbar-content").toggleClass("navbar-content-open");
+    });
 });

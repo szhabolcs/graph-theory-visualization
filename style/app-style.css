@@ -24,7 +24,7 @@ html.color-theme-in-transition,
 html.color-theme-in-transition *,
 html.color-theme-in-transition *:before,
 html.color-theme-in-transition *:after { /* Switch dark and light theme with fading */
-    transition: all 750ms !important;
+    transition: all 400ms !important;
     transition-delay: 0 !important;
 }
 
@@ -32,7 +32,7 @@ body {
     height: 100vh;
     color: var(--black);
     overflow: hidden;
-    background-color: var(--background-color);
+    background-color: var(--dark-green);
     font-family: 'Roboto', sans-serif;
     margin: 0px;
 }
@@ -46,7 +46,6 @@ body {
     top: -50%;      /* Pushes back the container */
     left: -50%;     /* so the view can be in the middle*/
     transition: transform .2s;    /* Makes zooming smooth */
-    border: 2px solid var(--grid-color);      /* Bounding box for container */
 }
 
 .node {
@@ -72,12 +71,25 @@ body {
 }
 
 .grid {
-    background: url("../images/grid.svg");
+    background-image: url("../images/grid.svg");
     background-size: 50px;
-    border-top: 0px !important;     /* Bounding box for container */
-    border-left: 0px !important;
-}
 
+    border: 5px solid var(--light-green);      /* Bounding box for container */
+}
+#grid-btn > i{
+    opacity: 0.5;
+    transition: all .3s;
+}
+.grid-btn-on{
+    opacity: 1 !important;
+}
+#edit-btn > svg{
+    opacity: 0.5;
+    transition: all .3s;
+}
+.edit-btn-on{
+    opacity: 1 !important;
+}
 .slow-transition{
     transition: transform .2s, margin .5s !important;  /* Makes setting back the container smooth */
 }
@@ -86,6 +98,19 @@ body {
     cursor: move;
 }
 
+/* Custom scrollbar */
+::-webkit-scrollbar
+{
+  width: 5px;
+  height: 5px;
+  background-color: var(--gray);
+}
+
+::-webkit-scrollbar-thumb
+{
+    background-color: var(--black);
+    border-radius: 5px;
+}
 
 /* Navbar */
 .navbar-nav{
@@ -96,34 +121,51 @@ body {
     background-color: var(--light-green);
     padding-left: 50px;
     padding-right: 50px;
-
     box-shadow: 3px 0px 6px rgba(0, 0, 0, 0.16);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    transition: all .3s;
 }
 .nav-item div{
     font-size: 30px;
     margin-right: 50px;
 }
-.nav-item div svg{
-    vertical-align: 0px !important;
+#navbar-btn > i{
+    transition: all .3s;
+}
+#navbar-content{
+    height: 0px;
+    width: 100vw;
+    position: fixed;
+    bottom: 0;
+    background-color: var(--gray);
+    z-index: 2;
+    transition: all .3s;
+}
+.navbar-content-open{
+    height: 200px !important;
 }
 #current-operation{
     font-weight: 500;
-    font-size: 28px;
+    font-size: 25px;
     
     margin-right: 40px;
 }
-.navbar-text div{
+.navbar-text i{
     font-size: 35px;
-    margin-top: -5px;
 }
 .navbar-text{
     padding: 0px !important;
+}
+.navbar div{
+    cursor: pointer;
+    vertical-align: middle;
+    padding-bottom: 8px;
 }
 
 /* Floating items */
 .floating-dropdown{
     position: fixed;
-    width: 350px;
+    width: 215px;
     height: 50px;
     background-color: var(--light-green);
     z-index: 1;
@@ -133,25 +175,74 @@ body {
     font-weight: 500;
     font-size: 20px;
     line-height: 50px; /* Same as height. Centers the text*/
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+}
+.floating-dropdown > span > div > i{
+    transition: all .3s;
+    cursor: pointer;
+}
+.floating-dropdown span{
     padding-left: 25px;
     padding-right: 25px;
-    width: 350px;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+}
+.floating-dropdown span div{
+    padding-right: 25px;
 }
 .floating-dropdown div{
     float: right;
     font-size: 28px;
 }
+#representation{
+    transition: all .3s;
+}
 #steps{
-    right: 0;
+    right: 25px;
+    transition: all .3s;
 }
 #output{
-    right: 0;
-    top: 50%;
-    width: fit-content;
-    padding-left: 13px;
-    padding-right: 13px;
+    right: 25px;
+    top: calc(50vh - 50px);
+    width: 210px;
+    height: 50px;
+    margin-top: 0px;
+    transition: all .3s;
 }
-div > svg{
-    cursor: pointer;
+.dropdown-body{
+    background-color: var(--gray);
+    overflow-y: scroll;
+    font-size: 16px !important;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    border-radius: 0px 0px 5px 5px;
+    transition: all .3s;
+}
+.dropdown-body::-webkit-scrollbar{
+    border-bottom-right-radius: 5px;
+}
+#output-body{
+    line-height: 1.5em;
+    width: 100%;
+}
+.dropdown-body-closed{
+    max-height: 0px;
+}
+.dropdown-representation-body-open{
+    max-height: 75vh !important;
+    padding: 15px;
+}
+.dropdown-steps-body-open{
+    max-height: calc(50vh - 125px) !important;
+    padding: 15px;
+}
+.dropdown-output-body-open{
+    max-height: calc(50vh - 55px) !important;
+    padding: 15px;
+}
+.dropdown-open{
+    width: 350px !important;
+}
+.dropdown-border-radius{
+    border-radius: 5px 5px 0px 0px !important;
+}
+.navbar-open{
+    bottom: 200px;
 }

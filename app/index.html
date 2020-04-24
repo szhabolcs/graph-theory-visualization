@@ -19,7 +19,7 @@
         </li>
         <li class="nav-item">
           <div id="edit-btn" style="width: 30px; height: 30px;">
-            <svg style="fill: var(--black);" version="1.1" id="Layer_1" focusable="false" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            <svg style="fill: var(--black); padding-bottom: 8px; cursor: pointer;" version="1.1" id="Layer_1" focusable="false" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                x="0px" y="0px" viewBox="0 0 511.9 512" style="enable-background:new 0 0 511.9 512;" xml:space="preserve">
             <path d="M490.9,176.2L167.7,499.4L56.4,511.7c-32.2,3.6-59.7-23.6-56.1-56.1l12.3-111.3L335.8,21.1C364-7,409.5-7,437.6,21.1
               l53.2,53.2C518.9,102.5,518.9,148.1,490.9,176.2L490.9,176.2z M369.3,214.2l-71.5-71.5L69.1,371.5l-9,80.4l80.4-9L369.3,214.2z
@@ -43,32 +43,48 @@
         </li>
     </ul>
     <span class="navbar-text">
-      <div id="menu-btn"><i class="fas fa-chevron-up"></i></div>
+      <div id="navbar-btn"><i class="fas fa-chevron-up"></i></div>
     </span>
   </nav>
 
+  <div id="navbar-content"></div>
 
   <div id="representation" class="floating-dropdown">
-    Ábrázolások 
-    <div><i class="fas fa-chevron-down"></i></div> 
+    <span>
+      Ábrázolások
+      <div><i class="fas fa-chevron-down"></i></div>
+    </span>
+    <div id="representation-body" class="dropdown-body dropdown-body-closed">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Non iusto itaque quisquam distinctio, ab atque exercitationem nesciunt at. Ad assumenda velit tenetur iste praesentium, omnis neque ipsa soluta debitis cumque autem sapiente sequi labore adipisci dicta, voluptates voluptas quod consequatur magni quis incidunt, sunt illum ipsam est. Fugiat facilis enim quasi sequi cupiditate perspiciatis quos molestias? Velit distinctio quia laudantium, exercitationem saepe error totam nostrum voluptatem consequatur asperiores laborum ducimus ea dolorum voluptas numquam voluptate corrupti sint facere doloribus a. Laudantium, non. Excepturi debitis iste ex aliquid dolorum voluptates quae aliquam harum dolores voluptatem ab, autem, quia accusamus saepe ad?
+    </div>
   </div>
 
   <div id="steps" class="floating-dropdown">
-    Lépések 
-    <div><i class="fas fa-chevron-down"></i></div> 
+    <span>
+      Lépések 
+      <div><i class="fas fa-chevron-down"></i></div>
+    </span>
+    <div id="steps-body" class="dropdown-body dropdown-body-closed">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Non iusto itaque quisquam distinctio, ab atque exercitationem nesciunt at. Ad assumenda velit tenetur iste praesentium, omnis neque ipsa soluta debitis cumque autem sapiente sequi labore adipisci dicta, voluptates voluptas quod consequatur magni quis incidunt, sunt illum ipsam est. Fugiat facilis enim quasi sequi cupiditate perspiciatis quos molestias? Velit distinctio quia laudantium, exercitationem saepe error totam nostrum voluptatem consequatur asperiores laborum ducimus ea dolorum voluptas numquam voluptate corrupti sint facere doloribus a. Laudantium, non. Excepturi debitis iste ex aliquid dolorum voluptates quae aliquam harum dolores voluptatem ab, autem, quia accusamus saepe ad?
+    </div>
   </div>
 
   <div id="output" class="floating-dropdown">
-    <div><i class="fas fa-stream"></i></div> 
+    <span>
+      Kimenet
+      <div><i class="fas fa-stream"></i></div>
+    </span>
+    <div id="output-body" class="dropdown-body dropdown-body-closed">
+      1 2 3 4 5
+      <br>
+      1 1 1
+    </div>
   </div>
 
-<div id="container" class="grid">
-
-</div>
+  <div id="container"></div>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jsPlumb/2.13.0/js/jsplumb.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js'></script>
 
   <script src="../scripts/constants.js"></script>
   <script src="../scripts/motion-controls.js"></script>
