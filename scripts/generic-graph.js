@@ -25,6 +25,7 @@ class GenericGraph {
      * Adds a new edge to the graph
      * @param edge The actual edge we want to add
      */
+
     //addNewEdge(edge);
 
     /**
@@ -56,12 +57,15 @@ class GenericGraph {
      */
     toBooleMatrix() {
         let booleMatrix = [];
+        //allocate memory for booleMatrix
+        for (let i = 1; i <= this.numberOfNodes; i++)
+            booleMatrix[i] = [];
+
         //search for the edges in the adjacency list and convert it to boole matrix
         for (let i in this.adjacencyList) {
-            let sourceNode = this.adjacencyList[i];
-            for (let j in this.adjacencyList[sourceNode]) {
-                const targetNode = this.adjacencyList[sourceNode][j];
-                booleMatrix[sourceNode][targetNode] = 1;
+            for (let j in this.adjacencyList[i]) {
+                const targetNode = this.adjacencyList[i][j];
+                booleMatrix[i][targetNode] = 1;
             }
         }
 
