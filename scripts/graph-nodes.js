@@ -1,4 +1,4 @@
-class Node {
+class VisualNode {
     constructor(container) {
         this.jspInstance = jsPlumb.getInstance();
         this.jspInstance.setContainer(container);
@@ -70,7 +70,7 @@ class Node {
 
 }
 
-class DirectionalNode extends Node {
+class DirectionalNode extends VisualNode {
 
     constructor(container) {
         super(container);
@@ -103,7 +103,7 @@ class DirectionalNode extends Node {
 
 }
 
-class UnDirectionalNode extends Node {
+class UnDirectionalNode extends VisualNode {
     constructor(container) {
         super(container);
     }
@@ -111,7 +111,7 @@ class UnDirectionalNode extends Node {
 
 }
 
-class BinaryNode extends Node {
+class BinaryNode extends VisualNode {
     constructor(container) {
         super(container);
     }
