@@ -25,7 +25,7 @@ class GenericGraph {
      * Adds a new edge to the graph
      * @param edge The actual edge we want to add
      */
-    addNewEdge(edge);
+    //addNewEdge(edge);
 
     /**
      * Removes a node from the graph
@@ -41,7 +41,7 @@ class GenericGraph {
      * Removes a new edge to the graph
      * @param edge The actual edge we want to remove
      */
-    removeEdge(edge);
+    //removeEdge(edge);
 
     //2. Representation conversions
     /**
