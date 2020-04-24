@@ -59,7 +59,7 @@ class GenericGraph {
         //search for the edges in the adjacency list and convert it to boole matrix
         for (let i in this.adjacencyList) {
             let sourceNode = this.adjacencyList[i];
-            for (let j in this.adjacencyList[currentNode]) {
+            for (let j in this.adjacencyList[sourceNode]) {
                 const targetNode = this.adjacencyList[sourceNode][j];
                 booleMatrix[sourceNode][targetNode] = 1;
             }
