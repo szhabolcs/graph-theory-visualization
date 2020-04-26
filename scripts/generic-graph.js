@@ -6,9 +6,10 @@
  */
 class GenericGraph {
 
-    constructor(numberOfNodes = 0, adjacencyList = []) {
+    constructor(numberOfNodes = 0, numberOfEdges = 0, adjacencyList = []) {
         this.numberOfNodes = numberOfNodes;
         this.adjacencyList = adjacencyList;
+        this.numberOfEdges = numberOfEdges;
     }
 
     //1. Base operations
@@ -89,7 +90,7 @@ class GenericGraph {
      * Returns the graph as incidence matrix representation
      */
     toIncidenceMatrix() {
-
+        
     }
 
     //3. Basic Algorithms
@@ -133,8 +134,7 @@ class GenericGraph {
      * @returns {number} the number of edges of the graph
      */
     get getNumberOfEdges() {
-        let numberOfEdges;
-        return numberOfEdges;
+        return this.numberOfEdges;
     }
 
 }
