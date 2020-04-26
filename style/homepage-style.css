@@ -89,6 +89,7 @@ body {
   padding-top: 80px !important;
   padding: 10%;
   color: var(--black);
+  overflow: hidden;
 }
 
 /* Header */
@@ -172,3 +173,25 @@ h2{
   padding-top: 50px;
 }
 
+.container{
+  margin-bottom: 10px !important;
+}
+.col-sm{
+  margin-bottom: 10px !important;
+}
+.overflow-x-hide{
+  overflow-x: none;
+}
+.overflow-x-hide-lg{
+  overflow-x: none;
+}
+@media only screen and (max-width: 425px) {
+  .overflow-x-hide{
+    overflow-x: scroll;
+  }
+}
+@media only screen and (max-width: 535px) {
+  .overflow-x-hide-lg{
+    overflow-x: scroll;
+  }
+}
