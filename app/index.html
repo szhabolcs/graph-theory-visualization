@@ -12,10 +12,10 @@
   <nav class="navbar fixed-bottom">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <div id="theme-btn"><i class="far fa-moon"></i></div>
+          <div id="theme-btn"><i class="far fa-sun"></i></div>
         </li>
         <li class="nav-item">
-          <div id="grid-btn"><i class="fas fa-border-none"></i></div>
+          <div id="grid-btn"><i class="fas fa-border-none btn-on"></i></div>
         </li>
         <li class="nav-item">
           <div id="edit-btn" style="width: 30px; height: 30px;">
@@ -47,7 +47,33 @@
     </span>
   </nav>
 
-  <div id="navbar-content"></div>
+  <div id="navbar-content" class="row">
+    <div id="navbar-"></div>
+    <div class="container navbar-card my-auto">
+      <div class="row">
+          <div class="col-sm">
+            <img src="https://via.placeholder.com/150x100.png?text=Graph+img">
+          </div>
+          <div class="col-sm navbar-card-text text-center my-auto">
+            Általános
+          </div>
+      </div>
+      <a href="../#"><div class="read-more">Ólvass róla itt!</div></a>
+    </div>
+
+    <div class="container navbar-card my-auto">
+      <div class="row">
+          <div class="col-sm">
+            <img src="https://via.placeholder.com/150x100.png?text=Graph+img">
+          </div>
+          <div class="col-sm navbar-card-text text-center my-auto">
+            Általános
+          </div>
+      </div>
+      <a href="../#"><div class="read-more">Ólvass róla itt!</div></a>
+    </div>
+
+  </div>
 
   <div id="representation" class="floating-dropdown">
     <span>
@@ -55,7 +81,49 @@
       <div><i class="fas fa-chevron-down"></i></div>
     </span>
     <div id="representation-body" class="dropdown-body dropdown-body-closed">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Non iusto itaque quisquam distinctio, ab atque exercitationem nesciunt at. Ad assumenda velit tenetur iste praesentium, omnis neque ipsa soluta debitis cumque autem sapiente sequi labore adipisci dicta, voluptates voluptas quod consequatur magni quis incidunt, sunt illum ipsam est. Fugiat facilis enim quasi sequi cupiditate perspiciatis quos molestias? Velit distinctio quia laudantium, exercitationem saepe error totam nostrum voluptatem consequatur asperiores laborum ducimus ea dolorum voluptas numquam voluptate corrupti sint facere doloribus a. Laudantium, non. Excepturi debitis iste ex aliquid dolorum voluptates quae aliquam harum dolores voluptatem ab, autem, quia accusamus saepe ad?
+      <div class="representation-section">
+        <span class="section-header">Éllista <i class="fas fa-plus"></i></span>
+        <div class="divider-line"></div>
+        <table class="table table-bordered">
+          <thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>6</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+
+      <div class="representation-section">
+        <span class="section-header">Éllista <i class="fas fa-plus"></i></span>
+        <div class="divider-line"></div>
+        <table class="table table-bordered">
+          <thead>
+            <tbody>
+              <tr>
+                <td>1111</td>
+                <td>2222</td>
+              </tr>
+              <tr>
+                <td>3333</td>
+                <td>4444</td>
+              </tr>
+              <tr>
+                <td>555</td>
+                <td>66</td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
     </div>
   </div>
 
@@ -81,7 +149,7 @@
     </div>
   </div>
 
-  <div id="container"></div>
+  <div id="container" class="grid"></div>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jsPlumb/2.13.0/js/jsplumb.min.js'></script>

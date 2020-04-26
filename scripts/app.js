@@ -77,12 +77,17 @@ $(document).ready(function () {
 
     //Declarations
     // Light and dark theme switch
-    let theme = 'light';
+    let theme;
+    if(matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+        $("#theme-btn > i").toggleClass("btn-on");
+    }
+    else theme = 'dark';
 
     document.documentElement.setAttribute('data-theme', theme);
 
     $("#theme-btn").click(function () {
-        $(this).find("i").toggleClass("far fas");
+        $(this).find("i").toggleClass("btn-on");
 
         if (theme == 'light') {
             theme = 'dark';
@@ -120,14 +125,14 @@ $(document).ready(function () {
      */
     $("#grid-btn").click( () => {
         DOMContainer.toggleClass("grid");
-        $("#grid-btn > i").toggleClass("grid-btn-on");
+        $("#grid-btn > i").toggleClass("btn-on");
     });
     
     /**
      * Edit mode toggler
      */
     $("#edit-btn").click( () => {
-        $("#edit-btn > svg").toggleClass("edit-btn-on");
+        $("#edit-btn").toggleClass("btn-on");
     });
 
     /**
@@ -166,5 +171,13 @@ $(document).ready(function () {
         $(".navbar").toggleClass("navbar-open");
         $("#navbar-btn > i").toggleClass("fa-rotate-180");
         $("#navbar-content").toggleClass("navbar-content-open");
+    });
+
+    /**
+     * Navbar toggler
+     */
+    $(".section-header > i").click( (e) => {
+        $(e.currentTarget.parentElement.parentElement).find(".table").fadeToggle();
+        $(e.currentTarget).toggleClass("fa-plus fa-minus");
     });
 });
