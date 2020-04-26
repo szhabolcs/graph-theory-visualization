@@ -27,6 +27,16 @@ body {
   transition: 0.5s;
   padding-top: 60px;
 }
+.closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  cursor: pointer;
+  color: var(--gray);
+  display: none;
+}
 
 #side-nav a {
   padding: 8px 8px 8px 32px;
@@ -60,7 +70,7 @@ body {
 }
 
 /* Top navigation bar */
-.navbar {
+.navbar-top {
   overflow: hidden;
   background-color: var(--gray);
   position: fixed;
@@ -69,7 +79,7 @@ body {
   height: fit-content;
   z-index: 10;
 }
-.navbar a {
+.navbar-top a {
   float: left;
   display: block;
   color: var(--black);
@@ -80,7 +90,7 @@ body {
   border-bottom: 3px solid var(--gray);
   transition: border-bottom .2s;
 }
-.navbar a:hover {
+.navbar-top a:hover {
   border-bottom: 3px solid var(--light-green);
   cursor: pointer;
 }
@@ -201,5 +211,10 @@ h2{
 @media only screen and (max-width: 260px) {
   .overflow-x-hide-sm{
     overflow-x: scroll;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .closebtn{
+    display: initial;
   }
 }
