@@ -185,6 +185,9 @@ h2{
 .overflow-x-hide-lg{
   overflow-x: none;
 }
+.overflow-x-hide-sm{
+  overflow-x: none;
+}
 @media only screen and (max-width: 425px) {
   .overflow-x-hide{
     overflow-x: scroll;
@@ -192,6 +195,11 @@ h2{
 }
 @media only screen and (max-width: 535px) {
   .overflow-x-hide-lg{
+    overflow-x: scroll;
+  }
+}
+@media only screen and (max-width: 260px) {
+  .overflow-x-hide-sm{
     overflow-x: scroll;
   }
 }
