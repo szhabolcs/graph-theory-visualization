@@ -70,7 +70,7 @@ class VisualNode {
 
 }
 
-class DirectionalNode extends VisualNode {
+class DirectedNode extends VisualNode {
 
     constructor(container) {
         super(container);
@@ -103,7 +103,7 @@ class DirectionalNode extends VisualNode {
 
 }
 
-class UnDirectionalNode extends VisualNode {
+class UnDirectedNode extends VisualNode {
     constructor(container) {
         super(container);
     }
