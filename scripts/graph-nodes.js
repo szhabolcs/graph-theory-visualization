@@ -24,15 +24,17 @@ class VisualNode {
             left: left
         });
 
-        jspNode.draggable(insertedBox, {
+        this.jspInstance.draggable(insertedBox, {
             grid: [10, 10]
         });
 
         return insertedBox;
     }
 
-    removeNode(){
-
+    removeNode(nodeId) {
+        this.jspInstance.deleteConnectionsForElement(nodeId);
+        this.jspInstance.removeAllEndpoints(nodeId);
+        this.jspInstance.remove(nodeId);
     }
 
     enableEditMode() {
@@ -43,27 +45,27 @@ class VisualNode {
 
     }
 
-    toggleEditMode(){
+    toggleEditMode() {
 
     }
 
-    resetGraph(){
+    resetGraph() {
 
     }
 
-    goOneStepForward(){
+    goOneStepForward() {
 
     }
 
-    goOneStepBackwards(){
+    goOneStepBackwards() {
 
     }
 
-    updateGraphInMemory(){
+    updateGraphInMemory() {
 
     }
 
-    loadGraphFromMemory(){
+    loadGraphFromMemory() {
 
     }
 
@@ -74,8 +76,6 @@ class DirectedNode extends VisualNode {
 
     constructor(container) {
         super(container);
-        this.jspInstance.bind("connectionDetached", () => alert("Detached"));
-        this.jspInstance.bind("connection", (info) => this.onConnect(info));
     }
 
     /**
@@ -88,12 +88,12 @@ class DirectedNode extends VisualNode {
 
     addNode(top = "50%", left = "50%") {
         const insertedBox = super.addNode(top, left);
-        jspNode.addEndpoint(insertedBox, {
+        this.jspInstance.addEndpoint(insertedBox, {
             isTarget: true,
             anchor: "Top",
             connector: "Straight"
         });
-        jspNode.addEndpoint(insertedBox, {
+        this.jspInstance.addEndpoint(insertedBox, {
             isSource: true,
             anchor: "BottomCenter",
             connector: "Straight",
@@ -118,17 +118,18 @@ class BinaryNode extends VisualNode {
 
     addNode(top = "50%", left = "50%") {
         const insertedBox = super.addNode(top, left);
-        jspNode.addEndpoint(insertedBox, {
+        console.log(insertedBox);
+        this.jspInstance.addEndpoint(insertedBox, {
             isSource: true,
             anchor: [0.2, 1, -1, -1],
             connector: "Straight"
         });
-        jspNode.addEndpoint(insertedBox, {
+        this.jspInstance.addEndpoint(insertedBox, {
             isSource: true,
             anchor: [0.8, 1, -1, -1],
             connector: "Straight"
         });
-        jspNode.addEndpoint(insertedBox, {
+        this.jspInstance.addEndpoint(insertedBox, {
             isTarget: true,
             anchor: [
                 [0.5, 0, 0, 0],
