@@ -49,6 +49,7 @@ class GenericGraph {
     /**
      * Returns the graph as adjacency list representation
      */
+    //Szomszédsági lista
     toAdjacencyList() {
         return this.adjacencyList;
     }
@@ -56,6 +57,7 @@ class GenericGraph {
     /**
      * Returns the graph as boole matrix representation
      */
+    //Pont pont mátrix
     toBooleMatrix() {
         let booleMatrix = [];
         //allocate memory for booleMatrix
@@ -82,6 +84,7 @@ class GenericGraph {
     /**
      * Returns the graph as edge list representation
      */
+    //Éllista
     toEdgeList() {
 
     }
@@ -89,6 +92,7 @@ class GenericGraph {
     /**
      * Returns the graph as incidence matrix representation
      */
+    //Illeszkedési mátrix
     toIncidenceMatrix() {
         
     }
@@ -97,6 +101,7 @@ class GenericGraph {
     /**
      * Breadth First Search algorithm
      */
+    //Szélességi bejárás
     breadthFirstSearch() {
 
     }
@@ -104,6 +109,7 @@ class GenericGraph {
     /**
      * Depth First Search algorithm
      */
+    //Mélységi bejárás
     depthFirstSearch() {
 
     }
@@ -142,6 +148,7 @@ class GenericGraph {
 /**
  * This is the model of an undirected graph
  */
+//Irányítatlan gráf
 class UndirectedGraph extends GenericGraph {
 
     constructor(numberOfNodes = 0, adjacencyList = []) {
@@ -179,6 +186,7 @@ class UndirectedGraph extends GenericGraph {
 /**
  * This is the model of a directed graph
  */
+//Irányított gráf
 class DirectedGraph extends GenericGraph {
 
     constructor(numberOfNodes = 0, adjacencyList = []) {
@@ -216,6 +224,7 @@ class DirectedGraph extends GenericGraph {
  * This is the model of a binary tree
  * Contains the specific algorithms for this type of graph
  */
+//Bináris fa
 class BinaryTree extends UndirectedGraph {
 
     constructor(numberOfNodes = 0, adjacencyList = []) {
@@ -226,6 +235,7 @@ class BinaryTree extends UndirectedGraph {
     /**
      * Returns the graph as parent array representation
      */
+    //Apa tömb
     toParentArray() {
 
     }
@@ -233,6 +243,7 @@ class BinaryTree extends UndirectedGraph {
     /**
      * Returns the graph as bracket representation
      */
+    //Teljes zárójeles alak
     toBracketRepresentation() {
 
     }
@@ -240,6 +251,7 @@ class BinaryTree extends UndirectedGraph {
     /**
      * Returns the graph as Binary Tree Standard representation
      */
+    //Bináris fa standard alakja
     toStandardRepresentation() {
 
     }
@@ -247,6 +259,7 @@ class BinaryTree extends UndirectedGraph {
     /**
      * Returns the graph as Binary representation
      */
+    //Bináris alak
     toBinaryRepresentation() {
 
     }
@@ -276,6 +289,7 @@ class BinaryTree extends UndirectedGraph {
     /**
      * Gets the height of the binary tree
      */
+    //Fa magassága
     getHeight() {
 
     }
@@ -283,6 +297,7 @@ class BinaryTree extends UndirectedGraph {
     /**
      * Gets the leaves of the binary tree
      */
+    //Fa levelei
     getLeaves() {
 
     }
@@ -291,6 +306,7 @@ class BinaryTree extends UndirectedGraph {
      * Gets the direct child nodes of a given node
      * @param indexOfParentNode The node we want the child nodes of
      */
+    //Direkt leszármazottak
     getDirectChildNodes(indexOfParentNode) {
 
     }
@@ -299,6 +315,7 @@ class BinaryTree extends UndirectedGraph {
      * Gets all child nodes of a given node
      * @param indexOfParentNode The node we want the child nodes of
      */
+    //Összes leszármazott
     getChildNodes(indexOfParentNode) {
 
     }
