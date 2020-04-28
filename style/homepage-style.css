@@ -301,3 +301,9 @@ h2{
     display: initial;
   }
 }
+/* Fix for close button on landscape devices */
+@media (orientation: landscape){
+  #side-nav > div > a:first-of-type{
+    padding-top: 40px;
+  }
+}
