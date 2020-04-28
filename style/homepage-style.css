@@ -13,6 +13,9 @@ html[data-theme='dark'] { /* Dark theme variables */
 
   --bold-weight: 500;
   --bold-color: #00adb5;
+
+  --pastel-green: #A8D08D;	
+  --light-gray: #AEAAAA;
 }
 
 html[data-theme='light'] { /* Light theme variables */
@@ -30,6 +33,9 @@ html[data-theme='light'] { /* Light theme variables */
 
   --bold-weight: 700;
   --bold-color: #222831;
+
+  --pastel-green: #A8D08D;	
+  --light-gray: #AEAAAA;
 }
 
 html.color-theme-in-transition,
@@ -240,6 +246,9 @@ table{
   position: relative;
   border-collapse: collapse;
   border: solid 3px var(--dark-black);
+
+  background-color: var(--white);
+  color: var(--black);
 }
 
 .margin-auto-center{
