@@ -1,17 +1,54 @@
-:root{
+html[data-theme='dark'] { /* Dark theme variables */
+  --black: #393E46;
+  --dark-black: #444444;
+  --light-green: #2BCED6;
+  --dark-green: #00ADB5;
+  --white: #FFFFFF;
+  --gray: #444444;
+
+  --background-color: #222831;
+  --text-color: #ededed;
+
+  --side-menu-color: #FFFFFF;
+
+  --bold-weight: 500;
+  --bold-color: #00adb5;
+}
+
+html[data-theme='light'] { /* Light theme variables */
   --black: #393E46;
   --dark-black: #222831;
   --light-green: #2BCED6;
   --dark-green: #00ADB5;
   --white: #FFFFFF;
   --gray: #EEEEEE;
-  --pastel-green: #A8D08D;
-  --light-gray: #AEAAAA;
+
+  --background-color: #FFFFFF;
+  --text-color: #393E46;
+
+  --side-menu-color: #FFFFFF;
+
+  --bold-weight: 700;
+  --bold-color: #222831;
+}
+
+html.color-theme-in-transition,
+html.color-theme-in-transition *,
+html.color-theme-in-transition *:before,
+html.color-theme-in-transition *:after { /* Switch dark and light theme with fading */
+    transition: all 400ms !important;
+    transition-delay: 0 !important;
 }
 
 body {
   font-family: 'Roboto', sans-serif;
   margin: 0px;
+  background-color: var(--background-color);
+}
+
+b, strong{
+  font-weight: var(--bold-weight) !important;
+  color: var(--bold-color) !important;
 }
 
 /* Side navigation bar */
@@ -34,7 +71,7 @@ body {
   font-size: 36px;
   margin-left: 50px;
   cursor: pointer;
-  color: var(--gray);
+  color: var(--text-color);
   display: none;
 }
 
@@ -42,7 +79,7 @@ body {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: var(--gray);
+  color: var(--side-menu-color);
   display: block;
   transition: 0.3s;
 }
@@ -57,6 +94,7 @@ body {
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+  color: var(--side-menu-color);
 }
 
 #main-content {
@@ -78,11 +116,12 @@ body {
   width: 100%;
   height: fit-content;
   z-index: 10;
+  color: var(--text-color);
 }
 .navbar-top a {
   float: left;
   display: block;
-  color: var(--black);
+  color: var(--text-color);
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -98,7 +137,7 @@ body {
 #sub-content{
   padding-top: 80px !important;
   padding: 10%;
-  color: var(--black);
+  color: var(--text-color);
   overflow: hidden;
 }
 
@@ -147,6 +186,9 @@ body {
   margin: auto;
   font-size: 0.5em;
   transition: all .3s;
+}
+.btn-on{
+  opacity: 1 !important;
 }
 .btn:hover{
   font-size: 0.6em;
