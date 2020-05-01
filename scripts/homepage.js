@@ -65,9 +65,14 @@ for(let i=0; i<nodes.length; i++) {
         nodes[i].onclick = function (e) {
             changeNav();
             setTimeout(function(){
-                let href = e.toElement.getAttribute("href");
+                let href;
+                if(e.toElement != undefined)
+                    href = e.toElement.getAttribute("href");
+                else{
+                    href = e.target.getAttribute("href");
+                }
                 href = href.substr(1);
-                let section = document.getElementById(href);
+                section = document.getElementById(href);
                 let offset = 70 + 10; // nav and offset
 
                 // get body position
