@@ -172,7 +172,7 @@ function loadMotionControls(){
     //Calculate borders for dragging at scale 1
     calculateMarginSizes(1);
     //Set up listeners
-    DOMContainer.on("mousewheel", (event) => onScroll(event));
+    DOMContainer.on("wheel", (event) => onScroll(event));
     $Document.on("mousedown", "#container", (event) => onMouseDown(event));
     $Document.on("mouseleave", "#container", () => unbindEventsForDrag());
 }
