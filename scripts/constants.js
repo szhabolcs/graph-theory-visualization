@@ -14,3 +14,17 @@ const NODE_HTML = "<div class='node smooth-shadow centered' >" +
     "<div class='input-group' style='margin:auto; width: 50px;'>" +
     "<input type='text' class='form-control text-center' id='usr'>" +
     "</div></div>";
+
+const menuCard = '<div class="container navbar-card my-auto">'+
+    '      <div class="row">'+
+    '          <div class="col-sm">'+
+    '            <img src="">'+
+    '          </div>'+
+    '          <div class="col-sm navbar-card-text text-center my-auto">'+
+    '            '+
+    '          </div>'+
+    '      </div>'+
+    '      <a href="" class="read-more-link"><div class="read-more"><i class="fas fa-info-circle"></i></div></a>'+
+    '    </div>';
+        
+    

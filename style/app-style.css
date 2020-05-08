@@ -8,6 +8,9 @@ html[data-theme='dark'] { /* Dark theme variables */
 
     --background-color: #222831;
     --dropdown-body-color: #ededed;
+    --menu-back-color: #2BCED6;
+    --modal-background: rgba(68, 68, 68, 0.7);
+    --modal-color: #ededed;
 }
 
 html[data-theme='light'] { /* Light theme variables */
@@ -20,6 +23,9 @@ html[data-theme='light'] { /* Light theme variables */
 
     --background-color: #FFFFFF;
     --dropdown-body-color: #393E46;
+    --menu-back-color: #222831;
+    --modal-background: rgba(238, 238, 238, 0.7);
+    --modal-color: #ededed;
 }
 
 html.color-theme-in-transition,
@@ -48,6 +54,7 @@ body {
     top: -50%;      /* Pushes back the container */
     left: -50%;     /* so the view can be in the middle*/
     transition: transform .2s;    /* Makes zooming smooth */
+    border: 5px solid var(--light-green);      /* Bounding box for container */
 }
 
 .node {
@@ -75,8 +82,6 @@ body {
 .grid {
     background-image: url("../images/grid.svg");
     background-size: 50px;
-
-    border: 5px solid var(--light-green);      /* Bounding box for container */
 }
 .nav-item > div > i{
     transition: all .3s;
@@ -171,7 +176,7 @@ body {
 /* Floating items */
 .floating-dropdown{
     position: fixed;
-    width: 215px;
+    width: 220px;
     height: 50px;
     background-color: var(--light-green);
     z-index: 1;
@@ -297,8 +302,7 @@ body {
 
 /* Navbar cards */
 .navbar-card{
-    width: 300px;
-    height: 104px;
+    width: 300px; height: 104px;
     border: 2px solid var(--dropdown-body-color);
     border-radius: 5px;
     margin: 0px;
@@ -309,10 +313,10 @@ body {
     padding: 0px;
     cursor: pointer;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    margin-top: 0px !important;
+    display: inline-block;
 }
-.navbar-card:hover{
-    height: 128px;
-}
+
 .navbar-card .row .col-sm{
     padding: 0px;
 }
@@ -322,14 +326,87 @@ body {
     margin-right: 15px !important;
     font-size: 20px;
     font-weight: 500;
+    white-space: normal;
 }
 .read-more{
-    background-color: var(--light-green);
-    color: var(--black);
-    text-align: center;
-    width: 100%;
+    color: var(--light-green);
     padding: 0px !important;
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    font-size: 20px;
+    transition: color .3s;
 }
 .read-more:hover{
-    text-decoration: underline;
+    color: var(--dropdown-body-color);
+}
+
+#text-nav{
+    padding: 0px !important;
+    margin: 0px !important;
+}
+#navbar-content > .row{
+    margin: 10px !important;
+}
+#card-holder{
+    overflow: auto;
+    white-space: nowrap;
+}
+.modal-back{
+    cursor: pointer;
+    color: var(--menu-back-color);
+    transition: color .3s;
+}
+.modal-back:hover{
+    color: var(--dropdown-body-color);
+}
+.modal-navigation{
+    height: 24px !important;
+    margin: 0px;
+}
+
+.selected-menu-item{
+    border-color: var(--light-green);
+}
+.fixed-bottom{
+    z-index: 3 !important;
+}
+#start-modal{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: var(--modal-background);
+    z-index: 4;
+    color: var(--dropdown-body-color);
+    padding: 20px;
+    text-align: center;
+    overflow-y: scroll;
+}
+#start-modal-holder{
+    padding: 30px;
+}
+#start-modal-holder .container{
+    margin-bottom: 10px !important;
+}
+#start-btn{
+    width: fit-content;
+    background-color: var(--light-green);
+    color: var(--black);
+    border-radius: 5px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    margin: auto;
+    padding: 5px 10px 5px 10px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all .3s;
+}
+#start-btn:hover{
+    background-color: var(--white);
+}
+.navbar-card .row{
+    background-color: var(--gray);
+    color: var(--dropdown-body-color);
+}
+#modal-navigation .modal-back{
+    margin-left: 50px;
 }

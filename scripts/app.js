@@ -76,8 +76,9 @@ function addNode(top = "50%", left = "50%") {     /*Inserts new node*/
 $(document).ready(function () {
 
     //Declarations
-    // Light and dark theme switch
     let theme;
+
+    // Light and dark theme switch
     if(matchMedia('(prefers-color-scheme: light)').matches) {
         theme = 'light';
         $("#theme-btn > i").toggleClass("btn-on");

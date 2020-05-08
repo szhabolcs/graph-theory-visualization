@@ -2,13 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Graph Theory Visualization</title>
+  <title>Graphviser</title>
+  <link rel="shortcut icon" type="image/png" href="../images/Icon@4x.png"/>
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i&display=swap" rel="stylesheet">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css'>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
   <link rel="stylesheet" href="../style/app-style.css">
 </head>
 <body>
+  <div id="start-modal">
+    <h1>Üdv a Graphviser applikációban!</h1>
+    <p>Kérünk válassz ki egy gráf algoritmust!</p>
+    <div class="row" id="modal-navigation">
+      <div class="col-">
+        <div class="modal-back"><i class="fas fa-arrow-left"></i> vissza</div>
+      </div>
+    </div>
+    <div id="start-modal-holder"></div>
+    <div id="start-btn">Elindítás</div>
+  </div>
+
   <nav class="navbar fixed-bottom">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
@@ -31,7 +44,7 @@
           <div style="width: 5px;background: var(--black);height: 40px;border-radius: 10px;margin-top: -1px;"></div>
         </li>
         <li class="nav-item">
-          <span id="current-operation">Current operation</span>
+          <span id="current-operation">Nincs kiválasztva</span>
         </li>
         <li class="nav-item">
           <div>
@@ -47,32 +60,15 @@
     </span>
   </nav>
 
-  <div id="navbar-content" class="row">
-    <div id="navbar-"></div>
-    <div class="container navbar-card my-auto">
-      <div class="row">
-          <div class="col-sm">
-            <img src="https://via.placeholder.com/150x100.png?text=Graph+img">
-          </div>
-          <div class="col-sm navbar-card-text text-center my-auto">
-            Általános
-          </div>
+  <div id="navbar-content">
+    <div class="row" id="menu-navigation">
+      <div class="col-">
+        <div class="modal-back"><i class="fas fa-arrow-left"></i> vissza</div>
       </div>
-      <a href="../#"><div class="read-more">Ólvass róla itt!</div></a>
     </div>
-
-    <div class="container navbar-card my-auto">
-      <div class="row">
-          <div class="col-sm">
-            <img src="https://via.placeholder.com/150x100.png?text=Graph+img">
-          </div>
-          <div class="col-sm navbar-card-text text-center my-auto">
-            Általános
-          </div>
-      </div>
-      <a href="../#"><div class="read-more">Ólvass róla itt!</div></a>
+    <div id="card-holder">
+      
     </div>
-
   </div>
 
   <div id="representation" class="floating-dropdown">
@@ -158,6 +154,7 @@
   <script src="../scripts/motion-controls.js"></script>
   <script src="../scripts/generic-graph.js"></script>
   <script src="../scripts/graph-nodes.js"></script>
+  <script  src="../scripts/menu-handler.js"></script>
   <script  src="../scripts/app.js"></script>
 </body>
 </html>
