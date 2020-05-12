@@ -18,23 +18,27 @@ class GenericGraph {
      * @param indexOfNode The index of the actual added node
      */
     addNewNode(indexOfNode) {
-        this.adjacencyList[indexOfNode].used = true;
+        this.adjacencyList[indexOfNode] = [];
     }
 
     /**
-     * Function prototype
      * Adds a new edge to the graph
      * @param edge The actual edge we want to add
      */
 
-    //addNewEdge(edge);
+    addNewEdge(edge) {
+        if (typeof this.adjacencyList[edge.source] === "undefined")
+            throw new Error("Node no. " + edge.source + "doesn't exist");
+        if (typeof this.adjacencyList[edge.target] === "undefined")
+            throw new Error("Node no. " + edge.target + "doesn't exist");
+    }
 
     /**
      * Removes a node from the graph
      * @param indexOfNode The index of the node we want to remove
      */
     removeNode(indexOfNode) {
-        this.adjacencyList[indexOfNode].used = false;
+        delete this.adjacencyList[indexOfNode];
 
     }
 
@@ -94,7 +98,7 @@ class GenericGraph {
      */
     //Illeszkedési mátrix
     toIncidenceMatrix() {
-        
+
     }
 
     //3. Basic Algorithms
@@ -161,7 +165,11 @@ class UndirectedGraph extends GenericGraph {
      * @param edge The actual edge we want to add
      */
     addNewEdge(edge) {
-
+        super.addNewEdge(edge);
+        const source = edge.source;
+        const target = edge.target;
+        this.adjacencyList[source].push(target);
+        this.adjacencyList[target].push(source);
     }
 
     /**
