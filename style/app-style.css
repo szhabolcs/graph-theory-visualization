@@ -57,26 +57,54 @@ body {
     border: 5px solid var(--light-green);      /* Bounding box for container */
 }
 
+/* Node code */
 .node {
-    min-height: 100px;
-    width: 100px;
-    background: var(--node-background-color);
-    border-radius: 5px;
+    height: 80px;
+    width: 80px;
+    background: #393E46;
+    border-radius: 50px;
     position: absolute;
 }
-
-.form-control {
-    width: 50px;
-    height: 50px;
-    top: -7px;
-    font-size: 1.5em;
+.input-group {
+    width: 40px;
+    top: 18px;
 }
 
-.smooth-shadow {
-    box-shadow: 0 0.9px 2.2px rgba(0, 0, 0, 0.016),
-    0 3.9px 5.3px rgba(0, 0, 0, 0.022), 0 9.7px 10px rgba(0, 0, 0, 0.025),
-    0 19.3px 17.9px rgba(0, 0, 0, 0.027),
-    0 35.6px 33.4px rgba(0, 0, 0, 0.03), 0 74px 80px rgba(0, 0, 0, 0.04);
+.node-text {
+    width: 40px;
+    height: 40px;
+    font-size: 2em;
+    font-weight: 500;
+    opacity: 1;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 0px !important;
+    padding: 0px !important;
+    color: white;
+}
+.remove-btn{
+    position: absolute;
+    color: #D62B2B;
+    width: 25px;
+    height: 25px;
+    right: 0;
+    top: 0px;
+    font-size: 25px;
+    line-height: 1;
+}
+.remove-btn i{
+    background-color: white;
+    line-height: 0.3;
+    width: 22px;
+}
+.remove-btn i:before{
+    margin-left: -1px;
+}
+.hidden{
+    display: none;
+}
+.input-on{
+    border-bottom: 1.5px solid !important;
 }
 
 .grid {
