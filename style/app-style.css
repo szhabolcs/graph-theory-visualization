@@ -352,12 +352,12 @@ body {
     overflow: auto;
     white-space: nowrap;
 }
-.modal-back{
+.menu-back{
     cursor: pointer;
     color: var(--menu-back-color);
     transition: color .3s;
 }
-.modal-back:hover{
+.menu-back:hover{
     color: var(--dropdown-body-color);
 }
 .modal-navigation{
@@ -407,6 +407,6 @@ body {
     background-color: var(--gray);
     color: var(--dropdown-body-color);
 }
-#modal-navigation .modal-back{
+#modal-navigation .menu-back{
     margin-left: 50px;
 }

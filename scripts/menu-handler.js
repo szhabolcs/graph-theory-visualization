@@ -1,7 +1,7 @@
 //Variables
 
 let menuItems = {
-    iranyitott: false,
+    directed: false,
     selectedAlgorithm: "none",
     root: [
         {
@@ -22,7 +22,7 @@ let menuItems = {
         choice:[
             {
                 text: "Irányított",
-                id: "iranyitott",
+                id: "directed",
                 img: "https://via.placeholder.com/150x100.png?text=Graph+img",
                 sectionId: "../#section-3"
             },
@@ -136,9 +136,9 @@ function getSelectedItems(selected){
         }
     }
 
-    if(selected == "iranyitott" || selected == "iranyitatlan"){
-        if(selected == "iranyitott") menuItems.iranyitott = true;
-            else menuItems.iranyitott = false;
+    if(selected == "directed" || selected == "iranyitatlan"){
+        if(selected == "directed") menuItems.directed = true;
+            else menuItems.directed = false;
 
         for(let i in menuItems["altalanos"]["children"]){
             items.push(menuItems["altalanos"]["children"][i]);
@@ -180,8 +180,8 @@ function loadCards(){
         $(container).append(makeCard(card.id, card.img, card.text, card.sectionId))
     }
 
-    if(selected == "root") $.when($(".modal-back").fadeOut(200)).then(() => {$(container).fadeIn(200)});
-    else $.when($(".modal-back").fadeIn(200)).then(() => {$(container).fadeIn(200)});
+    if(selected == "root") $.when($(".menu-back").fadeOut(200)).then(() => {$(container).fadeIn(200)});
+    else $.when($(".menu-back").fadeIn(200)).then(() => {$(container).fadeIn(200)});
 
     $("#"+menuItems.selectedAlgorithm).addClass("selected-menu-item");
 });
@@ -194,7 +194,7 @@ $("#card-holder").on("click", ".navbar-card", function(e){
     let targetCard = e.currentTarget;
     selected = $(targetCard).attr("id");
 
-    if(selected == "binaris" || selected == "altalanos" || selected == "root" || selected == "iranyitott" || selected == "iranyitatlan"){
+    if(selected == "binaris" || selected == "altalanos" || selected == "root" || selected == "directed" || selected == "iranyitatlan"){
         loadCards();
         group = selected;
     }
@@ -209,7 +209,7 @@ $("#start-modal-holder").on("click", ".navbar-card", function(e){
     let targetCard = e.currentTarget;
     selected = $(targetCard).attr("id");
 
-    if(selected == "binaris" || selected == "altalanos" || selected == "root" || selected == "iranyitott" || selected == "iranyitatlan"){
+    if(selected == "binaris" || selected == "altalanos" || selected == "root" || selected == "directed" || selected == "iranyitatlan"){
         loadCards();
         group = selected;
     }
@@ -220,12 +220,12 @@ $("#start-modal-holder").on("click", ".navbar-card", function(e){
         $("#current-operation").text($("#"+menuItems.selectedAlgorithm).find(".navbar-card-text").text());
     }
 });
-$(".modal-back").on("click", () => {
+$(".menu-back").on("click", () => {
     if(group == "binaris" || group == "altalanos"){
         selected = "root";
         group = selected;
     }
-    else if(group == "iranyitott" || group == "iranyitatlan"){
+    else if(group == "directed" || group == "iranyitatlan"){
         selected = "altalanos";
         group = selected;
     }
