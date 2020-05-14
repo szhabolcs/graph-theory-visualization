@@ -11,15 +11,53 @@
 </head>
 <body>
   <div id="start-modal">
-    <h1>Üdv a Graphviser applikációban!</h1>
-    <p>Kérünk válassz ki egy gráf algoritmust!</p>
-    <div class="row" id="modal-navigation">
-      <div class="col-">
-        <div class="menu-back"><i class="fas fa-arrow-left"></i> vissza</div>
+    <div style="width: 70%;" class="mx-auto">
+
+      <div id="modal-intro">
+        <img src="../images/logo@10x.png" style="width: 100%; margin-bottom: 20px;margin-top: 20px;" class="mx-auto">
+        <h1>Üdv a Graphviser applikációban!</h1>
+
+        <p>Az alkalmazásunk egy iskolai projekt keretén belül indult.
+        <br>Célja a gráfok oktatása egy interaktív és modern módon.
+        </p>
+
+        <div class="container" style="margin-top: 25px;">
+          <div class="row">
+            <div class="col" style="margin-right: 10px;">
+              <h3>Tananyag</h3>
+              <p>Egy teljes gráf referencia, képekkel, pélákkal és kodókkal.</p>
+              <a href="../" style="color: var(--light-green);">Tanagyag megnyítása <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="col">
+              <h3>Applikáció</h3>
+              <p>Egy gráf rajzoló és megoldó applikáció.</p>
+              <a style="color: var(--light-green);" id="open-menu">Tovább az applikációba <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="modal-menu">
+        <div id="modal-navigation">
+          <div class="col-">
+            <div class="container">
+              <div class="row">
+                <div class="col-sm">
+                  <div class="menu-back" style="color: var(--black);"><i class="fas fa-arrow-left"></i> Vissza</div>
+                </div>
+                <div class="col-sm">
+                  Válasszon ki egy gráf algorítmust
+                </div>
+                <div class="col-sm">
+                  <div id="start-btn">Applikáció indítása <i class="fas fa-arrow-right"></i></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="start-modal-holder"></div>
       </div>
     </div>
-    <div id="start-modal-holder"></div>
-    <div id="start-btn">Elindítás</div>
   </div>
 
   <nav class="navbar fixed-bottom">
@@ -61,7 +99,7 @@
   </nav>
 
   <div id="navbar-content">
-    <div class="row" id="menu-navigation">
+    <div class="row" id="menu-navigation" style="height: 24px;">
       <div class="col-">
         <div class="menu-back"><i class="fas fa-arrow-left"></i> vissza</div>
       </div>

@@ -5,7 +5,7 @@ let menuItems = {
     selectedAlgorithm: "none",
     root: [
         {
-            text: "Általános fák",
+            text: "Általános gráfok",
             id: "altalanos",
             img: "https://via.placeholder.com/150x100.png?text=Graph+img",
             sectionId: "../#sub-content"
@@ -179,9 +179,15 @@ function loadCards(){
         card = cards[i];
         $(container).append(makeCard(card.id, card.img, card.text, card.sectionId))
     }
-
-    if(selected == "root") $.when($(".menu-back").fadeOut(200)).then(() => {$(container).fadeIn(200)});
-    else $.when($(".menu-back").fadeIn(200)).then(() => {$(container).fadeIn(200)});
+    
+    if (!$("#start-modal").length && selected == "root") {
+        $(".menu-back").fadeOut(200);
+    }
+    else{
+        $(".menu-back").fadeIn(200);
+    }
+    
+    $(container).fadeIn(200);
 
     $("#"+menuItems.selectedAlgorithm).addClass("selected-menu-item");
 });
@@ -224,18 +230,25 @@ $(".menu-back").on("click", () => {
     if(group == "binaris" || group == "altalanos"){
         selected = "root";
         group = selected;
+        loadCards();
     }
     else if(group == "directed" || group == "iranyitatlan"){
         selected = "altalanos";
         group = selected;
+        loadCards();
     }
-    loadCards();
+    else if(group == "root") {
+        $.when($("#modal-menu").fadeOut(200)).then(() => {
+            $("#modal-intro").css("display","block");
+            $("#start-modal-holder").empty();
+        });
+    }
 });
 
 $("#start-btn").on("click", () => {
     if(menuItems.selectedAlgorithm == "none") alert("Nincs semmi kivalasztva");
     else{
-        $.when($(container).fadeOut(200)).then(() => {
+        $.when($("#start-modal").fadeOut(200)).then(() => {
             $("#start-modal").remove();
             container = "#card-holder";
             selected = "root";
@@ -245,4 +258,9 @@ $("#start-btn").on("click", () => {
     }
 });
 
-loadCards();
+$("#open-menu").on("click", () =>{
+    $.when($("#modal-intro").fadeOut(200)).then(() => {
+        $("#modal-menu").css("display","block");
+        loadCards();
+    });
+});

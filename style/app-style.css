@@ -9,7 +9,7 @@ html[data-theme='dark'] { /* Dark theme variables */
     --background-color: #222831;
     --dropdown-body-color: #ededed;
     --menu-back-color: #2BCED6;
-    --modal-background: rgba(68, 68, 68, 0.7);
+    --modal-background: #00ADB5;
     --modal-color: #ededed;
 }
 
@@ -24,7 +24,7 @@ html[data-theme='light'] { /* Light theme variables */
     --background-color: #FFFFFF;
     --dropdown-body-color: #393E46;
     --menu-back-color: #222831;
-    --modal-background: rgba(238, 238, 238, 0.7);
+    --modal-background: rgb(238, 238, 238);
     --modal-color: #ededed;
 }
 
@@ -386,11 +386,10 @@ body {
     transition: color .3s;
 }
 .menu-back:hover{
-    color: var(--dropdown-body-color);
+    color: var(--dropdown-body-color) !important;
 }
-.modal-navigation{
-    height: 24px !important;
-    margin: 0px;
+#modal-navigation{
+    font-size: 1.3em;
 }
 
 .selected-menu-item{
@@ -407,34 +406,42 @@ body {
     z-index: 4;
     color: var(--dropdown-body-color);
     padding: 20px;
-    text-align: center;
-    overflow-y: scroll;
 }
 #start-modal-holder{
     padding: 30px;
+    overflow-y: auto;
+    height: 90vh !important;
 }
 #start-modal-holder .container{
     margin-bottom: 10px !important;
-}
-#start-btn{
-    width: fit-content;
-    background-color: var(--light-green);
-    color: var(--black);
-    border-radius: 5px;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-    margin: auto;
-    padding: 5px 10px 5px 10px;
-    font-size: 1.2em;
-    cursor: pointer;
-    transition: all .3s;
-}
-#start-btn:hover{
-    background-color: var(--white);
 }
 .navbar-card .row{
     background-color: var(--gray);
     color: var(--dropdown-body-color);
 }
 #modal-navigation .menu-back{
-    margin-left: 50px;
+    width: fit-content;
+    display: inline-block;
+}
+#modal-menu{
+    display: none;
+    text-align: center;
+}
+#modal-intro .container .row .col{
+    background-color: var(--black); 
+    border-radius: 5px; 
+    padding: 15px;
+    color: var(--white);
+}
+a:not([href]):hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+#start-btn{
+    cursor: pointer;
+    color: var(--black);
+    transition: color .3s;
+}
+#start-btn:hover{
+    color: var(--dropdown-body-color) !important;
 }
