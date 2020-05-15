@@ -170,7 +170,7 @@ body {
 }
 #navbar-content{
     height: 0px;
-    width: 100vw;
+    width: 100%;
     position: fixed;
     bottom: 0;
     background-color: var(--gray);
@@ -394,6 +394,18 @@ body {
 
 .selected-menu-item{
     border-color: var(--light-green);
+}
+.selected-menu-item:after{
+    content: "\f00c";
+    position: absolute;
+    background-color: var(--light-green);
+    border-radius: 0px 0px 5px 0px;
+    padding: 2px 5px 2px 5px;
+    font-size: 0.9em;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    top: 0;
+    left: 0;
 }
 .fixed-bottom{
     z-index: 3 !important;
