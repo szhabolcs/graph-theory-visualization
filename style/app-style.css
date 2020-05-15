@@ -457,3 +457,34 @@ a:not([href]):hover{
 #start-btn:hover{
     color: var(--dropdown-body-color) !important;
 }
+/* UI helper buttons */
+.ui-helper-btn{
+    width: 50px;
+    border-radius: 5px;
+    background-color: var(--light-green);
+    position: fixed;
+    z-index: 1;
+    font-size: 20px;
+    padding: 5px;
+    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+    bottom: 65px;
+}
+#node-add-btn{
+    left: 50%;
+    margin-left: -53px; /* Half of width */
+}
+#clear-all-nodes-btn{
+    left: 50%;
+    margin-left: 3px; /* Half of width */
+}
+#zoom-in{
+    right: 137px;
+}
+#zoom-out{
+    right: 81px;
+}
+#zoom-reset{
+    right: 25px;
+}

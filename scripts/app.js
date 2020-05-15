@@ -115,6 +115,9 @@ $(document).ready(function () {
     //Load the motion controls
     loadMotionControls();
 
+    //Initialize tooltips
+    $('[data-toggle="tooltip"]').tooltip({delay: { "show": 500}});
+
     //Set up the Listeners
     /**
      * Node adding listener
@@ -134,6 +137,8 @@ $(document).ready(function () {
      */
     $("#edit-btn").click( () => {
         $("#edit-btn").toggleClass("btn-on");
+        $("#node-add-btn").fadeToggle(200);
+        $("#clear-all-nodes-btn").fadeToggle(200);
     });
 
     /**
@@ -180,5 +185,25 @@ $(document).ready(function () {
     $(".section-header > i").click( (e) => {
         $(e.currentTarget.parentElement.parentElement).find(".table").fadeToggle();
         $(e.currentTarget).toggleClass("fa-plus fa-minus");
+    });
+
+    /**
+     * Zoom buttons listeners
+     */
+    $("#zoom-in").click(()=>{
+        if (iZoom < MAX_ZOOM_VALUE){
+            iZoom += 10;
+            setZoom(iZoom / 100);
+        }
+    });
+    $("#zoom-out").click(()=>{
+        if (iZoom > MIN_ZOOM_VALUE){
+            iZoom -= 10;
+            setZoom(iZoom / 100);
+        }
+    });
+    $("#zoom-reset").click(()=>{
+        iZoom = 100;
+        setZoom(iZoom / 100);
     });
 });

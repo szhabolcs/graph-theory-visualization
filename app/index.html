@@ -17,7 +17,7 @@
         <img src="../images/logo@10x.png" style="width: 100%; margin-bottom: 20px;margin-top: 20px;" class="mx-auto">
         <h1>Üdv a Graphviser applikációban!</h1>
 
-        <p>Az alkalmazásunk egy iskolai projekt keretén belül indult.
+        <p>Az alkalmazásunk egy iskolai projekt keretén jött létre.
         <br>Célja a gráfok oktatása egy interaktív és modern módon.
         </p>
 
@@ -63,13 +63,13 @@
   <nav class="navbar fixed-bottom">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <div id="theme-btn"><i class="far fa-sun"></i></div>
+          <div id="theme-btn" data-toggle="tooltip" data-placement="top" title="Téma"><i class="far fa-sun"></i></div>
         </li>
         <li class="nav-item">
-          <div id="grid-btn"><i class="fas fa-border-none btn-on"></i></div>
+          <div id="grid-btn" data-toggle="tooltip" data-placement="top" title="Rács"><i class="fas fa-border-none btn-on"></i></div>
         </li>
         <li class="nav-item">
-          <div id="edit-btn" style="width: 30px; height: 30px;">
+          <div id="edit-btn" style="width: 30px; height: 30px;" data-toggle="tooltip" data-placement="top" title="Szerkesztés">
             <svg style="fill: var(--black); padding-bottom: 8px; cursor: pointer;" version="1.1" id="Layer_1" focusable="false" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                x="0px" y="0px" viewBox="0 0 511.9 512" style="enable-background:new 0 0 511.9 512;" xml:space="preserve">
             <path d="M490.9,176.2L167.7,499.4L56.4,511.7c-32.2,3.6-59.7-23.6-56.1-56.1l12.3-111.3L335.8,21.1C364-7,409.5-7,437.6,21.1
@@ -94,7 +94,7 @@
         </li>
     </ul>
     <span class="navbar-text">
-      <div id="navbar-btn"><i class="fas fa-chevron-up"></i></div>
+      <div id="navbar-btn" data-toggle="tooltip" data-placement="top" title="Algorítmusok"><i class="fas fa-chevron-up"></i></div>
     </span>
   </nav>
 
@@ -185,8 +185,17 @@
 
   <div id="container" class="grid"></div>
 
+  <div id="node-add-btn" class="ui-helper-btn hidden" data-toggle="tooltip" data-placement="top" title="Csomopont hozzáadása"><i class="fas fa-plus"></i></div>
+  <div id="clear-all-nodes-btn" class="ui-helper-btn hidden" data-toggle="tooltip" data-placement="top" title="Összes csomopont törlése"><i class="far fa-trash-alt"></i></div>
+
+  <div id="zoom-in" class="ui-helper-btn" data-toggle="tooltip" data-placement="top" title="Nagyítás"><i class="fas fa-search-plus"></i></div>
+  <div id="zoom-out" class="ui-helper-btn" data-toggle="tooltip" data-placement="top" title="Kicsinyítés"><i class="fas fa-search-minus"></i></div>
+  <div id="zoom-reset" class="ui-helper-btn" data-toggle="tooltip" data-placement="top" title="Alapértelmezett"><i class="fas fa-compress"></i></div>
+
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jsPlumb/2.13.0/js/jsplumb.min.js'></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
   <script src="../scripts/constants.js"></script>
   <script src="../scripts/motion-controls.js"></script>
