@@ -196,6 +196,26 @@ class DirectedNode extends VisualNode {
         //this.jspInstance.bind("connection", (info) => this.onConnect(info));
     }
 
+    //Event Listeners
+    /**
+     * onConnect Event Listener Callback
+     * @param eventInfo INformation about the event
+     */
+    onConnect(eventInfo) {
+        const existingOnwardsConnections = this.jspInstance.select({
+            source: eventInfo.source,
+            target: eventInfo.target
+        });
+        const existingBackwardsConnections = this.jspInstance.select({
+            source: eventInfo.target,
+            target: eventInfo.source
+        })
+        super.onConnect(eventInfo);
+        if (existingOnwardsConnections.length > 1 || existingBackwardsConnections.length > 1) {
+            this.jspInstance.deleteConnection(eventInfo.connection);
+        }
+    }
+
     //Base and helper functions
     /**
      * Adds a node to the visualized graph
@@ -232,6 +252,26 @@ class UnDirectedNode extends VisualNode {
         super(container);
     }
 
+    //Event Listeners
+    /**
+     * onConnect Event Listener Callback
+     * @param eventInfo INformation about the event
+     */
+    onConnect(eventInfo) {
+        const existingOnwardsConnections = this.jspInstance.select({
+            source: eventInfo.source,
+            target: eventInfo.target
+        });
+        const existingBackwardsConnections = this.jspInstance.select({
+            source: eventInfo.target,
+            target: eventInfo.source
+        })
+        super.onConnect(eventInfo);
+        if (existingOnwardsConnections.length > 1 || existingBackwardsConnections.length > 0) {
+            this.jspInstance.deleteConnection(eventInfo.connection);
+        }
+    }
+
     //Base and helper functions
     /**
      * Adds a node to the visualized graph
@@ -254,6 +294,7 @@ class UnDirectedNode extends VisualNode {
             endpoint: ["Dot", {cssClass: "tilde"}],
             anchor: ["Perimeter", {shape: "Circle"}],
             connector: "Straight",
+            allowLoopback: false,
             connectorOverlays: [
                 this.removeBtnOverlay
             ]
@@ -274,8 +315,8 @@ class BinaryNode extends VisualNode {
             isSource: true,
             anchor: [0.2, 1, -1, -1],
             connector: "Straight",
-            deleteEndpointsOnDetach:false,
-            connectorOverlays:[
+            deleteEndpointsOnDetach: false,
+            connectorOverlays: [
                 this.removeBtnOverlay
             ]
         });
@@ -283,8 +324,8 @@ class BinaryNode extends VisualNode {
             isSource: true,
             anchor: [0.8, 1, -1, -1],
             connector: "Straight",
-            deleteEndpointsOnDetach:false,
-            connectorOverlays:[
+            deleteEndpointsOnDetach: false,
+            connectorOverlays: [
                 this.removeBtnOverlay
             ]
         });
@@ -295,7 +336,7 @@ class BinaryNode extends VisualNode {
                 [0.2, 0, 0, 0],
                 [0.8, 0, 0, 0]
             ],
-            deleteEndpointsOnDetach:false,
+            deleteEndpointsOnDetach: false,
             endpoint: ["Rectangle", {radius: 10}],
             connector: "Straight"
         });
