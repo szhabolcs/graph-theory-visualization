@@ -10,13 +10,13 @@ const UNDIRECTED_GRAPH = "undirected";
 const MENU_ROOT = "root";
 
 //CONSTANT HTML
-const REMOVE_BTN_HTML = "<div class='remove-btn hidden'>" +
+const REMOVE_BTN_HTML = "<div class='remove-btn'>" +
                             "<i class='fas fa-minus-circle'></i>" +
                         "</div>";
 const NODE_HTML = "<div class='node'>"+
-                        "<div class='remove-btn hidden'><i class='fas fa-minus-circle'></i></div>"+
+                        "<div class='remove-btn'><i class='fas fa-minus-circle'></i></div>"+
                         "<div class='input-group mx-auto'>"+
-                            "<input type='text' disabled class='node-text text-center' value='1'>"+
+                            "<input type='text' class='node-text text-center node-text-border'>"+
                         "</div>"+
                    "</div>";
 

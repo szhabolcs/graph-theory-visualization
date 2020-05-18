@@ -104,6 +104,8 @@ $(document).ready(function () {
         $("#edit-btn").toggleClass("btn-on");
         $("#node-add-btn").fadeToggle(200);
         $("#clear-all-nodes-btn").fadeToggle(200);
+
+        jspNode.toggleEditMode();
     });
 
     /**
