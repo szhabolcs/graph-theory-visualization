@@ -10,6 +10,9 @@ const UNDIRECTED_GRAPH = "undirected";
 const MENU_ROOT = "root";
 
 //CONSTANT HTML
+const REMOVE_BTN_HTML = "<div class='remove-btn hidden'>" +
+                            "<i class='fas fa-minus-circle'></i>" +
+                        "</div>";
 const NODE_HTML = "<div class='node'>"+
                         "<div class='remove-btn hidden'><i class='fas fa-minus-circle'></i></div>"+
                         "<div class='input-group mx-auto'>"+
@@ -17,7 +20,7 @@ const NODE_HTML = "<div class='node'>"+
                         "</div>"+
                    "</div>";
 
-const menuCard = '<div class="container navbar-card my-auto">'+
+const MENU_CARD = '<div class="container navbar-card my-auto">'+
     '      <div class="row">'+
     '          <div class="col-sm">'+
     '            <img src="">'+

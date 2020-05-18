@@ -159,7 +159,7 @@ function getSelectedItems(selected){
  * @returns {string} the HTML code of the generated card
  */
 function makeCard(id, img, text, sectionId){
-    let menuCardAppend = $(menuCard);
+    let menuCardAppend = $(MENU_CARD);
     
     menuCardAppend = $(menuCardAppend).attr("id",id);
     menuCardAppend = $(menuCardAppend).find("img").attr("src",img).end()[0].outerHTML;

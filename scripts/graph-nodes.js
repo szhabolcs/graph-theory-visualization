@@ -1,6 +1,20 @@
 class VisualNode {
     #unnecessaryEndpoints = [];
     #sameEndpoint = false;
+    #editMode = false;
+
+    removeBtnOverlay = ["Custom", {
+        create: function (component) {
+            return $(REMOVE_BTN_HTML);
+        },
+        events: {
+            click: (removeButtonOverlay) => {
+                this.jspInstance.deleteConnection(removeButtonOverlay.component);
+            }
+        },
+        location: 0.5,
+        id: "customOverlay"
+    }];
 
     constructor(container) {
         this.jspInstance = jsPlumb.getInstance();
@@ -87,17 +101,6 @@ class VisualNode {
         endpoint.addClass("hidden");
     }
 
-    addEndpoint(nodeId) {
-        this.jspInstance.addEndpoint(nodeId, {
-            isSource: true,
-            isTarget: true,
-            endpoint: ["Dot", {cssClass: "tilde"}],
-            anchor: ["Perimeter", {shape: "Circle"}],
-            connector: "Straight"
-        });
-    }
-
-
     /**
      * This function adds a new node and sets it up
      * @param top position relative to the top left corner of the document
@@ -120,7 +123,6 @@ class VisualNode {
         this.jspInstance.draggable(insertedBox, {
             grid: [10, 10]
         });
-        this.addEndpoint(insertedBox);
         return insertedBox;
     }
 
@@ -150,8 +152,17 @@ class VisualNode {
 
     }
 
+    /**
+     * Toggles the edit mode
+     */
     toggleEditMode() {
-
+        if (this.#editMode) {
+            this.disableEditMode();
+            this.#editMode = false;
+        } else {
+            this.enableEditMode();
+            this.#editMode = true;
+        }
     }
 
 
@@ -182,29 +193,35 @@ class DirectedNode extends VisualNode {
 
     constructor(container) {
         super(container);
-        this.jspInstance.bind("connection", (info) => this.onConnect(info));
+        //this.jspInstance.bind("connection", (info) => this.onConnect(info));
+    }
+
+    //Base and helper functions
+    /**
+     * Adds a node to the visualized graph
+     * @param top Position value from the top
+     * @param left Position value from the left
+     */
+    addNode(top = "50%", left = "50%") {
+        const insertedBox = super.addNode(top, left);
+        this.addEndpoint(insertedBox);
     }
 
     /**
-     * onConnect Event Listener Callback
-     * @param info Information about the event
+     * Adds an endpoint to a given node
+     * @param nodeId
      */
-    onConnect(info) {
-        info.connection.addOverlay(["PlainArrow", {width: 15, location: 1, height: 10, id: "arrow"}]);
-    }
-
-    addNode(top = "50%", left = "50%") {
-        const insertedBox = super.addNode(top, left);
-        this.jspInstance.addEndpoint(insertedBox, {
-            isTarget: true,
-            anchor: "Top",
-            connector: "Straight"
-        });
-        this.jspInstance.addEndpoint(insertedBox, {
+    addEndpoint(nodeId) {
+        this.jspInstance.addEndpoint(nodeId, {
             isSource: true,
-            anchor: "BottomCenter",
+            isTarget: true,
+            endpoint: ["Dot", {cssClass: "tilde"}],
+            anchor: ["Perimeter", {shape: "Circle"}],
             connector: "Straight",
-
+            connectorOverlays: [
+                ["PlainArrow", {width: 15, location: 1, height: 10, id: "arrow"}],
+                this.removeBtnOverlay
+            ]
         });
     }
 
@@ -213,6 +230,34 @@ class DirectedNode extends VisualNode {
 class UnDirectedNode extends VisualNode {
     constructor(container) {
         super(container);
+    }
+
+    //Base and helper functions
+    /**
+     * Adds a node to the visualized graph
+     * @param top Position value from the top
+     * @param left Position value from the left
+     */
+    addNode(top = "50%", left = "50%") {
+        const insertedBox = super.addNode(top, left);
+        this.addEndpoint(insertedBox);
+    }
+
+    /**
+     * Adds an endpoint to a given node
+     * @param nodeId
+     */
+    addEndpoint(nodeId) {
+        this.jspInstance.addEndpoint(nodeId, {
+            isSource: true,
+            isTarget: true,
+            endpoint: ["Dot", {cssClass: "tilde"}],
+            anchor: ["Perimeter", {shape: "Circle"}],
+            connector: "Straight",
+            connectorOverlays: [
+                this.removeBtnOverlay
+            ]
+        });
     }
 
 }
@@ -228,12 +273,20 @@ class BinaryNode extends VisualNode {
         this.jspInstance.addEndpoint(insertedBox, {
             isSource: true,
             anchor: [0.2, 1, -1, -1],
-            connector: "Straight"
+            connector: "Straight",
+            deleteEndpointsOnDetach:false,
+            connectorOverlays:[
+                this.removeBtnOverlay
+            ]
         });
         this.jspInstance.addEndpoint(insertedBox, {
             isSource: true,
             anchor: [0.8, 1, -1, -1],
-            connector: "Straight"
+            connector: "Straight",
+            deleteEndpointsOnDetach:false,
+            connectorOverlays:[
+                this.removeBtnOverlay
+            ]
         });
         this.jspInstance.addEndpoint(insertedBox, {
             isTarget: true,
@@ -242,6 +295,7 @@ class BinaryNode extends VisualNode {
                 [0.2, 0, 0, 0],
                 [0.8, 0, 0, 0]
             ],
+            deleteEndpointsOnDetach:false,
             endpoint: ["Rectangle", {radius: 10}],
             connector: "Straight"
         });
