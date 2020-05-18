@@ -1,9 +1,102 @@
 class VisualNode {
+    #unnecessaryEndpoints = [];
+    #sameEndpoint = false;
+
     constructor(container) {
         this.jspInstance = jsPlumb.getInstance();
         this.jspInstance.setContainer(container);
         this.DOMContainer = container;
+        loadMotionControls(this.jspInstance);
+
+        //Binding the event listeners
+        this.jspInstance.bind("connection", (eventInfo) => this.onConnect(eventInfo));
+        this.jspInstance.bind("connectionDetached", (eventInfo) => this.onConnectionDetached(eventInfo));
+        this.jspInstance.bind("connectionMoved", (eventInfo) => this.onConnectionMoved(eventInfo));
     }
+
+    //Event Listeners
+    /**
+     * onConnectionMoved Event Listener Callback
+     * @param eventInfo Information about the event
+     */
+    onConnectionMoved(eventInfo) {
+        if (eventInfo.originalSourceEndpoint !== eventInfo.newSourceEndpoint) {
+            this.hideEndpoint(eventInfo.originalSourceEndpoint);
+            this.#unnecessaryEndpoints.push(eventInfo.originalSourceEndpoint);
+        }
+        if (eventInfo.originalTargetEndpoint !== eventInfo.newTargetEndpoint) {
+            this.hideEndpoint(eventInfo.originalTargetEndpoint);
+            this.#unnecessaryEndpoints.push(eventInfo.originalTargetEndpoint);
+        }
+        if (eventInfo.originalSourceEndpoint === eventInfo.newSourceEndpoint &&
+            eventInfo.originalTargetEndpoint === eventInfo.newTargetEndpoint) {
+            this.#sameEndpoint = true;
+        }
+
+    }
+
+    /**
+     * onConnect Event Listener Callback
+     * @param eventInfo Information about the event
+     */
+    onConnect(eventInfo) {
+        this.removeUnnecessaryEndpoints();
+        if (this.#sameEndpoint === false) {
+            this.jspInstance.selectEndpoints(
+                {
+                    source: eventInfo.source,
+                    target: eventInfo.target
+                }
+            ).removeClass("tilde");
+
+            this.addEndpoint(eventInfo.source);
+            this.addEndpoint(eventInfo.target);
+        } else this.#sameEndpoint = false;
+    }
+
+    /**
+     * onConnectionDetached Event Listener Callback
+     * @param eventInfo Information about the event
+     */
+    onConnectionDetached(eventInfo) {
+        let sourceEndpoint = eventInfo.sourceEndpoint;
+        let targetEndpoint = eventInfo.targetEndpoint;
+        this.hideEndpoint(sourceEndpoint);
+        this.hideEndpoint(targetEndpoint);
+        this.#unnecessaryEndpoints.push(sourceEndpoint);
+        this.#unnecessaryEndpoints.push(targetEndpoint);
+    }
+
+    //Base and Helper functions
+    /**
+     * Removes the endpoints from the queue
+     */
+    removeUnnecessaryEndpoints() {
+        let endpointToRemove;
+        while (this.#unnecessaryEndpoints.length) {
+            endpointToRemove = this.#unnecessaryEndpoints.shift();
+            this.jspInstance.deleteEndpoint(endpointToRemove);
+        }
+    }
+
+    /**
+     * Hides an endpoint
+     * @param endpoint
+     */
+    hideEndpoint(endpoint) {
+        endpoint.addClass("hidden");
+    }
+
+    addEndpoint(nodeId) {
+        this.jspInstance.addEndpoint(nodeId, {
+            isSource: true,
+            isTarget: true,
+            endpoint: ["Dot", {cssClass: "tilde"}],
+            anchor: ["Perimeter", {shape: "Circle"}],
+            connector: "Straight"
+        });
+    }
+
 
     /**
      * This function adds a new node and sets it up
@@ -27,14 +120,26 @@ class VisualNode {
         this.jspInstance.draggable(insertedBox, {
             grid: [10, 10]
         });
-
+        this.addEndpoint(insertedBox);
         return insertedBox;
     }
 
+    /**
+     * Removes a node from the visualized graph
+     * @param nodeId Id of the node to remove
+     */
     removeNode(nodeId) {
         this.jspInstance.deleteConnectionsForElement(nodeId);
         this.jspInstance.removeAllEndpoints(nodeId);
         this.jspInstance.remove(nodeId);
+    }
+
+    /**
+     * Removes and endpoint from a node
+     * @param endpointId Id of the actual endpoint to remove
+     */
+    removeEndpoint(endpointId) {
+        this.jspInstance.deleteEndpoint(endpointId);
     }
 
     enableEditMode() {
@@ -48,6 +153,7 @@ class VisualNode {
     toggleEditMode() {
 
     }
+
 
     resetGraph() {
 
@@ -76,6 +182,7 @@ class DirectedNode extends VisualNode {
 
     constructor(container) {
         super(container);
+        this.jspInstance.bind("connection", (info) => this.onConnect(info));
     }
 
     /**
@@ -83,7 +190,7 @@ class DirectedNode extends VisualNode {
      * @param info Information about the event
      */
     onConnect(info) {
-        info.connection.addOverlay(["Arrow", {width: 10, height: 10, id: "arrow"}]);
+        info.connection.addOverlay(["PlainArrow", {width: 15, location: 1, height: 10, id: "arrow"}]);
     }
 
     addNode(top = "50%", left = "50%") {
@@ -107,7 +214,6 @@ class UnDirectedNode extends VisualNode {
     constructor(container) {
         super(container);
     }
-
 
 }
 

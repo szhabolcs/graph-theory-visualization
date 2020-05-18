@@ -16,6 +16,9 @@ var iMinMarginY;
 var iMarginStartX;
 var iMarginStartY;
 
+//JsPlumb instance to work with
+var jspInstanceForMotion;
+
 //Base and Helper functions
 /**
  * Unbinds the events used for dragging to the container
@@ -153,14 +156,17 @@ function setZoom(scale) {
         DOMContainer.css({
             transform: "scale(" + scale + ')'
         });
-        jspNode.setZoom(scale);
+        jspInstanceForMotion.setZoom(scale);
     }
 }
 
 /**
  * Initializes dragging and zooming, binds the necessary listeners for these operations
  */
-function loadMotionControls(){
+function loadMotionControls(jspInstance) {
+
+    jspInstanceForMotion = jspInstance;
+
     //set margin values
     iMarginStartX = Number.parseInt(DOMContainer.css("margin-left"));
     iMarginStartY = Number.parseInt(DOMContainer.css("margin-top"));

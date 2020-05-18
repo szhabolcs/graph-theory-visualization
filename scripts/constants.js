@@ -2,7 +2,14 @@
 const MIN_ZOOM_VALUE = 50;
 const MAX_ZOOM_VALUE = 300;
 
-//HTML code of the node
+//CONSTANT STRINGS
+const BINARY_TREE = "binaris";
+const GENERIC_GRAPH = "altalanos";
+const DIRECTED_GRAPH = "directed";
+const UNDIRECTED_GRAPH = "undirected";
+const MENU_ROOT = "root";
+
+//CONSTANT HTML
 const NODE_HTML = "<div class='node'>"+
                         "<div class='remove-btn hidden'><i class='fas fa-minus-circle'></i></div>"+
                         "<div class='input-group mx-auto'>"+

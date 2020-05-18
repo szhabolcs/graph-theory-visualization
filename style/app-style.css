@@ -78,6 +78,7 @@ body {
     opacity: 1;
     background-color: transparent !important;
     border: none !important;
+    border-bottom: 1.5px solid !important;
     border-radius: 0px !important;
     padding: 0px !important;
     color: white;
@@ -103,9 +104,27 @@ body {
 .hidden{
     display: none;
 }
-.input-on{
-    border-bottom: 1.5px solid !important;
+.jtk-endpoint{
+    transform: scale(0.6);
+    z-index: 2;
 }
+.tilde{
+    transform: scale(1) !important;
+}
+.tilde svg circle{
+    fill: green;
+}
+.tilde::after{
+    content: "~";
+    width: 20px;
+    height: 20px;
+    color: white;
+    font-size: 20px;
+    top:-7px;
+    left: 3.2px;
+    position: absolute;
+}
+
 
 .grid {
     background-image: url("../images/grid.svg");
@@ -186,7 +205,7 @@ body {
 #current-operation{
     font-weight: 500;
     font-size: 25px;
-    
+
     margin-right: 40px;
 }
 .navbar-text i{
@@ -318,7 +337,7 @@ body {
     display: table;
 }
 .table td {
-    text-align: center;   
+    text-align: center;
 }
 .divider-line{
     width: 100%;

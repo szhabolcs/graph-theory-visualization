@@ -1,6 +1,7 @@
 //Variables
 
 let menuItems = {
+    graphType: "none",
     directed: false,
     selectedAlgorithm: "none",
     root: [
@@ -28,7 +29,7 @@ let menuItems = {
             },
             {
                 text: "Irányitatlan",
-                id: "iranyitatlan",
+                id: "undirected",
                 img: "https://via.placeholder.com/150x100.png?text=Graph+img",
                 sectionId: "../#section-3"
             }
@@ -108,8 +109,8 @@ let menuItems = {
         ]
     }
 };
-let selected = "root";
-let group = "root";
+let selected = MENU_ROOT;
+let group = MENU_ROOT;
 let container = "#start-modal-holder";
 
 /**
@@ -120,24 +121,26 @@ function getSelectedItems(selected){
     let items = [];
 
     for(let i in menuItems[selected]){
-        if(selected == "root"){
+        if(selected == MENU_ROOT){
             items.push(menuItems[selected][i]);
         }
-        else if(selected == "altalanos"){
+        else if(selected == GENERIC_GRAPH){
+            menuItems.graphType = GENERIC_GRAPH;
             for(let j in menuItems[selected]["choice"]){
                 items.push(menuItems[selected]["choice"][j]);
             }
             return items;
         }
         else{
+            menuItems.graphType = BINARY_TREE;
             for(let j in menuItems[selected][i]){
                 items.push(menuItems[selected][i][j]);
             }
         }
     }
 
-    if(selected == "directed" || selected == "iranyitatlan"){
-        if(selected == "directed") menuItems.directed = true;
+    if(selected == DIRECTED_GRAPH || selected == UNDIRECTED_GRAPH){
+        if(selected == DIRECTED_GRAPH) menuItems.directed = true;
             else menuItems.directed = false;
 
         for(let i in menuItems["altalanos"]["children"]){
@@ -180,7 +183,7 @@ function loadCards(){
         $(container).append(makeCard(card.id, card.img, card.text, card.sectionId))
     }
     
-    if (!$("#start-modal").length && selected == "root") {
+    if (!$("#start-modal").length && selected == MENU_ROOT) {
         $(".menu-back").fadeOut(200);
     }
     else{
@@ -200,7 +203,7 @@ $("#card-holder").on("click", ".navbar-card", function(e){
     let targetCard = e.currentTarget;
     selected = $(targetCard).attr("id");
 
-    if(selected == "binaris" || selected == "altalanos" || selected == "root" || selected == "directed" || selected == "iranyitatlan"){
+    if(selected == BINARY_TREE || selected == GENERIC_GRAPH || selected == MENU_ROOT || selected == DIRECTED_GRAPH || selected == UNDIRECTED_GRAPH){
         loadCards();
         group = selected;
     }
@@ -215,7 +218,7 @@ $("#start-modal-holder").on("click", ".navbar-card", function(e){
     let targetCard = e.currentTarget;
     selected = $(targetCard).attr("id");
 
-    if(selected == "binaris" || selected == "altalanos" || selected == "root" || selected == "directed" || selected == "iranyitatlan"){
+    if(selected == BINARY_TREE || selected == GENERIC_GRAPH || selected == MENU_ROOT || selected == DIRECTED_GRAPH || selected == UNDIRECTED_GRAPH){
         loadCards();
         group = selected;
     }
@@ -227,17 +230,17 @@ $("#start-modal-holder").on("click", ".navbar-card", function(e){
     }
 });
 $(".menu-back").on("click", () => {
-    if(group == "binaris" || group == "altalanos"){
-        selected = "root";
+    if(group == BINARY_TREE || group == GENERIC_GRAPH){
+        selected = MENU_ROOT;
         group = selected;
         loadCards();
     }
-    else if(group == "directed" || group == "iranyitatlan"){
-        selected = "altalanos";
+    else if(group == DIRECTED_GRAPH || group == UNDIRECTED_GRAPH){
+        selected = GENERIC_GRAPH;
         group = selected;
         loadCards();
     }
-    else if(group == "root") {
+    else if(group == MENU_ROOT) {
         $.when($("#modal-menu").fadeOut(200)).then(() => {
             $("#modal-intro").css("display","block");
             $("#start-modal-holder").empty();
@@ -248,11 +251,12 @@ $(".menu-back").on("click", () => {
 $("#start-btn").on("click", () => {
     if(menuItems.selectedAlgorithm == "none") alert("Nincs semmi kivalasztva");
     else{
+        initGraph(DOMContainer);
         $.when($("#start-modal").fadeOut(200)).then(() => {
             $("#start-modal").remove();
             container = "#card-holder";
-            selected = "root";
-            group = "root";
+            selected = MENU_ROOT;
+            group = MENU_ROOT;
             loadCards();
         });
     }
