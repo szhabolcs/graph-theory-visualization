@@ -145,16 +145,19 @@ class VisualNode {
     }
 
     enableEditMode() {
+        const $nodeText = $(".node-text");
         $(".jtk-endpoint").removeClass("hidden");
-        $(".node-text").addClass("node-text-border");
-        $(".node-text").prop('disabled', false);
+        $nodeText.addClass("node-text-border");
+        $nodeText.prop('disabled', false);
         $(".remove-btn").removeClass("hidden");
+        this.removeUnnecessaryEndpoints();
     }
 
     disableEditMode() {
+        const $nodeText = $(".node-text");
         $(".jtk-endpoint").addClass("hidden");
-        $(".node-text").removeClass("node-text-border");
-        $(".node-text").prop('disabled', true);
+        $nodeText.removeClass("node-text-border");
+        $nodeText.prop('disabled', true);
         $(".remove-btn").addClass("hidden");
     }
 
