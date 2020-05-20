@@ -133,6 +133,9 @@ class VisualNode {
         }
     }
 
+    deleteGraph(){
+
+    }
 
     resetGraph() {
 
@@ -303,7 +306,7 @@ class BinaryNode extends VisualNode {
         this.jspInstance.addEndpoint(insertedBox, {
             endpoint: ["Dot", {cssClass: "tilde"}],
             isSource: true,
-            anchor: [0.2, 1, -1, -1],
+            anchor: [0.2, 0.9, -1, -1],
             connector: "Straight",
             deleteEndpointsOnDetach: false,
             allowLoopback: false,
@@ -314,7 +317,7 @@ class BinaryNode extends VisualNode {
         this.jspInstance.addEndpoint(insertedBox, {
             endpoint: ["Dot", {cssClass: "tilde"}],
             isSource: true,
-            anchor: [0.8, 1, -1, -1],
+            anchor: [0.8, 0.9, -1, -1],
             connector: "Straight",
             deleteEndpointsOnDetach: false,
             allowLoopback: false,
@@ -326,12 +329,12 @@ class BinaryNode extends VisualNode {
             isTarget: true,
             anchor: [
                 [0.5, 0, 0, 0],
-                [0.2, 0, 0, 0],
-                [0.8, 0, 0, 0]
+                [0.2, 0.1, 0, 0],
+                [0.8, 0.1, 0, 0]
             ],
             deleteEndpointsOnDetach: false,
             allowLoopback: false,
-            endpoint: ["Rectangle",  {cssClass: "tilde"}],
+            endpoint: ["Dot",  {cssClass: "scale-08 tilde"}],
             connector: "Straight"
         });
     }
