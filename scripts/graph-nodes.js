@@ -68,6 +68,9 @@ class VisualNode {
         $(NODE_HTML).hide().appendTo("#container").fadeIn(150);
         insertedBox = DOMContainer.children(".node").last();
 
+        //Binding event listeners
+        insertedBox.on("click", ".remove-btn", (eventInfo) => this.removeNode(eventInfo.delegateTarget));
+
         insertedBox.css({
             top: top,
             left: left
