@@ -1,5 +1,4 @@
 class VisualNode {
-    #unnecessaryEndpoints = [];
     #sameEndpoint = false;
     #editMode = false;
 
@@ -24,37 +23,14 @@ class VisualNode {
 
         //Binding the event listeners
         this.jspInstance.bind("connection", (eventInfo) => this.onConnect(eventInfo));
-        this.jspInstance.bind("connectionDetached", (eventInfo) => this.onConnectionDetached(eventInfo));
-        this.jspInstance.bind("connectionMoved", (eventInfo) => this.onConnectionMoved(eventInfo));
     }
 
     //Event Listeners
-    /**
-     * onConnectionMoved Event Listener Callback
-     * @param eventInfo Information about the event
-     */
-    onConnectionMoved(eventInfo) {
-        if (eventInfo.originalSourceEndpoint !== eventInfo.newSourceEndpoint) {
-            this.hideEndpoint(eventInfo.originalSourceEndpoint);
-            this.#unnecessaryEndpoints.push(eventInfo.originalSourceEndpoint);
-        }
-        if (eventInfo.originalTargetEndpoint !== eventInfo.newTargetEndpoint) {
-            this.hideEndpoint(eventInfo.originalTargetEndpoint);
-            this.#unnecessaryEndpoints.push(eventInfo.originalTargetEndpoint);
-        }
-        if (eventInfo.originalSourceEndpoint === eventInfo.newSourceEndpoint &&
-            eventInfo.originalTargetEndpoint === eventInfo.newTargetEndpoint) {
-            this.#sameEndpoint = true;
-        }
-
-    }
-
     /**
      * onConnect Event Listener Callback
      * @param eventInfo Information about the event
      */
     onConnect(eventInfo) {
-        this.removeUnnecessaryEndpoints();
         if (this.#sameEndpoint === false) {
             this.jspInstance.selectEndpoints(
                 {
@@ -68,30 +44,7 @@ class VisualNode {
         } else this.#sameEndpoint = false;
     }
 
-    /**
-     * onConnectionDetached Event Listener Callback
-     * @param eventInfo Information about the event
-     */
-    onConnectionDetached(eventInfo) {
-        let sourceEndpoint = eventInfo.sourceEndpoint;
-        let targetEndpoint = eventInfo.targetEndpoint;
-        this.hideEndpoint(sourceEndpoint);
-        this.hideEndpoint(targetEndpoint);
-        this.#unnecessaryEndpoints.push(sourceEndpoint);
-        this.#unnecessaryEndpoints.push(targetEndpoint);
-    }
-
     //Base and Helper functions
-    /**
-     * Removes the endpoints from the queue
-     */
-    removeUnnecessaryEndpoints() {
-        let endpointToRemove;
-        while (this.#unnecessaryEndpoints.length) {
-            endpointToRemove = this.#unnecessaryEndpoints.shift();
-            this.jspInstance.deleteEndpoint(endpointToRemove);
-        }
-    }
 
     /**
      * Hides an endpoint
@@ -150,7 +103,6 @@ class VisualNode {
         $nodeText.addClass("node-text-border");
         $nodeText.prop('disabled', false);
         $(".remove-btn").removeClass("hidden");
-        this.removeUnnecessaryEndpoints();
     }
 
     disableEditMode() {
@@ -202,7 +154,6 @@ class DirectedNode extends VisualNode {
 
     constructor(container) {
         super(container);
-        //this.jspInstance.bind("connection", (info) => this.onConnect(info));
     }
 
     //Event Listeners
