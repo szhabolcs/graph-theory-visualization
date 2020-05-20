@@ -61,7 +61,7 @@ class VisualNode {
                     source: eventInfo.source,
                     target: eventInfo.target
                 }
-            ).removeClass("tilde");
+            ).removeClass("tilde").addClass("hidden");
 
             this.addEndpoint(eventInfo.source);
             this.addEndpoint(eventInfo.target);
@@ -146,7 +146,7 @@ class VisualNode {
 
     enableEditMode() {
         const $nodeText = $(".node-text");
-        $(".jtk-endpoint").removeClass("hidden");
+        $(".tilde").removeClass("hidden");
         $nodeText.addClass("node-text-border");
         $nodeText.prop('disabled', false);
         $(".remove-btn").removeClass("hidden");
@@ -155,7 +155,7 @@ class VisualNode {
 
     disableEditMode() {
         const $nodeText = $(".node-text");
-        $(".jtk-endpoint").addClass("hidden");
+        $(".tilde").addClass("hidden");
         $nodeText.removeClass("node-text-border");
         $nodeText.prop('disabled', true);
         $(".remove-btn").addClass("hidden");

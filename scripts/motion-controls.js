@@ -34,7 +34,7 @@ function unbindEventsForDrag() {
  */
 function bindEventsForDrag() {
     $Document.on("mousemove", "div#container", (event) => onMouseMove(event));
-    $Document.on("mouseup", "div#container", (event) => onMouseUp(event));
+    $Document.on("mouseup", "div#container",  (event) => onMouseUp(event));
     DOMContainer.addClass("container-dragging");
 }
 
@@ -68,7 +68,7 @@ function onMouseMove(event) {
         DOMContainer.css("margin-top", iMarginY);
     }
 
-    event.preventDefault();
+
 }
 
 /**
