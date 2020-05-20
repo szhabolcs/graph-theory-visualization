@@ -1,6 +1,7 @@
 class VisualNode {
     #sameEndpoint = false;
     #editMode = false;
+    nodeIndex = 0;
 
     removeBtnOverlay = ["Custom", {
         create: function (component) {
@@ -45,7 +46,6 @@ class VisualNode {
     }
 
     //Base and Helper functions
-
     /**
      * Hides an endpoint
      * @param endpoint
@@ -67,6 +67,10 @@ class VisualNode {
         //Insertion of the box into the container
         $(NODE_HTML).hide().appendTo("#container").fadeIn(150);
         insertedBox = DOMContainer.children(".node").last();
+
+        //Auto indexing
+        insertedBox.find("input").val(this.getIndex);
+
 
         //Binding event listeners
         insertedBox.on("click", ".remove-btn", (eventInfo) => this.removeNode(eventInfo.delegateTarget));
@@ -150,6 +154,11 @@ class VisualNode {
 
     }
 
+    //Getters and setters
+    get getIndex() {
+        this.nodeIndex++;
+        return this.nodeIndex;
+    }
 
 }
 
@@ -162,7 +171,7 @@ class DirectedNode extends VisualNode {
     //Event Listeners
     /**
      * onConnect Event Listener Callback
-     * @param eventInfo INformation about the event
+     * @param eventInfo Information about the event
      */
     onConnect(eventInfo) {
         const existingOnwardsConnections = this.jspInstance.select({
