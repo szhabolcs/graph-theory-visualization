@@ -10,10 +10,16 @@ class VisualNode {
         events: {
             click: (removeButtonOverlay) => {
                 this.jspInstance.deleteConnection(removeButtonOverlay.component);
+            },
+            mouseover: (removeButtonOverlay) =>{
+                this.jspInstance.select(removeButtonOverlay.component).addClass("connection-hover");
+            },
+            mouseout: (removeButtonOverlay) =>{
+                this.jspInstance.select(removeButtonOverlay.component).removeClass("connection-hover");
             }
         },
         location: 0.5,
-        id: "customOverlay"
+        id: "remove-button-overlay"
     }];
 
     constructor(container) {
@@ -74,6 +80,8 @@ class VisualNode {
 
         //Binding event listeners
         insertedBox.on("click", ".remove-btn", (eventInfo) => this.removeNode(eventInfo.delegateTarget));
+        insertedBox.on("mouseover",".remove-btn", (eventInfo) => $(eventInfo.delegateTarget).addClass("node-remove-hover"));
+        insertedBox.on("mouseout",".remove-btn", (eventInfo) => $(eventInfo.delegateTarget).removeClass("node-remove-hover"));
 
         insertedBox.css({
             top: top,

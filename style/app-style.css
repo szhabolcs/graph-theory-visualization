@@ -87,7 +87,7 @@ body {
 }
 .remove-btn{
     position: absolute;
-    color: #D62B2B;
+    color: var(--danger);
     width: 25px;
     height: 25px;
     right: 5px;
@@ -516,4 +516,11 @@ a:not([href]):hover{
 /* Connector width fix */
 .jtk-connector path:nth-child(1){
     stroke-width: 3px;
+}
+.connection-hover path{
+    stroke: var(--danger);
+    fill: var(--danger);
+}
+.node-remove-hover{
+    background-color: var(--danger);
 }
