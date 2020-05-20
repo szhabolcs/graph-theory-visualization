@@ -513,3 +513,7 @@ a:not([href]):hover{
 #zoom-reset{
     right: 25px;
 }
+/* Connector width fix */
+.jtk-connector path:nth-child(1){
+    stroke-width: 3px;
+}

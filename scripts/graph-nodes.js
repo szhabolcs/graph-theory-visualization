@@ -271,6 +271,7 @@ class UnDirectedNode extends VisualNode {
             connector: "Straight",
             allowLoopback: false,
             connectorOverlays: [
+                ["PlainArrow", {width: 15, location: 1, height: 10, id: "arrow",cssClass:"hidden"}],
                 this.removeBtnOverlay
             ]
         });
