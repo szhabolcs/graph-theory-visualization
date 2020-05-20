@@ -331,7 +331,7 @@ class BinaryNode extends VisualNode {
             ],
             deleteEndpointsOnDetach: false,
             allowLoopback: false,
-            endpoint: ["Rectangle", {radius: 10}, {cssClass: "tilde"}],
+            endpoint: ["Rectangle",  {cssClass: "tilde"}],
             connector: "Straight"
         });
     }
