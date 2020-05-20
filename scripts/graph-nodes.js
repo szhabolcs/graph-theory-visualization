@@ -271,23 +271,44 @@ class BinaryNode extends VisualNode {
         super(container);
     }
 
+    //Event listeners
+    /**
+     * onConnect Event Listener Callback
+     * @param eventInfo Information about the event
+     */
+    onConnect(eventInfo) {
+        //Prevent loopback connections
+        if (eventInfo.sourceId === eventInfo.targetId) {
+            this.jspInstance.deleteConnection(eventInfo.connection);
+        }
+    }
+
+    //Base and helper functions
+    /**
+     * Adds a node to the visualized graph
+     * @param top Position value from the top
+     * @param left Position value from the left
+     */
     addNode(top = "50%", left = "50%") {
         const insertedBox = super.addNode(top, left);
-        console.log(insertedBox);
         this.jspInstance.addEndpoint(insertedBox, {
+            endpoint: ["Dot", {cssClass: "tilde"}],
             isSource: true,
             anchor: [0.2, 1, -1, -1],
             connector: "Straight",
             deleteEndpointsOnDetach: false,
+            allowLoopback: false,
             connectorOverlays: [
                 this.removeBtnOverlay
             ]
         });
         this.jspInstance.addEndpoint(insertedBox, {
+            endpoint: ["Dot", {cssClass: "tilde"}],
             isSource: true,
             anchor: [0.8, 1, -1, -1],
             connector: "Straight",
             deleteEndpointsOnDetach: false,
+            allowLoopback: false,
             connectorOverlays: [
                 this.removeBtnOverlay
             ]
@@ -300,7 +321,8 @@ class BinaryNode extends VisualNode {
                 [0.8, 0, 0, 0]
             ],
             deleteEndpointsOnDetach: false,
-            endpoint: ["Rectangle", {radius: 10}],
+            allowLoopback: false,
+            endpoint: ["Rectangle", {radius: 10}, {cssClass: "tilde"}],
             connector: "Straight"
         });
     }
