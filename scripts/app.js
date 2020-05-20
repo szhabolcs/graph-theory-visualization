@@ -85,8 +85,18 @@ $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip({delay: {"show": 500}});
 
     //Set up the Listeners
+    /**
+     * Node adding
+     */
     $("#node-add-btn").on("click", ()=>{
        jspNode.addNode();
+    });
+
+    /**
+     * Remove all nodes
+     */
+    $("#reset-graph-btn").on("click", ()=>{
+        jspNode.resetGraph();
     });
 
     /**
@@ -103,7 +113,7 @@ $(document).ready(function () {
     $("#edit-btn").click(() => {
         $("#edit-btn").toggleClass("btn-on");
         $("#node-add-btn").fadeToggle(200);
-        $("#clear-all-nodes-btn").fadeToggle(200);
+        $("#reset-graph-btn").fadeToggle(200);
 
         jspNode.toggleEditMode();
     });

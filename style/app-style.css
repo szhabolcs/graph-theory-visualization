@@ -90,10 +90,9 @@ body {
     color: #D62B2B;
     width: 25px;
     height: 25px;
-    right: 0;
+    right: 5px;
     top: 0px;
     font-size: 22px;
-    line-height: 1;
     z-index: 3;
     cursor: pointer;
 }
@@ -498,7 +497,7 @@ a:not([href]):hover{
     left: 50%;
     margin-left: -53px; /* Half of width */
 }
-#clear-all-nodes-btn{
+#reset-graph-btn{
     left: 50%;
     margin-left: 3px; /* Half of width */
 }
