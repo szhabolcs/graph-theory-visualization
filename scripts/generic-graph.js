@@ -1,14 +1,14 @@
 /**
  * The model of a generic graph
- * Uses adjacency list to store a graph in memory, because this is the  most memory efficient solutions
+ * Uses boole matrix for graph modeling in memory
  * We are doing here visualization, given that we don't need to use a more time effective solution
- * Contains all the basic operations and algorithm of a generic graph
+ * Contains all the basic operations and algorithm of a generic graph or binary tree
  */
 class GenericGraph {
 
-    constructor(numberOfNodes = 0, numberOfEdges = 0, adjacencyList = []) {
+    constructor(numberOfNodes = 0, numberOfEdges = 0, booleMatrix = []) {
         this.numberOfNodes = numberOfNodes;
-        this.adjacencyList = adjacencyList;
+        this.booleMatrix = booleMatrix;
         this.numberOfEdges = numberOfEdges;
     }
 
@@ -18,7 +18,7 @@ class GenericGraph {
      * @param indexOfNode The index of the actual added node
      */
     addNewNode(indexOfNode) {
-        this.adjacencyList[indexOfNode] = [];
+        this.booleMatrix[indexOfNode] = [];
     }
 
     /**
@@ -27,9 +27,9 @@ class GenericGraph {
      */
 
     addNewEdge(edge) {
-        if (typeof this.adjacencyList[edge.source] === "undefined")
+        if (typeof this.booleMatrix[edge.source] === "undefined")
             throw new Error("Node no. " + edge.source + "doesn't exist");
-        if (typeof this.adjacencyList[edge.target] === "undefined")
+        if (typeof this.booleMatrix[edge.target] === "undefined")
             throw new Error("Node no. " + edge.target + "doesn't exist");
     }
 
@@ -38,7 +38,7 @@ class GenericGraph {
      * @param indexOfNode The index of the node we want to remove
      */
     removeNode(indexOfNode) {
-        delete this.adjacencyList[indexOfNode];
+        delete this.booleMatrix[indexOfNode];
 
     }
 
@@ -55,7 +55,7 @@ class GenericGraph {
      */
     //Szomszédsági lista
     toAdjacencyList() {
-        return this.adjacencyList;
+
     }
 
     /**
@@ -63,26 +63,7 @@ class GenericGraph {
      */
     //Pont pont mátrix
     toBooleMatrix() {
-        let booleMatrix = [];
-        //allocate memory for booleMatrix
-        for (let i = 1; i <= this.numberOfNodes; i++)
-            booleMatrix[i] = [];
-
-        //search for the edges in the adjacency list and convert it to boole matrix
-        for (let i in this.adjacencyList) {
-            for (let j in this.adjacencyList[i]) {
-                const targetNode = this.adjacencyList[i][j];
-                booleMatrix[i][targetNode] = 1;
-            }
-        }
-
-        //set undefined elements to 0
-        for (let i = 1; i <= this.numberOfNodes; i++)
-            for (let j = 1; j <= this.numberOfNodes; j++)
-                if (booleMatrix[i][j] === undefined)
-                    booleMatrix[i][j] = 0;
-
-        return booleMatrix;
+        return this.booleMatrix;
     }
 
     /**
@@ -155,8 +136,8 @@ class GenericGraph {
 //Irányítatlan gráf
 class UndirectedGraph extends GenericGraph {
 
-    constructor(numberOfNodes = 0, adjacencyList = []) {
-        super(numberOfNodes, adjacencyList);
+    constructor(numberOfNodes = 0, booleMatrix = []) {
+        super(numberOfNodes, booleMatrix);
     }
 
     //1. Base operations
@@ -168,8 +149,7 @@ class UndirectedGraph extends GenericGraph {
         super.addNewEdge(edge);
         const source = edge.source;
         const target = edge.target;
-        this.adjacencyList[source].push(target);
-        this.adjacencyList[target].push(source);
+
     }
 
     /**
@@ -197,8 +177,8 @@ class UndirectedGraph extends GenericGraph {
 //Irányított gráf
 class DirectedGraph extends GenericGraph {
 
-    constructor(numberOfNodes = 0, adjacencyList = []) {
-        super(numberOfNodes, adjacencyList);
+    constructor(numberOfNodes = 0, booleMatrix = []) {
+        super(numberOfNodes, booleMatrix);
     }
 
     /**
@@ -235,8 +215,8 @@ class DirectedGraph extends GenericGraph {
 //Bináris fa
 class BinaryTree extends UndirectedGraph {
 
-    constructor(numberOfNodes = 0, adjacencyList = []) {
-        super(numberOfNodes, adjacencyList);
+    constructor(numberOfNodes = 0, booleMatrix = []) {
+        super(numberOfNodes, booleMatrix);
     }
 
     //1. Representation conversions
