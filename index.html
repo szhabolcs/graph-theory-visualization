@@ -90,7 +90,7 @@
             <h1 id="section-1">Mire használjuk a gráfokat?</h1>
             <img src="images/grafalk.png" style="float: right; margin: 10px;">
             
-            <p>A gráfok segítségével nagyon jól lehet szemléltetni a matematika, informatika sokrétű alkalmazását. Meglepőnek tűnhet, hogy ezeken kívül például az iparban, gazdaságban, közlekedésben és különböző szolgáltatásokban is használnak gráfokat. Például, az utazó ügynök problémája, akik a lehető legrövidebb (legköltséghatékonyabb) útvonalon szeretnének eljutni különböző helyekre.
+            <p>A gráfok segítségével nagyon jól lehet szemléltetni a matematika, informatika sokrétű alkalmazását. Meglepőnek tűnhet, hogy ezeken kívül például az iparban, gazdaságban, közlekedésben és különböző szolgáltatásokban is használnak gráfokat. Például, az utazó ügynökök problémája, akik a lehető legrövidebb (legköltséghatékonyabb) útvonalon szeretnének eljutni különböző helyekre.
                 A különböző útvonalak szemléletes megjelenítésére, modellezésére a gráfok tökéletesen alkalmasak.</p>
             <p style="font-size:120%"><b>Más alkalmazások:</b></p>
         
@@ -102,11 +102,11 @@
                         <p>Ha az egyik ember megjelöli a másikat vagy felkéri ismerősnek, úgy a kapcsolat még nem kölcsönös viszont ha a megjelölt személy visszajelöli az őt megjelölő személyt, akkor felőle egy irányított él fog az eredetileg megjelölő személy felé mutatni. Így a két csúcs között már két él van, irányuk ellentétes. A Facebook ezt a zavaró helyzetet a két irányított él „összeolvadásával" oldja fel, és egy irányítatlan él keletkezik, a két személy egymás ismerőse lesz. Ha már két személy ismerős, akkor nem lehet visszakövetni, hogy ki kezdeményezte a kapcsolatot.</p>
                     </div>
                 <li><b>vízhálózatok</b></li>
-                <li><b>vasútvona</b></li>
+                <li><b>vasútvonal</b></li>
                 <li><b>családfa</b></li>
                 <li><b>településeket összekötő utak</b></li>
                 <li><b>térképek színezése</b></li>
-                    <p style="padding-left: 30px; margin-top: 5px;">Minimálisan, hány színt  lehet használni úgy hogy két azonos szín ne legyen egymás mellett. </p>
+                    <p style="padding-left: 30px; margin-top: 5px;">pl. Minimálisan, hány színt lehet használni úgy, hogy két azonos szín ne legyen egymás mellett. </p>
                 
             </ol>
             
@@ -330,6 +330,7 @@
                   <li>Az i. sorban levő számok összege megadja a sor sorszámának megfelelő x<sub>i</sub>. pont fokszámát.</li>
                   <li>Bármely oszlopban található számok összege 2, mivel bármely élhez 2 pont illeszkedik (kivétel hurokél).</li>
                   <li>Irányított gráfok esetén, nagyon sok feladat megoldásánál fontos ismerni az élek irányítását, ezért ilyen esetekben a pontok kezdőpontját 1-gyel, a végpontját pedig -1-gyel jelölhetjük.</li>
+                  <li>A könnyebb érthetőség és elképzelés érdekében 1-től kezdjük számozni a mátrixokat, mivel az indexek jelölik az csomópontokat.</li>
                 </ul>
               
             <h2 id="section-4-2">Éllista</h2>
@@ -577,7 +578,8 @@
         <p style="color: red;"><i>Megjegyzések</i></p>
                 <ul>
                   <li>Nem irányított gráfban az i. sorban és az i. oszlopban található összeg megegyezik az x<sub>i</sub> pont fokszámával. A mátrix szimmetrikus a főátlóra nézve.</li>
-                  <li>Nem irányított gráfban az i. sorban és az i. oszlopban található összeg megegyezik az x<sub>i</sub> pont fokszámával. A mátrix szimmetrikus a főátlóra nézve. Irányított gráfban az i. sorban/oszlopban található 1-ek száma megegyezik az x_i pont ki/be fokszámával. Ha a főátlón csak zérósok szerepelnek, akkor nincs hurokél.</li>
+                  <li>Nem irányított gráfban az i. sorban és az i. oszlopban található összeg megegyezik az x<sub>i</sub> pont fokszámával. A mátrix szimmetrikus a főátlóra nézve.</li>
+                  <li>Irányított gráfban az i. sorban/oszlopban található 1-ek száma megegyezik az x<sub>i</sub> pont ki/be fokszámával. Ha a főátlón csak zérósok szerepelnek, akkor nincs hurokél.</li>
                   <li>Súlyozott gráf esetén az 1-ek helyett az adott él súlyát tüntetjük fel. Nem létező élek esetén, a mátrix megfelelő helyére ∞-t írunk.</li>
                 </ul>
         
@@ -662,18 +664,67 @@
             </div>   
            </div>  
 
-        <h1 id="section-5">Átalakítások</h1>
+           <p>Egyes feladatoknál célszerű a 0. oszlopba már beolvasásnál megadni a megfelelő sorban lévő elemek számát, így könnyebben tudunk hivatkozni egy adott elemre. Az alábbi kétdimenzios tömbben, a zölddel színezett oszlopban látható.</p>
+           <div class="container">
+            <div class="row">
+             <div class="col-sm">
+             <table>
+               <tr>
+                 <th style="background-color: var(--dark-green);"></th>
+                 <th style="background-color: var(--dark-green);">0</th>
+                 <th style="background-color: var(--dark-green);">1</th>
+                 <th style="background-color: var(--dark-green);">2</th>
+                 <th style="background-color: var(--dark-green);">3</th>
+               </tr>
+   
+               <tr>
+                 <th style="background-color: var(--dark-green);">1</th>
+                 <td style="background-color: var(--pastel-green);">2</td>
+                 <td>4</td>
+                 <td>6</td>
+                 <td></td>
+               </tr>
+   
+               <tr>
+                 <th style="background-color: var(--dark-green);">2</th>
+                 <td style="background-color: var(--pastel-green);">2</td>
+                 <td>3</td>
+                 <td>5</td>
+                 <td></td>
+               </tr>
+   
+               <tr>
+                 <th style="background-color: var(--dark-green);">3</th>
+                 <td style="background-color: var(--pastel-green);">3</td>
+                 <td>2</td>
+                 <td>4</td>
+                 <td>7</td>
+               </tr>
+   
+               <tr>
+                 <th style="background-color: var(--dark-green);">4</th>
+                 <td style="background-color: var(--pastel-green);">3</td>
+                 <td>1</td>
+                 <td>3</td>
+                 <td>5</td>
+               </tr>
+             </table>
+           </div>
+           </div>
+           </div>
+
+           <h1 id="section-5">Átalakítások</h1>
           <h2 id="section-5-1">Boole-mátrix → Pont-él mátrix</h2>
 
             <pre class="lang-cpp language-markup line-numbers">
              <code>
               <script type="text/plain">
-                void pont_el_alakit (int n, int pp_mat[100][100], int pe_mat[100][100] )
+                void pont_el_alakit (int n, int pp_mat[100][100], int pe_mat[100][100] ) //n-csomopontok szama
                 {
-                    int ind=0;
-                      for(int i=0; i < n; i++)
-                          for(int j=0; j < n; j++)
-                            if(pp_mat[i][j] == 1)
+                    int ind = 0;
+                      for (int i = 0; i < n; i++)
+                          for (int j = 0; j < n; j++)
+                            if (pp_mat[i][j] == 1)
                             {
                                 pe_mat[i][ind] = 1;
                                 pe_mat[j][ind++] = 1;
@@ -685,17 +736,17 @@
             <pre class="lang-cpp language-markup line-numbers">
             <code>
              <script type="text/plain">
-              void ellista_alakit (int n, int t[100][2], int mat[100][100])
+              void ellista_alakit (int n, int t[100][2], int mat[100][100]) //n-csomopontok szama
               {
                   int i, j, ind=0;
               
-                    for(i=0; i < n; i++)
-                      for(j=0; j < n; j++)
+                    for (i = 0; i < n; i++)
+                      for (j = 0; j < n; j++)
                         {
-                            if(mat[i][j] == 1)
-                          {
-                              t[ind][0] = i+1;
-                              t[ind][1] = j+1;
+                            if (mat[i][j] == 1)
+                          { 
+                              t[ind][0] = i + 1;
+                              t[ind][1] = j + 1;
                               ind++;
                           }
                         }
@@ -706,12 +757,12 @@
             <pre class="lang-cpp language-markup line-numbers">
             <code>
              <script type="text/plain">
-              void szl_alakit (int szl[100][100], int ppm[100][100], int n)
+              void szl_alakit (int szl[100][100], int ppm[100][100], int n) //n-csomopontok szama
               {
-                  for(int i=1; i <= n; i++)
-                      for(int j=1; j <= n; j++)
+                  for (int i = 1; i <= n; i++)
+                      for (int j = 1; j <= n; j++)
                       {
-                          if(ppm[i][j] == 1)
+                          if (ppm[i][j] == 1)
                           {
                               szl[i][0]++;
                               szl[i][szl[i][0]] = j;
@@ -724,37 +775,37 @@
             <pre class="lang-cpp language-markup line-numbers">
             <code>
              <script type="text/plain">
-              void alakit ( int m, int el[100][2], int szl[100][100])
+              void alakit (int m, int el[100][2], int szl[100][100]) // m-elek szama
               {
-                  for(int i=1; i <= m; i++)
+                  for (int i = 1; i <= m; i++)
                   {
                       //elso
                       szl [el[i][1]] [0] ++;  
                       szl [el[i][1]] [szl[el[i][1]][0]] = el[i][2];
 
                       //masodik
-                      szl[el[i][2]][0]++;
-                      szl[el[i][2]][szl[el[i][2]][0]] = el[i][1];
+                      szl[el[i][2]] [0]++;
+                      szl[el[i][2]] [szl[el[i][2]][0]] = el[i][1];
                   }
               }
 
-              void bblsort(int t[100][100], int i)
+              void bblsort (int t[100][100], int i)
               {
-                int ok=0, s;
+                int ok = 0, s;
 
                 while (ok == 0)
                   {         
-                    ok=1;
-                    for (int j=1; j < t[i][0]; j++)
-                      if (t[i][j] > t[i][j+1]) { swap(t[i][j],t[i][j+1]); ok = 0; }
-                }
+                    ok = 1;
+                    for (int j = 1; j < t[i][0]; j++)
+                      if (t[i][j] > t[i][j+1]) { swap (t[i][j], t[i][j+1]); ok = 0; }
+                  }
               }
 
               void rendezes (int szl[100][100], int n)
               {
-                  for(int i=1; i <= n; i++)
+                  for (int i = 1; i <= n; i++)
                   {
-                      bblsort(szl, i);
+                      bblsort (szl, i);
                   }
               }</script></code>
              </pre>
@@ -763,16 +814,16 @@
             <pre class="lang-cpp language-markup line-numbers">
             <code>
              <script type="text/plain">
-              void ellista_alakit(int n, int m, int pe_mat[100][100], int el_mat[100][2])
+              void ellista_alakit (int n, int m, int pe_mat[100][100], int el_mat[100][2]) //n-csomopontok szama, m-elek szama
               {
-                  for(int j=0; j < m; j++)
+                  for (int j = 0; j < m; j++)
                   {
-                      int ok=0;
-                      for(int i=0; i < n; i++)
+                      int ok = 0;
+                      for (int i = 0; i < n; i++)
                           {
-                            if(pe_mat[i][j] == 1) el_mat[j][0] = i+1;
-                              else if(pe_mat[i][j] == -1) {el_mat[j][1] = i+1; ok = 1;}
-                            if(ok == 0) el_mat[j][1] = el_mat[j][0];
+                            if (pe_mat[i][j] == 1) el_mat[j][0] = i + 1;
+                            else if (pe_mat[i][j] == -1) {el_mat[j][1] = i + 1; ok = 1;}
+                            if (ok == 0) el_mat[j][1] = el_mat[j][0];
                           }
                   }
               }</script></code>
@@ -782,12 +833,12 @@
            <pre class="lang-cpp language-markup line-numbers">
             <code>
              <script type="text/plain">
-              void boole_alakit (int n, int szl[][100], int ppm[][100])
+              void boole_alakit (int n, int szl[][100], int ppm[][100]) //n-csomopontok szama
               {    
-                for(int i=1; i <= n; i++)
+                for (int i = 1; i <= n; i++)
                   {   
-                    for(int j=1; j <= n; j++)
-                      if(szl[i][j] != 0) ppm[szl[i][j]][i]++;
+                    for (int j = 1; j <= n; j++)
+                      if (szl[i][j] != 0) ppm[szl[i][j]][i]++;
                   }
               }</script></code>
              </pre>
@@ -796,17 +847,17 @@
            <pre class="lang-cpp language-markup line-numbers">
             <code>
              <script type="text/plain">
-              void tolt (int n, int m, int pem[100][100], int szl[100][100])
+              void tolt (int n, int m, int pem[100][100], int szl[100][100]) //n-csomopontok szama, m-elek szama
               {
                   int e, u; 
-                  for(int j=1; j <= m; j++)
+                  for (int j = 1; j <= m; j++)
                   {
-                      e=0; u=0;
+                      e = 0; u = 0;
                 
-                      for(int i=1; i <= n; i++)
+                      for (int i = 1; i <= n; i++)
                       {
-                          if(e == 0 && pem[i][j] == 1) e = i;
-                          else if(u == 0 && pem[i][j] == 1) u = i;
+                          if (e == 0 && pem[i][j] == 1) e = i;
+                          else if (u == 0 && pem[i][j] == 1) u = i;
                       }
 
                       //elso
@@ -825,15 +876,15 @@
            <pre class="lang-cpp language-markup line-numbers">
             <code>
              <script type="text/plain">
-              int tolt (int szl[100][100], int el[100][3], int n)
+              int tolt (int szl[100][100], int el[100][3], int n) //n-csomopontok szama
               {
-                  int index=1;
+                  int index = 1;
 
-                    for(int i=1; i <= n; i++)
+                    for (int i = 1; i <= n; i++)
                     {
-                        for(int j=1; j <= szl[i][0]; j++)
+                        for (int j = 1; j <= szl[i][0]; j++)
                           {
-                              if(i > szl[i][j])
+                              if (i > szl[i][j])
                               {
                                   el[index][1] = szl[i][j];
                                   el[index][2] = i;
@@ -842,7 +893,6 @@
                               }
                           }
                     }
-
                     return index;
               }</script></code>
              </pre>
@@ -851,7 +901,7 @@
            <pre class="lang-cpp language-markup line-numbers">
             <code>
              <script type="text/plain">
-              int tolt (int szl[100][100], int pem[100][100], int n)
+              int tolt (int szl[100][100], int pem[100][100], int n) //n-csomopontok szama
               {
                   int index = 1; //elek szama
 
@@ -946,9 +996,9 @@
               <pre class="lang-cpp language-markup line-numbers" style="margin:0;">
                 <code>
                  <script type="text/plain">
-                  void szelessegi (int szl[][50], int n, int kp)
-                  {
-                    int e=0, u=0, csp;
+                  void szelessegi (int szl[][50], int n, int kp) //kp-kezdopont, kp=1
+                  {                                              //n-csomopontok szama
+                    int e = 0, u = 0, csp; //csp-csomopont  
                     int freq[50] = {0}, ut[50];
 
                     //kezdoertekek
@@ -958,7 +1008,7 @@
                     while (e <= u)
                      {
                         csp = ut[e];
-                        for (int i=1; i<=szl[csp][0]; i++)
+                        for (int i = 1; i <= szl[csp][0]; i++)
                           {
                              if (freq[ szl[csp][i] ] == 0)
                             {
@@ -982,7 +1032,7 @@
             <p><b>út:</b> 1 4 3 2 7 6 5</p>
              <ul>
                <li>Kiválasztjuk a kiinduló csomópontot és elhelyezzük az <i>út</i> tömbben (+<il>freq</il> tömb).</li>
-               <li>Mindig a verem tetején elhelyezendő elem esetén kivesszük az olyan egy él távolságra helyezkedő szomszédját, aki nem került még be az <il>út</il> tömbbe.</li>
+               <li>Mindig, a verem tetején elhelyezendő elem esetén kivesszük az olyan egy él távolságra helyezkedő szomszédját, aki nem került még bele az <il>út</il> tömbbe.</li>
                <li>Az algoritmusnak akkor lesz vége, ha visszaléptünk a verem 0. szintjére.</li>
              </ul>  
              <p><b>Adatszerkezet</b></p>
@@ -1067,9 +1117,9 @@
               <pre class="lang-cpp language-markup line-numbers" style="margin:0;">
                 <code>
                  <script type="text/plain">
-                  void melysegi (int szl[50][50], int n, int kp)
-                  {
-                      int e=0, u=1, ok=0;
+                  void melysegi (int szl[50][50], int n, int kp) //kp=1, kezdopont
+                  {                                              //n-csomopontok szama
+                      int e = 0, u = 1, ok = 0;
                       int freq[50]={0}, verem[50], ut[50];
 
                       //kezdoertekek
@@ -1077,23 +1127,22 @@
                       freq[kp]++;
                       verem[0] = kp;
 
-                      int csp;
+                      int csp; //csomopont
                       while (e >= 0)
                       {
                           csp = verem[e];
-                          ok=0;
+                          ok = 0;
 
-                          for(int i=1; i <= szl[csp][0] && ok == 0; i++)
+                          for (int i = 1; i <= szl[csp][0] && ok == 0; i++)
                           {
                               if (freq[ szl[csp][i] ] == 0)
                               {
-                                  ok=1;
+                                  ok = 1;
                                   verem[++e] = szl[csp][i];
                                   ut[u++] = szl[csp][i];
                                   freq[ szl[csp][i] ]++;
                               }
                           }
-
                           if (ok == 0) e--;
                       }
                   }</script></code>
@@ -1103,11 +1152,11 @@
             </div>    
 
             <h2 id="section-6-3">Útmátrix</h2>
-              <p>Egy adott gráfhoz hozzárendelhető egy n sorból és oszlopból álló kétdimenzióstömb, a következő szabályok alapján:</p>
+              <p>Egy adott gráfhoz hozzárendelhető egy <i>n</i> sorból és oszlopból álló kétdimenzióstömb, a következő szabályok alapján:</p>
               <img src="images/fgvszeruseg3.jpg" class="img-fluid">
            
                 <ul>
-                  <li>Az útmátrix meghatározására a <b><i>Roy-Warshall</i></b> algoritmust használjuk. Az algoritmus meghatározza az adott gráfban található sétákat, tehát, azt hogy egy pontból eljuthatunk-e egy másikba</li>
+                  <li>Az útmátrix meghatározására a <b><i>Roy-Warshall</i></b> algoritmust használjuk. Az algoritmus meghatározza az adott gráfban található sétákat, tehát azt, hogy egy pontból eljuthatunk-e egy másikba.</li>
                   <li>A gráfot boole-mátrix segítségével tároljuk.</li>
                 </ul>
               
@@ -1208,14 +1257,14 @@
             <pre class="lang-cpp language-markup line-numbers" style="margin:0;">
                 <code>
                  <script type="text/plain">
-                  void roy_warshall (int n, int utm[100][100])   
-                  {
+                  void roy_warshall (int n, int utm[100][100]) 
+                  { //n-csomopontok szama
                       int i, j, k;
     
-                      for(k=1; k <= n; k++)
-                      for(i=1; i <= n; i++)
-                        for(j=1; j <= n; j++)
-                          if(utm[i][j] == 0 and i != j and utm[i][k] > 0 and utm[k][j] > 0)
+                      for (k = 1; k <= n; k++)
+                      for (i = 1; i <= n; i++)
+                        for (j = 1; j <= n; j++)
+                          if (utm[i][j] == 0 && i != j && utm[i][k] > 0 && utm[k][j] > 0)
                             utm[i][j] = utm[i][k] + utm[k][j];
                   }</script></code>
               </pre>
@@ -1229,7 +1278,7 @@
               <div class="col-sm">
                   <ul>
                     <li>Kiválasztjuk a kiinduló csomópontot.</li>
-                    <li>Használunk egy <i>út</i> tömböt, amelyet feltöltünk a direkt élek hosszával, illetve 0-át a kezdő csomópont helyére, a többibe pedig egy nagyon-nagy értéket helyezünk, és egy <i>úth</i> tömböt amelyben az utak hosszai lesznek feltüntetve.</li>
+                    <li>Használunk egy <i>uth</i> tömböt, amelyet feltöltünk a direkt élek hosszával, illetve 0-át a kezdő csomópont helyére, a többibe pedig egy nagyon-nagy értéket helyezünk.</li>
                     <li>Használunk egy frekvencia tömböt (<i>freq</i>), amelyben megjegyezzük, hogy egy adott csomópontból próbált-e már továbblépni. </li>
                   </ul>
               </div>
@@ -1242,22 +1291,19 @@
             <div class="row">
               <div class="col-sm">
                 <b>kezdeti:</b>
-                <br> 
-                <i>út:</i> 2  0  0  0  2  0
-                <br>
-                <i>freq:</i> 0  0  0  0  0  0
                 <br>
                 <i>uth:</i> 8  0  ∞  ∞  1  ∞
+                <br>
+                <i>freq:</i> 0  0  0  0  0  0
+                
               </div>
               
               <div class="col-sm">
                 <b>végső:</b>
                 <br>
-                <i>út:</i> 4  0  5  5  2  1
+                <i>uth:</i> 6  0  3   3   1   9
                 <br>
                 <i>freq:</i> 1  1  1  1  1  1
-                <br>
-                <i>uth:</i> 6  0  3   3   1   9
               </div>
             </div>
           </div>
@@ -1265,43 +1311,39 @@
                     <pre class="lang-cpp language-markup line-numbers">
                       <code>
                       <script type="text/plain">
-                        void dijkstra (int ppm[50][50], int n, int kp )
-                        {
+                        void dijkstra (int ppm[50][50], int n, int kp) //kp=2, kezdopont
+                        { //n-csomopontok szama
+                          //uth-ut hosszak
                             int ok, uth[7], freq[7]={0}, mini, k;
-                            int ut[7];
 
                             //uth kezdoertekek
-                            for(int i=1; i <= n; i++)
-                                if(ppm[kp][i] > 0) uth[i] = ppm[kp][i];
-                                else uth[i] = maxi;
+                            for (int i = 1; i <= n; i++)
+                                if (ppm[kp][i] > 0) uth[i] = ppm[kp][i];
+                                else uth[i] = maxi; //nagyon nagy ertek, globalisan megadva
                           
                             //uth kitoltes
-                            uth[kp]=0;
+                            uth[kp] = 0;
                             freq[kp]++;
-                            ok=1;
-
-                            for(int i=1; i <= n; i++)
-                                if(ppm[kp][i] > 0) ut[i] = kp;
+                            ok = 1;
 
                             while(ok == 1)
                             {
-                                mini=maxi;  //maxi – nagy ertek, globalisan megadva
+                                mini = maxi;
 
-                                for(int i=1; i <= n; i++)
-                                if(uth[i] < mini and freq[i] == 0)
+                                for (int i = 1; i <= n; i++)
+                                if (uth[i] < mini and freq[i] == 0)
                                 {
-                                    mini=uth[i];
-                                    k=i;
+                                    mini = uth[i];
+                                    k = i;
                                 }
 
-                                if(mini == maxi) ok=0;
+                                if (mini == maxi) ok=0;
                                 else {
                                     freq[k]++;
-                                    for(int i=1; i <= n; i++)
-                                        if(ppm[k][i] > 0 && mini + ppm[k][i] < uth[i])
+                                    for (int i = 1; i <= n; i++)
+                                        if (ppm[k][i] > 0 && mini + ppm[k][i] < uth[i])
                                           {
-                                                uth[i] = mini + ppm[k][i];
-                                                ut[i] = k;  
+                                                uth[i] = mini + ppm[k][i];  
                                           }
                                 }
                             }
@@ -1411,28 +1453,42 @@
                   <pre class="lang-cpp language-markup line-numbers">
                     <code>
                     <script type="text/plain">
-                      void kruskal (int n, int m, int el[10][4])
+                      void bblsort(int el[10][4], int m)
                       {
+                          int ok = 0;
+                          while(ok == 0)
+                          {
+                              ok = 1;
+                              for (int i = 1; i <= m; i++)
+                                if (el[i][3] > el[i+1][3])
+                                {
+                                    swap (el[i], el[i+1]);
+                                    ok = 0;
+                                }
+                          }
+                      }
+                      
+                      void kruskal (int n, int m, int el[10][4]) //n-csomopontok szama
+                      {                                          //m-elek szama
                           int komp[10];
-                          int a,b;
-                          bblsort(el,m);
-                          int s=0;
+                          int a, b; //segedvaltozok
+                          bblsort(el,m); 
+                          int s = 0;
 
                           //kezdeti komponensek
-                          for(int i=1; i <= n; i++)
+                          for (int i = 1; i <= n; i++)
                             komp[i] = i;
 
-                          for(int i=1; i <= m; i++)
+                          for (int i = 1; i <= m; i++)
                           {
-                              if( komp[el[i][1]] != komp[el[i][2]])
+                              if (komp[el[i][1]] != komp[el[i][2]])
                               {
                                   a = komp[el[i][1]];
                                   b = komp[el[i][2]];
-                                  for(int j=1; j <= n; j++)
-                                      if(komp[j] == b)
-                                          komp[j] = a;
+                                  for (int j = 1; j <= n; j++)
+                                      if (komp[j] == b) komp[j] = a;
 
-                                  s+ = el[i][3];
+                                  s += el[i][3];
                               }
                               else el[i][3] = 0;
                           }</script></code>
@@ -1448,15 +1504,15 @@
              <div class="col-sm">
                 <p><i>feszítőfa:</i> 3 5 6 4 1 2</p>
                 <ul>
-                  <li>Meghatározzuk a kezdő csomópontot, elhelyezzük a fába</li>
-                  <li>Meghatározzuk a fában elhelyezett csomópontból kiinduló azt a legkisebb súlyú élet, amely egy olyan csomóponthoz kapcsolódik, amely még nincs a fában. Kiválasztjuk ezt az élet és csomópontot, elhelyezzük a fába.</li>
+                  <li>Meghatározzuk a kezdő csomópontot, elhelyezzük a fába.</li>
+                  <li>Meghatározzuk a fában elhelyezett csomópontból azt a kiinduló legkisebb súlyú élet, amely egy olyan csomóponthoz kapcsolódik, amely még nincs a fában. Kiválasztjuk ezt az élet és csomópontot, majd elhelyezzük a fába.</li>
                 </ul>
                 <p><b>Adatszerkezet</b></p>
                 <ul>
                   <li>éllista súlyokkal</li>
                   <li><i>n</i> elemű vektor a fa csomópontjainak</li>
-                  <li><i>v[i]=0</i>, az <i>i</i> csomópont nincs a fában</li>
-                  <li><i>v[i]=1</i>, az <i>i</i> csomópont a fában van</li>
+                  <li><i>v[i] = 0</i>, az <i>i</i> csomópont nincs a fában</li>
+                  <li><i>v[i] = 1</i>, az <i>i</i> csomópont a fában van</li>
                 </ul>
                 </div>
 
@@ -1469,19 +1525,19 @@
                 <pre class="lang-cpp language-markup line-numbers">
                   <code>
                   <script type="text/plain">
-                    void prim(int el[][5], int m, int n, int kp)
-                    {
-                        int i=1, s=0, mini, ind;
+                    void prim (int el[][5], int m, int n, int kp) //n-csomopontok szama
+                    {                                             //m-elek szama
+                        int i=1, s=0, mini, ind;                  //kp-kezdopont, kp=1
                         int freq[7]={0};
 
                         freq[kp]++;
                         
-                        while(i<n)
+                        while (i < n)
                         {
-                            mini=maxi; //maxi nagy érték, globálisan
+                            mini = maxi; //maxi nagy ertek, globalisan megadva
 
-                            for(int j=1; j <= m; j++)
-                                  if((freq[el[j][1]] == 1 and freq[el[j][2]] == 0 or freq[el[j][2]] == 1 and freq[el[j][1]] == 0) and el[j][3] < mini)
+                            for (int j = 1; j <= m; j++)
+                                  if ((freq[el[j][1]] == 1 and freq[el[j][2]] == 0 or freq[el[j][2]] == 1 and freq[el[j][1]] == 0) and el[j][3] < mini)
                               {
                                     mini = el[j][3];
                                     ind = j;
@@ -1489,7 +1545,7 @@
 
                             freq[el[ind][1]] = 1;
                             freq[el[ind][2]] = 1;
-                            s+ = mini;
+                            s += mini;
                             el[ind][4] = 1;
                             i++;
                         }
@@ -1497,7 +1553,7 @@
                   </pre>
               
           <h1 id="section-9">A fák típusai</h1>
-           <p>Ha egy gráf összefüggő és nem tartalmaz kört, akkor azt fának nevezzük.</p>
+           <p>Ha egy gráf összefüggő és nem tartalmaz kört, akkor azt <i>fának</i> nevezzük.</p>
          
            <div class="container">
             <div class="row">
@@ -1520,7 +1576,7 @@
                         <p><i>Gyökeres</i>nek nevezzük az olyan fákat, amelyekben az egyik csomópontnak kitüntetett szerepe van a többihez képest, ezt a csomópontot <i>gyökér</i>nek nevezzük. </p>
                         <p><b>Jellemzők:</b></p>
                             <ul>
-                              <li><b>szint:</b> azt jelöli, hogy egy csomópont hány él távolságra van a gyökértől (a gyökér a 0. szinten van)</li>
+                              <li><b>szint:</b> azt jelöli, hogy egy csomópont hány él távolságra van a gyökértől (a gyökér tetszés szerint és feladattól függően lehet a 0. vagy az 1. szinten)</li>
                               <li><b>magasság:</b> a gyökér és a tőle legtávolabb eső csomópont közötti élek száma → pl. 4</li>
                               <li><b>leszármazott; ős</b> → pl. 3 őse az 1 csp</li>
                               <li><b>közvetlen (direkt) leszármazott:</b> 1 él távolságra levő leszármazott</li>
@@ -1637,9 +1693,16 @@
               </div>
             </div>
                 <li><b>Bináris fa bináris alakja</b></li>
-                  <p>A bináris fák csomópontjait 0-1 sorozatoknak tekinthetjük. A gyökeret „1” jelöli. Ha a egy csomópont jelölése, akkor a bal és a jobb leszármazottjait (ha van) a0-val és a1-gyel jelöljük.</p>
+                  <p>A bináris fák csomópontjait 0-1 sorozatoknak tekinthetjük. A gyökeret „1” jelöli. Ha <i>a</i> egy csomópont jelölése, akkor <i>a</i> bal és <i>a</i> jobb leszármazottjait (ha van) <i>a0</i>-val és <i>a1</i>-gyel jelöljük.</p>
                   <p>pl. (1,1) (2,10) (3,11) (4,100) (5,101) (6,110) (7,111) (8,1000) (9,1100) (10,1101) (11,11010) (12,11011) (13,1111)</p>
                 </ol>
+                <div class="container">
+                    <div class="row">
+                      <div class="col-sm">
+                        <svg class="img-fluid" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="345.875 140 461.523 307.5" width="461.523pt" height="307.5pt"><defs><clipPath id="_clipPath_HnrahURJZDRPwBg6dv6nXWa3WD0feCsx"><rect x="345.875" y="140" width="461.523" height="307.5"/></clipPath></defs><g clip-path="url(#_clipPath_HnrahURJZDRPwBg6dv6nXWa3WD0feCsx)"><line x1="555" y1="179" x2="646" y2="241" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="763" y1="369" x2="705" y2="296" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="642" y1="369" x2="595" y2="301" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="468" y1="241" x2="507" y2="296" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="468" y1="241" x2="428" y2="296" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="601" y1="301" x2="560" y2="364" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="705" y1="301" x2="646" y2="245" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="646" y1="369" x2="691" y2="431" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="468" y1="241" x2="555" y2="179" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="595" y1="301" x2="646" y2="241" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="642" y1="369" x2="601" y2="431" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="381" y1="369" x2="421" y2="301" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><circle vector-effect="non-scaling-stroke" cx="554.284090909091" cy="180.73864017833353" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="559.409100445834" cy="367.7500000000001" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="511.5" cy="298.25" r="17.75000000000003" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="759.75" cy="367.7500000000001" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="420.1590909090909" cy="298.25" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="701.6590909090909" cy="298.25" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="467.9090985384854" cy="241.23864065517074" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="381.75" cy="367.75000000000006" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="600.5" cy="298.25" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="687.25" cy="429.75" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="641.7840909090909" cy="367.75000000000006" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="603.1590928164395" cy="429.75" r="17.75" fill="rgb(57,62,70)"/><text transform="matrix(1,0,0,1,593.5,307.377)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">6 </text><text transform="matrix(1,0,0,1,412.659,307.377)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">4 </text><text transform="matrix(1,0,0,1,694.159,307.377)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">7 </text><text transform="matrix(1,0,0,1,552.5,376.877)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">9 </text><text transform="matrix(1,0,0,1,590.534,438.877)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">11 </text><text transform="matrix(1,0,0,1,747.125,376.877)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">13 </text><text transform="matrix(1,0,0,1,674.625,438.877)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">12 </text><circle vector-effect="non-scaling-stroke" cx="644.5340909090909" cy="241.23864065517074" r="17.75" fill="rgb(57,62,70)"/><text transform="matrix(1,0,0,1,629.375,376.877)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">10 </text><text transform="matrix(1,0,0,1,460.5,250.491)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">2 </text><text transform="matrix(1,0,0,1,547.5,188.616)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">1 </text><text transform="matrix(1,0,0,1,504,307.377)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">5 </text><text transform="matrix(1,0,0,1,638.5,250.127)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">3 </text><text transform="matrix(1,0,0,1,374.25,376.877)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">8 </text><text transform="matrix(1,0,0,1,549.5,154.964)" style="font-family:'Roboto';font-weight:400;font-size:14px;font-style:normal;fill: var(--text-color);stroke:none;">1</text><text transform="matrix(1,0,0,1,381,277.208)" style="font-family:'Roboto';font-weight:400;font-size:14px;font-style:normal;fill: var(--text-color);stroke:none;">100</text><text transform="matrix(1,0,0,1,437.75,224.648)" style="font-family:'Roboto';font-weight:400;font-size:14px;font-style:normal;fill: var(--text-color);stroke:none;">10</text><text transform="matrix(1,0,0,1,653.5,224.648)" style="font-family:'Roboto';font-weight:400;font-size:14px;font-style:normal;fill: var(--text-color);stroke:none;">11</text><text transform="matrix(1,0,0,1,345.875,344.931)" style="font-family:'Roboto';font-weight:400;font-size:14px;font-style:normal;fill: var(--text-color);stroke:none;">1000</text><text transform="matrix(1,0,0,1,709.159,280.67)" style="font-family:'Roboto';font-weight:400;font-size:14px;font-style:normal;fill: var(--text-color);stroke:none;">111</text><text transform="matrix(1,0,0,1,772.375,350.431)" style="font-family:'Roboto';font-weight:400;font-size:14px;font-style:normal;fill: var(--text-color);stroke:none;">1111</text><text transform="matrix(1,0,0,1,517.977,279.654)" style="font-family:'Roboto';font-weight:400;font-size:14px;font-style:normal;fill: var(--text-color);stroke:none;">101</text><text transform="matrix(1,0,0,1,563.977,282.119)" style="font-family:'Roboto';font-weight:400;font-size:14px;font-style:normal;fill: var(--text-color);stroke:none;">110</text><text transform="matrix(1,0,0,1,510.852,351.714)" style="font-family:'Roboto';font-weight:400;font-size:14px;font-style:normal;fill: var(--text-color);stroke:none;">1100</text><text transform="matrix(1,0,0,1,659.534,356.663)" style="font-family:'Roboto';font-weight:400;font-size:14px;font-style:normal;fill: var(--text-color);stroke:none;">1101</text><text transform="matrix(1,0,0,1,541.659,413.398)" style="font-family:'Roboto';font-weight:400;font-size:14px;font-style:normal;fill: var(--text-color);stroke:none;">11010</text><text transform="matrix(1,0,0,1,698.898,417.431)" style="font-family:'Roboto';font-weight:400;font-size:14px;font-style:normal;fill: var(--text-color);stroke:none;">11011</text></g></svg>
+                      </div>
+                    </div>
+                </div>
 
             <h1 id="section-12">Bináris fák bejárása</h1>
              
