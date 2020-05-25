@@ -2,6 +2,7 @@ class VisualNode {
     #sameEndpoint = false;
     #editMode = false;
     nodeIndex = 0;
+    graph;
 
     removeBtnOverlay = ["Custom", {
         create: function (component) {
@@ -166,9 +167,17 @@ class VisualNode {
     }
 
     //Getters and setters
+    /**
+     * Gives a new index to a new node
+     * @returns {number} index of a node
+     */
     get getIndex() {
         this.nodeIndex++;
         return this.nodeIndex;
+    }
+
+    set setGraph(graph) {
+        this.graph = graph;
     }
 
 }
