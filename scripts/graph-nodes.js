@@ -1,6 +1,6 @@
 class VisualNode {
-    #sameEndpoint = false;
-    #editMode = false;
+    sameEndpoint = false;
+    editMode = false;
     nodeIndex = 0;
     graph;
 
@@ -39,7 +39,7 @@ class VisualNode {
      * @param eventInfo Information about the event
      */
     onConnect(eventInfo) {
-        if (this.#sameEndpoint === false) {
+        if (this.sameEndpoint === false) {
             this.jspInstance.selectEndpoints(
                 {
                     source: eventInfo.source,
@@ -49,7 +49,7 @@ class VisualNode {
 
             this.addEndpoint(eventInfo.source);
             this.addEndpoint(eventInfo.target);
-        } else this.#sameEndpoint = false;
+        } else this.sameEndpoint = false;
     }
 
     //Base and Helper functions
@@ -133,12 +133,12 @@ class VisualNode {
      * Toggles the edit mode
      */
     toggleEditMode() {
-        if (this.#editMode) {
+        if (this.editMode) {
             this.disableEditMode();
-            this.#editMode = false;
+            this.editMode = false;
         } else {
             this.enableEditMode();
-            this.#editMode = true;
+            this.editMode = true;
         }
     }
 
