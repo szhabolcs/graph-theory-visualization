@@ -5,11 +5,20 @@
  * Contains all the basic operations and algorithm of a generic graph or binary tree
  */
 class GenericGraph {
+    //Graph representations in memory
+    booleMatrix = [];
+    incidenceMatrix = [];
+    adjacencyList = [];
+    edgeList = [];
 
-    constructor(numberOfNodes = 0, numberOfEdges = 0, booleMatrix = []) {
+    constructor(numberOfNodes = 0, numberOfEdges = 0, booleMatrix = [],
+                incidenceMatrix = [], adjacencyList = [], edgeList = []) {
         this.numberOfNodes = numberOfNodes;
-        this.booleMatrix = booleMatrix;
         this.numberOfEdges = numberOfEdges;
+        this.booleMatrix = booleMatrix;
+        this.incidenceMatrix = incidenceMatrix;
+        this.adjacencyList = adjacencyList;
+        this.edgeList = edgeList;
     }
 
     //1. Base operations
@@ -18,7 +27,16 @@ class GenericGraph {
      * @param indexOfNode The index of the actual added node
      */
     addNewNode(indexOfNode) {
+        //Increment the number of nodes
+        this.numberOfNodes++;
+
+        //Adding new node to the boole matrix
         this.booleMatrix[indexOfNode] = [];
+
+        //The incidence matrix is flipped so don't need to add new row
+
+        //Adding a new node to the adjacency list
+        this.adjacencyList[indexOfNode] = [];
     }
 
     /**
@@ -27,10 +45,28 @@ class GenericGraph {
      */
 
     addNewEdge(edge) {
-        if (typeof this.booleMatrix[edge.source] === "undefined")
-            throw new Error("Node no. " + edge.source + "doesn't exist");
-        if (typeof this.booleMatrix[edge.target] === "undefined")
-            throw new Error("Node no. " + edge.target + "doesn't exist");
+        //Check for the validity of the edge
+        this.checkEdge(edge);
+
+        //Increment number of edges
+        this.numberOfEdges++;
+
+        //Adding the edge to the boole matrix
+        //todo Weight goes here
+        this.booleMatrix[edge.source][edge.target] = 1;
+
+        //Adding the edge to the incidence matrix
+        const incidenceMatrixEntry = [];
+        incidenceMatrixEntry[edge.source] = 1;
+        incidenceMatrixEntry[edge.target] = 1;
+        this.incidenceMatrix.push(incidenceMatrixEntry);
+
+        //Adding the edge to the adjacency list
+        this.adjacencyList[edge.source].push(edge.target);
+
+        //Adding the edge to the edge list
+        this.edgeList.push(edge);
+
     }
 
     /**
@@ -38,7 +74,19 @@ class GenericGraph {
      * @param indexOfNode The index of the node we want to remove
      */
     removeNode(indexOfNode) {
+        this.isolateNode(indexOfNode);
+
+        //Decrement the number of nodes
+        this.numberOfEdges--;
+
+        //Remove it from the boole matrix
         delete this.booleMatrix[indexOfNode];
+
+        //Remove it from the incidence matrix
+        delete this.incidenceMatrix[indexOfNode];
+
+        //Remove it from the adjacency list
+        delete this.adjacencyList[indexOfNode];
 
     }
 
@@ -46,8 +94,65 @@ class GenericGraph {
      * Function prototype
      * Removes a new edge to the graph
      * @param edge The actual edge we want to remove
+     * @param indexOfEdge If the index of the edge is known, searching for it isn't necessary
      */
-    //removeEdge(edge);
+
+    removeEdge(edge, indexOfEdge = null) {
+        //Check for the validity of the edge
+        this.checkEdge(edge);
+
+        //Decrement the number of edge
+        this.numberOfEdges--;
+
+        //Remove from the edge list
+        if (indexOfEdge === null) {
+            for (let i in this.edgeList) {
+                if (this.edgeList[i].source === edge.source &&
+                    this.edgeList[i].target === edge.target)
+                    indexOfEdge = i;
+            }
+        }
+        delete this.edgeList[indexOfEdge];
+
+        //Remove from the boole matrix
+        delete this.booleMatrix[edge.source][edge.target];
+
+        //Remove from the incidence matrix
+        delete this.incidenceMatrix[indexOfEdge];
+
+        //Remove from the adjacency list
+        for (let i in this.adjacencyList[edge.source])
+            if (this.adjacencyList[edge.source][i] === edge.target)
+                delete this.adjacencyList[edge.source][i];
+    }
+
+    /**
+     * Removes all edges from a given node
+     * @param indexOfNode
+     */
+    isolateNode(indexOfNode) {
+        //Search in the edge list and removes the edges
+        for (let i in this.edgeList) {
+            if (this.edgeList[i].source === indexOfNode)
+                this.removeEdge(this.edgeList[i], i);
+            if (this.edgeList[i].target === indexOfNode)
+                this.removeEdge(this.edgeList[i], i);
+        }
+
+    }
+
+    /**
+     * Checking if the nodes of the edge exist
+     * Only one representation check is necessary, because
+     * the four representations are synchronized
+     * @param edge Edge to check
+     */
+    checkEdge(edge) {
+        if (typeof this.booleMatrix[edge.source] === "undefined")
+            throw new Error("Node no. " + edge.source + "doesn't exist");
+        if (typeof this.booleMatrix[edge.target] === "undefined")
+            throw new Error("Node no. " + edge.target + "doesn't exist");
+    }
 
     //2. Representation conversions
     /**
@@ -55,7 +160,7 @@ class GenericGraph {
      */
     //Szomszédsági lista
     toAdjacencyList() {
-
+        return this.adjacencyList;
     }
 
     /**
@@ -71,7 +176,7 @@ class GenericGraph {
      */
     //Éllista
     toEdgeList() {
-
+        return this.edgeList;
     }
 
     /**
@@ -79,7 +184,7 @@ class GenericGraph {
      */
     //Illeszkedési mátrix
     toIncidenceMatrix() {
-
+        return this.incidenceMatrix;
     }
 
     //3. Basic Algorithms
@@ -114,6 +219,7 @@ class GenericGraph {
     }
 
     //4. Getters and Setters
+
     /**
      * @returns {number} the number of nodes of the graph
      */
@@ -147,8 +253,13 @@ class UndirectedGraph extends GenericGraph {
      */
     addNewEdge(edge) {
         super.addNewEdge(edge);
-        const source = edge.source;
-        const target = edge.target;
+        //Adding reverse edges where is necessary
+        //Boole matrix
+        //todo Weight goes here
+        this.booleMatrix[edge.target][edge.source] = 1;
+
+        //Adjacency list
+        this.adjacencyList[edge.target].push(edge.source);
 
     }
 
@@ -157,6 +268,14 @@ class UndirectedGraph extends GenericGraph {
      * @param edge The actual edge we want to remove
      */
     removeEdge(edge) {
+        super.removeEdge(edge);
+        //Remove reverse edges where is necessary
+        //Remove from the boole matrix
+        delete this.booleMatrix[edge.target][edge.source];
+        //Remove from the adjacency list
+        for (let i in this.adjacencyList[edge.target])
+            if (this.adjacencyList[edge.target][i] === edge.source)
+                delete this.adjacencyList[edge.target][i];
 
     }
 
@@ -186,7 +305,7 @@ class DirectedGraph extends GenericGraph {
      * @param edge The actual edge we want to add
      */
     addNewEdge(edge) {
-
+        super.addNewEdge(edge);
     }
 
     /**
@@ -194,7 +313,7 @@ class DirectedGraph extends GenericGraph {
      * @param edge The actual edge we want to remove
      */
     removeEdge(edge) {
-
+        super.removeEdge(edge);
     }
 
     /**

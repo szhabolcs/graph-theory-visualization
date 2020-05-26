@@ -10,12 +10,12 @@ class VisualNode {
         },
         events: {
             click: (removeButtonOverlay) => {
-                this.jspInstance.deleteConnection(removeButtonOverlay.component);
+                this.removeConnection(removeButtonOverlay.component);
             },
-            mouseover: (removeButtonOverlay) =>{
+            mouseover: (removeButtonOverlay) => {
                 this.jspInstance.select(removeButtonOverlay.component).addClass("connection-hover");
             },
-            mouseout: (removeButtonOverlay) =>{
+            mouseout: (removeButtonOverlay) => {
                 this.jspInstance.select(removeButtonOverlay.component).removeClass("connection-hover");
             }
         },
@@ -49,6 +49,12 @@ class VisualNode {
 
             this.addEndpoint(eventInfo.source);
             this.addEndpoint(eventInfo.target);
+
+            const edge = {
+                source: $(eventInfo.source).attr("id"),
+                target: $(eventInfo.target).attr("id")
+            };
+            this.graph.addNewEdge(edge);
         } else this.sameEndpoint = false;
     }
 
@@ -81,8 +87,8 @@ class VisualNode {
 
         //Binding event listeners
         insertedBox.on("click", ".remove-btn", (eventInfo) => this.removeNode(eventInfo.delegateTarget));
-        insertedBox.on("mouseover",".remove-btn", (eventInfo) => $(eventInfo.delegateTarget).addClass("node-remove-hover"));
-        insertedBox.on("mouseout",".remove-btn", (eventInfo) => $(eventInfo.delegateTarget).removeClass("node-remove-hover"));
+        insertedBox.on("mouseover", ".remove-btn", (eventInfo) => $(eventInfo.delegateTarget).addClass("node-remove-hover"));
+        insertedBox.on("mouseout", ".remove-btn", (eventInfo) => $(eventInfo.delegateTarget).removeClass("node-remove-hover"));
 
         insertedBox.css({
             top: top,
@@ -92,6 +98,7 @@ class VisualNode {
         this.jspInstance.draggable(insertedBox, {
             grid: [10, 10]
         });
+        this.graph.addNewNode(insertedBox.attr("id"));
         return insertedBox;
     }
 
@@ -103,6 +110,21 @@ class VisualNode {
         this.jspInstance.deleteConnectionsForElement(nodeId);
         this.jspInstance.removeAllEndpoints(nodeId);
         this.jspInstance.remove(nodeId);
+        this.graph.removeNode(nodeId.attr("id"));
+        console.log(nodeId);
+    }
+
+    /**
+     * Removes a connection between two nodes
+     * @param connection jsPlumb connection
+     */
+    removeConnection(connection) {
+        const edge = {
+            source: $(connection.source).attr("id"),
+            target: $(connection.target).attr("id")
+        };
+        this.jspInstance.deleteConnection(connection);
+        this.graph.removeEdge(edge);
     }
 
     /**
@@ -142,7 +164,7 @@ class VisualNode {
         }
     }
 
-    deleteGraph(){
+    deleteGraph() {
 
     }
 
@@ -176,7 +198,7 @@ class VisualNode {
         return this.nodeIndex;
     }
 
-    set setGraph(graph) {
+    setGraph(graph) {
         this.graph = graph;
     }
 
@@ -288,7 +310,7 @@ class UnDirectedNode extends VisualNode {
             connector: "Straight",
             allowLoopback: false,
             connectorOverlays: [
-                ["PlainArrow", {width: 15, location: 1, height: 10, id: "arrow",cssClass:"hidden"}],
+                ["PlainArrow", {width: 15, location: 1, height: 10, id: "arrow", cssClass: "hidden"}],
                 this.removeBtnOverlay
             ]
         });
@@ -352,7 +374,7 @@ class BinaryNode extends VisualNode {
             ],
             deleteEndpointsOnDetach: false,
             allowLoopback: false,
-            endpoint: ["Dot",  {cssClass: "scale-08 tilde"}],
+            endpoint: ["Dot", {cssClass: "scale-08 tilde"}],
             connector: "Straight"
         });
     }

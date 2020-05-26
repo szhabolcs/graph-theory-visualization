@@ -40,6 +40,7 @@ function initGraph(DOMContainer) {
             jspNode = new UnDirectedNode(DOMContainer);
         }
     }
+    jspNode.setGraph(graph);
 }
 
 
