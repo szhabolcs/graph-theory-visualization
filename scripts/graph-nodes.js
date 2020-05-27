@@ -110,8 +110,7 @@ class VisualNode {
         this.jspInstance.deleteConnectionsForElement(nodeId);
         this.jspInstance.removeAllEndpoints(nodeId);
         this.jspInstance.remove(nodeId);
-        this.graph.removeNode(nodeId.attr("id"));
-        console.log(nodeId);
+        this.graph.removeNode($(nodeId).attr("id"));
     }
 
     /**
