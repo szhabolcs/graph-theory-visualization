@@ -89,7 +89,7 @@ body {
     position: absolute;
     color: var(--danger);
     width: 25px;
-    height: 25px;
+    height: 30px;
     right: 5px;
     top: 0px;
     font-size: 22px;
@@ -335,6 +335,12 @@ body {
     width: 0;
     min-width: 50%;
     margin: auto;
+}
+.table > tbody > tr:first-child{
+    background-color: var(--dark-green);
+}
+.table > tbody > tr > td:first-child {
+    background-color: var(--dark-green);
 }
 .table-bordered td, .table-bordered th{
     border:2px solid var(--dropdown-body-color) !important;

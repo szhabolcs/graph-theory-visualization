@@ -32,4 +32,10 @@ const MENU_CARD = '<div class="container navbar-card my-auto">'+
     '      <a href="" class="read-more-link"><div class="read-more"><i class="fas fa-info-circle"></i></div></a>'+
     '    </div>';
         
-    
+const TABLE_SECTION = "<div class='representation-section'>"+
+                        "<span class='section-header'></span>"+
+                        "<div class='divider-line'></div>"+
+                        "<table class='table table-bordered'>"+
+                            "<tr data-i='0'><td data-j='0'>&nbsp;</td></tr>"+
+                        "</table>"+
+                      "</div>"

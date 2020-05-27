@@ -158,7 +158,7 @@ $(document).ready(function () {
     });
 
     /**
-     * Navbar toggler
+     * Table section toggler
      */
     $(".section-header > i").click((e) => {
         $(e.currentTarget.parentElement.parentElement).find(".table").fadeToggle();
