@@ -9,6 +9,10 @@ const DIRECTED_GRAPH = "directed";
 const UNDIRECTED_GRAPH = "undirected";
 const MENU_ROOT = "root";
 
+//CONSTANT TYPES
+const TYPE_LEFT = 0;
+const TYPE_RIGHT = 1;
+
 //CONSTANT HTML
 const REMOVE_BTN_HTML = "<div class='remove-btn'>" +
                             "<i class='fas fa-minus-circle'></i>" +

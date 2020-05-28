@@ -4,6 +4,12 @@ class VisualNode {
     nodeIndex = 0;
     graph;
 
+    /**
+     * The remove button overlay on the connections
+     * Contains the events for the remove button and for hovering
+     * @type {(string|{create: (function(*): *|jQuery.fn.init|jQuery|HTMLElement), location: number, id: string,
+     *       events: {mouseover: events.mouseover, mouseout: events.mouseout, click: events.click}})[]}
+     */
     removeBtnOverlay = ["Custom", {
         create: function (component) {
             return $(REMOVE_BTN_HTML);
@@ -134,6 +140,9 @@ class VisualNode {
         this.jspInstance.deleteEndpoint(endpointId);
     }
 
+    /**
+     * Enables the edit mode for the graph editor
+     */
     enableEditMode() {
         const $nodeText = $(".node-text");
         $(".tilde").removeClass("hidden");
@@ -142,6 +151,9 @@ class VisualNode {
         $(".remove-btn").removeClass("hidden");
     }
 
+    /**
+     * Disables the edit mode for the graph editor
+     */
     disableEditMode() {
         const $nodeText = $(".node-text");
         $(".tilde").addClass("hidden");
@@ -332,6 +344,13 @@ class BinaryNode extends VisualNode {
         if (eventInfo.sourceId === eventInfo.targetId) {
             this.jspInstance.deleteConnection(eventInfo.connection);
         }
+        let edge = {
+            source: eventInfo.sourceId,
+            target: eventInfo.targetId
+        };
+
+        this.graph.addNewEdge(edge, this.checkSourceType(eventInfo));
+
     }
 
     //Base and helper functions
@@ -377,4 +396,27 @@ class BinaryNode extends VisualNode {
             connector: "Straight"
         });
     }
+
+    /**
+     * Checks whether a connection is connected to the left or right side of a root node
+     * @param connection jsPlumb connection
+     * @returns {number} TYPE_LEFT or TYPE_RIGHT
+     */
+    checkSourceType(connection) {
+        const sourceEndpoint = connection.sourceEndpoint;
+        if (sourceEndpoint.anchor.x < 0.5)
+            return TYPE_LEFT;
+        else
+            return TYPE_RIGHT;
+
+    }
+
+    /**
+     * Disables the edit mode in the graph editor
+     */
+    disableEditMode() {
+        super.disableEditMode();
+        this.graph.searchRootNode();
+    }
+
 }

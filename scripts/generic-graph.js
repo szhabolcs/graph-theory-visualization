@@ -154,40 +154,7 @@ class GenericGraph {
             throw new Error("Node no. " + edge.target + "doesn't exist");
     }
 
-    //2. Representation conversions
-    /**
-     * Returns the graph as adjacency list representation
-     */
-    //Szomszédsági lista
-    toAdjacencyList() {
-        return this.adjacencyList;
-    }
-
-    /**
-     * Returns the graph as boole matrix representation
-     */
-    //Pont pont mátrix
-    toBooleMatrix() {
-        return this.booleMatrix;
-    }
-
-    /**
-     * Returns the graph as edge list representation
-     */
-    //Éllista
-    toEdgeList() {
-        return this.edgeList;
-    }
-
-    /**
-     * Returns the graph as incidence matrix representation
-     */
-    //Illeszkedési mátrix
-    toIncidenceMatrix() {
-        return this.incidenceMatrix;
-    }
-
-    //3. Basic Algorithms
+    //2. Basic Algorithms
     /**
      * Breadth First Search algorithm
      */
@@ -218,7 +185,38 @@ class GenericGraph {
 
     }
 
-    //4. Getters and Setters
+    //3. Getters and Setters
+    /**
+     * Returns the graph as adjacency list representation
+     */
+    //Szomszédsági lista
+    getAdjacencyList() {
+        return this.adjacencyList;
+    }
+
+    /**
+     * Returns the graph as boole matrix representation
+     */
+    //Pont pont mátrix
+    getBooleMatrix() {
+        return this.booleMatrix;
+    }
+
+    /**
+     * Returns the graph as edge list representation
+     */
+    //Éllista
+    getEdgeList() {
+        return this.edgeList;
+    }
+
+    /**
+     * Returns the graph as incidence matrix representation
+     */
+    //Illeszkedési mátrix
+    getIncidenceMatrix() {
+        return this.incidenceMatrix;
+    }
 
     /**
      * @returns {number} the number of nodes of the graph
@@ -332,26 +330,102 @@ class DirectedGraph extends GenericGraph {
  * Contains the specific algorithms for this type of graph
  */
 //Bináris fa
-class BinaryTree extends UndirectedGraph {
+class BinaryTree extends GenericGraph {
+    root;
+    //Graph representations
+    parentArray = [];
+    standardForm = [];
 
-    constructor(numberOfNodes = 0, booleMatrix = []) {
-        super(numberOfNodes, booleMatrix);
+
+    constructor(numberOfNodes = 0, numberOfEdges = []) {
+        super(numberOfNodes, numberOfEdges);
     }
 
-    //1. Representation conversions
+    //1. Base operations
+    /**
+     * Adds a new node to the binary tree
+     * @param indexOfNode
+     */
+    addNewNode(indexOfNode) {
+
+        //Adding the node to the parent array
+        this.parentArray[indexOfNode] = 0;
+
+        //Adding the node to the standard form
+        this.standardForm[indexOfNode] = {
+            left: 0,
+            right: 0
+        };
+
+    }
+
+    /**
+     * Adds a new edge to the binary tree
+     * @param edge
+     */
+    addNewEdge(edge, childType) {
+
+        //Adding the edge to the parent array
+        this.parentArray[edge.target] = edge.source;
+
+        //Adding the edge to the standard form
+        if (childType === TYPE_LEFT)
+            this.standardForm[edge.source].left = edge.target;
+        else if (childType === TYPE_RIGHT)
+            this.standardForm[edge.source].right = edge.target;
+
+    }
+
+    /**
+     * Removes a node from the binary tree
+     * @param indexOfNode
+     */
+    removeNode(indexOfNode) {
+        //Removing the node from the parent array
+        delete this.parentArray[indexOfNode];
+
+        //Removing the node from the standard form
+        delete this.standardForm[indexOfNode];
+    }
+
+    /**
+     * Removes an edge from the binary tree
+     * @param edge
+     */
+    removeEdge(edge) {
+        //Removing the edge from the parent array
+        this.parentArray[edge.target] = 0;
+
+        //Removing the edge from the standard form
+        this.standardForm[edge.source].left = 0;
+        this.standardForm[edge.source].right = 0;
+
+    }
+
+    /**
+     * Finds and sets the root node of the binary tree
+     */
+    searchRootNode() {
+        for (let i in this.parentArray) {
+            if (this.parentArray[i] === 0)
+                this.root = i;
+        }
+    }
+
+    //2. Representation conversions
     /**
      * Returns the graph as parent array representation
      */
     //Apa tömb
-    toParentArray() {
-
+    getParentArray() {
+        return this.parentArray;
     }
 
     /**
      * Returns the graph as bracket representation
      */
     //Teljes zárójeles alak
-    toBracketRepresentation() {
+    getBracketRepresentation() {
 
     }
 
@@ -359,19 +433,19 @@ class BinaryTree extends UndirectedGraph {
      * Returns the graph as Binary Tree Standard representation
      */
     //Bináris fa standard alakja
-    toStandardRepresentation() {
-
+    getStandardForm() {
+        return this.standardForm;
     }
 
     /**
      * Returns the graph as Binary representation
      */
     //Bináris alak
-    toBinaryRepresentation() {
+    getBinaryRepresentation() {
 
     }
 
-    //2. Specific algorithms
+    //3. Specific algorithms
     /**
      * Preorder Search
      */
