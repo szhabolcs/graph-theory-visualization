@@ -149,6 +149,25 @@
   <div id="zoom-out" class="ui-helper-btn" data-toggle="tooltip" data-placement="top" title="Kicsinyítés"><i class="fas fa-search-minus"></i></div>
   <div id="zoom-reset" class="ui-helper-btn" data-toggle="tooltip" data-placement="top" title="Alapértelmezett"><i class="fas fa-compress"></i></div>
 
+  <!-- Graph change modal -->
+  <div class="modal fade" id="graph-change-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Törlés figyelmeztetés</h5>
+        </div>
+        <div class="modal-body">
+          Egy másik gráf típus algoritmusát választotta ki, ezzel a megrajzolt gráf törlődni fog.</span>
+          <br>
+          Folytatni szeretné?
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="graph-change-cancel-btn" class="btn btn-secondary" data-dismiss="modal">Mégsem</button>
+          <button type="button" id="graph-change-approve-btn"class="btn btn-danger">Igen</button>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jsPlumb/2.13.0/js/jsplumb.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

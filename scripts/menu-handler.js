@@ -2,8 +2,81 @@
 
 let menuItems = {
     graphType: "none",
-    directed: false,
+    setGraphType: (newType) => {
+        menuItems.graphType = newType;
+    },
+    directed: undefined,
+    setDirected: (newDirected) => {
+        menuItems.directed = newDirected;
+    },
     selectedAlgorithm: "none",
+    setAlgorith: (newAlgorith) => {
+        if(container == "#card-holder"){
+            if(menuItems.graphType == selectedGraphType){
+                if(menuItems.graphType == GENERIC_GRAPH && selectedDirection == menuItems.directed){
+                    menuItems.selectedAlgorithm = newAlgorith;
+                    selectedDirection = menuItems.directed;
+                    selectedGraphType = menuItems.graphType;
+
+                    $(".selected-menu-item").removeClass("selected-menu-item");
+                    $("#"+menuItems.selectedAlgorithm).addClass("selected-menu-item");
+                    $("#current-operation").text($("#"+menuItems.selectedAlgorithm).find(".navbar-card-text").text());
+                }
+                else if (menuItems.graphType == BINARY_TREE){
+                    menuItems.selectedAlgorithm = newAlgorith;
+                    selectedDirection = menuItems.directed;
+                    selectedGraphType = menuItems.graphType;
+
+                    $(".selected-menu-item").removeClass("selected-menu-item");
+                    $("#"+menuItems.selectedAlgorithm).addClass("selected-menu-item");
+                    $("#current-operation").text($("#"+menuItems.selectedAlgorithm).find(".navbar-card-text").text());
+                }
+                else{
+                    $("#graph-change-modal").modal({
+                        backdrop: "static",
+                        show: true
+                    });
+    
+                    $("#graph-change-approve-btn").on("click",()=>{
+                        $("#graph-change-modal").modal("hide");
+    
+                        menuItems.selectedAlgorithm = newAlgorith;
+                        selectedDirection = menuItems.directed;
+                        selectedGraphType = menuItems.graphType;
+    
+                        $(".selected-menu-item").removeClass("selected-menu-item");
+                        $("#"+menuItems.selectedAlgorithm).addClass("selected-menu-item");
+                        $("#current-operation").text($("#"+menuItems.selectedAlgorithm).find(".navbar-card-text").text());
+                    });
+                }
+                
+            }
+            else{
+                $("#graph-change-modal").modal({
+                    backdrop: "static",
+                    show: true
+                });
+
+                $("#graph-change-approve-btn").on("click",()=>{
+                    $("#graph-change-modal").modal("hide");
+
+                    menuItems.selectedAlgorithm = newAlgorith;
+                    selectedDirection = menuItems.directed;
+                    selectedGraphType = menuItems.graphType;
+
+                    $(".selected-menu-item").removeClass("selected-menu-item");
+                    $("#"+menuItems.selectedAlgorithm).addClass("selected-menu-item");
+                    $("#current-operation").text($("#"+menuItems.selectedAlgorithm).find(".navbar-card-text").text());
+                });
+            }
+        }
+        else{
+            menuItems.selectedAlgorithm = newAlgorith;
+            selectedDirection = menuItems.directed;
+            selectedGraphType = menuItems.graphType;
+        }
+        
+    },
     root: [
         {
             text: "Általános gráfok",
@@ -113,6 +186,9 @@ let selected = MENU_ROOT;
 let group = MENU_ROOT;
 let container = "#start-modal-holder";
 
+let selectedDirection;
+let selectedGraphType;
+
 /**
  * @param {string} selected the selected group name
  * @returns {Array} the elements of the selected group
@@ -125,14 +201,14 @@ function getSelectedItems(selected){
             items.push(menuItems[selected][i]);
         }
         else if(selected == GENERIC_GRAPH){
-            menuItems.graphType = GENERIC_GRAPH;
+            menuItems.setGraphType(GENERIC_GRAPH);
             for(let j in menuItems[selected]["choice"]){
                 items.push(menuItems[selected]["choice"][j]);
             }
             return items;
         }
         else{
-            menuItems.graphType = BINARY_TREE;
+            menuItems.setGraphType(BINARY_TREE);
             for(let j in menuItems[selected][i]){
                 items.push(menuItems[selected][i][j]);
             }
@@ -140,8 +216,8 @@ function getSelectedItems(selected){
     }
 
     if(selected == DIRECTED_GRAPH || selected == UNDIRECTED_GRAPH){
-        if(selected == DIRECTED_GRAPH) menuItems.directed = true;
-            else menuItems.directed = false;
+        if(selected == DIRECTED_GRAPH) menuItems.setDirected(true);
+            else menuItems.setDirected(false);
 
         for(let i in menuItems["altalanos"]["children"]){
             items.push(menuItems["altalanos"]["children"][i]);
@@ -192,7 +268,8 @@ function loadCards(){
     
     $(container).fadeIn(200);
 
-    $("#"+menuItems.selectedAlgorithm).addClass("selected-menu-item");
+    if(selectedDirection == menuItems.directed || menuItems.graphType == BINARY_TREE)
+        $("#"+menuItems.selectedAlgorithm).addClass("selected-menu-item");
 });
 }
 
@@ -208,10 +285,7 @@ $("#card-holder").on("click", ".navbar-card", function(e){
         group = selected;
     }
     else{
-        menuItems.selectedAlgorithm = selected;
-        $(".selected-menu-item").removeClass("selected-menu-item");
-        $("#"+menuItems.selectedAlgorithm).addClass("selected-menu-item");
-        $("#current-operation").text($("#"+menuItems.selectedAlgorithm).find(".navbar-card-text").text());
+        menuItems.setAlgorith(selected);
     }
 });
 $("#start-modal-holder").on("click", ".navbar-card", function(e){
@@ -223,7 +297,7 @@ $("#start-modal-holder").on("click", ".navbar-card", function(e){
         group = selected;
     }
     else{
-        menuItems.selectedAlgorithm = selected;
+        menuItems.setAlgorith(selected);
         $(".selected-menu-item").removeClass("selected-menu-item");
         $("#"+menuItems.selectedAlgorithm).addClass("selected-menu-item");
         $("#current-operation").text($("#"+menuItems.selectedAlgorithm).find(".navbar-card-text").text());

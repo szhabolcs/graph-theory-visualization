@@ -530,3 +530,16 @@ a:not([href]):hover{
 .node-remove-hover{
     background-color: var(--danger);
 }
+/* Graph change modal */
+.modal-content{
+    background-color: var(--gray);
+    color: var(--dropdown-body-color);
+    border-radius: 5px;
+}
+.modal-footer{
+    border-top: none;
+}
+.modal-header .close{
+    text-shadow: none;
+    color: var(--white);
+}
