@@ -387,6 +387,10 @@ body {
     font-weight: 500;
     white-space: normal;
 }
+/* Fix for the divider line */
+.nav-item:nth-child(4) > div {
+    cursor: default !important;
+}
 .read-more{
     color: var(--light-green);
     padding: 0px !important;
