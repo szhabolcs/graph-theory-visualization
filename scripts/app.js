@@ -98,7 +98,7 @@ $(document).ready(function () {
      * Remove all nodes
      */
     $("#reset-graph-btn").on("click", () => {
-        jspNode.resetGraph();
+        graph.deleteGraph();
     });
 
     /**
