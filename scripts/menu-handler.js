@@ -11,43 +11,42 @@ let menuItems = {
     },
     selectedAlgorithm: "none",
     setAlgorith: (newAlgorith) => {
-        if(container == "#card-holder"){
-            if(menuItems.graphType == selectedGraphType){
-                if(menuItems.graphType == GENERIC_GRAPH && selectedDirection == menuItems.directed){
+        if (container == "#card-holder") {
+            if (menuItems.graphType == selectedGraphType) {
+                if (menuItems.graphType == GENERIC_GRAPH && selectedDirection == menuItems.directed) {
                     menuItems.selectedAlgorithm = newAlgorith;
 
                     $(".selected-menu-item").removeClass("selected-menu-item");
-                    $("#"+menuItems.selectedAlgorithm).addClass("selected-menu-item");
-                    $("#current-operation").text($("#"+menuItems.selectedAlgorithm).find(".navbar-card-text").text());
+                    $("#" + menuItems.selectedAlgorithm).addClass("selected-menu-item");
+                    $("#current-operation").text($("#" + menuItems.selectedAlgorithm).find(".navbar-card-text").text());
 
                     //Algorith change function here
-                }
-                else if (menuItems.graphType == BINARY_TREE){
+                } else if (menuItems.graphType == BINARY_TREE) {
                     menuItems.selectedAlgorithm = newAlgorith;
 
                     $(".selected-menu-item").removeClass("selected-menu-item");
-                    $("#"+menuItems.selectedAlgorithm).addClass("selected-menu-item");
-                    $("#current-operation").text($("#"+menuItems.selectedAlgorithm).find(".navbar-card-text").text());
+                    $("#" + menuItems.selectedAlgorithm).addClass("selected-menu-item");
+                    $("#current-operation").text($("#" + menuItems.selectedAlgorithm).find(".navbar-card-text").text());
 
                     //Algorith change function here
-                }
-                else{
+                } else {
                     $("#graph-change-modal").modal({
                         backdrop: "static",
                         show: true
                     });
-    
-                    $("#graph-change-approve-btn").on("click",()=>{
+
+                    $("#graph-change-approve-btn").on("click", () => {
                         $("#graph-change-modal").modal("hide");
-    
+
                         menuItems.selectedAlgorithm = newAlgorith;
                         selectedDirection = menuItems.directed;
-    
+
                         $(".selected-menu-item").removeClass("selected-menu-item");
-                        $("#"+menuItems.selectedAlgorithm).addClass("selected-menu-item");
-                        $("#current-operation").text($("#"+menuItems.selectedAlgorithm).find(".navbar-card-text").text());
+                        $("#" + menuItems.selectedAlgorithm).addClass("selected-menu-item");
+                        $("#current-operation").text($("#" + menuItems.selectedAlgorithm).find(".navbar-card-text").text());
 
                         graph.deleteGraph();
+                        graph.dropRepresentationTables();
                         $("#edit-btn").removeClass("btn-on");
                         $("#node-add-btn").fadeOut(200);
                         $("#reset-graph-btn").fadeOut(200);
@@ -55,15 +54,14 @@ let menuItems = {
                         initGraph(DOMContainer);
                     });
                 }
-                
-            }
-            else{
+
+            } else {
                 $("#graph-change-modal").modal({
                     backdrop: "static",
                     show: true
                 });
 
-                $("#graph-change-approve-btn").on("click",()=>{
+                $("#graph-change-approve-btn").on("click", () => {
                     $("#graph-change-modal").modal("hide");
 
                     menuItems.selectedAlgorithm = newAlgorith;
@@ -71,10 +69,11 @@ let menuItems = {
                     selectedGraphType = menuItems.graphType;
 
                     $(".selected-menu-item").removeClass("selected-menu-item");
-                    $("#"+menuItems.selectedAlgorithm).addClass("selected-menu-item");
-                    $("#current-operation").text($("#"+menuItems.selectedAlgorithm).find(".navbar-card-text").text());
+                    $("#" + menuItems.selectedAlgorithm).addClass("selected-menu-item");
+                    $("#current-operation").text($("#" + menuItems.selectedAlgorithm).find(".navbar-card-text").text());
 
                     graph.deleteGraph();
+                    graph.dropRepresentationTables();
                     $("#edit-btn").removeClass("btn-on");
                     $("#node-add-btn").fadeOut(200);
                     $("#reset-graph-btn").fadeOut(200);
@@ -82,13 +81,12 @@ let menuItems = {
                     initGraph(DOMContainer);
                 });
             }
-        }
-        else{
+        } else {
             menuItems.selectedAlgorithm = newAlgorith;
             selectedDirection = menuItems.directed;
             selectedGraphType = menuItems.graphType;
         }
-        
+
     },
     root: [
         {
@@ -103,10 +101,10 @@ let menuItems = {
             img: "https://via.placeholder.com/150x100.png?text=Graph+img",
             sectionId: "../#section-9"
         }
-        ],
+    ],
 
     altalanos: {
-        choice:[
+        choice: [
             {
                 text: "Irányított",
                 id: "directed",
@@ -145,7 +143,7 @@ let menuItems = {
                 img: "https://via.placeholder.com/150x100.png?text=Graph+img",
                 sectionId: "../#section-8-1"
             }
-            ]
+        ]
     },
     binaris: {
         children: [
@@ -154,7 +152,7 @@ let menuItems = {
                 id: "preorder-bejaras",
                 img: "https://via.placeholder.com/150x100.png?text=Graph+img",
                 sectionId: "../#section-12"
-            
+
             },
             {
                 text: "Inorder bejárás",
@@ -168,7 +166,7 @@ let menuItems = {
                 img: "https://via.placeholder.com/150x100.png?text=Graph+img",
                 sectionId: "../#section-12"
             },
-            {   
+            {
                 text: "Fa magassága",
                 id: "fa-magassaga",
                 img: "https://via.placeholder.com/150x100.png?text=Graph+img",
@@ -206,33 +204,31 @@ let selectedGraphType;
  * @param {string} selected the selected group name
  * @returns {Array} the elements of the selected group
  */
-function getSelectedItems(selected){
+function getSelectedItems(selected) {
     let items = [];
 
-    for(let i in menuItems[selected]){
-        if(selected == MENU_ROOT){
+    for (let i in menuItems[selected]) {
+        if (selected == MENU_ROOT) {
             items.push(menuItems[selected][i]);
-        }
-        else if(selected == GENERIC_GRAPH){
+        } else if (selected == GENERIC_GRAPH) {
             menuItems.setGraphType(GENERIC_GRAPH);
-            for(let j in menuItems[selected]["choice"]){
+            for (let j in menuItems[selected]["choice"]) {
                 items.push(menuItems[selected]["choice"][j]);
             }
             return items;
-        }
-        else{
+        } else {
             menuItems.setGraphType(BINARY_TREE);
-            for(let j in menuItems[selected][i]){
+            for (let j in menuItems[selected][i]) {
                 items.push(menuItems[selected][i][j]);
             }
         }
     }
 
-    if(selected == DIRECTED_GRAPH || selected == UNDIRECTED_GRAPH){
-        if(selected == DIRECTED_GRAPH) menuItems.setDirected(true);
-            else menuItems.setDirected(false);
+    if (selected == DIRECTED_GRAPH || selected == UNDIRECTED_GRAPH) {
+        if (selected == DIRECTED_GRAPH) menuItems.setDirected(true);
+        else menuItems.setDirected(false);
 
-        for(let i in menuItems["altalanos"]["children"]){
+        for (let i in menuItems["altalanos"]["children"]) {
             items.push(menuItems["altalanos"]["children"][i]);
         }
     }
@@ -247,97 +243,93 @@ function getSelectedItems(selected){
  * @param {string} sectionId the sectioin id link to set for the card
  * @returns {string} the HTML code of the generated card
  */
-function makeCard(id, img, text, sectionId){
+function makeCard(id, img, text, sectionId) {
     let menuCardAppend = $(MENU_CARD);
-    
-    menuCardAppend = $(menuCardAppend).attr("id",id);
-    menuCardAppend = $(menuCardAppend).find("img").attr("src",img).end()[0].outerHTML;
+
+    menuCardAppend = $(menuCardAppend).attr("id", id);
+    menuCardAppend = $(menuCardAppend).find("img").attr("src", img).end()[0].outerHTML;
     menuCardAppend = $(menuCardAppend).find(".navbar-card-text").text(text).end()[0].outerHTML;
-    menuCardAppend = $(menuCardAppend).find(".read-more-link").attr("href",sectionId).end()[0].outerHTML;
-    
+    menuCardAppend = $(menuCardAppend).find(".read-more-link").attr("href", sectionId).end()[0].outerHTML;
+
     return menuCardAppend;
 }
 
 /**
  * Loads the cards into the card holder
  */
-function loadCards(){
-    $.when($(container).fadeOut(200)).then(() => {$(container).text("");
+function loadCards() {
+    $.when($(container).fadeOut(200)).then(() => {
+        $(container).text("");
 
-    let cards = getSelectedItems(selected);
-    let card;
+        let cards = getSelectedItems(selected);
+        let card;
 
-    for(let i in cards){
-        card = cards[i];
-        $(container).append(makeCard(card.id, card.img, card.text, card.sectionId))
-    }
-    
-    if (!$("#start-modal").length && selected == MENU_ROOT) {
-        $(".menu-back").fadeOut(200);
-    }
-    else{
-        $(".menu-back").fadeIn(200);
-    }
-    
-    $(container).fadeIn(200);
+        for (let i in cards) {
+            card = cards[i];
+            $(container).append(makeCard(card.id, card.img, card.text, card.sectionId))
+        }
 
-    if(selectedDirection == menuItems.directed || menuItems.graphType == BINARY_TREE)
-        $("#"+menuItems.selectedAlgorithm).addClass("selected-menu-item");
-});
+        if (!$("#start-modal").length && selected == MENU_ROOT) {
+            $(".menu-back").fadeOut(200);
+        } else {
+            $(".menu-back").fadeIn(200);
+        }
+
+        $(container).fadeIn(200);
+
+        if (selectedDirection == menuItems.directed || menuItems.graphType == BINARY_TREE)
+            $("#" + menuItems.selectedAlgorithm).addClass("selected-menu-item");
+    });
 }
 
 
 //Listeners
 
-$("#card-holder").on("click", ".navbar-card", function(e){
+$("#card-holder").on("click", ".navbar-card", function (e) {
     let targetCard = e.currentTarget;
     selected = $(targetCard).attr("id");
 
-    if(selected == BINARY_TREE || selected == GENERIC_GRAPH || selected == MENU_ROOT || selected == DIRECTED_GRAPH || selected == UNDIRECTED_GRAPH){
+    if (selected == BINARY_TREE || selected == GENERIC_GRAPH || selected == MENU_ROOT || selected == DIRECTED_GRAPH || selected == UNDIRECTED_GRAPH) {
         loadCards();
         group = selected;
-    }
-    else{
+    } else {
         menuItems.setAlgorith(selected);
     }
 });
-$("#start-modal-holder").on("click", ".navbar-card", function(e){
+$("#start-modal-holder").on("click", ".navbar-card", function (e) {
     let targetCard = e.currentTarget;
     selected = $(targetCard).attr("id");
 
-    if(selected == BINARY_TREE || selected == GENERIC_GRAPH || selected == MENU_ROOT || selected == DIRECTED_GRAPH || selected == UNDIRECTED_GRAPH){
+    if (selected == BINARY_TREE || selected == GENERIC_GRAPH || selected == MENU_ROOT || selected == DIRECTED_GRAPH || selected == UNDIRECTED_GRAPH) {
         loadCards();
         group = selected;
-    }
-    else{
+    } else {
         menuItems.setAlgorith(selected);
         $(".selected-menu-item").removeClass("selected-menu-item");
-        $("#"+menuItems.selectedAlgorithm).addClass("selected-menu-item");
-        $("#current-operation").text($("#"+menuItems.selectedAlgorithm).find(".navbar-card-text").text());
+        $("#" + menuItems.selectedAlgorithm).addClass("selected-menu-item");
+        $("#current-operation").text($("#" + menuItems.selectedAlgorithm).find(".navbar-card-text").text());
     }
 });
 $(".menu-back").on("click", () => {
-    if(group == BINARY_TREE || group == GENERIC_GRAPH){
+    if (group == BINARY_TREE || group == GENERIC_GRAPH) {
         selected = MENU_ROOT;
         group = selected;
         loadCards();
-    }
-    else if(group == DIRECTED_GRAPH || group == UNDIRECTED_GRAPH){
+    } else if (group == DIRECTED_GRAPH || group == UNDIRECTED_GRAPH) {
         selected = GENERIC_GRAPH;
         group = selected;
         loadCards();
-    }
-    else if(group == MENU_ROOT) {
+    } else if (group == MENU_ROOT) {
         $.when($("#modal-menu").fadeOut(200)).then(() => {
-            $("#modal-intro").css("display","block");
+            $("#modal-intro").css("display", "block");
             $("#start-modal-holder").empty();
         });
     }
 });
 
 $("#start-btn").on("click", () => {
-    if(menuItems.selectedAlgorithm == "none") alert("Nincs semmi kivalasztva");
-    else{
+    if (menuItems.selectedAlgorithm == "none") alert("Nincs semmi kivalasztva");
+    else {
         initGraph(DOMContainer);
         $.when($("#start-modal").fadeOut(200)).then(() => {
             $("#start-modal").remove();
@@ -349,9 +341,9 @@ $("#start-btn").on("click", () => {
     }
 });
 
-$("#open-menu").on("click", () =>{
+$("#open-menu").on("click", () => {
     $.when($("#modal-intro").fadeOut(200)).then(() => {
-        $("#modal-menu").css("display","block");
+        $("#modal-menu").css("display", "block");
         loadCards();
     });
 });

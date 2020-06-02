@@ -270,6 +270,16 @@ class GenericGraph {
         this.tblEdgeList.addColumn(TARGET, DISPLAY_TARGET);
     }
 
+    /**
+     * Removes all the representation tables from the DOM
+     */
+    dropRepresentationTables() {
+        this.tblBooleMatrix.drop();
+        this.tblIncidenceMatrix.drop();
+        this.tblAdjacencyList.drop();
+        this.tblEdgeList.drop();
+    }
+
     //2. Basic Algorithms
     /**
      * Breadth First Search algorithm
@@ -622,6 +632,7 @@ class BinaryTree extends GenericGraph {
             this.tblStandardForm.updateTable(ROW_RIGHT, edge.source, '0');
 
     }
+
     /**
      * Deletes the whole graph from the memory
      */
@@ -631,6 +642,7 @@ class BinaryTree extends GenericGraph {
             this.visualNode.removeNode(i);
         }
     }
+
     /**
      * Initializes the tables in the representation section
      */
@@ -646,6 +658,15 @@ class BinaryTree extends GenericGraph {
         //Init Binary form
         this.tblBinaryForm.addColumn('1', null);
 
+    }
+
+    /**
+     * Removes all the representation tables from the DOM
+     */
+    dropRepresentationTables() {
+        this.tblParentArray.drop();
+        this.tblStandardForm.drop();
+        this.tblBinaryForm.drop();
     }
 
     /**

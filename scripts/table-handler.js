@@ -10,6 +10,7 @@ class TableHandler {
     numberOfColumns = 0;
 
     constructor(sectionId, sectionName) {
+        this.sectionId = sectionId;
         this.addSectionToDOM(sectionId, sectionName);
         this.DOMTable = $("#" + sectionId + "> table tbody");
     }
@@ -108,6 +109,13 @@ class TableHandler {
      */
     updateTable(i, j, value) {
         this.DOMTable.find("tr[data-i=" + i + "]" + ">" + "td[data-j=" + j + "]").text(value);
+    }
+
+    /**
+     * Deletes the table from the DOM
+     */
+    drop() {
+        $("#" + this.sectionId).remove();
     }
 
     /**
