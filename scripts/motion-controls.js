@@ -27,6 +27,7 @@ function unbindEventsForDrag() {
     $Document.off("mousemove", "div#container");
     $Document.off("mouseup", "div#container");
     DOMContainer.removeClass("container-dragging");
+    document.getSelection().removeAllRanges();
 }
 
 /**
