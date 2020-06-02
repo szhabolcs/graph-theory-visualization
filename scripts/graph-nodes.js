@@ -96,6 +96,7 @@ class VisualNode {
         insertedBox.on("click", ".remove-btn", (eventInfo) => this.removeNode(eventInfo.delegateTarget));
         insertedBox.on("mouseover", ".remove-btn", (eventInfo) => $(eventInfo.delegateTarget).addClass("node-remove-hover"));
         insertedBox.on("mouseout", ".remove-btn", (eventInfo) => $(eventInfo.delegateTarget).removeClass("node-remove-hover"));
+        insertedBox.on("change", "input[type='text']", (eventInfo) => console.log(eventInfo));
 
         insertedBox.css({
             top: top,
@@ -373,7 +374,7 @@ class BinaryNode extends VisualNode {
      * onConnectionDetached Event Listener Callback
      * @param eventInfo Information about the event
      */
-    onConnectionDetached(eventInfo){
+    onConnectionDetached(eventInfo) {
         const edge = {
             source: $(eventInfo.source).attr("id"),
             target: $(eventInfo.target).attr("id")

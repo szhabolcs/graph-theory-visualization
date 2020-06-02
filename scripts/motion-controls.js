@@ -24,6 +24,7 @@ var jspInstanceForMotion;
  * Unbinds the events used for dragging to the container
  */
 function unbindEventsForDrag() {
+    $Document.off("mouseleave", "#container");
     $Document.off("mousemove", "div#container");
     $Document.off("mouseup", "div#container");
     DOMContainer.removeClass("container-dragging");
@@ -34,6 +35,7 @@ function unbindEventsForDrag() {
  * Binds the necessary events for dragging to the container
  */
 function bindEventsForDrag() {
+    $Document.on("mouseleave", "#container", () => unbindEventsForDrag());
     $Document.on("mousemove", "div#container", (event) => onMouseMove(event));
     $Document.on("mouseup", "div#container",  (event) => onMouseUp(event));
     DOMContainer.addClass("container-dragging");
@@ -181,5 +183,5 @@ function loadMotionControls(jspInstance) {
     //Set up listeners
     DOMContainer.on("wheel", (event) => onScroll(event));
     $Document.on("mousedown", "#container", (event) => onMouseDown(event));
-    $Document.on("mouseleave", "#container", () => unbindEventsForDrag());
+    $Document.on("mousedown", ".node-text", (eventInfo) => eventInfo.stopPropagation());
 }
