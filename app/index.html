@@ -109,13 +109,14 @@
     </div>
   </div>
 
-  <div id="representation" class="floating-dropdown">
-    <span>
-      Ábrázolások
-      <div><i class="fas fa-chevron-down"></i></div>
-    </span>
-    <div id="representation-body" class="dropdown-body dropdown-body-closed">
+  <div id="resizable-left">
+    <div id="representation" class="floating-dropdown">
+      <div><i class="fas fa-chevron-right"></i>Ábrázolások</div>
+      <div id="representation-icon" data-toggle="tooltip" data-placement="right" title="Ábrázolások"><i class="fas fa-table"></i></div>
+      <div id="representation-body" class="dropdown-body display-none">
+      </div>
     </div>
+    <div id="left-splitter" class="display-none"></div>
   </div>
 
   <div id="steps" class="floating-dropdown">
@@ -169,6 +170,7 @@
     </div>
   </div>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+  <script src='https://rawgit.com/RickStrahl/jquery-resizable/master/src/jquery-resizable.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jsPlumb/2.13.0/js/jsplumb.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>

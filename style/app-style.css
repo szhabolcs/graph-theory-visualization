@@ -7,7 +7,7 @@ html[data-theme='dark'] { /* Dark theme variables */
     --gray: #444444;
 
     --background-color: #222831;
-    --dropdown-body-color: #ededed;
+    --dropdown-body-color: #FFFFFF;
     --menu-back-color: #2BCED6;
     --modal-background: #00ADB5;
     --modal-color: #ededed;
@@ -37,14 +37,18 @@ html.color-theme-in-transition *:after { /* Switch dark and light theme with fad
 }
 
 body {
-    height: 100vh;
+    height: 100%;
+    position: relative;
     color: var(--black);
     overflow: hidden;
     background-color: var(--dark-green);
     font-family: 'Roboto', sans-serif;
     margin: 0px;
 }
-
+html{
+    height: 100%;
+    position: relative;
+}
 #container {
     padding: 20px;
     background-color: var(--background-color);
@@ -225,18 +229,12 @@ body {
 
 /* Floating items */
 .floating-dropdown{
-    position: fixed;
     width: 220px;
     height: 50px;
-    background-color: var(--light-green);
     z-index: 1;
-    margin-top: 25px;
-    margin-left: 25px;
-    border-radius: 5px;
     font-weight: 500;
     font-size: 20px;
     line-height: 50px; /* Same as height. Centers the text*/
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 }
 .floating-dropdown > span > div > i{
     transition: all .3s;
@@ -253,9 +251,62 @@ body {
     float: right;
     font-size: 28px;
 }
-#representation{
-    transition: all .3s;
+.display-none{
+    display: none;
 }
+
+/* Left menu */
+#resizable-left {
+    min-width: 55px;
+    height: calc(100% - 55px);
+    position: fixed;
+    z-index: 1;
+}
+#representation{
+    height: 100%;
+    width: 55px;
+    min-width: 55px;
+    max-width: 50vw;
+    transition: all .3s;
+    float: left;
+    background-color: var(--gray);
+    overflow: hidden;
+}
+#representation-body{
+    height: calc(100% - 120px) !important;
+    padding: 15px;
+    padding-top: 0px;
+}
+#left-splitter {
+    width: 18px;
+    background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/vsizegrip.png)
+        center center no-repeat var(--dark-green);
+    height: 100%;
+    cursor: col-resize;
+    float: left;
+}
+#representation > div:first-child {
+    width: 100%;
+    color: var(--dropdown-body-color);
+    padding-right: 16px;
+    padding-top: 8px;
+    font-size: 30px;
+    text-align: right;
+    border-bottom: 2px solid var(--dark-green);
+    white-space: nowrap;
+}
+#representation > div:first-child > .fas{
+    transition: all .3s;
+    padding-left: 19px;
+    padding-right: 20px;
+    cursor: pointer;
+}
+#representation-icon{
+    float: left;
+    color: var(--dropdown-body-color);
+    padding-left: 12px;
+}
+
 #steps{
     right: 25px;
     transition: all .3s;
@@ -272,8 +323,6 @@ body {
     background-color: var(--gray);
     overflow-y: scroll;
     font-size: 16px !important;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-    border-radius: 0px 0px 5px 5px;
     transition: all .3s;
     color: var(--dropdown-body-color);
     width: 100%;
@@ -288,10 +337,6 @@ body {
 .dropdown-body-closed{
     max-height: 0px;
 }
-.dropdown-representation-body-open{
-    max-height: 75vh !important;
-    padding: 15px;
-}
 .dropdown-steps-body-open{
     max-height: calc(50vh - 125px) !important;
     padding: 15px;
@@ -301,10 +346,7 @@ body {
     padding: 15px;
 }
 .dropdown-open{
-    width: 350px !important;
-}
-.dropdown-border-radius{
-    border-radius: 5px 5px 0px 0px !important;
+    min-width: 350px !important;
 }
 .navbar-open{
     bottom: 200px;
@@ -313,6 +355,7 @@ body {
 /* Dropdown tables */
 .representation-section{
     float: none !important;
+    overflow: auto;
 }
 .section-header{
     padding: 0px !important;

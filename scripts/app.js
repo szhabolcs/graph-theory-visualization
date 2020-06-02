@@ -123,11 +123,20 @@ $(document).ready(function () {
     /**
      * Representation body div toggler
      */
-    $("#representation > span > div .fa-chevron-down").click(() => {
-        $("#representation-body").toggleClass("dropdown-body-closed dropdown-representation-body-open");
-        $("#representation > span > div .fa-chevron-down").toggleClass("fa-rotate-180");
-        $("#representation").toggleClass("dropdown-border-radius");
+    $("#representation > div .fa-chevron-right").click(() => {
+        $("#representation-body").toggleClass("display-none");
         $("#representation").toggleClass("dropdown-open");
+        $("#representation > div .fa-chevron-right").toggleClass("fa-rotate-180");
+
+        if(!$("#representation").hasClass("dropdown-open")){
+            $("#representation").css("width","55px");
+        }
+        $("#left-splitter").toggleClass("display-none");
+        // $("#representation-icon").toggleClass("display-none");
+    });
+    $("#representation").resizable({
+        handleSelector: "#left-splitter",
+        resizeHeight: false
     });
 
     /**
