@@ -114,9 +114,6 @@ body {
 .tilde{
     transform: scale(1) !important;
 }
-.scale-08{
-    transform: scale(0.8) !important;
-}
 .tilde svg circle{
     fill: var(--green);
 }

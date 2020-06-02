@@ -15,21 +15,21 @@ let menuItems = {
             if(menuItems.graphType == selectedGraphType){
                 if(menuItems.graphType == GENERIC_GRAPH && selectedDirection == menuItems.directed){
                     menuItems.selectedAlgorithm = newAlgorith;
-                    selectedDirection = menuItems.directed;
-                    selectedGraphType = menuItems.graphType;
 
                     $(".selected-menu-item").removeClass("selected-menu-item");
                     $("#"+menuItems.selectedAlgorithm).addClass("selected-menu-item");
                     $("#current-operation").text($("#"+menuItems.selectedAlgorithm).find(".navbar-card-text").text());
+
+                    //Algorith change function here
                 }
                 else if (menuItems.graphType == BINARY_TREE){
                     menuItems.selectedAlgorithm = newAlgorith;
-                    selectedDirection = menuItems.directed;
-                    selectedGraphType = menuItems.graphType;
 
                     $(".selected-menu-item").removeClass("selected-menu-item");
                     $("#"+menuItems.selectedAlgorithm).addClass("selected-menu-item");
                     $("#current-operation").text($("#"+menuItems.selectedAlgorithm).find(".navbar-card-text").text());
+
+                    //Algorith change function here
                 }
                 else{
                     $("#graph-change-modal").modal({
@@ -42,11 +42,17 @@ let menuItems = {
     
                         menuItems.selectedAlgorithm = newAlgorith;
                         selectedDirection = menuItems.directed;
-                        selectedGraphType = menuItems.graphType;
     
                         $(".selected-menu-item").removeClass("selected-menu-item");
                         $("#"+menuItems.selectedAlgorithm).addClass("selected-menu-item");
                         $("#current-operation").text($("#"+menuItems.selectedAlgorithm).find(".navbar-card-text").text());
+
+                        graph.deleteGraph();
+                        $("#edit-btn").removeClass("btn-on");
+                        $("#node-add-btn").fadeOut(200);
+                        $("#reset-graph-btn").fadeOut(200);
+                        jspNode.disableEditMode();
+                        initGraph(DOMContainer);
                     });
                 }
                 
@@ -67,6 +73,13 @@ let menuItems = {
                     $(".selected-menu-item").removeClass("selected-menu-item");
                     $("#"+menuItems.selectedAlgorithm).addClass("selected-menu-item");
                     $("#current-operation").text($("#"+menuItems.selectedAlgorithm).find(".navbar-card-text").text());
+
+                    graph.deleteGraph();
+                    $("#edit-btn").removeClass("btn-on");
+                    $("#node-add-btn").fadeOut(200);
+                    $("#reset-graph-btn").fadeOut(200);
+                    jspNode.disableEditMode();
+                    initGraph(DOMContainer);
                 });
             }
         }

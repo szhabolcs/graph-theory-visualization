@@ -151,6 +151,7 @@ class VisualNode {
         $nodeText.addClass("node-text-border");
         $nodeText.prop('disabled', false);
         $(".remove-btn").removeClass("hidden");
+        this.editMode = true;
     }
 
     /**
@@ -162,6 +163,7 @@ class VisualNode {
         $nodeText.removeClass("node-text-border");
         $nodeText.prop('disabled', true);
         $(".remove-btn").addClass("hidden");
+        this.editMode = false;
     }
 
     /**
@@ -170,10 +172,8 @@ class VisualNode {
     toggleEditMode() {
         if (this.editMode) {
             this.disableEditMode();
-            this.editMode = false;
         } else {
             this.enableEditMode();
-            this.editMode = true;
         }
     }
 
@@ -420,7 +420,7 @@ class BinaryNode extends VisualNode {
             ],
             deleteEndpointsOnDetach: false,
             allowLoopback: false,
-            endpoint: ["Dot", {cssClass: "scale-08 tilde"}],
+            endpoint: ["Dot", {cssClass: "tilde"}],
             connector: "Straight"
         });
     }
