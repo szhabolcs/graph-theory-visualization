@@ -306,7 +306,6 @@ class UnDirectedNode extends VisualNode {
             source: $(eventInfo.target).attr("id"),
             target: $(eventInfo.source).attr("id")
         };
-        this.graph.addEdgeToTable(reverseEdge);
     }
 
     //Base and helper functions

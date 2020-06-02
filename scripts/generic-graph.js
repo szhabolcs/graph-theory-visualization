@@ -101,7 +101,7 @@ class GenericGraph {
         const source = edge.source;
         const target = edge.target;
         const sourceNode = $("div[id='" + source + "']");
-        const targetNode = $("div[id='" + target + "']")
+        const targetNode = $("div[id='" + target + "']");
 
         //Boole matrix
         //todo weight goes here
@@ -384,6 +384,25 @@ class UndirectedGraph extends GenericGraph {
         //Adjacency list
         this.adjacencyList[edge.target].push(edge.source);
 
+    }
+
+    /**
+     * Adds an edge to the representation tables in the DOM
+     * @param edge
+     */
+    addEdgeToTable(edge) {
+        super.addEdgeToTable(edge);
+
+        const source = edge.source;
+        const target = edge.target;
+        const sourceNode = $("div[id='" + source + "']");
+
+        //Boole matrix
+        //todo weight goes here
+        this.tblBooleMatrix.updateTable(target, source, '1');
+
+        //Adjacency list
+        this.tblAdjacencyList.pushElementToRow(target, source, VisualNode.getValueFromNode(sourceNode));
     }
 
     /**
