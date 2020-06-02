@@ -8,10 +8,40 @@ const GENERIC_GRAPH = "altalanos";
 const DIRECTED_GRAPH = "directed";
 const UNDIRECTED_GRAPH = "undirected";
 const MENU_ROOT = "root";
+const DISPLAY_SOURCE = "Honnan";
+const DISPLAY_TARGET = "Hova";
+const SOURCE = "source";
+const TARGET = "target";
+
+//SECTION IDS
+const ID_BOOLE_MATRIX = "pont-pont-matrix";
+const ID_INCIDENCE_MATRIX = "pont-el-matrix";
+const ID_ADJACENCY_LIST = "szomszedsagi-lista";
+const ID_EDGE_LIST = "el-lista";
+const ID_PARENT_ARRAY = "apa-tomb";
+const ID_BRACKET_REPRESENTATION = "teljes-zarojeles-alak";
+const ID_STANDARD_FORM = "standard-alak";
+const ID_BINARY_FORM = "binaris-alak";
+
+//SECTION NAMES
+const NAME_BOOLE_MATRIX = "Boole-mátrix";
+const NAME_INCIDENCE_MATRIX = "Pont-él mátrix";
+const NAME_ADJACENCY_LIST = "Szomszédsági lista";
+const NAME_EDGE_LIST = "Éllista";
+const NAME_PARENT_ARRAY = "Apa tömb";
+const NAME_BRACKET_REPRESENTATION = "Teljes zárójeles alak";
+const NAME_STANDARD_FORM = "Standard alak";
+const NAME_BINARY_FORM = "Bináris alak";
+const NAME_LEFT = "Bal";
+const NAME_RIGHT = "Jobb";
 
 //CONSTANT TYPES
 const TYPE_LEFT = 0;
 const TYPE_RIGHT = 1;
+
+//TABLE ROWS
+const ROW_LEFT = '1';
+const ROW_RIGHT = '2';
 
 //CONSTANT HTML
 const REMOVE_BTN_HTML = "<div class='remove-btn'>" +

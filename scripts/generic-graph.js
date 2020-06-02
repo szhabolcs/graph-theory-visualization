@@ -19,6 +19,8 @@ class GenericGraph {
         this.incidenceMatrix = incidenceMatrix;
         this.adjacencyList = adjacencyList;
         this.edgeList = edgeList;
+
+        this.initRepresentationTables();
     }
 
     //1. Base operations
@@ -37,6 +39,27 @@ class GenericGraph {
 
         //Adding a new node to the adjacency list
         this.adjacencyList[indexOfNode] = [];
+    }
+
+    /**
+     * Adds the node to the representation tables in the DOM
+     * @param indexOfNode index of the node in table
+     * @param nodeValue value of the node
+     */
+    addNodeToTable(indexOfNode, nodeValue) {
+
+
+        //Boole matrix
+        this.tblBooleMatrix.addRow(indexOfNode, nodeValue);
+        this.tblBooleMatrix.addColumn(indexOfNode, nodeValue);
+
+        //Incidence matrix
+        this.tblIncidenceMatrix.addRow(indexOfNode, nodeValue);
+
+        //Adjacency list
+        this.tblAdjacencyList.addRow(indexOfNode, nodeValue);
+
+
     }
 
     /**
@@ -70,6 +93,36 @@ class GenericGraph {
     }
 
     /**
+     * Adds an edge to the representation tables in the DOM
+     * @param edge
+     */
+    addEdgeToTable(edge) {
+
+        const source = edge.source;
+        const target = edge.target;
+        const sourceNode = $("div[id='" + source + "']");
+        const targetNode = $("div[id='" + target + "']")
+
+        //Boole matrix
+        //todo weight goes here
+        this.tblBooleMatrix.updateTable(source, target, '1');
+
+        //Incidence matrix
+        this.tblIncidenceMatrix.pushColumn(this.incidenceMatrix.length.toString());
+        this.tblIncidenceMatrix.updateTable(source, this.incidenceMatrix.length.toString(), '1');
+        this.tblIncidenceMatrix.updateTable(target, this.incidenceMatrix.length.toString(), '1');
+
+        //Adjacency list
+        this.tblAdjacencyList.pushElementToRow(source, target, VisualNode.getValueFromNode(targetNode));
+
+        //Edge list
+        this.tblEdgeList.pushRow((this.edgeList.length).toString());
+        this.tblEdgeList.updateTable((this.edgeList.length).toString(), SOURCE, VisualNode.getValueFromNode(sourceNode));
+        this.tblEdgeList.updateTable((this.edgeList.length).toString(), TARGET, VisualNode.getValueFromNode(targetNode));
+
+    }
+
+    /**
      * Removes a node from the graph
      * @param indexOfNode The index of the node we want to remove
      */
@@ -87,6 +140,26 @@ class GenericGraph {
 
         //Remove it from the adjacency list
         delete this.adjacencyList[indexOfNode];
+
+        //Remove the node from the representation tables
+        this.removeNodeFromTable(indexOfNode);
+
+    }
+
+    /**
+     * Removes a given node from the representation tables
+     * @param indexOfNode
+     */
+    removeNodeFromTable(indexOfNode) {
+        //Boole matrix
+        this.tblBooleMatrix.removeRow(indexOfNode);
+        this.tblBooleMatrix.removeColumn(indexOfNode);
+
+        //Incidence matrix
+        this.tblIncidenceMatrix.removeRow(indexOfNode);
+
+        //Adjacency list
+        this.tblAdjacencyList.removeRow(indexOfNode);
 
     }
 
@@ -124,6 +197,38 @@ class GenericGraph {
         for (let i in this.adjacencyList[edge.source])
             if (this.adjacencyList[edge.source][i] === edge.target)
                 delete this.adjacencyList[edge.source][i];
+
+        this.removeEdgeFromTable(edge, indexOfEdge);
+
+    }
+
+    /**
+     * Removes an edge from the representation tables
+     * @param edge
+     * @param indexOfEdge
+     */
+    removeEdgeFromTable(edge, indexOfEdge) {
+        //Boole matrix
+        this.tblBooleMatrix.updateTable(edge.source, edge.target, '0');
+
+        //Incidence matrix
+        this.tblIncidenceMatrix.removeColumn((Number.parseInt(indexOfEdge) + 1).toString());
+
+        //Adjacency list
+        this.tblAdjacencyList.removeElement(edge.source, edge.target);
+
+        //Edge list
+        this.tblEdgeList.removeRow((Number.parseInt(indexOfEdge) + 1).toString());
+    }
+
+    /**
+     * Deletes the whole graph from the memory
+     */
+    deleteGraph() {
+        for (let i in this.adjacencyList) {
+            this.removeNode(i);
+            this.visualNode.removeNode(i);
+        }
     }
 
     /**
@@ -133,9 +238,7 @@ class GenericGraph {
     isolateNode(indexOfNode) {
         //Search in the edge list and removes the edges
         for (let i in this.edgeList) {
-            if (this.edgeList[i].source === indexOfNode)
-                this.removeEdge(this.edgeList[i], i);
-            if (this.edgeList[i].target === indexOfNode)
+            if (this.edgeList[i].source === indexOfNode || this.edgeList[i].target === indexOfNode)
                 this.removeEdge(this.edgeList[i], i);
         }
 
@@ -152,6 +255,19 @@ class GenericGraph {
             throw new Error("Node no. " + edge.source + "doesn't exist");
         if (typeof this.booleMatrix[edge.target] === "undefined")
             throw new Error("Node no. " + edge.target + "doesn't exist");
+    }
+
+    /**
+     * Initializes the tables in the representation section
+     */
+    initRepresentationTables() {
+        this.tblBooleMatrix = new TableHandler(ID_BOOLE_MATRIX, NAME_BOOLE_MATRIX);
+        this.tblIncidenceMatrix = new TableHandler(ID_INCIDENCE_MATRIX, NAME_INCIDENCE_MATRIX);
+        this.tblAdjacencyList = new TableHandler(ID_ADJACENCY_LIST, NAME_ADJACENCY_LIST);
+        this.tblEdgeList = new TableHandler(ID_EDGE_LIST, NAME_EDGE_LIST);
+        //Init Edge list
+        this.tblEdgeList.addColumn(SOURCE, DISPLAY_SOURCE);
+        this.tblEdgeList.addColumn(TARGET, DISPLAY_TARGET);
     }
 
     //2. Basic Algorithms
@@ -232,6 +348,15 @@ class GenericGraph {
         return this.numberOfEdges;
     }
 
+    //3. Getters and Setters
+    /**
+     * Sets the visual representation for this graph
+     * @param visualNode
+     */
+    setVisualNode(visualNode) {
+        this.visualNode = visualNode;
+    }
+
 }
 
 /**
@@ -274,6 +399,16 @@ class UndirectedGraph extends GenericGraph {
         for (let i in this.adjacencyList[edge.target])
             if (this.adjacencyList[edge.target][i] === edge.source)
                 delete this.adjacencyList[edge.target][i];
+
+    }
+
+    removeEdgeFromTable(edge, indexOfEdge) {
+        super.removeEdgeFromTable(edge, indexOfEdge);
+        //Boole matrix
+        this.tblBooleMatrix.updateTable(edge.target, edge.source, '0');
+
+        //todo Adjacency list
+        this.tblAdjacencyList.removeElement(edge.target, edge.source);
 
     }
 
@@ -335,7 +470,7 @@ class BinaryTree extends GenericGraph {
     //Graph representations
     parentArray = [];
     standardForm = [];
-
+    binaryForm = [];
 
     constructor(numberOfNodes = 0, numberOfEdges = []) {
         super(numberOfNodes, numberOfEdges);
@@ -356,7 +491,22 @@ class BinaryTree extends GenericGraph {
             left: 0,
             right: 0
         };
+    }
 
+    /**
+     * Adds the node to the representation tables in the DOM
+     * @param indexOfNode index of the node in table
+     * @param nodeValue value of the node
+     */
+    addNodeToTable(indexOfNode, nodeValue) {
+        //Parent array
+        this.tblParentArray.addColumn(indexOfNode, nodeValue);
+
+        //Standard form
+        this.tblStandardForm.addColumn(indexOfNode, nodeValue);
+
+        //Binary form
+        this.tblBinaryForm.addRow(indexOfNode, nodeValue);
     }
 
     /**
@@ -377,6 +527,24 @@ class BinaryTree extends GenericGraph {
     }
 
     /**
+     * Adds an edge to the representation tables in the DOM
+     * @param edge
+     */
+    addEdgeToTable(edge, childType) {
+        const sourceNode = $("div[id='" + edge.source + "']");
+        const targetNode = $("div[id='" + edge.target + "']");
+        //Parent array
+        this.tblParentArray.updateTable('1', edge.target, VisualNode.getValueFromNode(sourceNode));
+
+        //Standard form
+        if (childType === TYPE_LEFT)
+            this.tblStandardForm.updateTable(ROW_LEFT, edge.source, VisualNode.getValueFromNode(targetNode));
+        else if (childType === TYPE_RIGHT)
+            this.tblStandardForm.updateTable(ROW_RIGHT, edge.source, VisualNode.getValueFromNode(targetNode));
+
+    }
+
+    /**
      * Removes a node from the binary tree
      * @param indexOfNode
      */
@@ -386,6 +554,23 @@ class BinaryTree extends GenericGraph {
 
         //Removing the node from the standard form
         delete this.standardForm[indexOfNode];
+
+        this.removeNodeFromTable(indexOfNode);
+    }
+
+    /**
+     * Removes a given node from the representation tables
+     * @param indexOfNode
+     */
+    removeNodeFromTable(indexOfNode) {
+        //Parent array
+        this.tblParentArray.removeColumn(indexOfNode);
+
+        //Standard form
+        this.tblStandardForm.removeColumn(indexOfNode);
+
+        //Binary form
+        this.tblBinaryForm.removeRow(indexOfNode);
     }
 
     /**
@@ -399,6 +584,48 @@ class BinaryTree extends GenericGraph {
         //Removing the edge from the standard form
         this.standardForm[edge.source].left = 0;
         this.standardForm[edge.source].right = 0;
+
+    }
+
+    /**
+     * Removes an edge from the representation tables
+     * @param edge
+     * @param childType
+     */
+    removeEdgeFromTable(edge, childType) {
+        //Parent array
+        this.tblParentArray.updateTable('1', edge.target, '0');
+
+        //Standard form
+        if (childType === TYPE_LEFT)
+            this.tblStandardForm.updateTable(ROW_LEFT, edge.source, '0');
+        else if (childType === TYPE_RIGHT)
+            this.tblStandardForm.updateTable(ROW_RIGHT, edge.source, '0');
+
+    }
+    /**
+     * Deletes the whole graph from the memory
+     */
+    deleteGraph() {
+        for (let i in this.parentArray) {
+            this.removeNode(i);
+            this.visualNode.removeNode(i);
+        }
+    }
+    /**
+     * Initializes the tables in the representation section
+     */
+    initRepresentationTables() {
+        this.tblParentArray = new TableHandler(ID_PARENT_ARRAY, NAME_PARENT_ARRAY);
+        this.tblStandardForm = new TableHandler(ID_STANDARD_FORM, NAME_STANDARD_FORM);
+        this.tblBinaryForm = new TableHandler(ID_BINARY_FORM, NAME_BINARY_FORM);
+        //Init Parent array
+        this.tblParentArray.addRow('1', null);
+        //Init Standard form
+        this.tblStandardForm.addRow(ROW_LEFT.toString(), NAME_LEFT);
+        this.tblStandardForm.addRow(ROW_RIGHT.toString(), NAME_RIGHT);
+        //Init Binary form
+        this.tblBinaryForm.addColumn('1', null);
 
     }
 

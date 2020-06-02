@@ -61,6 +61,7 @@ class VisualNode {
                 target: $(eventInfo.target).attr("id")
             };
             this.graph.addNewEdge(edge);
+            this.graph.addEdgeToTable(edge);
         } else this.sameEndpoint = false;
     }
 
@@ -105,6 +106,7 @@ class VisualNode {
             grid: [10, 10]
         });
         this.graph.addNewNode(insertedBox.attr("id"));
+        this.graph.addNodeToTable(insertedBox.attr("id"), VisualNode.getValueFromNode(insertedBox));
         return insertedBox;
     }
 
@@ -175,10 +177,6 @@ class VisualNode {
         }
     }
 
-    deleteGraph() {
-
-    }
-
     resetGraph() {
 
     }
@@ -211,6 +209,15 @@ class VisualNode {
 
     setGraph(graph) {
         this.graph = graph;
+    }
+
+    //Static functions
+    /**
+     * Returns the text from a node
+     * @param node string
+     */
+    static getValueFromNode(node) {
+        return $(node).find("input").val();
     }
 
 }
@@ -295,6 +302,11 @@ class UnDirectedNode extends VisualNode {
         if (existingOnwardsConnections.length > 1 || existingBackwardsConnections.length > 0) {
             this.jspInstance.deleteConnection(eventInfo.connection);
         }
+        const reverseEdge = {
+            source: $(eventInfo.target).attr("id"),
+            target: $(eventInfo.source).attr("id")
+        };
+        this.graph.addEdgeToTable(reverseEdge);
     }
 
     //Base and helper functions
@@ -332,6 +344,10 @@ class UnDirectedNode extends VisualNode {
 class BinaryNode extends VisualNode {
     constructor(container) {
         super(container);
+
+        //Binding the event listeners
+        this.jspInstance.bind("connectionDetached", (eventInfo) => this.onConnectionDetached(eventInfo));
+
     }
 
     //Event listeners
@@ -350,7 +366,20 @@ class BinaryNode extends VisualNode {
         };
 
         this.graph.addNewEdge(edge, this.checkSourceType(eventInfo));
+        this.graph.addEdgeToTable(edge, this.checkSourceType(eventInfo));
 
+    }
+
+    /**
+     * onConnectionDetached Event Listener Callback
+     * @param eventInfo Information about the event
+     */
+    onConnectionDetached(eventInfo){
+        const edge = {
+            source: $(eventInfo.source).attr("id"),
+            target: $(eventInfo.target).attr("id")
+        };
+        this.graph.removeEdgeFromTable(edge, this.checkSourceType(eventInfo));
     }
 
     //Base and helper functions
@@ -396,6 +425,7 @@ class BinaryNode extends VisualNode {
             connector: "Straight"
         });
     }
+
 
     /**
      * Checks whether a connection is connected to the left or right side of a root node

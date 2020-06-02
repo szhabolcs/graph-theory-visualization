@@ -41,6 +41,7 @@ function initGraph(DOMContainer) {
         }
     }
     jspNode.setGraph(graph);
+    graph.setVisualNode(jspNode);
 }
 
 
@@ -89,14 +90,14 @@ $(document).ready(function () {
     /**
      * Node adding
      */
-    $("#node-add-btn").on("click", ()=>{
-       jspNode.addNode();
+    $("#node-add-btn").on("click", () => {
+        jspNode.addNode();
     });
 
     /**
      * Remove all nodes
      */
-    $("#reset-graph-btn").on("click", ()=>{
+    $("#reset-graph-btn").on("click", () => {
         jspNode.resetGraph();
     });
 
