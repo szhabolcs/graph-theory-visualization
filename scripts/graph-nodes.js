@@ -65,6 +65,39 @@ class VisualNode {
         } else this.sameEndpoint = false;
     }
 
+    /**
+     * onNodeTextChange Event Listener Callback
+     * @param eventInfo
+     */
+    onNodeTextChange(eventInfo) {
+        const nodeId = $(eventInfo.delegateTarget).attr("id");
+        const nodeText = $(eventInfo.target).val();
+        //Boole matrix
+        graph.tblBooleMatrix.updateTable(nodeId, '0', nodeText);
+        graph.tblBooleMatrix.updateTable('0', nodeId, nodeText);
+
+        //Incidence matrix
+        graph.tblIncidenceMatrix.updateTable(nodeId, '0', nodeText);
+
+        //Adjacency list
+        graph.tblAdjacencyList.updateTable(nodeId, '0', nodeText);
+        const connections = this.jspInstance.select({
+            target: nodeId
+        });
+        connections.each((connection) => {
+            this.graph.tblAdjacencyList.updateTable(connection.sourceId, connection.targetId, nodeText);
+        });
+
+        //Edge list
+        for(let i in graph.edgeList){
+            if(graph.edgeList[i].source===nodeId)
+                this.graph.tblEdgeList.updateTable((Number.parseInt(i)+1).toString(), SOURCE, nodeText);
+            if(graph.edgeList[i].target===nodeId)
+                this.graph.tblEdgeList.updateTable((Number.parseInt(i)+1).toString(), TARGET, nodeText);
+        }
+
+    }
+
     //Base and Helper functions
     /**
      * Hides an endpoint
@@ -96,7 +129,7 @@ class VisualNode {
         insertedBox.on("click", ".remove-btn", (eventInfo) => this.removeNode(eventInfo.delegateTarget));
         insertedBox.on("mouseover", ".remove-btn", (eventInfo) => $(eventInfo.delegateTarget).addClass("node-remove-hover"));
         insertedBox.on("mouseout", ".remove-btn", (eventInfo) => $(eventInfo.delegateTarget).removeClass("node-remove-hover"));
-        insertedBox.on("change", "input[type='text']", (eventInfo) => console.log(eventInfo));
+        insertedBox.on("change", ".node-text", (eventInfo) => this.onNodeTextChange(eventInfo));
 
         insertedBox.css({
             top: top,
