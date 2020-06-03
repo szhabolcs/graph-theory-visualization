@@ -730,3 +730,16 @@ a:not([href]):hover{
     border-radius: 50px;
     border: 3px solid transparent;
 }
+
+/* Steps */
+.step{
+    width: 100%;
+    float: left;
+    font-size: 25px;
+    text-align: center;
+    display: inherit;
+}
+.steps > span > .fas{
+    padding-left: 10px;
+    padding-right: 10px;
+}
