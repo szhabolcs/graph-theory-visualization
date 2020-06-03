@@ -37,7 +37,7 @@ function unbindEventsForDrag() {
 function bindEventsForDrag() {
     $Document.on("mouseleave", "#container", () => unbindEventsForDrag());
     $Document.on("mousemove", "div#container", (event) => onMouseMove(event));
-    $Document.on("mouseup", "div#container",  (event) => onMouseUp(event));
+    $Document.on("mouseup", "div#container", (event) => onMouseUp(event));
     DOMContainer.addClass("container-dragging");
 }
 
@@ -184,6 +184,7 @@ function loadMotionControls() {
     $Document.on("mousedown", ".node-text", (eventInfo) => eventInfo.stopPropagation());
 }
 
-function setJsPlumbInstanceForMotion(jspInstance){
+function setJsPlumbInstanceForMotion(jspInstance) {
     jspInstanceForMotion = jspInstance;
+    jspInstance.setZoom(iZoom / 100);
 }
