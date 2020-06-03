@@ -130,6 +130,7 @@ class VisualNode {
         insertedBox.on("mouseover", ".remove-btn", (eventInfo) => $(eventInfo.delegateTarget).addClass("node-remove-hover"));
         insertedBox.on("mouseout", ".remove-btn", (eventInfo) => $(eventInfo.delegateTarget).removeClass("node-remove-hover"));
         insertedBox.on("change", ".node-text", (eventInfo) => this.onNodeTextChange(eventInfo));
+        $(insertedBox).find(".node-text").inputfit();
 
         insertedBox.css({
             top: top,

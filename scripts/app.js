@@ -132,7 +132,6 @@ $(document).ready(function () {
             $("#representation").css("width","55px");
         }
         $("#left-splitter").toggleClass("display-none");
-        // $("#representation-icon").toggleClass("display-none");
     });
     $("#representation").resizable({
         handleSelector: "#left-splitter",
