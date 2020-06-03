@@ -183,6 +183,7 @@ class VisualNode {
         $nodeText.addClass("node-text-border");
         $nodeText.prop('disabled', false);
         $(".remove-btn").removeClass("hidden");
+        $(".node").removeClass("in-view-mode");
         this.editMode = true;
     }
 
@@ -195,6 +196,7 @@ class VisualNode {
         $nodeText.removeClass("node-text-border");
         $nodeText.prop('disabled', true);
         $(".remove-btn").addClass("hidden");
+        $(".node").addClass("in-view-mode");
         this.editMode = false;
     }
 
@@ -289,12 +291,18 @@ class VisualNode {
 
     /**
      * Initiates node selection
+     * @param {String} message the message to be shown
      */
-    getSelectedNode(){
-        this.showMessage("Válasszon ki egy csomopontot");
+    getSelectedNode(message){
+        this.showMessage(message);
         this.selectedNode = "none";
         this.DOMContainer.delegate(".node","click",this.nodeSelect);
         this.DOMContainer.delegate(".node","mouseenter mouseleave",this.nodeHover);
+    }
+
+    clearSelectedNode(){
+        this.selectedNode = "n/a";
+        $(".node-hover").removeClass("node-hover");
     }
 
     resetGraph() {
