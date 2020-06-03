@@ -5,6 +5,9 @@ class VisualNode {
     graph;
     selectedNode = "n/a";
 
+    //Animation
+    step = -1;
+
     /**
      * The remove button overlay on the connections
      * Contains the events for the remove button and for hovering
@@ -257,7 +260,7 @@ class VisualNode {
      * Shows a message to the user
      * @param {string} message The message that's going to be displayed
      */
-    showMessage(message){
+    showMessage(message) {
         this.DOMMessage.text(message);
         this.DOMMessage.fadeIn();
     }
@@ -265,7 +268,7 @@ class VisualNode {
     /**
      * Removes the message from the DOM
      */
-    removeMessage(){
+    removeMessage() {
         this.DOMMessage.fadeOut();
     }
 
@@ -274,18 +277,19 @@ class VisualNode {
      * It sets the clicked node as the selected one.
      * @param {Object} e the selected node
      */
-    nodeSelect(e){
+    nodeSelect(e) {
         jspNode.selectedNode = e.currentTarget.id;
-        DOMContainer.undelegate(".node","click",this.nodeSelect);
-        DOMContainer.undelegate(".node","mouseenter mouseleave",this.nodeHover);
+        DOMContainer.undelegate(".node", "click", this.nodeSelect);
+        DOMContainer.undelegate(".node", "mouseenter mouseleave", this.nodeHover);
         jspNode.removeMessage();
+        jspNode.runAlgorithm(menuItems.selectedAlgorithm);
     }
 
     /**
      * This function is fired when the user hovers over a node in node selection mode.
      * Adds a border to the hovered node.
      */
-    nodeHover(){
+    nodeHover() {
         $(this).toggleClass("node-hover");
     }
 
@@ -293,35 +297,88 @@ class VisualNode {
      * Initiates node selection
      * @param {String} message the message to be shown
      */
-    getSelectedNode(message){
+    getSelectedNode(message) {
         this.showMessage(message);
         this.selectedNode = "none";
-        this.DOMContainer.delegate(".node","click",this.nodeSelect);
-        this.DOMContainer.delegate(".node","mouseenter mouseleave",this.nodeHover);
+        this.DOMContainer.delegate(".node", "click", this.nodeSelect);
+        this.DOMContainer.delegate(".node", "mouseenter mouseleave", this.nodeHover);
     }
 
-    clearSelectedNode(){
+    clearSelectedNode() {
         this.selectedNode = "n/a";
         $(".node-hover").removeClass("node-hover");
     }
 
-    resetGraph() {
+    runAlgorithm(algorithm) {
+        switch (algorithm) {
+            case ID_DEPTH_FIRST_SEARCH:
+                this.graph.depthFirstSearch(this.selectedNode);
+                break;
+            case ID_BREADTH_FIRST_SEARCH:
+                this.graph.breadthFirstSearch(this.selectedNode);
+                break;
+            case ID_DIJKSTRA:
+                this.graph.dijkstra(this.selectedNode);
+                break;
+            case ID_KRUSKAL:
+                this.graph.kruskal();
+                break;
+        }
+    }
 
+    resetGraph() {
+        this.clearSelectedNode();
+        this.graph.resetAlgorithm();
+        this.step = -1;
+        for (let i in graph.edgeList) {
+            this.unMarkNode(graph.edgeList[i].source);
+            this.unMarkNode(graph.edgeList[i].target);
+            this.unMarkConnection({
+                source: graph.edgeList[i].source,
+                target: graph.edgeList[i].target
+            })
+        }
     }
 
     goOneStepForward() {
+        let step;
+        if (this.step < this.graph.algorithmOutput.length) {
+            ++this.step;
+            step = this.step;
+            const algorithmStep = this.graph.algorithmOutput[step];
+            const connection = {
+                source: algorithmStep.from,
+                target: algorithmStep.to
+            };
+            this.markNode(algorithmStep.from);
+            this.markConnection(connection);
+            this.markNode(algorithmStep.to);
+        }
+
 
     }
 
     goOneStepBackwards() {
+        const step = this.step;
+        if (step > -1) {
+            const algorithmStep = this.graph.algorithmOutput[step];
+            const connection = {
+                source: algorithmStep.from,
+                target: algorithmStep.to
+            };
+            this.unMarkNode(algorithmStep.to);
+            this.unMarkConnection(connection);
+            this.step--;
+        }
+    }
+
+    play() {
+        this.getSelectedNode(STARTUP_NODE_MSG);
+
 
     }
 
-    updateGraphInMemory() {
-
-    }
-
-    loadGraphFromMemory() {
+    pause() {
 
     }
 

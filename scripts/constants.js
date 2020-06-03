@@ -2,6 +2,9 @@
 const MIN_ZOOM_VALUE = 50;
 const MAX_ZOOM_VALUE = 300;
 
+//MESSAGES
+const STARTUP_NODE_MSG = "Válassz ki egy csomópontot";
+
 //CONSTANT STRINGS
 const BINARY_TREE = "binaris";
 const GENERIC_GRAPH = "altalanos";
@@ -13,7 +16,7 @@ const DISPLAY_TARGET = "Hova";
 const SOURCE = "source";
 const TARGET = "target";
 
-//SECTION IDS
+//IDS
 const ID_BOOLE_MATRIX = "pont-pont-matrix";
 const ID_INCIDENCE_MATRIX = "pont-el-matrix";
 const ID_ADJACENCY_LIST = "szomszedsagi-lista";
@@ -22,6 +25,10 @@ const ID_PARENT_ARRAY = "apa-tomb";
 const ID_BRACKET_REPRESENTATION = "teljes-zarojeles-alak";
 const ID_STANDARD_FORM = "standard-alak";
 const ID_BINARY_FORM = "binaris-alak";
+const ID_BREADTH_FIRST_SEARCH = "szelessegi-bejaras";
+const ID_DEPTH_FIRST_SEARCH ="melysegi-bejaras";
+const ID_DIJKSTRA = "dijkstra-algoritmus";
+const ID_KRUSKAL = "kruskal-algoritmus";
 
 //SECTION NAMES
 const NAME_BOOLE_MATRIX = "Boole-mátrix";

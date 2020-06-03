@@ -232,6 +232,10 @@ class GenericGraph {
         }
     }
 
+    resetAlgorithm() {
+        this.algorithmOutput = [];
+    }
+
     /**
      * Removes all edges from a given node
      * @param indexOfNode
@@ -811,7 +815,8 @@ class BinaryTree extends GenericGraph {
      */
     preorderSearch(node) {
         this.algorithmOutput.push({
-            log: VisualNode.getValueByNodeId(node)
+            log: VisualNode.getValueByNodeId(node),
+            node: node
         });
         if (this.standardForm[node].left !== 0) {
             this.preorderSearch(this.standardForm[node].left);
@@ -830,7 +835,8 @@ class BinaryTree extends GenericGraph {
             this.inorderSearch(this.standardForm[node].left);
         }
         this.algorithmOutput.push({
-            log: VisualNode.getValueByNodeId(node)
+            log: VisualNode.getValueByNodeId(node),
+            node: node
         });
         if (this.standardForm[node].right !== 0) {
             this.inorderSearch(this.standardForm[node].right);
@@ -847,7 +853,8 @@ class BinaryTree extends GenericGraph {
         if (this.standardForm[node].right !== 0)
             this.postorderSearch(this.standardForm[node].right);
         this.algorithmOutput.push({
-            log: VisualNode.getValueByNodeId(node)
+            log: VisualNode.getValueByNodeId(node),
+            node: node
         });
     }
 
@@ -863,7 +870,7 @@ class BinaryTree extends GenericGraph {
         if (this.standardForm[node].left !== 0) leftTmp = this.getHeight(this.standardForm[node].left);
         if (this.standardForm[node].right !== 0) rightTmp = this.getHeight(this.standardForm[node].right);
 
-        return this.findMaxNumber (leftTmp, rightTmp);
+        return this.findMaxNumber(leftTmp, rightTmp);
 
     }
 
@@ -874,7 +881,7 @@ class BinaryTree extends GenericGraph {
      * @returns {number}
      */
     findMaxNumber(leftTmp, rightTmp) {
-        if(leftTmp > rightTmp) return leftTmp + 1;
+        if (leftTmp > rightTmp) return leftTmp + 1;
         else return rightTmp + 1;
     }
 
@@ -887,7 +894,8 @@ class BinaryTree extends GenericGraph {
         for (let i in this.standardForm) {
             if (this.standardForm[i].left === 0 && this.standardForm[i].right === 0)
                 this.algorithmOutput.push({
-                    log: VisualNode.getValueByNodeId(i)
+                    log: VisualNode.getValueByNodeId(i),
+                    node: i
                 })
         }
     }
@@ -903,9 +911,11 @@ class BinaryTree extends GenericGraph {
         if (this.standardForm[indexOfParentNode].left != 0) array[1] = this.standardForm[indexOfParentNode].left;
         if (this.standardForm[indexOfParentNode].right != 0) array[2] = this.standardForm[indexOfParentNode].right;
         this.algorithmOutput.push({
+            node: array[1],
             log: VisualNode.getValueByNodeId(array[1])
         });
         this.algorithmOutput.push({
+            node: array[2],
             log: VisualNode.getValueByNodeId(array[2])
         });
 
