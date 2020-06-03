@@ -290,7 +290,7 @@ html{
     color: var(--dropdown-body-color);
     padding-right: 16px;
     padding-top: 8px;
-    font-size: 30px;
+    font-size: 25px;
     text-align: right;
     border-bottom: 2px solid var(--dark-green);
     white-space: nowrap;
@@ -307,10 +307,61 @@ html{
     padding-left: 12px;
 }
 
-#steps{
-    right: 25px;
-    transition: all .3s;
+/* Right menu */
+#resizable-right {
+    min-width: 55px;
+    height: calc(100% - 55px);
+    position: fixed;
+    z-index: 1;
+    right: 0px;
 }
+#steps{
+    height: 100%;
+    width: 55px;
+    min-width: 55px;
+    max-width: 50vw;
+    transition: all .3s;
+    float: right;
+    background-color: var(--gray);
+    overflow: hidden;
+}
+#steps-body{
+    height: calc(100% - 120px) !important;
+    padding: 15px;
+    padding-top: 0px;
+}
+#right-splitter {
+    width: 18px;
+    background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/vsizegrip.png)
+        center center no-repeat var(--dark-green);
+    height: 100%;
+    cursor: col-resize;
+    float: right;
+}
+#steps > div:first-child {
+    width: 100%;
+    color: var(--dropdown-body-color);
+    padding-right: 16px;
+    padding-top: 8px;
+    font-size: 25px;
+    text-align: left;
+    border-bottom: 2px solid var(--dark-green);
+    white-space: nowrap;
+}
+#steps > div:first-child > .fas{
+    transition: all .3s;
+    padding-left: 19px;
+    padding-right: 20px;
+    cursor: pointer;
+}
+#steps-icon{
+    float: left;
+    color: var(--dropdown-body-color);
+    padding-left: 15px;
+    font-size: 25px;
+}
+
+
 #output{
     right: 25px;
     top: calc(50vh - 50px);

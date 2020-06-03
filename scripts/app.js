@@ -143,11 +143,20 @@ $(document).ready(function () {
     /**
      * Steps body div toggler
      */
-    $("#steps > span > div .fa-chevron-down").click(() => {
-        $("#steps-body").toggleClass("dropdown-body-closed dropdown-steps-body-open");
-        $("#steps > span > div .fa-chevron-down").toggleClass("fa-rotate-180");
-        $("#steps").toggleClass("dropdown-border-radius");
+    $("#steps > div .fa-chevron-left").click(() => {
+        $("#steps-body").toggleClass("display-none");
         $("#steps").toggleClass("dropdown-open");
+        $("#steps > div .fa-chevron-left").toggleClass("fa-rotate-180");
+
+        if(!$("#steps").hasClass("dropdown-open")){
+            $("#steps").css("width","55px");
+        }
+        $("#right-splitter").toggleClass("display-none");
+    });
+    $("#steps").resizable({
+        handleSelector: "#right-splitter",
+        resizeHeight: false,
+        resizeWidthFrom: 'left'
     });
 
     /**
