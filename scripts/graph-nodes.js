@@ -132,7 +132,8 @@ class VisualNode {
         });
 
         this.jspInstance.draggable(insertedBox, {
-            grid: [10, 10]
+            grid: [10, 10],
+            containment: true
         });
         this.graph.addNewNode(insertedBox.attr("id"));
         this.graph.addNodeToTable(insertedBox.attr("id"), VisualNode.getValueFromNode(insertedBox));
@@ -206,6 +207,48 @@ class VisualNode {
         }
     }
 
+    /**
+     * Marks a node in the visual representation of the graph
+     * Sets the color of it to green
+     * @param nodeId
+     */
+    markNode(nodeId) {
+        $(".node[id='" + nodeId + "']").addClass("node-mark");
+    }
+
+    /**
+     * Unmarks a node in the visual representation of the graph
+     * Resets the color of it from green
+     * @param nodeId
+     */
+    unMarkNode(nodeId) {
+        $(".node[id='" + nodeId + "']").removeClass("node-mark");
+    }
+
+    /**
+     * Marks a connection in the visual representation of the graph.
+     * Sets the color of it to green
+     * @param connection
+     */
+    markConnection(connection) {
+        this.jspInstance.select({
+            source: connection.source,
+            target: connection.target
+        }).addClass("connection-mark");
+    }
+
+    /**
+     * Unmarks a connection in the visual representation of the graph.
+     * Resets the color of it from green
+     * @param connection
+     */
+    unMarkConnection(connection) {
+        this.jspInstance.select({
+            source: connection.source,
+            target: connection.target
+        }).removeClass("connection-mark");
+    }
+
     resetGraph() {
 
     }
@@ -243,10 +286,18 @@ class VisualNode {
     //Static functions
     /**
      * Returns the text from a node
-     * @param node string
+     * @param node {string}
      */
     static getValueFromNode(node) {
         return $(node).find("input").val();
+    }
+
+    /**
+     * Returns the text from a node
+     * @param nodeId {string}
+     */
+    static getValueByNodeId(nodeId) {
+        return this.getValueFromNode($(".node[id='" + nodeId + "']"));
     }
 
 }
