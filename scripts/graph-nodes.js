@@ -3,6 +3,7 @@ class VisualNode {
     editMode = false;
     nodeIndex = 0;
     graph;
+    selectedNode = "n/a";
 
     /**
      * The remove button overlay on the connections
@@ -33,6 +34,7 @@ class VisualNode {
         this.jspInstance = jsPlumb.getInstance();
         this.jspInstance.setContainer(container);
         this.DOMContainer = container;
+        this.DOMMessage = $("#message");
         setJsPlumbInstanceForMotion(this.jspInstance)
 
         //Binding the event listeners
@@ -181,6 +183,7 @@ class VisualNode {
         $nodeText.addClass("node-text-border");
         $nodeText.prop('disabled', false);
         $(".remove-btn").removeClass("hidden");
+        $(".node").removeClass("in-view-mode");
         this.editMode = true;
     }
 
@@ -193,6 +196,7 @@ class VisualNode {
         $nodeText.removeClass("node-text-border");
         $nodeText.prop('disabled', true);
         $(".remove-btn").addClass("hidden");
+        $(".node").addClass("in-view-mode");
         this.editMode = false;
     }
 
@@ -247,6 +251,58 @@ class VisualNode {
             source: connection.source,
             target: connection.target
         }).removeClass("connection-mark");
+    }
+
+    /**
+     * Shows a message to the user
+     * @param {string} message The message that's going to be displayed
+     */
+    showMessage(message){
+        this.DOMMessage.text(message);
+        this.DOMMessage.fadeIn();
+    }
+
+    /**
+     * Removes the message from the DOM
+     */
+    removeMessage(){
+        this.DOMMessage.fadeOut();
+    }
+
+    /**
+     * This function is fired when the user is in node selection mode.
+     * It sets the clicked node as the selected one.
+     * @param {Object} e the selected node
+     */
+    nodeSelect(e){
+        jspNode.selectedNode = e.currentTarget.id;
+        DOMContainer.undelegate(".node","click",this.nodeSelect);
+        DOMContainer.undelegate(".node","mouseenter mouseleave",this.nodeHover);
+        jspNode.removeMessage();
+    }
+
+    /**
+     * This function is fired when the user hovers over a node in node selection mode.
+     * Adds a border to the hovered node.
+     */
+    nodeHover(){
+        $(this).toggleClass("node-hover");
+    }
+
+    /**
+     * Initiates node selection
+     * @param {String} message the message to be shown
+     */
+    getSelectedNode(message){
+        this.showMessage(message);
+        this.selectedNode = "none";
+        this.DOMContainer.delegate(".node","click",this.nodeSelect);
+        this.DOMContainer.delegate(".node","mouseenter mouseleave",this.nodeHover);
+    }
+
+    clearSelectedNode(){
+        this.selectedNode = "n/a";
+        $(".node-hover").removeClass("node-hover");
     }
 
     resetGraph() {
