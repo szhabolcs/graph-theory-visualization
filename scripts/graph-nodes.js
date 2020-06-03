@@ -89,11 +89,11 @@ class VisualNode {
         });
 
         //Edge list
-        for(let i in graph.edgeList){
-            if(graph.edgeList[i].source===nodeId)
-                this.graph.tblEdgeList.updateTable((Number.parseInt(i)+1).toString(), SOURCE, nodeText);
-            if(graph.edgeList[i].target===nodeId)
-                this.graph.tblEdgeList.updateTable((Number.parseInt(i)+1).toString(), TARGET, nodeText);
+        for (let i in graph.edgeList) {
+            if (graph.edgeList[i].source === nodeId)
+                this.graph.tblEdgeList.updateTable((Number.parseInt(i) + 1).toString(), SOURCE, nodeText);
+            if (graph.edgeList[i].target === nodeId)
+                this.graph.tblEdgeList.updateTable((Number.parseInt(i) + 1).toString(), TARGET, nodeText);
         }
 
     }
@@ -399,8 +399,8 @@ class BinaryNode extends VisualNode {
             target: eventInfo.targetId
         };
 
-        this.graph.addNewEdge(edge, this.checkSourceType(eventInfo));
-        this.graph.addEdgeToTable(edge, this.checkSourceType(eventInfo));
+        this.graph.addNewEdge(edge, this.checkSourceType(eventInfo.sourceEndpoint));
+        this.graph.addEdgeToTable(edge, this.checkSourceType(eventInfo.sourceEndpoint));
 
     }
 
@@ -413,7 +413,7 @@ class BinaryNode extends VisualNode {
             source: $(eventInfo.source).attr("id"),
             target: $(eventInfo.target).attr("id")
         };
-        this.graph.removeEdgeFromTable(edge, this.checkSourceType(eventInfo));
+        this.graph.removeEdgeFromTable(edge, this.checkSourceType(eventInfo.sourceEndpoint));
     }
 
     //Base and helper functions
@@ -466,8 +466,8 @@ class BinaryNode extends VisualNode {
      * @param connection jsPlumb connection
      * @returns {number} TYPE_LEFT or TYPE_RIGHT
      */
-    checkSourceType(connection) {
-        const sourceEndpoint = connection.sourceEndpoint;
+    checkSourceType(sourceEndpoint) {
+
         if (sourceEndpoint.anchor.x < 0.5)
             return TYPE_LEFT;
         else
@@ -481,6 +481,37 @@ class BinaryNode extends VisualNode {
     disableEditMode() {
         super.disableEditMode();
         this.graph.searchRootNode();
+    }
+
+    /**
+     * onNodeTextChange Event Listener Callback
+     * @param eventInfo
+     */
+    onNodeTextChange(eventInfo) {
+        const nodeId = $(eventInfo.delegateTarget).attr("id");
+        const nodeText = $(eventInfo.target).val();
+        //Parent array
+        this.graph.tblParentArray.updateTable('0', nodeId, nodeText);
+
+        //Standard form
+        this.graph.tblStandardForm.updateTable('0', nodeId, nodeText);
+        const connections = this.jspInstance.select({
+            target: nodeId
+        });
+        let sourceType;
+        connections.each((connection) => {
+            sourceType = this.checkSourceType(connection.endpoints[0]);
+            if (sourceType === TYPE_LEFT) {
+                graph.tblStandardForm.updateTable(ROW_LEFT, connection.sourceId, nodeText);
+            } else if (sourceType === TYPE_RIGHT) {
+                graph.tblStandardForm.updateTable(ROW_RIGHT, connection.sourceId, nodeText);
+            }
+
+        });
+
+        //Binary form
+        this.graph.tblBinaryForm.updateTable(nodeId, '0', nodeText);
+
     }
 
 }
