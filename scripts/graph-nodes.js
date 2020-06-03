@@ -56,12 +56,6 @@ class VisualNode {
             this.addEndpoint(eventInfo.source);
             this.addEndpoint(eventInfo.target);
 
-            const edge = {
-                source: $(eventInfo.source).attr("id"),
-                target: $(eventInfo.target).attr("id")
-            };
-            this.graph.addNewEdge(edge);
-            this.graph.addEdgeToTable(edge);
         } else this.sameEndpoint = false;
     }
 
@@ -280,6 +274,13 @@ class DirectedNode extends VisualNode {
         super.onConnect(eventInfo);
         if (existingOnwardsConnections.length > 1 || existingBackwardsConnections.length > 1) {
             this.jspInstance.deleteConnection(eventInfo.connection);
+        } else {
+            const edge = {
+                source: $(eventInfo.source).attr("id"),
+                target: $(eventInfo.target).attr("id")
+            };
+            this.graph.addNewEdge(edge);
+            this.graph.addEdgeToTable(edge);
         }
     }
 
@@ -336,11 +337,15 @@ class UnDirectedNode extends VisualNode {
         super.onConnect(eventInfo);
         if (existingOnwardsConnections.length > 1 || existingBackwardsConnections.length > 0) {
             this.jspInstance.deleteConnection(eventInfo.connection);
+        } else {
+            const edge = {
+                source: $(eventInfo.source).attr("id"),
+                target: $(eventInfo.target).attr("id")
+            };
+            this.graph.addNewEdge(edge);
+            this.graph.addEdgeToTable(edge);
         }
-        const reverseEdge = {
-            source: $(eventInfo.target).attr("id"),
-            target: $(eventInfo.source).attr("id")
-        };
+
     }
 
     //Base and helper functions
