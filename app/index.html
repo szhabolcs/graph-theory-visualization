@@ -63,7 +63,7 @@
   <nav class="navbar fixed-bottom">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <div id="theme-btn" data-toggle="tooltip" data-placement="top" title="Téma"><i class="far fa-sun"></i></div>
+          <div id="theme-btn" data-toggle="tooltip" data-placement="top" title="Téma"><i class="far fa-moon btn-on"></i></div>
         </li>
         <li class="nav-item">
           <div id="grid-btn" data-toggle="tooltip" data-placement="top" title="Rács"><i class="fas fa-border-none btn-on"></i></div>
@@ -111,8 +111,8 @@
 
   <div id="resizable-left">
     <div id="representation" class="floating-dropdown">
-      <div><i class="fas fa-chevron-right"></i>Ábrázolások</div>
-      <div id="representation-icon" data-toggle="tooltip" data-placement="right" title="Ábrázolások"><i class="fas fa-table"></i></div>
+      <div><i class="fas fa-chevron-right"></i></div>
+      <div id="representation-icon" data-toggle="tooltip" data-placement="right" title="Ábrázolások"><i class="fas fa-table"></i> <span class="display-none">Ábrázolások</span> </div>
       <div id="representation-body" class="dropdown-body display-none">
       </div>
     </div>
@@ -120,26 +120,26 @@
   </div>
 
   <div id="resizable-right">
-    <div id="steps" class="floating-dropdown">
-      <div><i class="fas fa-chevron-left"></i>Lépések</div>
-      <div id="steps-icon" data-toggle="tooltip" data-placement="left" title="Lépések"><i class="fas fa-shoe-prints"></i></div>
-      <div id="steps-body" class="dropdown-body display-none">
-        
+    <div id="resizable-right-body">
+      <div id="steps" class="floating-dropdown">
+        <div><i class="fas fa-chevron-left"></i></div>
+        <div id="steps-icon" data-toggle="tooltip" data-placement="left" title="Lépések"><i class="fas fa-shoe-prints"></i><span class="display-none">Lépések</span></div>
+        <div id="steps-body" class="dropdown-body display-none">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos enim distinctio ipsum eius sunt excepturi aut doloribus sit, deserunt quod!
+        </div>
       </div>
+
+      <div id="middle-splitter" class="display-none"></div>
+
+      <div id="output" class="floating-dropdown">
+        <div><div id="output-icon" data-toggle="tooltip" data-placement="left" title="Kimenet"><i class="fas fa-stream"></i></div>Kimenet</div>
+        <div id="output-body" class="dropdown-body display-none">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde minima autem suscipit adipisci accusamus vitae tempore expedita qui sapiente facilis! Dicta esse nihil temporibus minus exercitationem nesciunt architecto ut illum?
+        </div>
+      </div>
+
     </div>
     <div id="right-splitter" class="display-none"></div>
-  </div>
-
-  <div id="output" class="floating-dropdown">
-    <span>
-      Kimenet
-      <div><i class="fas fa-stream"></i></div>
-    </span>
-    <div id="output-body" class="dropdown-body dropdown-body-closed">
-      1 2 3 4 5
-      <br>
-      1 1 1
-    </div>
   </div>
 
   <div id="container" class="grid"></div>

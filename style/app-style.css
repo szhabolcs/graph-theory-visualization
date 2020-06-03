@@ -144,10 +144,10 @@ html{
 .btn-on{
     opacity: 1 !important;
 }
-.fa-sun, .fa-border-none, #edit-btn{
+.fa-moon, .fa-border-none, #edit-btn{
     opacity: 0.5;
 }
-.fa-sun:hover, .fa-border-none:hover, #edit-btn:hover{
+.fa-moon:hover, .fa-border-none:hover, #edit-btn:hover{
     opacity: 1;
 }
 #edit-btn{
@@ -293,7 +293,6 @@ html{
     padding-top: 8px;
     font-size: 25px;
     text-align: right;
-    border-bottom: 2px solid var(--dark-green);
     white-space: nowrap;
 }
 #representation > div:first-child > .fas{
@@ -306,6 +305,8 @@ html{
     float: left;
     color: var(--dropdown-body-color);
     padding-left: 12px;
+    border-bottom: 2px solid var(--dark-green);
+    width: 100%;
 }
 
 /* Right menu */
@@ -313,18 +314,31 @@ html{
     min-width: 55px;
     height: calc(100% - 55px);
     position: fixed;
-    z-index: 1;
+    z-index: 2;
     right: 0px;
 }
-#steps{
+#resizable-right-body{
     height: 100%;
     width: 55px;
     min-width: 55px;
-    max-width: 50vw;
+    max-width: 30vw;
     transition: all .3s;
     float: right;
     background-color: var(--gray);
     overflow: hidden;
+}
+#steps{
+    height: 50%;
+    width: 100%;
+    max-height: calc(100% - 75px);
+    min-width: 55px;
+    max-width: 50vw;
+    transition: all .3s;
+    background-color: var(--gray);
+    overflow: hidden;
+}
+.steps-open{
+    min-width: 230px !important;
 }
 #steps-body{
     height: calc(100% - 120px) !important;
@@ -346,7 +360,6 @@ html{
     padding-top: 8px;
     font-size: 25px;
     text-align: left;
-    border-bottom: 2px solid var(--dark-green);
     white-space: nowrap;
 }
 #steps > div:first-child > .fas{
@@ -360,17 +373,44 @@ html{
     color: var(--dropdown-body-color);
     padding-left: 15px;
     font-size: 25px;
+    width: 100%;
+    border-bottom: 2px solid var(--dark-green);
 }
-
+#middle-splitter{
+    width: 100%;
+    background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/hsizegrip.png)
+        center center no-repeat var(--dark-green);
+    height: 18px;
+    cursor: row-resize;
+}
 
 #output{
-    right: 25px;
-    top: calc(50vh - 50px);
-    width: 210px;
-    height: 50px;
-    margin-top: 0px;
+    height: 50%;
+    width: 100%;
+    min-width: 55px;
+    max-width: 50vw;
     transition: all .3s;
+    background-color: var(--gray);
+    overflow: hidden;
 }
+#output > div:first-child {
+    width: 100%;
+    color: var(--dropdown-body-color);
+    padding-right: 16px;
+    padding-top: 8px;
+    font-size: 25px;
+    text-align: left;
+    border-bottom: 2px solid var(--dark-green);
+    white-space: nowrap;
+}
+#output-icon{
+    float: left;
+    color: var(--dropdown-body-color);
+    padding-left: 17px;
+    padding-right: 20px;
+    font-size: 25px;
+}
+
 .dropdown-body{
     background-color: var(--gray);
     overflow-y: scroll;
@@ -385,6 +425,7 @@ html{
 #output-body{
     line-height: 1.5em;
     width: 100%;
+    padding: 15px;
 }
 .dropdown-body-closed{
     max-height: 0px;
@@ -607,13 +648,13 @@ a:not([href]):hover{
     margin-left: 3px; /* Half of width */
 }
 #zoom-in{
-    right: 137px;
+    right: 184px
 }
 #zoom-out{
-    right: 81px;
+    right: 127px;
 }
 #zoom-reset{
-    right: 25px;
+    right: 70px;
 }
 /* Connector width fix */
 .jtk-connector path:nth-child(1){
