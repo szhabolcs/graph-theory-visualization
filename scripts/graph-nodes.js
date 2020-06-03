@@ -33,7 +33,7 @@ class VisualNode {
         this.jspInstance = jsPlumb.getInstance();
         this.jspInstance.setContainer(container);
         this.DOMContainer = container;
-        loadMotionControls(this.jspInstance);
+        setJsPlumbInstanceForMotion(this.jspInstance)
 
         //Binding the event listeners
         this.jspInstance.bind("connection", (eventInfo) => this.onConnect(eventInfo));

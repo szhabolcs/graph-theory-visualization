@@ -82,6 +82,8 @@ $(document).ready(function () {
     //Get the DOM elements
     $Document = $(document);
     DOMContainer = $("#container");
+    //Load the motion controls
+    loadMotionControls();
 
     //Initialize tooltips
     $('[data-toggle="tooltip"]').tooltip({delay: {"show": 500}});

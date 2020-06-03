@@ -166,9 +166,7 @@ function setZoom(scale) {
 /**
  * Initializes dragging and zooming, binds the necessary listeners for these operations
  */
-function loadMotionControls(jspInstance) {
-
-    jspInstanceForMotion = jspInstance;
+function loadMotionControls() {
 
     //set margin values
     iMarginStartX = Number.parseInt(DOMContainer.css("margin-left"));
@@ -184,4 +182,8 @@ function loadMotionControls(jspInstance) {
     DOMContainer.on("wheel", (event) => onScroll(event));
     $Document.on("mousedown", "#container", (event) => onMouseDown(event));
     $Document.on("mousedown", ".node-text", (eventInfo) => eventInfo.stopPropagation());
+}
+
+function setJsPlumbInstanceForMotion(jspInstance){
+    jspInstanceForMotion = jspInstance;
 }
