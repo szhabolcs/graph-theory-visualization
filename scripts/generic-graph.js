@@ -10,6 +10,7 @@ class GenericGraph {
     incidenceMatrix = [];
     adjacencyList = [];
     edgeList = [];
+    algorithmOutput = [];
 
     constructor(numberOfNodes = 0, numberOfEdges = 0, booleMatrix = [],
                 incidenceMatrix = [], adjacencyList = [], edgeList = []) {
@@ -292,15 +293,13 @@ class GenericGraph {
         let node;
         let freq = [];
         let route = [];
-        let output = [];
-
         for (let i in this.adjacencyList)
             freq[i] = 0;
 
         route[0] = starterNode;
         freq[starterNode]++;
 
-        output.push({
+        this.algorithmOutput.push({
             from: null,
             to: starterNode,
             log: VisualNode.getValueByNodeId(starterNode)
@@ -311,7 +310,7 @@ class GenericGraph {
             for (let i in this.adjacencyList[node])
                 if (freq[this.adjacencyList[node][i]] === 0) {
                     route[++lastElement] = this.adjacencyList[node][i];
-                    output.push({
+                    this.algorithmOutput.push({
                         from: node,
                         to: this.adjacencyList[node][i],
                         log: VisualNode.getValueByNodeId(this.adjacencyList[node][i])
@@ -321,7 +320,6 @@ class GenericGraph {
 
             firstElement++;
         }
-        return output;
     }
 
 
@@ -339,7 +337,7 @@ class GenericGraph {
         let freq = [];
         let stack = [];
         let route = [];
-        let output = [];
+
 
         route.length = this.numberOfNodes.length - 1;
         stack.length = this.numberOfNodes.length;
@@ -352,7 +350,7 @@ class GenericGraph {
         freq[starterNode]++;
         stack[0] = starterNode;
 
-        output.push({
+        this.algorithmOutput.push({
             from: null,
             to: starterNode,
             log: VisualNode.getValueByNodeId(starterNode)
@@ -367,7 +365,7 @@ class GenericGraph {
                     ok = 1;
                     stack[++firstElement] = this.adjacencyList[node][i];
                     route[lastElement++] = this.adjacencyList[node][i];
-                    output.push({
+                    this.algorithmOutput.push({
                         from: node,
                         to: this.adjacencyList[node][i],
                         log: VisualNode.getValueByNodeId(this.adjacencyList[node][i])
@@ -809,31 +807,75 @@ class BinaryTree extends GenericGraph {
     //3. Specific algorithms
     /**
      * Preorder Search
+     * @param node The node where we start the search
      */
-    preorderSearch() {
-
+    preorderSearch(node) {
+        this.algorithmOutput.push({
+            log: VisualNode.getValueByNodeId(node)
+        });
+        if (this.standardForm[node].left !== 0) {
+            this.preorderSearch(this.standardForm[node].left);
+        }
+        if (this.standardForm[node].right !== 0) {
+            this.preorderSearch(this.standardForm[node].right);
+        }
     }
 
     /**
      * Inorder Search
+     * @param node The node where we start the search
      */
-    inorderSearch() {
-
+    inorderSearch(node) {
+        if (this.standardForm[node].left !== 0) {
+            this.inorderSearch(this.standardForm[node].left);
+        }
+        this.algorithmOutput.push({
+            log: VisualNode.getValueByNodeId(node)
+        });
+        if (this.standardForm[node].right !== 0) {
+            this.inorderSearch(this.standardForm[node].right);
+        }
     }
 
     /**
      * Postorder Search
+     * @param node The node where we start the search
      */
-    postorderSearch() {
-
+    postorderSearch(node) {
+        if (this.standardForm[node].left !== 0)
+            this.postorderSearch(this.standardForm[node].left);
+        if (this.standardForm[node].right !== 0)
+            this.postorderSearch(this.standardForm[node].right);
+        this.algorithmOutput.push({
+            log: VisualNode.getValueByNodeId(node)
+        });
     }
 
     /**
      * Gets the height of the binary tree
+     * @param node The node where we start the search
      */
     //Fa magassága
-    getHeight() {
+    getHeight(node) {
+        let leftTmp = 0, rightTmp = 0;
 
+        if (this.standardForm[node].left === 0 && this.standardForm[node].right === 0) return 0;
+        if (this.standardForm[node].left !== 0) leftTmp = this.getHeight(this.standardForm[node].left);
+        if (this.standardForm[node].right !== 0) rightTmp = this.getHeight(this.standardForm[node].right);
+
+        return this.findMaxNumber (leftTmp, rightTmp);
+
+    }
+
+    /**
+     * Finds a maximum from two numbers. This is a helper function for getHeight.
+     * @param leftTmp
+     * @param rightTmp
+     * @returns {number}
+     */
+    findMaxNumber(leftTmp, rightTmp) {
+        if(leftTmp > rightTmp) return leftTmp + 1;
+        else return rightTmp + 1;
     }
 
     /**
@@ -842,6 +884,12 @@ class BinaryTree extends GenericGraph {
     //Fa levelei
     getLeaves() {
 
+        for (let i in this.standardForm) {
+            if (this.standardForm[i].left === 0 && this.standardForm[i].right === 0)
+                this.algorithmOutput.push({
+                    log: VisualNode.getValueByNodeId(i)
+                })
+        }
     }
 
     /**
@@ -850,6 +898,17 @@ class BinaryTree extends GenericGraph {
      */
     //Direkt leszármazottak
     getDirectChildNodes(indexOfParentNode) {
+        let array = [];
+
+        if (this.standardForm[indexOfParentNode].left != 0) array[1] = this.standardForm[indexOfParentNode].left;
+        if (this.standardForm[indexOfParentNode].right != 0) array[2] = this.standardForm[indexOfParentNode].right;
+        this.algorithmOutput.push({
+            log: VisualNode.getValueByNodeId(array[1])
+        });
+        this.algorithmOutput.push({
+            log: VisualNode.getValueByNodeId(array[2])
+        });
+
 
     }
 
