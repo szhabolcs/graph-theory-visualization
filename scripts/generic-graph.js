@@ -283,17 +283,102 @@ class GenericGraph {
     //2. Basic Algorithms
     /**
      * Breadth First Search algorithm
+     * @param starterNode
      */
     //Szélességi bejárás
-    breadthFirstSearch() {
+    breadthFirstSearch(starterNode) {
+        let firstElement = 0;
+        let lastElement = 0;
+        let node;
+        let freq = [];
+        let route = [];
+        let output = [];
 
+        for (let i in this.adjacencyList)
+            freq[i] = 0;
+
+        route[0] = starterNode;
+        freq[starterNode]++;
+
+        output.push({
+            from: null,
+            to: starterNode,
+            log: VisualNode.getValueByNodeId(starterNode)
+        });
+
+        while (firstElement <= lastElement) {
+            node = route[firstElement];
+            for (let i in this.adjacencyList[node])
+                if (freq[this.adjacencyList[node][i]] === 0) {
+                    route[++lastElement] = this.adjacencyList[node][i];
+                    output.push({
+                        from: node,
+                        to: this.adjacencyList[node][i],
+                        log: VisualNode.getValueByNodeId(this.adjacencyList[node][i])
+                    });
+                    freq[this.adjacencyList[node][i]]++;
+                }
+
+            firstElement++;
+        }
+        return output;
     }
+
 
     /**
      * Depth First Search algorithm
+     * @param starterNode
      */
     //Mélységi bejárás
-    depthFirstSearch() {
+    depthFirstSearch(starterNode) {
+
+        let firstElement = 0;
+        let lastElement = 1;
+        let node;
+        let ok = 0;
+        let freq = [];
+        let stack = [];
+        let route = [];
+        let output = [];
+
+        route.length = this.numberOfNodes.length - 1;
+        stack.length = this.numberOfNodes.length;
+
+        for (let i in this.adjacencyList)
+            freq[i] = 0;
+
+        route.fill(0);
+        route[0] = starterNode;
+        freq[starterNode]++;
+        stack[0] = starterNode;
+
+        output.push({
+            from: null,
+            to: starterNode,
+            log: VisualNode.getValueByNodeId(starterNode)
+        });
+
+        while (firstElement >= 0) {
+            node = stack[firstElement];
+            ok = 0;
+
+            for (let i in this.adjacencyList[node][0])
+                if (freq[this.adjacencyList[node][i]] === 0) {
+                    ok = 1;
+                    stack[++firstElement] = this.adjacencyList[node][i];
+                    route[lastElement++] = this.adjacencyList[node][i];
+                    output.push({
+                        from: node,
+                        to: this.adjacencyList[node][i],
+                        log: VisualNode.getValueByNodeId(this.adjacencyList[node][i])
+                    });
+                    freq[this.adjacencyList[node][i]]++;
+                    break;
+                }
+            if (ok === 0) firstElement--;
+        }
+
+        return route;
 
     }
 
@@ -673,9 +758,18 @@ class BinaryTree extends GenericGraph {
      * Finds and sets the root node of the binary tree
      */
     searchRootNode() {
+        let multipleRoots = false;
+        let firstRoot;
         for (let i in this.parentArray) {
-            if (this.parentArray[i] === 0)
-                this.root = i;
+            if (this.parentArray[i] === 0 && firstRoot === undefined)
+                firstRoot = i;
+            else if (this.parentArray[i] === 0)
+                multipleRoots = true;
+        }
+        if (multipleRoots === false) {
+            this.root = firstRoot;
+        } else {
+            //todo user root select algorithm here
         }
     }
 

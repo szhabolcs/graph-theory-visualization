@@ -14,13 +14,6 @@ var $Document;
 var graph;
 
 //Base and helper functions
-/**
- * Deletes all instances and objects needed for graph visualization
- */
-function wipeGraph() {
-    delete graph;
-    delete jspNode;
-}
 
 /**
  * This function initializes all instances and objects needed for graph visualization

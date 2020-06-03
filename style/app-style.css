@@ -622,8 +622,15 @@ a:not([href]):hover{
     stroke: var(--danger);
     fill: var(--danger);
 }
+.connection-mark path{
+    stroke: var(--dark-green);
+    fill: var(--dark-green);
+}
 .node-remove-hover{
     background-color: var(--danger);
+}
+.node-mark{
+    background-color: var(--light-green);
 }
 /* Graph change modal */
 .modal-content{
