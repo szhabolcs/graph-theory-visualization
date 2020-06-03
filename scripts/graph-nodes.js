@@ -492,14 +492,21 @@ class BinaryNode extends VisualNode {
         const nodeText = $(eventInfo.target).val();
         //Parent array
         this.graph.tblParentArray.updateTable('0', nodeId, nodeText);
+        const connectionsBySource = this.jspInstance.select({
+            source: nodeId
+        });
+        connectionsBySource.each((connection) => {
+            this.graph.tblParentArray.updateTable('1', connection.targetId, nodeText);
+        });
 
         //Standard form
         this.graph.tblStandardForm.updateTable('0', nodeId, nodeText);
-        const connections = this.jspInstance.select({
+        const connectionsByTarget = this.jspInstance.select({
             target: nodeId
         });
         let sourceType;
-        connections.each((connection) => {
+        connectionsByTarget.each((connection) => {
+            //Standard form
             sourceType = this.checkSourceType(connection.endpoints[0]);
             if (sourceType === TYPE_LEFT) {
                 graph.tblStandardForm.updateTable(ROW_LEFT, connection.sourceId, nodeText);
