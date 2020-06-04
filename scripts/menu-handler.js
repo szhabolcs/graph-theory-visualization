@@ -21,6 +21,7 @@ let menuItems = {
                     $("#current-operation").text($("#" + menuItems.selectedAlgorithm).find(".navbar-card-text").text());
 
                     //Algorith change function here
+                    jspNode.resetGraph();
                 } else if (menuItems.graphType == BINARY_TREE) {
                     menuItems.selectedAlgorithm = newAlgorith;
 
@@ -29,6 +30,7 @@ let menuItems = {
                     $("#current-operation").text($("#" + menuItems.selectedAlgorithm).find(".navbar-card-text").text());
 
                     //Algorith change function here
+                    jspNode.resetGraph();
                 } else {
                     $("#graph-change-modal").modal({
                         backdrop: "static",

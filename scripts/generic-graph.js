@@ -285,6 +285,27 @@ class GenericGraph {
         this.tblEdgeList.drop();
     }
 
+    /**
+     * Runs the selected algorithm and prepares the output for animation.
+     * @param {string} algorithm Algorithm id
+     */
+    runAlgorithm(algorithm) {
+        switch (algorithm) {
+            case ID_DEPTH_FIRST_SEARCH:
+                this.depthFirstSearch(this.visualNode.getSelectedNode);
+                break;
+            case ID_BREADTH_FIRST_SEARCH:
+                this.breadthFirstSearch(this.visualNode.getSelectedNode);
+                break;
+            case ID_DIJKSTRA:
+                this.dijkstra(this.visualNode.getSelectedNode);
+                break;
+            case ID_KRUSKAL:
+                this.kruskal();
+                break;
+        }
+    }
+
     //2. Basic Algorithms
     /**
      * Breadth First Search algorithm
@@ -343,8 +364,8 @@ class GenericGraph {
         let route = [];
 
 
-        route.length = this.numberOfNodes.length - 1;
-        stack.length = this.numberOfNodes.length;
+        route.length = this.numberOfNodes - 1;
+        stack.length = this.numberOfNodes;
 
         for (let i in this.adjacencyList)
             freq[i] = 0;
@@ -770,8 +791,41 @@ class BinaryTree extends GenericGraph {
         }
         if (multipleRoots === false) {
             this.root = firstRoot;
+            $(".node[id='" + firstRoot + "']").addClass("node-hover");
+            this.runAlgorithm(menuItems.selectedAlgorithm);
+
         } else {
-            //todo user root select algorithm here
+            this.visualNode.selectNode(ROOT_NODE_MSG);
+        }
+    }
+
+    /**
+     * Runs the selected algorithm and prepares the output for animation.
+     * @param {string} algorithm Algorithm id
+     */
+    runAlgorithm(algorithm) {
+        switch (algorithm) {
+            case ID_PREORDER:
+                this.preorderSearch(this.root);
+                break;
+            case ID_POSTORDER:
+                this.postorderSearch(this.root);
+                break;
+            case ID_INORDER:
+                this.inorderSearch(this.root);
+                break;
+            case ID_GET_HEIGHT:
+                $("#output-body").text($("#output-body").text + "A fa magassága: "+ this.getHeight(this.root));
+                break;
+            case ID_GET_LEAVES:
+                this.getLeaves();
+                break;
+            case ID_GET_DIRECT_CHILDS:
+                this.getDirectChildNodes(this.root);
+                break;
+            case ID_GET_INDIRECT_CHILDS:
+                this.getAllChildNodes(this.root);
+                break;
         }
     }
 
@@ -927,8 +981,22 @@ class BinaryTree extends GenericGraph {
      * @param indexOfParentNode The node we want the child nodes of
      */
     //Összes leszármazott
-    getChildNodes(indexOfParentNode) {
+    getAllChildNodes(indexOfParentNode) {
+        if (this.standardForm[indexOfParentNode].left !== 0) {
+            this.algorithmOutput.push({
+                node: this.standardForm[indexOfParentNode].left,
+                log: VisualNode.getValueByNodeId(this.standardForm[indexOfParentNode].left)
+            });
+            this.getAllChildNodes(this.standardForm[indexOfParentNode].left);
+        }
 
+        if (this.standardForm[indexOfParentNode].right !== 0) {
+            this.algorithmOutput.push({
+                node: this.standardForm[indexOfParentNode].right,
+                log: VisualNode.getValueByNodeId(this.standardForm[indexOfParentNode].right)
+            });
+            this.getAllChildNodes(this.standardForm[indexOfParentNode].right);
+        }
     }
 
 }

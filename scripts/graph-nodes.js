@@ -201,6 +201,7 @@ class VisualNode {
         $(".remove-btn").addClass("hidden");
         $(".node").addClass("in-view-mode");
         this.editMode = false;
+        this.resetGraph();
     }
 
     /**
@@ -278,11 +279,11 @@ class VisualNode {
      * @param {Object} e the selected node
      */
     nodeSelect(e) {
-        jspNode.selectedNode = e.currentTarget.id;
+        this.selectedNode = e.currentTarget.id;
         DOMContainer.undelegate(".node", "click", this.nodeSelect);
         DOMContainer.undelegate(".node", "mouseenter mouseleave", this.nodeHover);
-        jspNode.removeMessage();
-        jspNode.runAlgorithm(menuItems.selectedAlgorithm);
+        this.removeMessage();
+        this.graph.runAlgorithm(menuItems.selectedAlgorithm);
     }
 
     /**
@@ -297,35 +298,24 @@ class VisualNode {
      * Initiates node selection
      * @param {String} message the message to be shown
      */
-    getSelectedNode(message) {
+    selectNode(message) {
         this.showMessage(message);
         this.selectedNode = "none";
-        this.DOMContainer.delegate(".node", "click", this.nodeSelect);
+        this.DOMContainer.delegate(".node", "click", this.nodeSelect.bind(this));
         this.DOMContainer.delegate(".node", "mouseenter mouseleave", this.nodeHover);
     }
 
+    /**
+     * Clears the selected node
+     */
     clearSelectedNode() {
         this.selectedNode = "n/a";
         $(".node-hover").removeClass("node-hover");
     }
 
-    runAlgorithm(algorithm) {
-        switch (algorithm) {
-            case ID_DEPTH_FIRST_SEARCH:
-                this.graph.depthFirstSearch(this.selectedNode);
-                break;
-            case ID_BREADTH_FIRST_SEARCH:
-                this.graph.breadthFirstSearch(this.selectedNode);
-                break;
-            case ID_DIJKSTRA:
-                this.graph.dijkstra(this.selectedNode);
-                break;
-            case ID_KRUSKAL:
-                this.graph.kruskal();
-                break;
-        }
-    }
-
+    /**
+     * Resets the animation. Unmarks all the nodes and connections
+     */
     resetGraph() {
         this.clearSelectedNode();
         this.graph.resetAlgorithm();
@@ -340,9 +330,12 @@ class VisualNode {
         }
     }
 
+    /**
+     * Goes one step forward in the animation
+     */
     goOneStepForward() {
         let step;
-        if (this.step < this.graph.algorithmOutput.length) {
+        if (this.step < this.graph.algorithmOutput.length - 1) {
             ++this.step;
             step = this.step;
             const algorithmStep = this.graph.algorithmOutput[step];
@@ -358,6 +351,9 @@ class VisualNode {
 
     }
 
+    /**
+     * Goes one step backwards in the animation
+     */
     goOneStepBackwards() {
         const step = this.step;
         if (step > -1) {
@@ -372,13 +368,26 @@ class VisualNode {
         }
     }
 
+    /**
+     * Plays the animation
+     */
     play() {
-        this.getSelectedNode(STARTUP_NODE_MSG);
+        this.selectNode(STARTUP_NODE_MSG);
 
 
     }
 
+    /**
+     * Pauses the animation
+     */
     pause() {
+
+    }
+
+    /**
+     * Continues playing the animation
+     */
+    continueAnimation() {
 
     }
 
@@ -392,8 +401,20 @@ class VisualNode {
         return this.nodeIndex;
     }
 
+    /**
+     * Sets the memory model object to the VisualNode
+     * @param graph
+     */
     setGraph(graph) {
         this.graph = graph;
+    }
+
+    /**
+     * Gets the selected node of the VisualNode
+     * @returns {string}
+     */
+    get getSelectedNode() {
+        return this.selectedNode;
     }
 
     //Static functions
@@ -645,14 +666,6 @@ class BinaryNode extends VisualNode {
     }
 
     /**
-     * Disables the edit mode in the graph editor
-     */
-    disableEditMode() {
-        super.disableEditMode();
-        this.graph.searchRootNode();
-    }
-
-    /**
      * onNodeTextChange Event Listener Callback
      * @param eventInfo
      */
@@ -688,6 +701,82 @@ class BinaryNode extends VisualNode {
         //Binary form
         this.graph.tblBinaryForm.updateTable(nodeId, '0', nodeText);
 
+    }
+
+    /**
+     * This function is fired when the user is in node selection mode.
+     * It sets the clicked node as the selected one.
+     * @param {Object} e the selected node
+     */
+    nodeSelect(e) {
+        this.selectedNode = e.currentTarget.id;
+        this.root = this.selectedNode;
+        DOMContainer.undelegate(".node", "click", this.nodeSelect);
+        DOMContainer.undelegate(".node", "mouseenter mouseleave", this.nodeHover);
+        this.removeMessage();
+        this.graph.runAlgorithm(menuItems.selectedAlgorithm);
+    }
+
+    /**
+     * Resets the animation. Unmarks all the nodes and connections
+     */
+    resetGraph() {
+        this.clearSelectedNode();
+        this.graph.resetAlgorithm();
+        this.step = -1;
+        for (let i in graph.parentArray) {
+            this.unMarkNode(i);
+            if (graph.parentArray[i] !== 0)
+                this.unMarkConnection({
+                    source: graph.parentArray[i],
+                    target: i
+                })
+        }
+    }
+
+    /**
+     * Goes one step forward in the animation
+     */
+    goOneStepForward() {
+        let step;
+        if (this.step < this.graph.algorithmOutput.length - 1) {
+            ++this.step;
+            step = this.step;
+            const algorithmStep = this.graph.algorithmOutput[step];
+            const connection = {
+                source: this.graph.getParentArray()[algorithmStep.node],
+                target: algorithmStep.node
+            };
+            this.markNode(algorithmStep.node);
+            this.markConnection(connection);
+        }
+
+
+    }
+
+    /**
+     * Goes one step backwards in the animation
+     */
+    goOneStepBackwards() {
+        const step = this.step;
+        if (step > -1) {
+            const algorithmStep = this.graph.algorithmOutput[step];
+            const connection = {
+                source: this.graph.getParentArray()[algorithmStep.node],
+                target: algorithmStep.node
+            };
+            this.unMarkNode(algorithmStep.node);
+            this.unMarkConnection(connection);
+            this.step--;
+        }
+    }
+
+
+    /**
+     * Plays the animation
+     */
+    play() {
+        this.graph.searchRootNode();
     }
 
 }
