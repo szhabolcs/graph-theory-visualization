@@ -815,7 +815,7 @@ class BinaryTree extends GenericGraph {
                 this.inorderSearch(this.root);
                 break;
             case ID_GET_HEIGHT:
-                $("#output-body").text($("#output-body").text + "A fa magassága: "+ this.getHeight(this.root));
+                $("#output-body").text($("#output-body").text() + "A fa magassága: "+ this.getHeight(this.root));
                 break;
             case ID_GET_LEAVES:
                 this.getLeaves();
