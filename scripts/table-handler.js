@@ -5,10 +5,16 @@
  */
 class TableHandler {
     //Variables
+
     DOMTable;
     numberOfRows = 0;
     numberOfColumns = 0;
 
+    /**
+     * 
+     * @param {String} sectionId the id of the section to be created
+     * @param {String} sectionName the name to be displayed at the section
+     */
     constructor(sectionId, sectionName) {
         this.sectionId = sectionId;
         this.addSectionToDOM(sectionId, sectionName);
@@ -20,8 +26,8 @@ class TableHandler {
     /**
      * Removes an element from the table
      * At this point we manage the table as a crossword table
-     * @param i
-     * @param j
+     * @param i Id of the row
+     * @param j Id of the column
      */
     removeElement(i, j) {
         this.DOMTable.children("tr[data-i=" + i + "]").children("td[data-j=" + j + "]").remove();
@@ -103,8 +109,8 @@ class TableHandler {
 
     /**
      * Updates a specific value in the table
-     * @param {string} i Number of the row
-     * @param {string} j Number of the column
+     * @param {string} i Id of the row
+     * @param {string} j Id of the column
      * @param {string} value Value to be set
      */
     updateTable(i, j, value) {

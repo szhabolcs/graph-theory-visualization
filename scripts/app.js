@@ -17,7 +17,7 @@ var graph;
 
 /**
  * This function initializes all instances and objects needed for graph visualization
- * @param DOMContainer the DOM element for the container in which the jsPlumb is used
+ * @param {Object} DOMContainer the DOM element for the container in which the jsPlumb is used
  * @returns {VisualNode} object
  */
 function initGraph(DOMContainer) {
@@ -54,6 +54,9 @@ $(document).ready(function () {
 
     document.documentElement.setAttribute('data-theme', theme);
 
+    /**
+     * Theme changer button listener
+     */
     $("#theme-btn").click(function () {
         $(this).find("i").toggleClass("btn-on");
 
@@ -75,29 +78,30 @@ $(document).ready(function () {
     //Get the DOM elements
     $Document = $(document);
     DOMContainer = $("#container");
+
     //Load the motion controls
     loadMotionControls();
 
-    //Initialize tooltips
+    //Tooltip initialization
     $('[data-toggle="tooltip"]').tooltip({delay: {"show": 500}});
 
     //Set up the Listeners
     /**
-     * Node adding
+     * Node adding listener
      */
     $("#node-add-btn").on("click", () => {
         jspNode.addNode();
     });
 
     /**
-     * Remove all nodes
+     * Visual graph reset listener
      */
     $("#reset-graph-btn").on("click", () => {
         graph.deleteGraph();
     });
 
     /**
-     * Grid toggler
+     * Grid toggle listener
      */
     $("#grid-btn").click(() => {
         DOMContainer.toggleClass("grid");
@@ -105,7 +109,7 @@ $(document).ready(function () {
     });
 
     /**
-     * Edit mode toggler
+     * Edit mode switching listener
      */
     $("#edit-btn").click(() => {
         $("#edit-btn").toggleClass("btn-on");
@@ -116,7 +120,7 @@ $(document).ready(function () {
     });
 
     /**
-     * Representation body div toggler
+     * Left menu open listener
      */
     $("#representation > div .fa-chevron-right").click(() => {
         $("#representation-body").toggleClass("display-none");
@@ -128,13 +132,16 @@ $(document).ready(function () {
         }
         $("#left-splitter").toggleClass("display-none");
     });
+    /**
+     * Left menu resizing listener
+     */
     $("#representation").resizable({
         handleSelector: "#left-splitter",
         resizeHeight: false
     });
 
     /**
-     * Steps body div toggler
+     * Right menu open listener
      */
     $("#steps > div .fa-chevron-left").click(() => {
         $("#steps-body").toggleClass("display-none");
@@ -149,11 +156,17 @@ $(document).ready(function () {
         }
         $("#middle-splitter").toggleClass("display-none");
     });
+    /**
+     * Right menu resizing listener
+     */
     $("#resizable-right-body").resizable({
         handleSelector: "#right-splitter",
         resizeHeight: false,
         resizeWidthFrom: 'left'
     });
+    /**
+     * Right menu second resizing listener
+     */
     $("#steps").resizable({
         handleSelector: "#middle-splitter",
         resizeWidth: false,
@@ -161,7 +174,7 @@ $(document).ready(function () {
     });
 
     /**
-     * Navbar toggler
+     * Bottom navigation bar open listener
      */
     $("#navbar-btn").click(() => {
         $(".navbar").toggleClass("navbar-open");
@@ -170,7 +183,7 @@ $(document).ready(function () {
     });
 
     /**
-     * Table section toggler
+     * Left menu's table section listener
      */
     $(".section-header > i").click((e) => {
         $(e.currentTarget.parentElement.parentElement).find(".table").fadeToggle();
@@ -178,7 +191,7 @@ $(document).ready(function () {
     });
 
     /**
-     * Zoom buttons listeners
+     * Zooming in button listener
      */
     $("#zoom-in").click(() => {
         if (iZoom < MAX_ZOOM_VALUE) {
@@ -186,32 +199,45 @@ $(document).ready(function () {
             setZoom(iZoom / 100);
         }
     });
+    /**
+     * Zooming out button listener
+     */
     $("#zoom-out").click(() => {
         if (iZoom > MIN_ZOOM_VALUE) {
             iZoom -= 10;
             setZoom(iZoom / 100);
         }
     });
+    /**
+     * Zoom reset button listener
+     */
     $("#zoom-reset").click(() => {
         iZoom = 100;
         setZoom(iZoom / 100);
     });
 
     /**
-     * Animation button listeners
+     * Animation play button listener
      */
     $("#play-btn").click(() => {
         jspNode.play();
     });
+    /**
+     * Animation step forward button listener
+     */
     $("#step-fw-btn").click(() => {
         jspNode.goOneStepForward();
     });
+    /**
+     * Animation step backwards button listener
+     */
     $("#step-bw-btn").click(() => {
         jspNode.goOneStepBackwards();
     });
+    /**
+     * Animation restart button listener
+     */
     $("#restart-btn").click(() => {
         jspNode.resetGraph();
     });
-
-
 });

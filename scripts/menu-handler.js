@@ -1,5 +1,7 @@
-//Variables
-
+/**
+ * The menuItems Object which stores the selected graphType and
+ * graph change detection functions
+ */
 let menuItems = {
     graphType: "none",
     setGraphType: (newType) => {
@@ -195,6 +197,9 @@ let menuItems = {
         ]
     }
 };
+
+//Variables
+
 let selected = MENU_ROOT;
 let group = MENU_ROOT;
 let container = "#start-modal-holder";
@@ -203,7 +208,9 @@ let selectedDirection;
 let selectedGraphType;
 
 /**
- * @param {string} selected the selected group name
+ * This function creates an array with the items that need to be selected from
+ * the menuItems Object
+ * @param {String} selected the selected group name
  * @returns {Array} the elements of the selected group
  */
 function getSelectedItems(selected) {
@@ -239,6 +246,7 @@ function getSelectedItems(selected) {
 }
 
 /**
+ * This function generates a DOM card with the given parameters
  * @param {string} id the id to set for the card
  * @param {string} img the imgage link to set for the card
  * @param {string} text the text to set for the card
@@ -257,7 +265,7 @@ function makeCard(id, img, text, sectionId) {
 }
 
 /**
- * Loads the cards into the card holder
+ * This function loads the cards into the card holder
  */
 function loadCards() {
     $.when($(container).fadeOut(200)).then(() => {
@@ -287,6 +295,9 @@ function loadCards() {
 
 //Listeners
 
+/**
+ * Listens for click event in the card-holder
+ */
 $("#card-holder").on("click", ".navbar-card", function (e) {
     let targetCard = e.currentTarget;
     selected = $(targetCard).attr("id");
@@ -298,6 +309,9 @@ $("#card-holder").on("click", ".navbar-card", function (e) {
         menuItems.setAlgorith(selected);
     }
 });
+/**
+ * Listens for click event in the start-modal-holder
+ */
 $("#start-modal-holder").on("click", ".navbar-card", function (e) {
     let targetCard = e.currentTarget;
     selected = $(targetCard).attr("id");
@@ -312,6 +326,9 @@ $("#start-modal-holder").on("click", ".navbar-card", function (e) {
         $("#current-operation").text($("#" + menuItems.selectedAlgorithm).find(".navbar-card-text").text());
     }
 });
+/**
+ * Listens for the menu-back button, and loads the cards in the entered group
+ */
 $(".menu-back").on("click", () => {
     if (group == BINARY_TREE || group == GENERIC_GRAPH) {
         selected = MENU_ROOT;
@@ -328,7 +345,9 @@ $(".menu-back").on("click", () => {
         });
     }
 });
-
+/**
+ * Starts the application
+ */
 $("#start-btn").on("click", () => {
     if (menuItems.selectedAlgorithm == "none") alert("Nincs semmi kivalasztva");
     else {
@@ -342,7 +361,9 @@ $("#start-btn").on("click", () => {
         });
     }
 });
-
+/**
+ * Opens the intro menu
+ */
 $("#open-menu").on("click", () => {
     $.when($("#modal-intro").fadeOut(200)).then(() => {
         $("#modal-menu").css("display", "block");
