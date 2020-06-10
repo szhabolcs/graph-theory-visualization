@@ -1,3 +1,7 @@
+/**
+ * This is the model of the visual representation of a graph.
+ * It contains all the functions and methods necessary for this.
+ */
 class VisualNode {
     sameEndpoint = false;
     editMode = false;
@@ -11,8 +15,7 @@ class VisualNode {
     /**
      * The remove button overlay on the connections
      * Contains the events for the remove button and for hovering
-     * @type {(string|{create: (function(*): *|jQuery.fn.init|jQuery|HTMLElement), location: number, id: string,
-     *       events: {mouseover: events.mouseover, mouseout: events.mouseout, click: events.click}})[]}
+     * @type (string|{create: (function(*): *|jQuery.fn.init|jQuery|HTMLElement), location: number, id: string, events: {mouseover: events.mouseover, mouseout: events.mouseout, click: events.click}})
      */
     removeBtnOverlay = ["Custom", {
         create: function (component) {
@@ -33,6 +36,12 @@ class VisualNode {
         id: "remove-button-overlay"
     }];
 
+    /**
+     * The constructor initializes the jsPlumb Instance for the visualization,
+     * selects the DOM element for the messages, sets the jsPlumb instance for the motion controls
+     * and binds the necessary event listeners.
+     * @param {jQuery} container The DOM element of the container we use jsPlumb in
+     */
     constructor(container) {
         this.jspInstance = jsPlumb.getInstance();
         this.jspInstance.setContainer(container);
@@ -47,7 +56,8 @@ class VisualNode {
     //Event Listeners
     /**
      * onConnect Event Listener Callback
-     * @param eventInfo Information about the event
+     * Hides the endpoints of the new connection.
+     * @param {Object} eventInfo Information about the event
      */
     onConnect(eventInfo) {
         if (this.sameEndpoint === false) {
@@ -66,7 +76,8 @@ class VisualNode {
 
     /**
      * onNodeTextChange Event Listener Callback
-     * @param eventInfo
+     * Updates the node texts in the representation tables
+     * @param {Object} eventInfo Information about the event
      */
     onNodeTextChange(eventInfo) {
         const nodeId = $(eventInfo.delegateTarget).attr("id");
@@ -100,7 +111,7 @@ class VisualNode {
     //Base and Helper functions
     /**
      * Hides an endpoint
-     * @param endpoint
+     * @param {jsPlumb|endpoint} endpoint The endpoint to hide
      */
     hideEndpoint(endpoint) {
         endpoint.addClass("hidden");
@@ -108,8 +119,10 @@ class VisualNode {
 
     /**
      * This function adds a new node and sets it up
-     * @param top position relative to the top left corner of the document
-     * @param left position relative to the top left corner of the document
+     * Adds the node to the DOM, binds the necessary event listeners to it,
+     * sets its properties and adds it to the memory.
+     * @param {string} top Position relative to the top left corner of the document
+     * @param {string} left Position relative to the top left corner of the document
      */
     addNode(top = "50%", left = "50%") {     /*Inserts new node*/
         //Declarations
@@ -146,8 +159,9 @@ class VisualNode {
     }
 
     /**
-     * Removes a node from the visualized graph
-     * @param nodeId Id of the node to remove
+     * Removes a node from the visualized graph.
+     * Removes the node from the DOM and from the memory.
+     * @param {string} nodeId Id of the node to remove
      */
     removeNode(nodeId) {
         this.jspInstance.deleteConnectionsForElement(nodeId);
@@ -157,8 +171,9 @@ class VisualNode {
     }
 
     /**
-     * Removes a connection between two nodes
-     * @param connection jsPlumb connection
+     * Removes a connection between two nodes.
+     * Removes the connection from the DOM and also from the memory.
+     * @param {jsPlumb|connection} connection jsPlumb connection
      */
     removeConnection(connection) {
         const edge = {
@@ -171,14 +186,16 @@ class VisualNode {
 
     /**
      * Removes and endpoint from a node
-     * @param endpointId Id of the actual endpoint to remove
+     * @param {string} endpointId Id of the actual endpoint to remove
      */
     removeEndpoint(endpointId) {
         this.jspInstance.deleteEndpoint(endpointId);
     }
 
     /**
-     * Enables the edit mode for the graph editor
+     * Enables the edit mode for the graph editor.
+     * Sets new connection endpoint to visible, enables the text input on the node,
+     * enables the remove buttons and switches off view mode.
      */
     enableEditMode() {
         const $nodeText = $(".node-text");
@@ -191,7 +208,10 @@ class VisualNode {
     }
 
     /**
-     * Disables the edit mode for the graph editor
+     * Disables the edit mode for the graph editor.
+     * Sets new connection endpoint to invisible, disables the text input on the node,
+     * disables the remove buttons and switches on view mode.
+     *
      */
     disableEditMode() {
         const $nodeText = $(".node-text");
@@ -218,27 +238,27 @@ class VisualNode {
     /**
      * Marks a node in the visual representation of the graph
      * Sets the color of it to green
-     * @param nodeId
+     * @param {string} nodeId The id of the node to mark
      */
-    markNode(nodeId) {
+    nodeMarkOn(nodeId) {
         $(".node[id='" + nodeId + "']").addClass("node-mark");
     }
 
     /**
-     * Unmarks a node in the visual representation of the graph
+     * Removes the mark from a node in the visual representation of the graph
      * Resets the color of it from green
-     * @param nodeId
+     * @param {string} nodeId The id of the node to remove the mark from
      */
-    unMarkNode(nodeId) {
+    nodeMarkOff(nodeId) {
         $(".node[id='" + nodeId + "']").removeClass("node-mark");
     }
 
     /**
      * Marks a connection in the visual representation of the graph.
      * Sets the color of it to green
-     * @param connection
+     * @param {jsPlumb|connection} connection The jsPlumb connection to mark
      */
-    markConnection(connection) {
+    connectionMarkOn(connection) {
         this.jspInstance.select({
             source: connection.source,
             target: connection.target
@@ -246,11 +266,11 @@ class VisualNode {
     }
 
     /**
-     * Unmarks a connection in the visual representation of the graph.
+     * Removes a mark from a connection in the visual representation of the graph.
      * Resets the color of it from green
-     * @param connection
+     * @param {jsPlumb|connection} connection The jsPlumb connection to remove the mark from
      */
-    unMarkConnection(connection) {
+    connectionMarkOff(connection) {
         this.jspInstance.select({
             source: connection.source,
             target: connection.target
@@ -276,10 +296,10 @@ class VisualNode {
     /**
      * This function is fired when the user is in node selection mode.
      * It sets the clicked node as the selected one.
-     * @param {Object} e the selected node
+     * @param {Object} eventInfo Information about the event
      */
-    nodeSelect(e) {
-        this.selectedNode = e.currentTarget.id;
+    nodeSelect(eventInfo) {
+        this.selectedNode = eventInfo.currentTarget.id;
         DOMContainer.undelegate(".node", "click", this.nodeSelect);
         DOMContainer.undelegate(".node", "mouseenter mouseleave", this.nodeHover);
         this.removeMessage();
@@ -296,7 +316,7 @@ class VisualNode {
 
     /**
      * Initiates node selection
-     * @param {String} message the message to be shown
+     * @param {String} message The message to be shown
      */
     selectNode(message) {
         this.showMessage(message);
@@ -314,16 +334,17 @@ class VisualNode {
     }
 
     /**
-     * Resets the animation. Unmarks all the nodes and connections
+     * Resets the animation. Iterates through all the nodes and connections
+     * and removes the marks from them.
      */
     resetGraph() {
         this.clearSelectedNode();
         this.graph.resetAlgorithm();
         this.step = -1;
         for (let i in graph.edgeList) {
-            this.unMarkNode(graph.edgeList[i].source);
-            this.unMarkNode(graph.edgeList[i].target);
-            this.unMarkConnection({
+            this.nodeMarkOff(graph.edgeList[i].source);
+            this.nodeMarkOff(graph.edgeList[i].target);
+            this.connectionMarkOff({
                 source: graph.edgeList[i].source,
                 target: graph.edgeList[i].target
             })
@@ -343,9 +364,9 @@ class VisualNode {
                 source: algorithmStep.from,
                 target: algorithmStep.to
             };
-            this.markNode(algorithmStep.from);
-            this.markConnection(connection);
-            this.markNode(algorithmStep.to);
+            this.nodeMarkOn(algorithmStep.from);
+            this.connectionMarkOn(connection);
+            this.nodeMarkOn(algorithmStep.to);
         }
 
 
@@ -356,14 +377,14 @@ class VisualNode {
      */
     goOneStepBackwards() {
         const step = this.step;
-        if (step > -1) {
+        if (step >= 0) {
             const algorithmStep = this.graph.algorithmOutput[step];
             const connection = {
                 source: algorithmStep.from,
                 target: algorithmStep.to
             };
-            this.unMarkNode(algorithmStep.to);
-            this.unMarkConnection(connection);
+            this.nodeMarkOff(algorithmStep.to);
+            this.connectionMarkOff(connection);
             this.step--;
         }
     }
@@ -394,7 +415,7 @@ class VisualNode {
     //Getters and setters
     /**
      * Gives a new index to a new node
-     * @returns {number} index of a node
+     * @returns {number} Index of a node
      */
     get getIndex() {
         this.nodeIndex++;
@@ -402,8 +423,8 @@ class VisualNode {
     }
 
     /**
-     * Sets the memory model object to the VisualNode
-     * @param graph
+     * Sets the memory object model to the VisualNode
+     * @param {GenericGraph} graph The memory object model of the graph
      */
     setGraph(graph) {
         this.graph = graph;
@@ -411,7 +432,7 @@ class VisualNode {
 
     /**
      * Gets the selected node of the VisualNode
-     * @returns {string}
+     * @returns {string} The id of the selected node
      */
     get getSelectedNode() {
         return this.selectedNode;
@@ -419,16 +440,18 @@ class VisualNode {
 
     //Static functions
     /**
-     * Returns the text from a node
-     * @param node {string}
+     * Gets the text from the input field from a node
+     * @param {HTMLElement} node The DOM element of a node
+     * @returns {string} The text from the node
      */
     static getValueFromNode(node) {
         return $(node).find("input").val();
     }
 
     /**
-     * Returns the text from a node
-     * @param nodeId {string}
+     * Gets the text from the input field from a node
+     * @param {string} nodeId The id of the node
+     * @returns {string} The text from the node
      */
     static getValueByNodeId(nodeId) {
         return this.getValueFromNode($(".node[id='" + nodeId + "']"));
@@ -436,16 +459,25 @@ class VisualNode {
 
 }
 
+/**
+ * This is the model of the visual representation of a directed graph
+ * @extends VisualNode
+ */
 class DirectedNode extends VisualNode {
-
+    /**
+     * Calls the constructor of its superclass
+     * @param {jQuery} container The DOM element of the container we use jsPlumb in
+     */
     constructor(container) {
         super(container);
     }
 
     //Event Listeners
     /**
-     * onConnect Event Listener Callback
-     * @param eventInfo Information about the event
+     * onConnect Event Listener Callback.
+     * Prevents multiple connections between the same nodes and adds
+     * the edge to the memory as well as to the representation tables
+     * @param {Object} eventInfo Information about the event
      */
     onConnect(eventInfo) {
         const existingOnwardsConnections = this.jspInstance.select({
@@ -472,8 +504,8 @@ class DirectedNode extends VisualNode {
     //Base and helper functions
     /**
      * Adds a node to the visualized graph
-     * @param top Position value from the top
-     * @param left Position value from the left
+     * @param {string} top Position value from the top
+     * @param {string} left Position value from the left
      */
     addNode(top = "50%", left = "50%") {
         const insertedBox = super.addNode(top, left);
@@ -481,8 +513,8 @@ class DirectedNode extends VisualNode {
     }
 
     /**
-     * Adds an endpoint to a given node
-     * @param nodeId
+     * Adds the New Connection endpoint to a given node
+     * @param {string} nodeId The id of the node
      */
     addEndpoint(nodeId) {
         this.jspInstance.addEndpoint(nodeId, {
@@ -500,15 +532,25 @@ class DirectedNode extends VisualNode {
 
 }
 
+/**
+ * This is the model of the visual representation of a undirected graph
+ * @extends VisualNode
+ */
 class UnDirectedNode extends VisualNode {
+    /**
+     * Calls the constructor of its superclass
+     * @param {jQuery} container The DOM element of the container we use jsPlumb in
+     */
     constructor(container) {
         super(container);
     }
 
     //Event Listeners
     /**
-     * onConnect Event Listener Callback
-     * @param eventInfo INformation about the event
+     * onConnect Event Listener Callback.
+     * Prevents multiple connections between the same nodes and adds
+     * the edge to the memory as well as to the representation tables
+     * @param {Object} eventInfo Information about the event
      */
     onConnect(eventInfo) {
         const existingOnwardsConnections = this.jspInstance.select({
@@ -536,8 +578,8 @@ class UnDirectedNode extends VisualNode {
     //Base and helper functions
     /**
      * Adds a node to the visualized graph
-     * @param top Position value from the top
-     * @param left Position value from the left
+     * @param {string} top Position value from the top
+     * @param {string} left Position value from the left
      */
     addNode(top = "50%", left = "50%") {
         const insertedBox = super.addNode(top, left);
@@ -546,7 +588,7 @@ class UnDirectedNode extends VisualNode {
 
     /**
      * Adds an endpoint to a given node
-     * @param nodeId
+     * @param {string} nodeId The id of the node
      */
     addEndpoint(nodeId) {
         this.jspInstance.addEndpoint(nodeId, {
@@ -565,6 +607,10 @@ class UnDirectedNode extends VisualNode {
 
 }
 
+/**
+ * This is the model of the visual representation of a binary tree
+ * @extends VisualNode
+ */
 class BinaryNode extends VisualNode {
     constructor(container) {
         super(container);
@@ -576,8 +622,10 @@ class BinaryNode extends VisualNode {
 
     //Event listeners
     /**
-     * onConnect Event Listener Callback
-     * @param eventInfo Information about the event
+     * onConnect Event Listener Callback.
+     * Prevents multiple connections between the same nodes and adds
+     * the edge to the memory as well as to the representation tables
+     * @param {Object} eventInfo Information about the event
      */
     onConnect(eventInfo) {
         //Prevent loopback connections
@@ -596,7 +644,8 @@ class BinaryNode extends VisualNode {
 
     /**
      * onConnectionDetached Event Listener Callback
-     * @param eventInfo Information about the event
+     * Removes an edge from the representation tables
+     * @param {Object} eventInfo Information about the event
      */
     onConnectionDetached(eventInfo) {
         const edge = {
@@ -609,8 +658,8 @@ class BinaryNode extends VisualNode {
     //Base and helper functions
     /**
      * Adds a node to the visualized graph
-     * @param top Position value from the top
-     * @param left Position value from the left
+     * @param {string} top Position value from the top
+     * @param {string} left Position value from the left
      */
     addNode(top = "50%", left = "50%") {
         const insertedBox = super.addNode(top, left);
@@ -653,7 +702,7 @@ class BinaryNode extends VisualNode {
 
     /**
      * Checks whether a connection is connected to the left or right side of a root node
-     * @param connection jsPlumb connection
+     * @param {jsPlumb|endpoint} sourceEndpoint The source endpoint of a binary tree connection
      * @returns {number} TYPE_LEFT or TYPE_RIGHT
      */
     checkSourceType(sourceEndpoint) {
@@ -667,7 +716,8 @@ class BinaryNode extends VisualNode {
 
     /**
      * onNodeTextChange Event Listener Callback
-     * @param eventInfo
+     * Updates the node texts in the representation tables
+     * @param {Object} eventInfo Information about the event
      */
     onNodeTextChange(eventInfo) {
         const nodeId = $(eventInfo.delegateTarget).attr("id");
@@ -706,10 +756,10 @@ class BinaryNode extends VisualNode {
     /**
      * This function is fired when the user is in node selection mode.
      * It sets the clicked node as the selected one.
-     * @param {Object} e the selected node
+     * @param {Object} eventInfo Information about the event
      */
-    nodeSelect(e) {
-        this.selectedNode = e.currentTarget.id;
+    nodeSelect(eventInfo) {
+        this.selectedNode = eventInfo.currentTarget.id;
         this.root = this.selectedNode;
         DOMContainer.undelegate(".node", "click", this.nodeSelect);
         DOMContainer.undelegate(".node", "mouseenter mouseleave", this.nodeHover);
@@ -718,16 +768,17 @@ class BinaryNode extends VisualNode {
     }
 
     /**
-     * Resets the animation. Unmarks all the nodes and connections
+     * Resets the animation. Iterates through all the nodes and connections
+     * and removes the marks from them.
      */
     resetGraph() {
         this.clearSelectedNode();
         this.graph.resetAlgorithm();
         this.step = -1;
         for (let i in graph.parentArray) {
-            this.unMarkNode(i);
+            this.nodeMarkOff(i);
             if (graph.parentArray[i] !== 0)
-                this.unMarkConnection({
+                this.connectionMarkOff({
                     source: graph.parentArray[i],
                     target: i
                 })
@@ -747,8 +798,8 @@ class BinaryNode extends VisualNode {
                 source: this.graph.getParentArray()[algorithmStep.node],
                 target: algorithmStep.node
             };
-            this.markNode(algorithmStep.node);
-            this.markConnection(connection);
+            this.nodeMarkOn(algorithmStep.node);
+            this.connectionMarkOn(connection);
         }
 
 
@@ -765,8 +816,8 @@ class BinaryNode extends VisualNode {
                 source: this.graph.getParentArray()[algorithmStep.node],
                 target: algorithmStep.node
             };
-            this.unMarkNode(algorithmStep.node);
-            this.unMarkConnection(connection);
+            this.nodeMarkOff(algorithmStep.node);
+            this.connectionMarkOff(connection);
             this.step--;
         }
     }

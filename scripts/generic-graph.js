@@ -1,6 +1,6 @@
 /**
  * The model of a generic graph
- * Uses boole matrix for graph modeling in memory
+ * Uses a boole matrix, an incidence matrix, an adjacency list and an edge list for graph modeling in memory.
  * We are doing here visualization, given that we don't need to use a more time effective solution
  * Contains all the basic operations and algorithm of a generic graph or binary tree
  */
@@ -479,6 +479,7 @@ class GenericGraph {
 
 /**
  * This is the model of an undirected graph
+ * @extends GenericGraph
  */
 //Irányítatlan gráf
 class UndirectedGraph extends GenericGraph {
@@ -562,6 +563,7 @@ class UndirectedGraph extends GenericGraph {
 
 /**
  * This is the model of a directed graph
+ * @extends GenericGraph
  */
 //Irányított gráf
 class DirectedGraph extends GenericGraph {
@@ -600,6 +602,7 @@ class DirectedGraph extends GenericGraph {
 /**
  * This is the model of a binary tree
  * Contains the specific algorithms for this type of graph
+ * @extends GenericGraph
  */
 //Bináris fa
 class BinaryTree extends GenericGraph {
