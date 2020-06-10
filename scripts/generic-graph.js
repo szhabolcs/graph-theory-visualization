@@ -12,6 +12,15 @@ class GenericGraph {
     edgeList = [];
     algorithmOutput = [];
 
+    /**
+     * Initializes the representation tables
+     * @param {number} [numberOfNodes] Number of nodes in the graph
+     * @param {number} [numberOfEdges] Number of edges in the graph
+     * @param {Object} [booleMatrix] Boole matrix representation
+     * @param {Object} [incidenceMatrix] Incidence matrix representation
+     * @param {Object} [adjacencyList] Adjacency list representation
+     * @param {Object} [edgeList] Edge list representation
+     */
     constructor(numberOfNodes = 0, numberOfEdges = 0, booleMatrix = [],
                 incidenceMatrix = [], adjacencyList = [], edgeList = []) {
         this.numberOfNodes = numberOfNodes;
@@ -27,7 +36,7 @@ class GenericGraph {
     //1. Base operations
     /**
      * Adds a node to the graph in the memory
-     * @param indexOfNode The index of the actual added node
+     * @param {string} indexOfNode The index of the actual added node
      */
     addNewNode(indexOfNode) {
         //Increment the number of nodes
@@ -44,8 +53,8 @@ class GenericGraph {
 
     /**
      * Adds the node to the representation tables in the DOM
-     * @param indexOfNode index of the node in table
-     * @param nodeValue value of the node
+     * @param {string} indexOfNode index of the node in table
+     * @param {string} nodeValue Value of the node
      */
     addNodeToTable(indexOfNode, nodeValue) {
 
@@ -65,7 +74,7 @@ class GenericGraph {
 
     /**
      * Adds a new edge to the graph
-     * @param edge The actual edge we want to add
+     * @param {Object} edge The actual edge we want to add
      */
 
     addNewEdge(edge) {
@@ -95,7 +104,7 @@ class GenericGraph {
 
     /**
      * Adds an edge to the representation tables in the DOM
-     * @param edge
+     * @param {Object} edge The edge to add
      */
     addEdgeToTable(edge) {
 
@@ -125,7 +134,7 @@ class GenericGraph {
 
     /**
      * Removes a node from the graph
-     * @param indexOfNode The index of the node we want to remove
+     * @param {string} indexOfNode The index of the node we want to remove
      */
     removeNode(indexOfNode) {
         this.isolateNode(indexOfNode);
@@ -149,7 +158,7 @@ class GenericGraph {
 
     /**
      * Removes a given node from the representation tables
-     * @param indexOfNode
+     * @param {string} indexOfNode Index of the node to remove from the representation tables
      */
     removeNodeFromTable(indexOfNode) {
         //Boole matrix
@@ -165,10 +174,9 @@ class GenericGraph {
     }
 
     /**
-     * Function prototype
      * Removes a new edge to the graph
-     * @param edge The actual edge we want to remove
-     * @param indexOfEdge If the index of the edge is known, searching for it isn't necessary
+     * @param {Object} edge The actual edge we want to remove
+     * @param {string} [indexOfEdge] If the index of the edge is known, searching for it isn't necessary
      */
 
     removeEdge(edge, indexOfEdge = null) {
@@ -205,8 +213,8 @@ class GenericGraph {
 
     /**
      * Removes an edge from the representation tables
-     * @param edge
-     * @param indexOfEdge
+     * @param {Object} edge Edge to remove from the representation table
+     * @param {string} indexOfEdge Index of the edge in the edge list
      */
     removeEdgeFromTable(edge, indexOfEdge) {
         //Boole matrix
@@ -232,13 +240,16 @@ class GenericGraph {
         }
     }
 
+    /**
+     * Clears the output of the last run algorithm
+     */
     resetAlgorithm() {
         this.algorithmOutput = [];
     }
 
     /**
      * Removes all edges from a given node
-     * @param indexOfNode
+     * @param {string} indexOfNode Index if the node to isolate
      */
     isolateNode(indexOfNode) {
         //Search in the edge list and removes the edges
@@ -253,7 +264,7 @@ class GenericGraph {
      * Checking if the nodes of the edge exist
      * Only one representation check is necessary, because
      * the four representations are synchronized
-     * @param edge Edge to check
+     * @param {Object} edge Edge to check
      */
     checkEdge(edge) {
         if (typeof this.booleMatrix[edge.source] === "undefined")
@@ -287,7 +298,7 @@ class GenericGraph {
 
     /**
      * Runs the selected algorithm and prepares the output for animation.
-     * @param {string} algorithm Algorithm id
+     * @param {string} algorithm The id of the algorithm
      */
     runAlgorithm(algorithm) {
         switch (algorithm) {
@@ -309,7 +320,7 @@ class GenericGraph {
     //2. Basic Algorithms
     /**
      * Breadth First Search algorithm
-     * @param starterNode
+     * @param {string} starterNode Id of the starter node
      */
     //Szélességi bejárás
     breadthFirstSearch(starterNode) {
@@ -350,7 +361,7 @@ class GenericGraph {
 
     /**
      * Depth First Search algorithm
-     * @param starterNode
+     * @param {string} starterNode Id of the starter node
      */
     //Mélységi bejárás
     depthFirstSearch(starterNode) {
@@ -422,6 +433,7 @@ class GenericGraph {
     //3. Getters and Setters
     /**
      * Returns the graph as adjacency list representation
+     * @returns {Object} The adjacency list
      */
     //Szomszédsági lista
     getAdjacencyList() {
@@ -430,6 +442,7 @@ class GenericGraph {
 
     /**
      * Returns the graph as boole matrix representation
+     * @returns {Object} The boole matrix
      */
     //Pont pont mátrix
     getBooleMatrix() {
@@ -438,6 +451,7 @@ class GenericGraph {
 
     /**
      * Returns the graph as edge list representation
+     * @returns {Object} The edge list
      */
     //Éllista
     getEdgeList() {
@@ -446,6 +460,7 @@ class GenericGraph {
 
     /**
      * Returns the graph as incidence matrix representation
+     * @returns {Object} The incidence matrix
      */
     //Illeszkedési mátrix
     getIncidenceMatrix() {
@@ -469,7 +484,7 @@ class GenericGraph {
     //3. Getters and Setters
     /**
      * Sets the visual representation for this graph
-     * @param visualNode
+     * @param {VisualNode} visualNode A VisualNode class
      */
     setVisualNode(visualNode) {
         this.visualNode = visualNode;
@@ -483,15 +498,25 @@ class GenericGraph {
  */
 //Irányítatlan gráf
 class UndirectedGraph extends GenericGraph {
-
-    constructor(numberOfNodes = 0, booleMatrix = []) {
-        super(numberOfNodes, booleMatrix);
+    /**
+     * Calls the constructor of its superclass
+     * @param {number} [numberOfNodes] Number of nodes in the graph
+     * @param {number} [numberOfEdges] Number of edges in the graph
+     * @param {Object} [booleMatrix] Boole matrix representation
+     * @param {Object} [incidenceMatrix] Incidence matrix representation
+     * @param {Object} [adjacencyList] Adjacency list representation
+     * @param {Object} [edgeList] Edge list representation
+     */
+    constructor(numberOfNodes = 0, numberOfEdges = 0, booleMatrix = [],
+                incidenceMatrix = [], adjacencyList = [], edgeList = []) {
+        super(numberOfNodes, numberOfEdges, booleMatrix,
+            incidenceMatrix, adjacencyList, edgeList);
     }
 
     //1. Base operations
     /**
      * Adds a new edge to the graph
-     * @param edge The actual edge we want to add
+     * @param {Object} edge The actual edge we want to add
      */
     addNewEdge(edge) {
         super.addNewEdge(edge);
@@ -507,7 +532,7 @@ class UndirectedGraph extends GenericGraph {
 
     /**
      * Adds an edge to the representation tables in the DOM
-     * @param edge
+     * @param {Object} edge The edge to add
      */
     addEdgeToTable(edge) {
         super.addEdgeToTable(edge);
@@ -526,7 +551,7 @@ class UndirectedGraph extends GenericGraph {
 
     /**
      * Removes a new edge to the graph
-     * @param edge The actual edge we want to remove
+     * @param {Object} edge The actual edge we want to remove
      */
     removeEdge(edge) {
         super.removeEdge(edge);
@@ -539,7 +564,11 @@ class UndirectedGraph extends GenericGraph {
                 delete this.adjacencyList[edge.target][i];
 
     }
-
+    /**
+     * Removes an edge from the representation tables
+     * @param {Object} edge Edge to remove from the representation table
+     * @param {string} indexOfEdge Index of the edge in the edge list
+     */
     removeEdgeFromTable(edge, indexOfEdge) {
         super.removeEdgeFromTable(edge, indexOfEdge);
         //Boole matrix
@@ -551,8 +580,8 @@ class UndirectedGraph extends GenericGraph {
     }
 
     /**
-     * Removes a given node from the graph
-     * @param indexOfNode Index of the node to remove
+     * Removes a node from the graph
+     * @param {string} indexOfNode The index of the node we want to remove
      */
     removeNode(indexOfNode) {
         super.removeNode(indexOfNode);
@@ -568,13 +597,24 @@ class UndirectedGraph extends GenericGraph {
 //Irányított gráf
 class DirectedGraph extends GenericGraph {
 
-    constructor(numberOfNodes = 0, booleMatrix = []) {
-        super(numberOfNodes, booleMatrix);
+    /**
+     * Calls the constructor of its superclass
+     * @param {number} [numberOfNodes] Number of nodes in the graph
+     * @param {number} [numberOfEdges] Number of edges in the graph
+     * @param {Object} [booleMatrix] Boole matrix representation
+     * @param {Object} [incidenceMatrix] Incidence matrix representation
+     * @param {Object} [adjacencyList] Adjacency list representation
+     * @param {Object} [edgeList] Edge list representation
+     */
+    constructor(numberOfNodes = 0, numberOfEdges = 0, booleMatrix = [],
+                incidenceMatrix = [], adjacencyList = [], edgeList = []) {
+        super(numberOfNodes, numberOfEdges, booleMatrix,
+            incidenceMatrix, adjacencyList, edgeList);
     }
 
     /**
      * Adds a new edge to the graph
-     * @param edge The actual edge we want to add
+     * @param {Object} edge The actual edge we want to add
      */
     addNewEdge(edge) {
         super.addNewEdge(edge);
@@ -582,15 +622,16 @@ class DirectedGraph extends GenericGraph {
 
     /**
      * Removes a new edge to the graph
-     * @param edge The actual edge we want to remove
+     * @param {Object} edge The actual edge we want to remove
+     * @param {string} [indexOfEdge] If the index of the edge is known, searching for it isn't necessary
      */
     removeEdge(edge) {
         super.removeEdge(edge);
     }
 
     /**
-     * Removes a given node from the graph
-     * @param indexOfNode Index of the node to remove
+     * Removes a node from the graph
+     * @param {string} indexOfNode The index of the node we want to remove
      */
     removeNode(indexOfNode) {
         super.removeNode(indexOfNode);
@@ -612,6 +653,11 @@ class BinaryTree extends GenericGraph {
     standardForm = [];
     binaryForm = [];
 
+    /**
+     * Calls the constructor of its superclass
+     * @param {number} numberOfNodes The number of nodes in the graph
+     * @param {number} numberOfEdges The number of edges in the graph
+     */
     constructor(numberOfNodes = 0, numberOfEdges = []) {
         super(numberOfNodes, numberOfEdges);
     }
@@ -619,7 +665,7 @@ class BinaryTree extends GenericGraph {
     //1. Base operations
     /**
      * Adds a new node to the binary tree
-     * @param indexOfNode
+     * @param {string} indexOfNode Index of the node
      */
     addNewNode(indexOfNode) {
 
@@ -635,8 +681,8 @@ class BinaryTree extends GenericGraph {
 
     /**
      * Adds the node to the representation tables in the DOM
-     * @param indexOfNode index of the node in table
-     * @param nodeValue value of the node
+     * @param {string} indexOfNode index of the node in table
+     * @param {string} nodeValue value of the node
      */
     addNodeToTable(indexOfNode, nodeValue) {
         //Parent array
@@ -651,7 +697,8 @@ class BinaryTree extends GenericGraph {
 
     /**
      * Adds a new edge to the binary tree
-     * @param edge
+     * @param {Object} edge The new edge to add
+     * @param {number} childType Type of the child node
      */
     addNewEdge(edge, childType) {
 
@@ -668,7 +715,7 @@ class BinaryTree extends GenericGraph {
 
     /**
      * Adds an edge to the representation tables in the DOM
-     * @param edge
+     * @param {Object} edge The new edge to add
      */
     addEdgeToTable(edge, childType) {
         const sourceNode = $("div[id='" + edge.source + "']");
@@ -686,7 +733,7 @@ class BinaryTree extends GenericGraph {
 
     /**
      * Removes a node from the binary tree
-     * @param indexOfNode
+     * @param {string} indexOfNode Index of the node to remove
      */
     removeNode(indexOfNode) {
         //Removing the node from the parent array
@@ -700,7 +747,7 @@ class BinaryTree extends GenericGraph {
 
     /**
      * Removes a given node from the representation tables
-     * @param indexOfNode
+     * @param {string} indexOfNode Index of the node to remove
      */
     removeNodeFromTable(indexOfNode) {
         //Parent array
@@ -715,7 +762,7 @@ class BinaryTree extends GenericGraph {
 
     /**
      * Removes an edge from the binary tree
-     * @param edge
+     * @param {Object} edge The edge to remove
      */
     removeEdge(edge) {
         //Removing the edge from the parent array
@@ -729,8 +776,8 @@ class BinaryTree extends GenericGraph {
 
     /**
      * Removes an edge from the representation tables
-     * @param edge
-     * @param childType
+     * @param {Object} edge The edge to remove
+     * @param {number} childType The type of the child node
      */
     removeEdgeFromTable(edge, childType) {
         //Parent array
@@ -818,7 +865,7 @@ class BinaryTree extends GenericGraph {
                 this.inorderSearch(this.root);
                 break;
             case ID_GET_HEIGHT:
-                $("#output-body").text($("#output-body").text() + "A fa magassága: "+ this.getHeight(this.root));
+                $("#output-body").text($("#output-body").text() + "A fa magassága: " + this.getHeight(this.root));
                 break;
             case ID_GET_LEAVES:
                 this.getLeaves();
@@ -835,6 +882,7 @@ class BinaryTree extends GenericGraph {
     //2. Representation conversions
     /**
      * Returns the graph as parent array representation
+     * @returns {Object} Returns the parent array of the binary tree
      */
     //Apa tömb
     getParentArray() {
@@ -851,6 +899,7 @@ class BinaryTree extends GenericGraph {
 
     /**
      * Returns the graph as Binary Tree Standard representation
+     * @returns {Object} Returns the standard form of the binary tree
      */
     //Bináris fa standard alakja
     getStandardForm() {
@@ -868,7 +917,7 @@ class BinaryTree extends GenericGraph {
     //3. Specific algorithms
     /**
      * Preorder Search
-     * @param node The node where we start the search
+     * @param {string} node The id of the node where we start the search
      */
     preorderSearch(node) {
         this.algorithmOutput.push({
@@ -885,7 +934,7 @@ class BinaryTree extends GenericGraph {
 
     /**
      * Inorder Search
-     * @param node The node where we start the search
+     * @param {string} node The id of the node where we start the search
      */
     inorderSearch(node) {
         if (this.standardForm[node].left !== 0) {
@@ -902,7 +951,7 @@ class BinaryTree extends GenericGraph {
 
     /**
      * Postorder Search
-     * @param node The node where we start the search
+     * @param {string} node The id of the node where we start the search
      */
     postorderSearch(node) {
         if (this.standardForm[node].left !== 0)
@@ -917,7 +966,7 @@ class BinaryTree extends GenericGraph {
 
     /**
      * Gets the height of the binary tree
-     * @param node The node where we start the search
+     * @param {string} node The id of the root node of the binary tree
      */
     //Fa magassága
     getHeight(node) {
@@ -932,10 +981,10 @@ class BinaryTree extends GenericGraph {
     }
 
     /**
-     * Finds a maximum from two numbers. This is a helper function for getHeight.
-     * @param leftTmp
-     * @param rightTmp
-     * @returns {number}
+     * Finds a maximum between two numbers. This is a helper function for getHeight.
+     * @param {number} leftTmp First number
+     * @param {number} rightTmp Second number
+     * @returns {number} The maximum between the two numbers
      */
     findMaxNumber(leftTmp, rightTmp) {
         if (leftTmp > rightTmp) return leftTmp + 1;
@@ -959,7 +1008,7 @@ class BinaryTree extends GenericGraph {
 
     /**
      * Gets the direct child nodes of a given node
-     * @param indexOfParentNode The node we want the child nodes of
+     * @param {string} indexOfParentNode The node we want the child nodes of
      */
     //Direkt leszármazottak
     getDirectChildNodes(indexOfParentNode) {
@@ -981,7 +1030,7 @@ class BinaryTree extends GenericGraph {
 
     /**
      * Gets all child nodes of a given node
-     * @param indexOfParentNode The node we want the child nodes of
+     * @param {string} indexOfParentNode The node we want the child nodes of
      */
     //Összes leszármazott
     getAllChildNodes(indexOfParentNode) {
