@@ -564,6 +564,7 @@ class UndirectedGraph extends GenericGraph {
                 delete this.adjacencyList[edge.target][i];
 
     }
+
     /**
      * Removes an edge from the representation tables
      * @param {Object} edge Edge to remove from the representation table

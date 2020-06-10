@@ -43,7 +43,7 @@ function bindEventsForDrag() {
 
 /**
  * Called when Mouse Up event is fired on the container element
- * @param event
+ * @param {Object} event Information about the event
  */
 function onMouseUp(event) {
     unbindEventsForDrag();
@@ -52,7 +52,7 @@ function onMouseUp(event) {
 
 /**
  * Called when Mouse Move event is fired on the container element
- * @param event
+ * @param {Object} event Information about the event
  */
 function onMouseMove(event) {
     iMouseX = event.originalEvent.movementX;
@@ -76,7 +76,7 @@ function onMouseMove(event) {
 
 /**
  * Called when Mouse Down event is fired on the container element
- * @param event
+ * @param {Object} event Information about the event
  */
 function onMouseDown(event) {
     bindEventsForDrag();
@@ -86,7 +86,7 @@ function onMouseDown(event) {
 
 /**
  * Called when scroll event is triggered on the container
- * @param event
+ * @param {Object} event Information about the event
  */
 function onScroll(event) {
 
@@ -100,10 +100,10 @@ function onScroll(event) {
 }
 
 /**
- * Calculates the fraction part from the formula
- * @param scale
- * @param size The size of the window
- * @returns {number} returns a fraction number
+ * Calculates the fraction part from the formula for the margins
+ * @param {number} scale The current scale of the container
+ * @param {number} size The size of the window
+ * @returns {number} Returns a fraction number
  */
 function calculateZoomedMarginSize(scale, size) {
     return ((scale * 2 - 1) / 2) * size;
@@ -111,7 +111,7 @@ function calculateZoomedMarginSize(scale, size) {
 
 /**
  * Calculates the minimum and the maximum margin sizes for the drag movement
- * @param scale
+ * @param {number} scale The current scale of the container
  */
 function calculateMarginSizes(scale) {
     const $window = $(window);
@@ -121,6 +121,9 @@ function calculateMarginSizes(scale) {
     iMinMarginY = -calculateZoomedMarginSize(scale, $window.height());
 }
 
+/**
+ * If the container exceeded the window, it will be refitted between the boundaries
+ */
 function refitContainer() {
     //Fitting horizontally
     if (iMarginX < iMinMarginX) {
@@ -148,7 +151,7 @@ function refitContainer() {
 
 /**
  * Zooms the container to a given scale
- * @param scale
+ * @param {number} scale The current scale of the container
  */
 function setZoom(scale) {
     if (DOMContainer === undefined)
@@ -184,6 +187,10 @@ function loadMotionControls() {
     $Document.on("mousedown", ".node-text", (eventInfo) => eventInfo.stopPropagation());
 }
 
+/**
+ * Sets the jsPlumb instance for motion controls to work with
+ * @param {Object} jspInstance
+ */
 function setJsPlumbInstanceForMotion(jspInstance) {
     jspInstanceForMotion = jspInstance;
     jspInstance.setZoom(iZoom / 100);
