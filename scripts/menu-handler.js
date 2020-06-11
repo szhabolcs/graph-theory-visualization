@@ -183,7 +183,7 @@ let menuItems = {
                 sectionId: "../#section-9"
             },
             {
-                text: "Közvetlen leszármazott",
+                text: "Közvetlen leszármazottak",
                 id: "kozvetlen-leszarmazott",
                 img: "https://via.placeholder.com/150x100.png?text=Graph+img",
                 sectionId: "../#section-9"
