@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: motion-controls.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: motion-controls.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * This scripts adds pan and zoom functionality
+ */
+
+//Global variables
+//Values for navigation
+var iZoom;
+var iMarginX;
+var iMarginY;
+var iMouseX;
+var iMouseY;
+var iMaxMarginX;
+var iMinMarginX;
+var iMaxMarginY;
+var iMinMarginY;
+var iMarginStartX;
+var iMarginStartY;
+
+//JsPlumb instance to work with
+var jspInstanceForMotion;
+
+//Base and Helper functions
+/**
+ * Unbinds the events used for dragging to the container
+ */
+function unbindEventsForDrag() {
+    $Document.off("mouseleave", "#container");
+    $Document.off("mousemove", "div#container");
+    $Document.off("mouseup", "div#container");
+    DOMContainer.removeClass("container-dragging");
+    document.getSelection().removeAllRanges();
+}
+
+/**
+ * Binds the necessary events for dragging to the container
+ */
+function bindEventsForDrag() {
+    $Document.on("mouseleave", "#container", () => unbindEventsForDrag());
+    $Document.on("mousemove", "div#container", (event) => onMouseMove(event));
+    $Document.on("mouseup", "div#container", (event) => onMouseUp(event));
+    DOMContainer.addClass("container-dragging");
+}
+
+/**
+ * Called when Mouse Up event is fired on the container element
+ * @param {Object} event Information about the event
+ */
+function onMouseUp(event) {
+    unbindEventsForDrag();
+    event.preventDefault();
+}
+
+/**
+ * Called when Mouse Move event is fired on the container element
+ * @param {Object} event Information about the event
+ */
+function onMouseMove(event) {
+    iMouseX = event.originalEvent.movementX;
+    iMouseY = event.originalEvent.movementY;
+
+    //Moving the container
+    //Moving left or right
+    if (iMarginX + iMouseX &lt;= iMaxMarginX &amp;&amp; iMarginX + iMouseX > iMinMarginX) {
+        iMarginX = iMarginX + iMouseX;
+        DOMContainer.css("margin-left", iMarginX);
+    }
+
+    //Moving up or down
+    if (iMarginY + iMouseY &lt;= iMaxMarginY &amp;&amp; iMarginY + iMouseY > iMinMarginY) {
+        iMarginY = iMarginY + iMouseY;
+        DOMContainer.css("margin-top", iMarginY);
+    }
+
+
+}
+
+/**
+ * Called when Mouse Down event is fired on the container element
+ * @param {Object} event Information about the event
+ */
+function onMouseDown(event) {
+    bindEventsForDrag();
+    DOMContainer.removeClass("slow-transition");
+
+}
+
+/**
+ * Called when scroll event is triggered on the container
+ * @param {Object} event Information about the event
+ */
+function onScroll(event) {
+
+    const scrollDirection = event.originalEvent.deltaY;
+    if (scrollDirection &lt; 0 &amp;&amp; iZoom &lt; MAX_ZOOM_VALUE)
+        iZoom += 10;
+    else if (scrollDirection > 0 &amp;&amp; iZoom > MIN_ZOOM_VALUE)
+        iZoom -= 10;
+    setZoom(iZoom / 100);
+
+}
+
+/**
+ * Calculates the fraction part from the formula for the margins
+ * @param {number} scale The current scale of the container
+ * @param {number} size The size of the window
+ * @returns {number} Returns a fraction number
+ */
+function calculateZoomedMarginSize(scale, size) {
+    return ((scale * 2 - 1) / 2) * size;
+}
+
+/**
+ * Calculates the minimum and the maximum margin sizes for the drag movement
+ * @param {number} scale The current scale of the container
+ */
+function calculateMarginSizes(scale) {
+    const $window = $(window);
+    iMaxMarginX = calculateZoomedMarginSize(scale, $window.width()) + iMarginStartX;
+    iMinMarginX = -calculateZoomedMarginSize(scale, $window.width()) + iMarginStartX;
+    iMaxMarginY = calculateZoomedMarginSize(scale, $window.height());
+    iMinMarginY = -calculateZoomedMarginSize(scale, $window.height());
+}
+
+/**
+ * If the container exceeded the window, it will be refitted between the boundaries
+ */
+function refitContainer() {
+    //Fitting horizontally
+    if (iMarginX &lt; iMinMarginX) {
+        iMarginX = iMinMarginX;
+        DOMContainer.addClass("slow-transition");
+        DOMContainer.css("margin-left", iMarginX);
+    }
+    if (iMarginX > iMaxMarginX) {
+        iMarginX = iMaxMarginX;
+        DOMContainer.addClass("slow-transition");
+        DOMContainer.css("margin-left", iMarginX);
+    }
+    //Fitting Vertically
+    if (iMarginY &lt; iMinMarginY) {
+        iMarginY = iMinMarginY;
+        DOMContainer.addClass("slow-transition");
+        DOMContainer.css("margin-top", iMarginY);
+    }
+    if (iMarginY > iMaxMarginY) {
+        iMarginY = iMaxMarginY;
+        DOMContainer.addClass("slow-transition");
+        DOMContainer.css("margin-top", iMarginY);
+    }
+}
+
+/**
+ * Zooms the container to a given scale
+ * @param {number} scale The current scale of the container
+ */
+function setZoom(scale) {
+    if (DOMContainer === undefined)
+        console.error("Container DOM element hasn't been initialized yet!");
+    else {
+        calculateMarginSizes(scale);
+        refitContainer();
+        DOMContainer.css({
+            transform: "scale(" + scale + ')'
+        });
+        jspInstanceForMotion.setZoom(scale);
+    }
+}
+
+/**
+ * Initializes dragging and zooming, binds the necessary listeners for these operations
+ */
+function loadMotionControls() {
+
+    //set margin values
+    iMarginStartX = Number.parseInt(DOMContainer.css("margin-left"));
+    iMarginStartY = Number.parseInt(DOMContainer.css("margin-top"));
+    iMarginX = iMarginStartX;
+    iMarginY = iMarginStartY;
+
+    //set initial zoom in percentage
+    iZoom = 100;
+    //Calculate borders for dragging at scale 1
+    calculateMarginSizes(1);
+    //Set up listeners
+    DOMContainer.on("wheel", (event) => onScroll(event));
+    $Document.on("mousedown", "#container", (event) => onMouseDown(event));
+    $Document.on("mousedown", ".node-text", (eventInfo) => eventInfo.stopPropagation());
+}
+
+/**
+ * Sets the jsPlumb instance for motion controls to work with
+ * @param {Object} jspInstance
+ */
+function setJsPlumbInstanceForMotion(jspInstance) {
+    jspInstanceForMotion = jspInstance;
+    jspInstance.setZoom(iZoom / 100);
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BinaryNode.html">BinaryNode</a></li><li><a href="BinaryTree.html">BinaryTree</a></li><li><a href="DirectedGraph.html">DirectedGraph</a></li><li><a href="DirectedNode.html">DirectedNode</a></li><li><a href="GenericGraph.html">GenericGraph</a></li><li><a href="TableHandler.html">TableHandler</a></li><li><a href="UndirectedGraph.html">UndirectedGraph</a></li><li><a href="UnDirectedNode.html">UnDirectedNode</a></li><li><a href="VisualNode.html">VisualNode</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bindEventsForDrag">bindEventsForDrag</a></li><li><a href="global.html#calculateMarginSizes">calculateMarginSizes</a></li><li><a href="global.html#calculateZoomedMarginSize">calculateZoomedMarginSize</a></li><li><a href="global.html#changeNav">changeNav</a></li><li><a href="global.html#changeTheme">changeTheme</a></li><li><a href="global.html#getSelectedItems">getSelectedItems</a></li><li><a href="global.html#initGraph">initGraph</a></li><li><a href="global.html#loadCards">loadCards</a></li><li><a href="global.html#loadMotionControls">loadMotionControls</a></li><li><a href="global.html#makeCard">makeCard</a></li><li><a href="global.html#menuItems">menuItems</a></li><li><a href="global.html#nodes">nodes</a></li><li><a href="global.html#onMouseDown">onMouseDown</a></li><li><a href="global.html#onMouseMove">onMouseMove</a></li><li><a href="global.html#onMouseUp">onMouseUp</a></li><li><a href="global.html#onScroll">onScroll</a></li><li><a href="global.html#refitContainer">refitContainer</a></li><li><a href="global.html#setJsPlumbInstanceForMotion">setJsPlumbInstanceForMotion</a></li><li><a href="global.html#setZoom">setZoom</a></li><li><a href="global.html#unbindEventsForDrag">unbindEventsForDrag</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Jun 11 2020 11:24:48 GMT+0300 (GMT+03:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

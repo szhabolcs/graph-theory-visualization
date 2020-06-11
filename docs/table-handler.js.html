@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: table-handler.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: table-handler.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * DOM Table Handler model
+ * This class's responsibility is to ensure manipulating
+ * the DOM Table with data from generic graph models.
+ */
+class TableHandler {
+    //Variables
+
+    DOMTable;
+    numberOfRows = 0;
+    numberOfColumns = 0;
+
+    /**
+     * 
+     * @param {String} sectionId the id of the section to be created
+     * @param {String} sectionName the name to be displayed at the section
+     */
+    constructor(sectionId, sectionName) {
+        this.sectionId = sectionId;
+        this.addSectionToDOM(sectionId, sectionName);
+        this.DOMTable = $("#" + sectionId + "> table tbody");
+    }
+
+
+    //Base operations
+    /**
+     * Removes an element from the table
+     * At this point we manage the table as a crossword table
+     * @param i Id of the row
+     * @param j Id of the column
+     */
+    removeElement(i, j) {
+        this.DOMTable.children("tr[data-i=" + i + "]").children("td[data-j=" + j + "]").remove();
+    }
+
+    /**
+     * Pushes a single element to a row
+     * At this point we manage the table as a crossword table
+     * @param {string} i Id of the row to add to
+     * @param {string} j Id of the column
+     * @param {string} value Value of the column header
+     */
+    pushElementToRow(i, j, value) {
+        this.DOMTable.children("tr[data-i='" + i + "']").append("&lt;td data-j=" + j + ">0&lt;/td>");
+        this.updateTable(i, j, value);
+        this.numberOfColumns++;
+    }
+
+    /**
+     * Pushes a column to the table with automatic indexing
+     * @param {string} j Id of the column
+     */
+    pushColumn(j) {
+        this.addColumn(j, (this.numberOfColumns + 1).toString());
+    }
+
+    /**
+     * Pushes a row to the table with automatic indexing
+     * @param {string} i Id of the row
+     */
+    pushRow(i) {
+        this.addRow(i, (this.numberOfRows + 1).toString());
+    }
+
+    /**
+     * Adds a row to the DOM table
+     * @param {string} i Id of the row
+     * @param {string} value Value of the row header
+     */
+    addRow(i, value) {
+        let firstRow = this.DOMTable.children("tr").first().children().clone();
+        firstRow.each((td) => {
+            $(firstRow[td]).text("0");
+        });
+        this.DOMTable.append("&lt;tr data-i=" + i + ">&lt;/tr>");
+        this.DOMTable.children("tr[data-i=" + i + "]").append(firstRow);
+        this.updateTable(i, 0, value);
+        this.numberOfRows++;
+    }
+
+    /**
+     * Adds a column to the DOM table
+     * @param {string} j Id of the column
+     * @param {string} value Value of the column header
+     */
+    addColumn(j, value) {
+        this.DOMTable.children("tr").append("&lt;td data-j=" + j + ">0&lt;/td>");
+        this.updateTable(0, j, value);
+        this.numberOfColumns++;
+    }
+
+    /**
+     * Removes a row from the DOM table
+     * @param {string} i Id of the row
+     */
+    removeRow(i) {
+        this.DOMTable.children("tr[data-i=" + i + "]").remove();
+        this.numberOfRows--;
+    }
+
+    /**
+     * Removes a column from the DOM table
+     * @param {string} j Id of the column
+     */
+    removeColumn(j) {
+        this.DOMTable.find("td[data-j=" + j + "]").remove();
+        this.numberOfColumns--;
+    }
+
+    /**
+     * Updates a specific value in the table
+     * @param {string} i Id of the row
+     * @param {string} j Id of the column
+     * @param {string} value Value to be set
+     */
+    updateTable(i, j, value) {
+        this.DOMTable.find("tr[data-i=" + i + "]" + ">" + "td[data-j=" + j + "]").text(value);
+    }
+
+    /**
+     * Deletes the table from the DOM
+     */
+    drop() {
+        $("#" + this.sectionId).remove();
+    }
+
+    /**
+     * Adds a DOM section container for the table
+     * @param {string} id The id of the inserted section
+     * @param {string} name The name of the section
+     */
+    addSectionToDOM(id, name) {
+        let sectionHTML = $(TABLE_SECTION);
+
+        sectionHTML.attr("id", id);
+        sectionHTML.children(".section-header").append(name + " &lt;i class='fas fa-plus'>&lt;/i>");
+        sectionHTML.find(".section-header > i").click((e) => {
+            $(e.currentTarget.parentElement.parentElement).find(".table").fadeToggle();
+            $(e.currentTarget).toggleClass("fa-plus fa-minus");
+        });
+
+        $("#representation-body").append(sectionHTML);
+    }
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BinaryNode.html">BinaryNode</a></li><li><a href="BinaryTree.html">BinaryTree</a></li><li><a href="DirectedGraph.html">DirectedGraph</a></li><li><a href="DirectedNode.html">DirectedNode</a></li><li><a href="GenericGraph.html">GenericGraph</a></li><li><a href="TableHandler.html">TableHandler</a></li><li><a href="UndirectedGraph.html">UndirectedGraph</a></li><li><a href="UnDirectedNode.html">UnDirectedNode</a></li><li><a href="VisualNode.html">VisualNode</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bindEventsForDrag">bindEventsForDrag</a></li><li><a href="global.html#calculateMarginSizes">calculateMarginSizes</a></li><li><a href="global.html#calculateZoomedMarginSize">calculateZoomedMarginSize</a></li><li><a href="global.html#changeNav">changeNav</a></li><li><a href="global.html#changeTheme">changeTheme</a></li><li><a href="global.html#getSelectedItems">getSelectedItems</a></li><li><a href="global.html#initGraph">initGraph</a></li><li><a href="global.html#loadCards">loadCards</a></li><li><a href="global.html#loadMotionControls">loadMotionControls</a></li><li><a href="global.html#makeCard">makeCard</a></li><li><a href="global.html#menuItems">menuItems</a></li><li><a href="global.html#nodes">nodes</a></li><li><a href="global.html#onMouseDown">onMouseDown</a></li><li><a href="global.html#onMouseMove">onMouseMove</a></li><li><a href="global.html#onMouseUp">onMouseUp</a></li><li><a href="global.html#onScroll">onScroll</a></li><li><a href="global.html#refitContainer">refitContainer</a></li><li><a href="global.html#setJsPlumbInstanceForMotion">setJsPlumbInstanceForMotion</a></li><li><a href="global.html#setZoom">setZoom</a></li><li><a href="global.html#unbindEventsForDrag">unbindEventsForDrag</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Jun 11 2020 11:24:48 GMT+0300 (GMT+03:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

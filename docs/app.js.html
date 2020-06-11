@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: app.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: app.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * This is the main script of the Graphviser application
+ */
+
+//Global variables
+//JsPlumb instance
+var jspNode;
+
+//JQuery elements
+var DOMContainer;
+var $Document;
+
+//Graph in memory object
+var graph;
+
+//Base and helper functions
+
+/**
+ * This function initializes all instances and objects needed for graph visualization
+ * @param {Object} DOMContainer the DOM element for the container in which the jsPlumb is used
+ * @returns {VisualNode} object
+ */
+function initGraph(DOMContainer) {
+    if (menuItems.graphType === BINARY_TREE) {
+        graph = new BinaryTree();
+        jspNode = new BinaryNode(DOMContainer);
+    } else if (menuItems.graphType === GENERIC_GRAPH) {
+        if (menuItems.directed === true) {
+            graph = new DirectedGraph();
+            jspNode = new DirectedNode(DOMContainer);
+        } else {
+            graph = new UndirectedGraph();
+            jspNode = new UnDirectedNode(DOMContainer);
+        }
+    }
+    jspNode.setGraph(graph);
+    graph.setVisualNode(jspNode);
+}
+
+
+/**
+ * Code executes when the Document Object Model is constructed by the browser
+ */
+$(document).ready(function () {
+
+    //Declarations
+    let theme;
+
+    // Light and dark theme switch
+    if (matchMedia('(prefers-color-scheme: light)').matches) {
+        theme = 'light';
+        $("#theme-btn > i").toggleClass("btn-on");
+    } else theme = 'dark';
+
+    document.documentElement.setAttribute('data-theme', theme);
+
+    /**
+     * Theme changer button listener
+     */
+    $("#theme-btn").click(function () {
+        $(this).find("i").toggleClass("btn-on");
+
+        if (theme == 'light') {
+            theme = 'dark';
+            document.documentElement.classList.add('color-theme-in-transition');
+            document.documentElement.setAttribute('data-theme', theme);
+        } else {
+            theme = 'light';
+            document.documentElement.classList.add('color-theme-in-transition');
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+        window.setTimeout(function () {
+            document.documentElement.classList.remove('color-theme-in-transition')
+        }, 1000);
+    });
+
+
+    //Get the DOM elements
+    $Document = $(document);
+    DOMContainer = $("#container");
+
+    //Load the motion controls
+    loadMotionControls();
+
+    //Tooltip initialization
+    $('[data-toggle="tooltip"]').tooltip({delay: {"show": 500}});
+
+    //Set up the Listeners
+    /**
+     * Node adding listener
+     */
+    $("#node-add-btn").on("click", () => {
+        jspNode.addNode();
+    });
+
+    /**
+     * Visual graph reset listener
+     */
+    $("#reset-graph-btn").on("click", () => {
+        graph.deleteGraph();
+    });
+
+    /**
+     * Grid toggle listener
+     */
+    $("#grid-btn").click(() => {
+        DOMContainer.toggleClass("grid");
+        $("#grid-btn > i").toggleClass("btn-on");
+    });
+
+    /**
+     * Edit mode switching listener
+     */
+    $("#edit-btn").click(() => {
+        $("#edit-btn").toggleClass("btn-on");
+        $("#node-add-btn").fadeToggle(200);
+        $("#reset-graph-btn").fadeToggle(200);
+
+        jspNode.toggleEditMode();
+    });
+
+    /**
+     * Left menu open listener
+     */
+    $("#representation > div .fa-chevron-right").click(() => {
+        $("#representation-body").toggleClass("display-none");
+        $("#representation").toggleClass("dropdown-open");
+        $("#representation > div .fa-chevron-right").toggleClass("fa-rotate-180");
+        $("#representation-icon > span").toggleClass("display-none");
+        if (!$("#representation").hasClass("dropdown-open")) {
+            $("#representation").css("width", "55px");
+        }
+        $("#left-splitter").toggleClass("display-none");
+    });
+    /**
+     * Left menu resizing listener
+     */
+    $("#representation").resizable({
+        handleSelector: "#left-splitter",
+        resizeHeight: false
+    });
+
+    /**
+     * Right menu open listener
+     */
+    $("#steps > div .fa-chevron-left").click(() => {
+        $("#steps-body").toggleClass("display-none");
+        $("#output-body").toggleClass("display-none");
+        $("#steps").toggleClass("steps-open");
+        $("#steps > div .fa-chevron-left").toggleClass("fa-rotate-180");
+        $("#right-splitter").toggleClass("display-none");
+        $("#steps-icon > span").toggleClass("display-none");
+        $("#resizable-right-body").toggleClass("steps-open");
+        if (!$("#resizable-right-body").hasClass("steps-open")) {
+            $("#resizable-right-body").css("width", "55px");
+        }
+        $("#middle-splitter").toggleClass("display-none");
+    });
+    /**
+     * Right menu resizing listener
+     */
+    $("#resizable-right-body").resizable({
+        handleSelector: "#right-splitter",
+        resizeHeight: false,
+        resizeWidthFrom: 'left'
+    });
+    /**
+     * Right menu second resizing listener
+     */
+    $("#steps").resizable({
+        handleSelector: "#middle-splitter",
+        resizeWidth: false,
+        resizeHeightFrom: 'bottom'
+    });
+
+    /**
+     * Bottom navigation bar open listener
+     */
+    $("#navbar-btn").click(() => {
+        $(".navbar").toggleClass("navbar-open");
+        $("#navbar-btn > i").toggleClass("fa-rotate-180");
+        $("#navbar-content").toggleClass("navbar-content-open");
+    });
+
+    /**
+     * Left menu's table section listener
+     */
+    $(".section-header > i").click((e) => {
+        $(e.currentTarget.parentElement.parentElement).find(".table").fadeToggle();
+        $(e.currentTarget).toggleClass("fa-plus fa-minus");
+    });
+
+    /**
+     * Zooming in button listener
+     */
+    $("#zoom-in").click(() => {
+        if (iZoom &lt; MAX_ZOOM_VALUE) {
+            iZoom += 10;
+            setZoom(iZoom / 100);
+        }
+    });
+    /**
+     * Zooming out button listener
+     */
+    $("#zoom-out").click(() => {
+        if (iZoom > MIN_ZOOM_VALUE) {
+            iZoom -= 10;
+            setZoom(iZoom / 100);
+        }
+    });
+    /**
+     * Zoom reset button listener
+     */
+    $("#zoom-reset").click(() => {
+        iZoom = 100;
+        setZoom(iZoom / 100);
+    });
+
+    /**
+     * Animation play button listener
+     */
+    $("#play-btn").click(() => {
+        jspNode.play();
+    });
+    /**
+     * Animation step forward button listener
+     */
+    $("#step-fw-btn").click(() => {
+        jspNode.goOneStepForward();
+    });
+    /**
+     * Animation step backwards button listener
+     */
+    $("#step-bw-btn").click(() => {
+        jspNode.goOneStepBackwards();
+    });
+    /**
+     * Animation restart button listener
+     */
+    $("#restart-btn").click(() => {
+        jspNode.resetGraph();
+    });
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BinaryNode.html">BinaryNode</a></li><li><a href="BinaryTree.html">BinaryTree</a></li><li><a href="DirectedGraph.html">DirectedGraph</a></li><li><a href="DirectedNode.html">DirectedNode</a></li><li><a href="GenericGraph.html">GenericGraph</a></li><li><a href="TableHandler.html">TableHandler</a></li><li><a href="UndirectedGraph.html">UndirectedGraph</a></li><li><a href="UnDirectedNode.html">UnDirectedNode</a></li><li><a href="VisualNode.html">VisualNode</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bindEventsForDrag">bindEventsForDrag</a></li><li><a href="global.html#calculateMarginSizes">calculateMarginSizes</a></li><li><a href="global.html#calculateZoomedMarginSize">calculateZoomedMarginSize</a></li><li><a href="global.html#changeNav">changeNav</a></li><li><a href="global.html#changeTheme">changeTheme</a></li><li><a href="global.html#getSelectedItems">getSelectedItems</a></li><li><a href="global.html#initGraph">initGraph</a></li><li><a href="global.html#loadCards">loadCards</a></li><li><a href="global.html#loadMotionControls">loadMotionControls</a></li><li><a href="global.html#makeCard">makeCard</a></li><li><a href="global.html#menuItems">menuItems</a></li><li><a href="global.html#nodes">nodes</a></li><li><a href="global.html#onMouseDown">onMouseDown</a></li><li><a href="global.html#onMouseMove">onMouseMove</a></li><li><a href="global.html#onMouseUp">onMouseUp</a></li><li><a href="global.html#onScroll">onScroll</a></li><li><a href="global.html#refitContainer">refitContainer</a></li><li><a href="global.html#setJsPlumbInstanceForMotion">setJsPlumbInstanceForMotion</a></li><li><a href="global.html#setZoom">setZoom</a></li><li><a href="global.html#unbindEventsForDrag">unbindEventsForDrag</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Jun 11 2020 11:24:48 GMT+0300 (GMT+03:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
