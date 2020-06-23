@@ -314,7 +314,7 @@ html{
     min-width: 55px;
     height: calc(100% - 55px);
     position: fixed;
-    z-index: 2;
+    z-index: 1;
     right: 0px;
 }
 #resizable-right-body{
