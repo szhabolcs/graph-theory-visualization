@@ -259,10 +259,12 @@ class VisualNode {
      * @param {jsPlumb|connection} connection The jsPlumb connection to mark
      */
     connectionMarkOn(connection) {
-        this.jspInstance.select({
-            source: connection.source,
-            target: connection.target
-        }).addClass("connection-mark");
+        if(connection.source != null && connection.target != null){
+            this.jspInstance.select({
+                source: connection.source,
+                target: connection.target
+            }).addClass("connection-mark");
+        }
     }
 
     /**
@@ -605,6 +607,45 @@ class UnDirectedNode extends VisualNode {
         });
     }
 
+    /**
+     * Marks a connection in the visual representation of the graph.
+     * Sets the color of it to green
+     * This one overrides the original function, in order to fix issue #2
+     * @param {jsPlumb|connection} connection The jsPlumb connection to mark
+     */
+    connectionMarkOn(connection) {
+        if(connection.source != null && connection.target != null){
+            this.jspInstance.select({
+                source: connection.source,
+                target: connection.target
+            }).addClass("connection-mark");
+
+            this.jspInstance.select({
+                source: connection.target,
+                target: connection.source
+            }).addClass("connection-mark");
+        }
+        
+    }
+
+
+    /**
+     * Removes a mark from a connection in the visual representation of the graph.
+     * Resets the color of it from green
+     * This one overrides the original function, in order to fix issue #2
+     * @param {jsPlumb|connection} connection The jsPlumb connection to remove the mark from
+     */
+    connectionMarkOff(connection) {
+        this.jspInstance.select({
+            source: connection.source,
+            target: connection.target
+        }).removeClass("connection-mark");
+
+        this.jspInstance.select({
+            source: connection.target,
+            target: connection.source
+        }).removeClass("connection-mark");
+    }
 }
 
 /**
