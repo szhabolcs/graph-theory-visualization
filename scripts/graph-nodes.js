@@ -302,8 +302,8 @@ class VisualNode {
      */
     nodeSelect(eventInfo) {
         this.selectedNode = eventInfo.currentTarget.id;
-        DOMContainer.undelegate(".node", "click", this.nodeSelect);
-        DOMContainer.undelegate(".node", "mouseenter mouseleave", this.nodeHover);
+        DOMContainer.undelegate(".node", "click");
+        DOMContainer.undelegate(".node", "mouseenter mouseleave");
         this.removeMessage();
         this.graph.runAlgorithm(menuItems.selectedAlgorithm);
     }
