@@ -844,6 +844,9 @@ class BinaryTree extends GenericGraph {
             this.root = firstRoot;
             $(".node[id='" + firstRoot + "']").addClass("node-hover");
             this.runAlgorithm(menuItems.selectedAlgorithm);
+            this.visualNode.selectedNode = firstRoot;
+            this.visualNode.showMessage(GRAPH_ROOT_SELECTED);
+            this.visualNode.removeMessage(1500);
 
         } else {
             this.visualNode.selectNode(ROOT_NODE_MSG);

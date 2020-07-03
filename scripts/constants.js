@@ -5,6 +5,12 @@ const MAX_ZOOM_VALUE = 300;
 //MESSAGES
 const STARTUP_NODE_MSG = "Válassz ki egy csomópontot";
 const ROOT_NODE_MSG = "Válassz ki egy gyökeret";
+const EDIT_MODE_ON_WARNING_MSG = "Kapcsold ki a szerkeszto modot elobb";
+const EMPTY_GRAPH_WARNING_MSG = "Keszits egy grafot elobb";
+const NO_MORE_STEPS_MSG = "Algoritmus vege";
+const NO_PREVIOUS_STEPS_MSG = "Nincs elozo lepes";
+const ALGORITHM_NOT_STARTED_MSG = "Inditsd el az algoritmust a <i class='fas fa-play'></i> gombbal elobb";
+const GRAPH_ROOT_SELECTED = "A fa gyokere kivalasztva"
 
 //CONSTANT STRINGS
 const BINARY_TREE = "binaris";
