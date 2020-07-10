@@ -272,7 +272,7 @@ class VisualNode {
      * Resets the color of it from green
      * @param {jsPlumb|connection} connection The jsPlumb connection to remove the mark from
      */
-    connectionMarkOff(connection) tree-height-output-text{
+    connectionMarkOff(connection){
         this.jspInstance.select({
             source: connection.source,
             target: connection.target
