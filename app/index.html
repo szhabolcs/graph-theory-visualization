@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <title>Graphviser</title>
@@ -15,28 +15,26 @@
 
       <div id="modal-intro">
         <img src="../images/logo@10x.png" style="width: 100%; margin-bottom: 20px;margin-top: 20px;" class="mx-auto">
-        <h1>Üdv a Graphviser applikációban!</h1>
+        <h1 data-i18n='welcome-to-graphviser'></h1>
 
-        <p>Az alkalmazásunk egy iskolai projekt keretén belül jött létre.
-        <br>Célja a gráfok oktatása egy interaktív és modern módon.
-        </p>
+        <p data-i18n="[html]app-description"></p>
 
         <div class="container" style="margin-top: 25px;">
           <div class="row">
             <div class="col" style="margin-right: 10px;">
-              <h3>Tananyag</h3>
-              <p>Egy teljes gráf referencia, képekkel, példákkal és kódokkal.</p>
-              <a href="../" style="color: var(--light-green);">Tanagyag megnyítása <i class="fas fa-arrow-right"></i></a>
+              <h3 data-i18n="educational-material-title"></h3>
+              <p data-i18n="educational-material-description"></p>
+              <a href="../" style="color: var(--light-green);" data-i18n="[html]educational-material-link-text"></a>
             </div>
             <div class="col" style="margin-right: 10px;">
-              <h3>Dokumentáció</h3>
-              <p>Olvass az applikáció működéséről.</p>
-              <a href="../docs/" style="color: var(--light-green);">Dokumentáció megnyítása <i class="fas fa-arrow-right"></i></a>
+              <h3 data-i18n="documentation-title"></h3>
+              <p data-i18n="documentation-description"></p>
+              <a href="../docs/" style="color: var(--light-green);" data-i18n="[html]documentation-link-text"></a>
             </div>
             <div class="col">
-              <h3>Applikáció</h3>
-              <p>Egy gráf rajzoló és megoldó applikáció.</p>
-              <a style="color: var(--light-green);" id="open-menu">Tovább az applikációba <i class="fas fa-arrow-right"></i></a>
+              <h3 data-i18n="application-title"></h3>
+              <p data-i18n="application-description"></p>
+              <a style="color: var(--light-green);" id="open-menu" data-i18n="[html]application-link-text"></a>
             </div>
           </div>
         </div>
@@ -48,13 +46,13 @@
             <div class="container">
               <div class="row">
                 <div class="col-sm">
-                  <div class="menu-back" style="color: var(--black);"><i class="fas fa-arrow-left"></i> Vissza</div>
+                  <div class="menu-back" style="color: var(--black);"><i class="fas fa-arrow-left"></i> <span data-i18n="back"></span></div>
                 </div>
                 <div class="col-sm">
-                  Válasszon ki egy gráf algoritmust
+                  <span data-i18n="choose-algorithm"></span>
                 </div>
                 <div class="col-sm">
-                  <div id="start-btn">Algoritmus indítása <i class="fas fa-arrow-right"></i></div>
+                  <div id="start-btn"><span data-i18n="start-algorithm"></span> <i class="fas fa-arrow-right"></i></div>
                 </div>
               </div>
             </div>
@@ -68,13 +66,13 @@
   <nav class="navbar fixed-bottom">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <div id="theme-btn" data-toggle="tooltip" data-placement="top" title="Téma"><i class="far fa-moon btn-on"></i></div>
+          <div id="theme-btn" data-toggle="tooltip" data-placement="top" data-i18n="[data-original-title]theme"><i class="far fa-moon btn-on"></i></div>
         </li>
         <li class="nav-item">
-          <div id="grid-btn" data-toggle="tooltip" data-placement="top" title="Rács"><i class="fas fa-border-none btn-on"></i></div>
+          <div id="grid-btn" data-toggle="tooltip" data-placement="top" data-i18n="[data-original-title]grid"><i class="fas fa-border-none btn-on"></i></div>
         </li>
         <li class="nav-item">
-          <div id="edit-btn" style="width: 30px; height: 30px;" data-toggle="tooltip" data-placement="top" title="Szerkesztés">
+          <div id="edit-btn" style="width: 30px; height: 30px;" data-toggle="tooltip" data-placement="top" data-i18n="[data-original-title]edit">
             <svg style="fill: var(--black); padding-bottom: 8px; cursor: pointer;" version="1.1" id="Layer_1" focusable="false" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                x="0px" y="0px" viewBox="0 0 511.9 512" style="enable-background:new 0 0 511.9 512;" xml:space="preserve">
             <path d="M490.9,176.2L167.7,499.4L56.4,511.7c-32.2,3.6-59.7-23.6-56.1-56.1l12.3-111.3L335.8,21.1C364-7,409.5-7,437.6,21.1
@@ -87,7 +85,7 @@
           <div style="width: 5px;background: var(--black);height: 40px;border-radius: 10px;margin-top: -1px;"></div>
         </li>
         <li class="nav-item">
-          <span id="current-operation">Nincs kiválasztva</span>
+          <span id="current-operation"></span>
         </li>
         <li class="nav-item">
           <div>
@@ -99,14 +97,14 @@
         </li>
     </ul>
     <span class="navbar-text">
-      <div id="navbar-btn" data-toggle="tooltip" data-placement="top" title="Algorítmusok"><i class="fas fa-chevron-up"></i></div>
+      <div id="navbar-btn" data-toggle="tooltip" data-placement="top" data-i18n="[data-original-title]algorithms"><i class="fas fa-chevron-up"></i></div>
     </span>
   </nav>
 
   <div id="navbar-content">
     <div class="row" id="menu-navigation" style="height: 24px;">
       <div class="col-">
-        <div class="menu-back"><i class="fas fa-arrow-left"></i> vissza</div>
+        <div class="menu-back"><i class="fas fa-arrow-left"></i> <span data-i18n="back"></span></div>
       </div>
     </div>
     <div id="card-holder">
@@ -117,7 +115,7 @@
   <div id="resizable-left">
     <div id="representation" class="floating-dropdown">
       <div><i class="fas fa-chevron-right"></i></div>
-      <div id="representation-icon" data-toggle="tooltip" data-placement="right" title="Ábrázolások"><i class="fas fa-table"></i> <span class="display-none">Ábrázolások</span> </div>
+      <div id="representation-icon" data-toggle="tooltip" data-placement="right" data-i18n="[data-original-title]algorithms"><i class="fas fa-table"></i> <span class="display-none" data-i18n="algorithms"></span></div>
       <div id="representation-body" class="dropdown-body display-none">
       </div>
     </div>
@@ -128,7 +126,7 @@
     <div id="resizable-right-body">
       <div id="steps" class="floating-dropdown">
         <div><i class="fas fa-chevron-left"></i></div>
-        <div id="steps-icon" data-toggle="tooltip" data-placement="left" title="Lépések"><i class="fas fa-shoe-prints"></i><span class="display-none">Lépések</span></div>
+        <div id="steps-icon" data-toggle="tooltip" data-placement="left" data-i18n="[data-original-title]steps"><i class="fas fa-shoe-prints"></i><span class="display-none" data-i18n="steps"></span></div>
         <div id="steps-body" class="dropdown-body display-none">
           <div class="step"><span>1 <i class="fas fa-long-arrow-alt-right"></i> 2</span></div>
         </div>
@@ -137,7 +135,7 @@
       <div id="middle-splitter" class="display-none"></div>
 
       <div id="output" class="floating-dropdown">
-        <div><div id="output-icon" data-toggle="tooltip" data-placement="left" title="Kimenet"><i class="fas fa-stream"></i></div>Kimenet</div>
+        <div><div id="output-icon" data-toggle="tooltip" data-placement="left" data-i18n="[data-original-title]output"><i class="fas fa-stream"></i></div><span data-i18n="output"></span></div>
         <div id="output-body" class="dropdown-body display-none">
           
         </div>
@@ -149,28 +147,25 @@
 
   <div id="container" class="grid"></div>
 
-  <div id="node-add-btn" class="ui-helper-btn hidden" data-toggle="tooltip" data-placement="top" title="Csomopont hozzáadása"><i class="fas fa-plus"></i></div>
-  <div id="reset-graph-btn" class="ui-helper-btn hidden" data-toggle="tooltip" data-placement="top" title="Összes csomopont törlése"><i class="far fa-trash-alt"></i></div>
+  <div id="node-add-btn" class="ui-helper-btn hidden" data-toggle="tooltip" data-placement="top" data-i18n="[data-original-title]add-node"><i class="fas fa-plus"></i></div>
+  <div id="reset-graph-btn" class="ui-helper-btn hidden" data-toggle="tooltip" data-placement="top" data-i18n="[data-original-title]delete-all-nodes"><i class="far fa-trash-alt"></i></div>
 
-  <div id="zoom-in" class="ui-helper-btn" data-toggle="tooltip" data-placement="top" title="Nagyítás"><i class="fas fa-search-plus"></i></div>
-  <div id="zoom-out" class="ui-helper-btn" data-toggle="tooltip" data-placement="top" title="Kicsinyítés"><i class="fas fa-search-minus"></i></div>
-  <div id="zoom-reset" class="ui-helper-btn" data-toggle="tooltip" data-placement="top" title="Alapértelmezett"><i class="fas fa-compress"></i></div>
+  <div id="zoom-in" class="ui-helper-btn" data-toggle="tooltip" data-placement="top" data-i18n="[data-original-title]zoom-in"><i class="fas fa-search-plus"></i></div>
+  <div id="zoom-out" class="ui-helper-btn" data-toggle="tooltip" data-placement="top" data-i18n="[data-original-title]zoom-out"><i class="fas fa-search-minus"></i></div>
+  <div id="zoom-reset" class="ui-helper-btn" data-toggle="tooltip" data-placement="top" data-i18n="[data-original-title]zoom-reset"><i class="fas fa-compress"></i></div>
 
   <!-- Graph change modal -->
   <div class="modal fade" id="graph-change-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Törlés figyelmeztetés</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle" data-i18n="graph-deletion-warning-title"></h5>
         </div>
-        <div class="modal-body">
-          Egy másik gráf típus algoritmusát választotta ki, ezzel a megrajzolt gráf törlődni fog.</span>
-          <br>
-          Folytatni szeretné?
+        <div class="modal-body" data-i18n="[html]graph-deletion-warning-body">
         </div>
         <div class="modal-footer">
-          <button type="button" id="graph-change-cancel-btn" class="btn btn-secondary" data-dismiss="modal">Mégsem</button>
-          <button type="button" id="graph-change-approve-btn"class="btn btn-danger">Igen</button>
+          <button type="button" id="graph-change-cancel-btn" class="btn btn-secondary" data-dismiss="modal" data-i18n="cancel"></button>
+          <button type="button" id="graph-change-approve-btn"class="btn btn-danger" data-i18n="ok"></button>
         </div>
       </div>
     </div>
@@ -185,6 +180,15 @@
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jsPlumb/2.13.0/js/jsplumb.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  <script src="../jquery.i18n/CLDRPluralRuleParser.js"></script>
+  <script src="../jquery.i18n/jquery.i18n.js"></script>
+  <script src="../jquery.i18n/jquery.i18n.messagestore.js"></script>
+  <script src="../jquery.i18n/jquery.i18n.fallbacks.js"></script>
+  <script src="../jquery.i18n/jquery.i18n.language.js"></script>
+  <script src="../jquery.i18n/jquery.i18n.parser.js"></script>
+  <script src="../jquery.i18n/jquery.i18n.emitter.js"></script>
+  <script src="../jquery.i18n/jquery.i18n.emitter.bidi.js"></script>
 
   <script src="../scripts/constants.js"></script>
   <script src="../scripts/motion-controls.js"></script>

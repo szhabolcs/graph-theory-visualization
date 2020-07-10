@@ -1,0 +1,17 @@
+{
+    "welcome-to-graphviser": "Üdv a Graphviser applikációban!",
+    "app-description": "Az alkalmazásunk egy iskolai projekt keretén belül jött létre. <br>Célja a gráfok oktatása egy interaktív és modern módon.",
+    "educational-material-title": "Tananyag",
+    "educational-material-description": "Egy teljes gráf referencia, képekkel, példákkal és kódokkal.",
+    "educational-material-link-text": "Tanagyag megnyítása <i class='fas fa-arrow-right'></i>",
+    "documentation-title": "Dokumentáció",
+    "documentation-description": "Olvass az applikáció működéséről.",
+    "documentation-link-text": "Dokumentáció megnyítása <i class='fas fa-arrow-right'></i>",
+    "application-title": "Applikáció",
+    "application-description": "Egy gráf rajzoló és megoldó applikáció.",
+    "application-link-text": "Tovább az applikációba <i class='fas fa-arrow-right'></i>",
+    "back": "Vissza",
+    "choose-algorithm": "Válasszon ki egy gráf algoritmust",
+    "start-algorithm": "Algoritmus indítása",
+    "theme": "Theme"
+}

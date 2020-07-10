@@ -272,7 +272,7 @@ class VisualNode {
      * Resets the color of it from green
      * @param {jsPlumb|connection} connection The jsPlumb connection to remove the mark from
      */
-    connectionMarkOff(connection) {
+    connectionMarkOff(connection) tree-height-output-text{
         this.jspInstance.select({
             source: connection.source,
             target: connection.target
@@ -284,7 +284,7 @@ class VisualNode {
      * @param {string} message The message that's going to be displayed
      */
     showMessage(message) {
-        this.DOMMessage.html(message);
+        this.DOMMessage.html($.i18n(message));
         this.DOMMessage.fadeIn();
     }
 

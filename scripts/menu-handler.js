@@ -94,13 +94,13 @@ let menuItems = {
     },
     root: [
         {
-            text: "Általános gráfok",
+            text: "general-graph",
             id: "altalanos",
             img: "https://via.placeholder.com/150x100.png?text=Graph+img",
             sectionId: "../#sub-content"
         },
         {
-            text: "Bináris fák",
+            text: "binary-tree",
             id: "binaris",
             img: "https://via.placeholder.com/150x100.png?text=Graph+img",
             sectionId: "../#section-9"
@@ -110,13 +110,13 @@ let menuItems = {
     altalanos: {
         choice: [
             {
-                text: "Irányított",
+                text: "directed",
                 id: "directed",
                 img: "https://via.placeholder.com/150x100.png?text=Graph+img",
                 sectionId: "../#section-3"
             },
             {
-                text: "Irányitatlan",
+                text: "undirected",
                 id: "undirected",
                 img: "https://via.placeholder.com/150x100.png?text=Graph+img",
                 sectionId: "../#section-3"
@@ -124,25 +124,25 @@ let menuItems = {
         ],
         children: [
             {
-                text: "Szélességi bejárás",
+                text: "breadth-first-search",
                 id: "szelessegi-bejaras",
                 img: "https://via.placeholder.com/150x100.png?text=Graph+img",
                 sectionId: "../#section-6-1"
             },
             {
-                text: "Mélységi bejárás",
+                text: "depth-first-search",
                 id: "melysegi-bejaras",
                 img: "https://via.placeholder.com/150x100.png?text=Graph+img",
                 sectionId: "../#section-6-2"
             },
             {
-                text: "Dijkstra algoritmus",
+                text: "dijkstra-algorithm",
                 id: "dijkstra-algoritmus",
                 img: "https://via.placeholder.com/150x100.png?text=Graph+img",
                 sectionId: "../#section-7-1"
             },
             {
-                text: "Kruskal algoritmus",
+                text: "kruskal-algorithm",
                 id: "kruskal-algoritmus",
                 img: "https://via.placeholder.com/150x100.png?text=Graph+img",
                 sectionId: "../#section-8-1"
@@ -152,44 +152,44 @@ let menuItems = {
     binaris: {
         children: [
             {
-                text: "Preorder bejárás",
+                text: "preorder-search",
                 id: "preorder-bejaras",
                 img: "https://via.placeholder.com/150x100.png?text=Graph+img",
                 sectionId: "../#section-12"
 
             },
             {
-                text: "Inorder bejárás",
+                text: "inorder-search",
                 id: "inorder-bejaras",
                 img: "https://via.placeholder.com/150x100.png?text=Graph+img",
                 sectionId: "../#section-12"
             },
             {
-                text: "Postorder bejárás",
+                text: "postorder-search",
                 id: "postorder-bejaras",
                 img: "https://via.placeholder.com/150x100.png?text=Graph+img",
                 sectionId: "../#section-12"
             },
             {
-                text: "Fa magassága",
+                text: "tree-height",
                 id: "fa-magassaga",
                 img: "https://via.placeholder.com/150x100.png?text=Graph+img",
                 sectionId: "../#section-9"
             },
             {
-                text: "Fa levelei",
+                text: "tree-leaves",
                 id: "fa-levelei",
                 img: "https://via.placeholder.com/150x100.png?text=Graph+img",
                 sectionId: "../#section-9"
             },
             {
-                text: "Közvetlen leszármazottak",
+                text: "direct-child-nodes",
                 id: "kozvetlen-leszarmazott",
                 img: "https://via.placeholder.com/150x100.png?text=Graph+img",
                 sectionId: "../#section-9"
             },
             {
-                text: "Közvetett leszármazottak",
+                text: "indirect-child-nodes",
                 id: "kozvetett-leszarmazott",
                 img: "https://via.placeholder.com/150x100.png?text=Graph+img",
                 sectionId: "../#section-9"
@@ -258,7 +258,7 @@ function makeCard(id, img, text, sectionId) {
 
     menuCardAppend = $(menuCardAppend).attr("id", id);
     menuCardAppend = $(menuCardAppend).find("img").attr("src", img).end()[0].outerHTML;
-    menuCardAppend = $(menuCardAppend).find(".navbar-card-text").text(text).end()[0].outerHTML;
+    menuCardAppend = $(menuCardAppend).find(".navbar-card-text").text($.i18n(text)).end()[0].outerHTML;
     menuCardAppend = $(menuCardAppend).find(".read-more-link").attr("href", sectionId).end()[0].outerHTML;
 
     return menuCardAppend;

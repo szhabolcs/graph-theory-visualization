@@ -277,13 +277,13 @@ class GenericGraph {
      * Initializes the tables in the representation section
      */
     initRepresentationTables() {
-        this.tblBooleMatrix = new TableHandler(ID_BOOLE_MATRIX, NAME_BOOLE_MATRIX);
-        this.tblIncidenceMatrix = new TableHandler(ID_INCIDENCE_MATRIX, NAME_INCIDENCE_MATRIX);
-        this.tblAdjacencyList = new TableHandler(ID_ADJACENCY_LIST, NAME_ADJACENCY_LIST);
-        this.tblEdgeList = new TableHandler(ID_EDGE_LIST, NAME_EDGE_LIST);
+        this.tblBooleMatrix = new TableHandler(ID_BOOLE_MATRIX, $.i18n("boolean-matrix"));
+        this.tblIncidenceMatrix = new TableHandler(ID_INCIDENCE_MATRIX, $.i18n("incidence-matrix"));
+        this.tblAdjacencyList = new TableHandler(ID_ADJACENCY_LIST, $.i18n("adjency-list"));
+        this.tblEdgeList = new TableHandler(ID_EDGE_LIST, $.i18n("edge-list"));
         //Init Edge list
-        this.tblEdgeList.addColumn(SOURCE, DISPLAY_SOURCE);
-        this.tblEdgeList.addColumn(TARGET, DISPLAY_TARGET);
+        this.tblEdgeList.addColumn(SOURCE, $.i18n("source"));
+        this.tblEdgeList.addColumn(TARGET, $.i18n("target"));
     }
 
     /**
@@ -806,14 +806,14 @@ class BinaryTree extends GenericGraph {
      * Initializes the tables in the representation section
      */
     initRepresentationTables() {
-        this.tblParentArray = new TableHandler(ID_PARENT_ARRAY, NAME_PARENT_ARRAY);
-        this.tblStandardForm = new TableHandler(ID_STANDARD_FORM, NAME_STANDARD_FORM);
-        this.tblBinaryForm = new TableHandler(ID_BINARY_FORM, NAME_BINARY_FORM);
+        this.tblParentArray = new TableHandler(ID_PARENT_ARRAY, $.i18n("parent-array"));
+        this.tblStandardForm = new TableHandler(ID_STANDARD_FORM, $.i18n("standard-form"));
+        this.tblBinaryForm = new TableHandler(ID_BINARY_FORM, $.i18n("binary-form"));
         //Init Parent array
         this.tblParentArray.addRow('1', null);
         //Init Standard form
-        this.tblStandardForm.addRow(ROW_LEFT.toString(), NAME_LEFT);
-        this.tblStandardForm.addRow(ROW_RIGHT.toString(), NAME_RIGHT);
+        this.tblStandardForm.addRow(ROW_LEFT.toString(), $.i18n("left"));
+        this.tblStandardForm.addRow(ROW_RIGHT.toString(), $.i18n("right"));
         //Init Binary form
         this.tblBinaryForm.addColumn('1', null);
 
@@ -845,7 +845,7 @@ class BinaryTree extends GenericGraph {
             $(".node[id='" + firstRoot + "']").addClass("node-hover");
             this.runAlgorithm(menuItems.selectedAlgorithm);
             this.visualNode.selectedNode = firstRoot;
-            this.visualNode.showMessage(GRAPH_ROOT_SELECTED);
+            this.visualNode.showMessage(GRAPH_ROOT_SELECTED_MSG);
             this.visualNode.removeMessage(1500);
 
         } else {
@@ -869,7 +869,7 @@ class BinaryTree extends GenericGraph {
                 this.inorderSearch(this.root);
                 break;
             case ID_GET_HEIGHT:
-                $("#output-body").text($("#output-body").text() + "A fa magassága: " + this.getHeight(this.root));
+                $("#output-body").text($("#output-body").text() + $.i18n("tree-height-output-text") +": " + this.getHeight(this.root));
                 break;
             case ID_GET_LEAVES:
                 this.getLeaves();

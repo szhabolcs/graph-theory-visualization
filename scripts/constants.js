@@ -3,14 +3,14 @@ const MIN_ZOOM_VALUE = 50;
 const MAX_ZOOM_VALUE = 300;
 
 //MESSAGES
-const STARTUP_NODE_MSG = "Válassz ki egy csomópontot";
-const ROOT_NODE_MSG = "Válassz ki egy gyökeret";
-const EDIT_MODE_ON_WARNING_MSG = "Kapcsold ki a szerkesztő módot előbb";
-const EMPTY_GRAPH_WARNING_MSG = "Készíts egy gráfot előbb";
-const NO_MORE_STEPS_MSG = "Algoritmus vége";
-const NO_PREVIOUS_STEPS_MSG = "Nincs előző lépés";
-const ALGORITHM_NOT_STARTED_MSG = "Indítsd el az algoritmust a <i class='fas fa-play'></i> gombbal előbb";
-const GRAPH_ROOT_SELECTED = "A fa gyökere kiválasztva"
+const STARTUP_NODE_MSG = "choose-node";
+const ROOT_NODE_MSG = "choose-root";
+const EDIT_MODE_ON_WARNING_MSG = "disable-edit-mode-warning";
+const EMPTY_GRAPH_WARNING_MSG = "create-graph-warning";
+const NO_MORE_STEPS_MSG = "no-more-steps-warning";
+const NO_PREVIOUS_STEPS_MSG = "no-previous-steps-warning";
+const ALGORITHM_NOT_STARTED_MSG = "algorithm-not-started-warning";
+const GRAPH_ROOT_SELECTED_MSG = "graph-root-selected"
 
 //CONSTANT STRINGS
 const BINARY_TREE = "binaris";
@@ -18,8 +18,6 @@ const GENERIC_GRAPH = "altalanos";
 const DIRECTED_GRAPH = "directed";
 const UNDIRECTED_GRAPH = "undirected";
 const MENU_ROOT = "root";
-const DISPLAY_SOURCE = "Honnan";
-const DISPLAY_TARGET = "Hova";
 const SOURCE = "source";
 const TARGET = "target";
 
@@ -43,18 +41,6 @@ const ID_GET_HEIGHT = "fa-magassaga";
 const ID_GET_LEAVES = "fa-levelei";
 const ID_GET_DIRECT_CHILDS = "kozvetlen-leszarmazott";
 const ID_GET_INDIRECT_CHILDS = "kozvetett-leszarmazott";
-
-//SECTION NAMES
-const NAME_BOOLE_MATRIX = "Boole-mátrix";
-const NAME_INCIDENCE_MATRIX = "Pont-él mátrix";
-const NAME_ADJACENCY_LIST = "Szomszédsági lista";
-const NAME_EDGE_LIST = "Éllista";
-const NAME_PARENT_ARRAY = "Apa tömb";
-const NAME_BRACKET_REPRESENTATION = "Teljes zárójeles alak";
-const NAME_STANDARD_FORM = "Standard alak";
-const NAME_BINARY_FORM = "Bináris alak";
-const NAME_LEFT = "Bal";
-const NAME_RIGHT = "Jobb";
 
 //CONSTANT TYPES
 const TYPE_LEFT = 0;

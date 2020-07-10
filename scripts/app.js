@@ -74,6 +74,11 @@ $(document).ready(function () {
         }, 1000);
     });
 
+    //Language init
+    $.i18n().load({
+        hu: '../jquery.i18n/languages/hu.json'
+    });
+    $(window).on('load',function(){$('body').i18n();});
 
     //Get the DOM elements
     $Document = $(document);
