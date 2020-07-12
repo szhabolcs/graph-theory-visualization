@@ -1,4 +1,0 @@
-[[redirects]]
-  from = “https://app.graphviser.tools/”
-  to = “https://graphviser.tools/app/:splat”
-  status = 200
