@@ -1,5 +1,5 @@
 [[redirects]]
-  from = "https://app.graphviser.tools/*"
-  to = "https://graphviser.tools/app/:splat"
+  from = "https://app.graphviser.tools/"
+  to = "https://graphviser.tools/app/"
   status = 200
   force = true
