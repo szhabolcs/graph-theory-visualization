@@ -847,6 +847,8 @@ class BinaryTree extends GenericGraph {
             this.visualNode.selectedNode = firstRoot;
             this.visualNode.showMessage(GRAPH_ROOT_SELECTED_MSG);
             this.visualNode.removeMessage(1500);
+            this.visualNode.animationTimer = setInterval(() => this.visualNode.goOneStepForward(), STEP_TIME);
+            this.visualNode.switchToPauseButton();
 
         } else {
             this.visualNode.selectNode(ROOT_NODE_MSG);

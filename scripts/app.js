@@ -78,9 +78,9 @@ $(document).ready(function () {
      * This function returns the value of the given parameter
      * @param {String} name the name of the parameter to read
      */
-    $.urlParam = function(name){
+    $.urlParam = function (name) {
         var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-        if (results==null) {
+        if (results == null) {
             var searchParams = new URLSearchParams(window.location.search)
             searchParams.set("locale", "ro");
             var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
@@ -95,21 +95,20 @@ $(document).ready(function () {
     /**
      * This function sets the locale variable to i18n
      */
-    function setLocale(){
+    function setLocale() {
         locale = $.urlParam("locale");
-        if(locale && locale == "hu") {
+        if (locale && locale == "hu") {
             $.i18n().locale = locale;
-            $("#language-flag > a > img").attr("src","../images/"+"ro"+"_flag.png");
-            $("#language-flag > a").attr("href",location.protocol + '//' + location.host + location.pathname + "?locale=ro");
-        }
-        else {
+            $("#language-flag > a > img").attr("src", "../images/" + "ro" + "_flag.png");
+            $("#language-flag > a").attr("href", location.protocol + '//' + location.host + location.pathname + "?locale=ro");
+        } else {
             $.i18n().locale = "ro";
-            $("#language-flag > a > img").attr("src","../images/"+"hu"+"_flag.png");
-            $("#language-flag > a").attr("href",location.protocol + '//' + location.host + location.pathname + "?locale=hu");
+            $("#language-flag > a > img").attr("src", "../images/" + "hu" + "_flag.png");
+            $("#language-flag > a").attr("href", location.protocol + '//' + location.host + location.pathname + "?locale=hu");
         }
     }
 
-    $(window).on('load',function(){
+    $(window).on('load', function () {
         setLocale();
         let locale = $.urlParam("locale");
 
@@ -118,7 +117,9 @@ $(document).ready(function () {
                 [key]: "../jquery.i18n/languages/" + locale + ".json"
             };
 
-        $.i18n().load(file).done(()=>{$('body').i18n();});
+        $.i18n().load(file).done(() => {
+            $('body').i18n();
+        });
     });
 
     //Get the DOM elements
@@ -268,6 +269,14 @@ $(document).ready(function () {
     $("#play-btn").click(() => {
         jspNode.play();
     });
+
+    /**
+     * Animation pause button listener
+     */
+    $('#pause-btn').click(() => {
+        jspNode.pause();
+    });
+
     /**
      * Animation step forward button listener
      */

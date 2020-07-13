@@ -11,6 +11,7 @@ class VisualNode {
 
     //Animation
     step = -1;
+    animationInitialized = false;
 
     /**
      * The remove button overlay on the connections
@@ -259,7 +260,7 @@ class VisualNode {
      * @param {jsPlumb|connection} connection The jsPlumb connection to mark
      */
     connectionMarkOn(connection) {
-        if(connection.source != null && connection.target != null){
+        if (connection.source != null && connection.target != null) {
             this.jspInstance.select({
                 source: connection.source,
                 target: connection.target
@@ -272,7 +273,7 @@ class VisualNode {
      * Resets the color of it from green
      * @param {jsPlumb|connection} connection The jsPlumb connection to remove the mark from
      */
-    connectionMarkOff(connection){
+    connectionMarkOff(connection) {
         this.jspInstance.select({
             source: connection.source,
             target: connection.target
@@ -293,7 +294,9 @@ class VisualNode {
      * @param {Number} delay Number of ms to delay before message dissapearance
      */
     removeMessage(delay = 0) {
-        setTimeout(()=>{this.DOMMessage.fadeOut();},delay);
+        setTimeout(() => {
+            this.DOMMessage.fadeOut();
+        }, delay);
     }
 
     /**
@@ -307,6 +310,8 @@ class VisualNode {
         DOMContainer.undelegate(".node", "mouseenter mouseleave");
         this.removeMessage();
         this.graph.runAlgorithm(menuItems.selectedAlgorithm);
+        this.animationTimer = setInterval(() => this.goOneStepForward(), STEP_TIME);
+        this.switchToPauseButton();
     }
 
     /**
@@ -341,6 +346,9 @@ class VisualNode {
      * and removes the marks from them.
      */
     resetGraph() {
+        this.animationInitialized = false;
+        clearInterval(this.animationTimer);
+        this.switchToPlayButton();
         this.clearSelectedNode();
         this.graph.resetAlgorithm();
         this.step = -1;
@@ -370,21 +378,19 @@ class VisualNode {
             this.nodeMarkOn(algorithmStep.from);
             this.connectionMarkOn(connection);
             this.nodeMarkOn(algorithmStep.to);
-        }
-        else if (Object.keys(this.graph.adjacencyList) === undefined || Object.keys(this.graph.adjacencyList).length == 0){
+        } else if (Object.keys(this.graph.adjacencyList) === undefined || Object.keys(this.graph.adjacencyList).length == 0) {
             this.showMessage(EMPTY_GRAPH_WARNING_MSG);
             this.removeMessage(2000);
-        }
-        else if (this.editMode == true){
+        } else if (this.editMode == true) {
             this.showMessage(EDIT_MODE_ON_WARNING_MSG);
             this.removeMessage(3000);
-        }
-        else if(this.selectedNode == "n/a"){
+        } else if (this.selectedNode == "n/a") {
             this.showMessage(ALGORITHM_NOT_STARTED_MSG);
             this.removeMessage(3000);
-        }
-        else{
+        } else {
             this.showMessage(NO_MORE_STEPS_MSG);
+            clearInterval(this.animationTimer);
+            this.switchToPlayButton();
             this.removeMessage(2000);
         }
     }
@@ -403,20 +409,16 @@ class VisualNode {
             this.nodeMarkOff(algorithmStep.to);
             this.connectionMarkOff(connection);
             this.step--;
-        }
-        else if (Object.keys(this.graph.adjacencyList) === undefined || Object.keys(this.graph.adjacencyList).length == 0){
+        } else if (Object.keys(this.graph.adjacencyList) === undefined || Object.keys(this.graph.adjacencyList).length == 0) {
             this.showMessage(EMPTY_GRAPH_WARNING_MSG);
             this.removeMessage(2000);
-        }
-        else if (this.editMode == true){
+        } else if (this.editMode == true) {
             this.showMessage(EDIT_MODE_ON_WARNING_MSG);
             this.removeMessage(3000);
-        }
-        else if(this.selectedNode == "n/a"){
+        } else if (this.selectedNode == "n/a") {
             this.showMessage(ALGORITHM_NOT_STARTED_MSG);
             this.removeMessage(3000);
-        }
-        else{
+        } else {
             this.showMessage(NO_PREVIOUS_STEPS_MSG);
             this.removeMessage(2000);
         }
@@ -426,31 +428,54 @@ class VisualNode {
      * Plays the animation
      */
     play() {
-        if (Object.keys(this.graph.adjacencyList) === undefined || Object.keys(this.graph.adjacencyList).length == 0){
+        if (this.animationInitialized === false) {
+            this.initAnimation();
+            this.animationInitialized = true;
+        } else {
+            this.animationTimer = setInterval(() => this.goOneStepForward(), STEP_TIME);
+            this.switchToPauseButton();
+        }
+    }
+
+    /**
+     * Initializes the animation
+     */
+    initAnimation() {
+        if (Object.keys(this.graph.adjacencyList) === undefined || Object.keys(this.graph.adjacencyList).length == 0) {
             this.showMessage(EMPTY_GRAPH_WARNING_MSG);
             this.removeMessage(2000);
-        }
-        else if (this.editMode == true){
+        } else if (this.editMode == true) {
             this.showMessage(EDIT_MODE_ON_WARNING_MSG);
             this.removeMessage(3000);
-        }
-        else{
+        } else {
             this.selectNode(STARTUP_NODE_MSG);
         }
+
     }
 
     /**
      * Pauses the animation
      */
     pause() {
+        clearInterval(this.animationTimer);
+        this.switchToPlayButton();
+    }
 
+
+    /**
+     * Switches to play button
+     */
+    switchToPlayButton() {
+        $('#pause-btn').hide();
+        $('#play-btn').show();
     }
 
     /**
-     * Continues playing the animation
+     * Switches to pause button
      */
-    continueAnimation() {
-
+    switchToPauseButton() {
+        $('#play-btn').hide();
+        $('#pause-btn').show();
     }
 
     //Getters and setters
@@ -653,7 +678,7 @@ class UnDirectedNode extends VisualNode {
      * @param {jsPlumb|connection} connection The jsPlumb connection to mark
      */
     connectionMarkOn(connection) {
-        if(connection.source != null && connection.target != null){
+        if (connection.source != null && connection.target != null) {
             this.jspInstance.select({
                 source: connection.source,
                 target: connection.target
@@ -664,7 +689,7 @@ class UnDirectedNode extends VisualNode {
                 target: connection.source
             }).addClass("connection-mark");
         }
-        
+
     }
 
 
@@ -852,6 +877,9 @@ class BinaryNode extends VisualNode {
      * and removes the marks from them.
      */
     resetGraph() {
+        this.animationInitialized = false;
+        clearInterval(this.animationTimer);
+        this.switchToPlayButton();
         this.clearSelectedNode();
         this.graph.resetAlgorithm();
         this.step = -1;
@@ -880,21 +908,19 @@ class BinaryNode extends VisualNode {
             };
             this.nodeMarkOn(algorithmStep.node);
             this.connectionMarkOn(connection);
-        }
-        else if (Object.keys(this.graph.standardForm) === undefined || Object.keys(this.graph.standardForm).length == 0){
+        } else if (Object.keys(this.graph.standardForm) === undefined || Object.keys(this.graph.standardForm).length == 0) {
             this.showMessage(EMPTY_GRAPH_WARNING_MSG);
             this.removeMessage(2000);
-        }
-        else if (this.editMode == true){
+        } else if (this.editMode == true) {
             this.showMessage(EDIT_MODE_ON_WARNING_MSG);
             this.removeMessage(3000);
-        }
-        else if(this.selectedNode == "n/a"){
+        } else if (this.selectedNode == "n/a") {
             this.showMessage(ALGORITHM_NOT_STARTED_MSG);
             this.removeMessage(3000);
-        }
-        else{
+        } else {
             this.showMessage(NO_MORE_STEPS_MSG);
+            clearInterval(this.animationTimer);
+            this.switchToPlayButton();
             this.removeMessage(2000);
         }
     }
@@ -913,20 +939,16 @@ class BinaryNode extends VisualNode {
             this.nodeMarkOff(algorithmStep.node);
             this.connectionMarkOff(connection);
             this.step--;
-        }
-        else if (Object.keys(this.graph.standardForm) === undefined || Object.keys(this.graph.standardForm).length == 0){
+        } else if (Object.keys(this.graph.standardForm) === undefined || Object.keys(this.graph.standardForm).length == 0) {
             this.showMessage(EMPTY_GRAPH_WARNING_MSG);
             this.removeMessage(2000);
-        }
-        else if (this.editMode == true){
+        } else if (this.editMode == true) {
             this.showMessage(EDIT_MODE_ON_WARNING_MSG);
             this.removeMessage(3000);
-        }
-        else if(this.selectedNode == "n/a"){
+        } else if (this.selectedNode == "n/a") {
             this.showMessage(ALGORITHM_NOT_STARTED_MSG);
             this.removeMessage(3000);
-        }
-        else{
+        } else {
             this.showMessage(NO_PREVIOUS_STEPS_MSG);
             this.removeMessage(2000);
         }
@@ -934,18 +956,16 @@ class BinaryNode extends VisualNode {
 
 
     /**
-     * Plays the animation
+     * Initializes the animation
      */
-    play() {
-        if (Object.keys(this.graph.standardForm) === undefined || Object.keys(this.graph.standardForm).length == 0){
+    initAnimation() {
+        if (Object.keys(this.graph.standardForm) === undefined || Object.keys(this.graph.standardForm).length == 0) {
             this.showMessage(EMPTY_GRAPH_WARNING_MSG);
             this.removeMessage(2000);
-        }
-        else if (this.editMode == true){
+        } else if (this.editMode == true) {
             this.showMessage(EDIT_MODE_ON_WARNING_MSG);
             this.removeMessage(3000);
-        }
-        else{
+        } else {
             this.graph.searchRootNode();
         }
     }

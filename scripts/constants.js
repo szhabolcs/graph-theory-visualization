@@ -1,6 +1,7 @@
 //CONSTANTS
 const MIN_ZOOM_VALUE = 50;
 const MAX_ZOOM_VALUE = 300;
+const STEP_TIME = 300;
 
 //MESSAGES
 const STARTUP_NODE_MSG = "choose-node";
