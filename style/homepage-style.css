@@ -7,7 +7,7 @@ html[data-theme='dark'] { /* Dark theme variables */
   --gray: #444444;
 
   --background-color: #222831;
-  --text-color: #ededed;
+  --text-color: #FFFFFF;
 
   --side-menu-color: #FFFFFF;
 
@@ -16,6 +16,8 @@ html[data-theme='dark'] { /* Dark theme variables */
 
   --pastel-green: #A8D08D;	
   --light-gray: #AEAAAA;
+
+  --card-overlay: #ffffffb8;
 }
 
 html[data-theme='light'] { /* Light theme variables */
@@ -36,6 +38,8 @@ html[data-theme='light'] { /* Light theme variables */
 
   --pastel-green: #A8D08D;	
   --light-gray: #AEAAAA;
+
+  --card-overlay: #393e45e0;
 }
 
 html.color-theme-in-transition,
@@ -50,6 +54,7 @@ body {
   font-family: 'Roboto', sans-serif;
   margin: 0px;
   background-color: var(--background-color);
+  overflow-x: hidden;
 }
 
 b, strong{
@@ -109,6 +114,7 @@ b, strong{
 #main-content {
   transition: margin-left .5s;
   padding: 0px;
+  overflow: hidden;
 }
 
 @media screen and (max-height: 450px) {
@@ -321,4 +327,74 @@ h2{
 /* Fixes EXIF orientation problem on Mozilla and Edge */
 img{
   image-orientation: from-image;
+}
+
+/* Question cards */
+.cardslider-container{
+  width: 100%;
+  height: 500px;
+}
+.cardslider__card{
+  border: solid transparent 24px; /* Using this instead of padding to fix overflowing issue */
+  background-color: var(--text-color);
+  color: var(--gray);
+  max-width: 600px;
+  overflow-y: hidden;
+}
+.question-step{
+  font-size: 1em;
+  font-weight: 500;
+  padding-bottom: 5px;
+}
+.question-text{
+  font-size: 1.2em;
+  max-width: 550px;
+  margin: 0 auto;
+  padding-right: 5px;
+}
+.question-body{
+  overflow-y: auto;
+  height: 95%;
+}
+.cardslider{
+  width: 50%;
+}
+.blur{
+  filter: blur(5px);
+}
+
+.card-overlay{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  transform: translate(0px, -97%);
+  z-index: 5;
+  background-color: var(--card-overlay);
+  overflow-x: hidden;
+}
+
+@media only screen and (max-width: 1260px) {
+  .cardslider{
+    width: 100% !important;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .inputGroup label{
+    width: 50% !important;
+  }
+}
+@media only screen and (max-width: 375px) {
+  .inputGroup label{
+    width: 65%;
+  }
+}
+@media only screen and (max-width: 425px) {
+  .inputGroup label{
+    width: 70%;
+  }
+}
+@media only screen and (max-width: 650px) {
+  .inputGroup label{
+    width: 70%;
+  }
 }
