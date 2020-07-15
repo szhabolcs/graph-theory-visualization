@@ -65,6 +65,12 @@
     "algorithm-not-started-warning": "Pornește algoritmul cu butonul <i class='fas fa-play'></i> mai întâi",
     "graph-root-selected": "Rădăcina arborelui aleasă",
     "tree-height-output-text": "Înălțimea arborului",
+    "reset": "Resetare",
+    "play": "Start",
+    "pause": "Pauză",
+    "step-fw": "Pas înainte",
+    "step-bw": "Pas înapoi",
+    "tree-height-output-text": "Înălțimea arborului",
     "close-ok": "OK",
     "no-algorithm-selected-title": "Atenție",
     "no-algorithm-selected-body": "Nu ai ales un algoritm."

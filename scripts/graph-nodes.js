@@ -253,7 +253,7 @@ class VisualNode {
     /**
      * Disables the edit mode for the graph editor.
      * Sets new connection endpoint to invisible, disables the text input on the node,
-     * disables the remove buttons and switches on view mode.
+     * disables the remove buttons and switches in view mode.
      *
      */
     disableEditMode() {
@@ -264,7 +264,6 @@ class VisualNode {
         $(".remove-btn").addClass("hidden");
         $(".node").addClass("in-view-mode");
         this.editMode = false;
-        this.setWeights();
     }
 
     /**
@@ -662,6 +661,16 @@ class DirectedNode extends VisualNode {
         });
     }
 
+    /**
+     * Disables the edit mode for the graph editor.
+     * Sets new connection endpoint to invisible, disables the text input on the node,
+     * disables the remove buttons and switches in view mode.
+     *
+     */
+    disableEditMode() {
+        super.disableEditMode();
+        this.setWeights();
+    }
 }
 
 /**
@@ -778,6 +787,16 @@ class UnDirectedNode extends VisualNode {
             target: connection.source
         }).removeClass("connection-mark");
     }
+    /**
+     * Disables the edit mode for the graph editor.
+     * Sets new connection endpoint to invisible, disables the text input on the node,
+     * disables the remove buttons and switches in view mode.
+     *
+     */
+    disableEditMode() {
+        super.disableEditMode();
+        this.setWeights();
+    }
 }
 
 /**
@@ -861,9 +880,7 @@ class BinaryNode extends VisualNode {
         this.jspInstance.addEndpoint(insertedBox, {
             isTarget: true,
             anchor: [
-                [0.5, 0, 0, 0],
-                [0.2, 0.1, 0, 0],
-                [0.8, 0.1, 0, 0]
+                [0.5, 0, 0, 0]
             ],
             deleteEndpointsOnDetach: false,
             allowLoopback: false,

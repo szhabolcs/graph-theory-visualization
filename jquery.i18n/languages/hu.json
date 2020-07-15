@@ -67,5 +67,11 @@
     "tree-height-output-text": "A fa magassága",
     "close-ok": "OK",
     "no-algorithm-selected-title": "Vigyázat",
-    "no-algorithm-selected-body": "Nem választottál ki egy algoritmust."
+    "no-algorithm-selected-body": "Nem választottál ki egy algoritmust.",
+    "tree-height-output-text": "A fa magassága",
+    "reset": "Újraindítás",
+    "play": "Lejátszás",
+    "pause": "Szünet",
+    "step-fw": "Lépés előre",
+    "step-bw": "Lépés hátra"
 }
