@@ -140,7 +140,7 @@ class VisualNode {
         let edge = {
             source: $weightInputOverlay.data("source"),
             target: $weightInputOverlay.data("target"),
-            weight: $weightInput.val()
+            weight: Number.parseInt($weightInput.val())
         };
         indexOfEdge = this.graph.searchEdge(edge);
         this.graph.updateWeight(edge, indexOfEdge);

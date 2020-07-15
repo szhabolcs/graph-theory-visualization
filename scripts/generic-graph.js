@@ -441,9 +441,56 @@ class GenericGraph {
 
     /**
      * Dijkstra algorithm
+     * @param {String} starterNode The node we start the algorithm from
      */
-    dijkstra() {
-
+    dijkstra(starterNode) {
+        let routeSizes = [], visitedNodes = [];
+        let ok;
+        let minimum;
+        let k;
+        this.algorithmOutput.push({
+            from: null,
+            to: starterNode,
+            log: VisualNode.getValueByNodeId(starterNode)
+        });
+        for (let i in this.booleMatrix) {
+            if (this.booleMatrix[starterNode][i] > 0) {
+                routeSizes[i] = this.booleMatrix[starterNode][i];
+                this.algorithmOutput.push({
+                    from: starterNode,
+                    to: i,
+                    log: VisualNode.getValueByNodeId(i)
+                });
+            } else routeSizes[i] = Infinity;
+        }
+        routeSizes[starterNode] = 0;
+        visitedNodes[starterNode] = 1;
+        ok = 1;
+        while (ok) {
+            minimum = Infinity;
+            for (let i in this.booleMatrix) {
+                if (routeSizes[i] < minimum && visitedNodes[i] === undefined) {
+                    minimum = routeSizes[i];
+                    k = i;
+                }
+            }
+            if (minimum === Infinity)
+                ok = 0;
+            else {
+                visitedNodes[k] = 1;
+                for (let i in this.booleMatrix) {
+                    if (this.booleMatrix[k][i] > 0)
+                        if (minimum + this.booleMatrix[k][i] < routeSizes[i]) {
+                            routeSizes[i] = minimum + this.booleMatrix[k][i];
+                            this.algorithmOutput.push({
+                                from: k,
+                                to: i,
+                                log: VisualNode.getValueByNodeId(i)
+                            });
+                        }
+                }
+            }
+        }
     }
 
     /**
