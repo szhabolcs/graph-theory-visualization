@@ -229,7 +229,7 @@ class GenericGraph {
      * Updates the weight values in the representation tables
      * @param {Object} edge The edge we update in the tables with included weight value
      */
-    updateWeightInTables(edge, indexOfEdge){
+    updateWeightInTables(edge, indexOfEdge) {
         //Boole matrix
         this.tblBooleMatrix.updateTable(edge.source, edge.target, edge.weight);
 
@@ -338,6 +338,18 @@ class GenericGraph {
                 indexOfEdge = i;
         }
         return indexOfEdge;
+    }
+
+    /**
+     * Checks whether all the weights are equal or not
+     */
+    checkWeights() {
+        const firstWeight = 1;
+        for (let i in this.edgeList) {
+            if (this.edgeList[i].weight !== firstWeight)
+                return true;
+        }
+        return false;
     }
 
     //2. Basic Algorithms
@@ -693,6 +705,7 @@ class UndirectedGraph extends GenericGraph {
         super.removeNode(indexOfNode);
 
     }
+
     /**
      * Update a weight in memory
      * @param {Object} edge The actual edge we want to update with included weight information

@@ -238,11 +238,14 @@ class VisualNode {
      */
     enableEditMode() {
         const $nodeText = $(".node-text");
+        const $weightText = $(".weight-text");
         $(".tilde").removeClass("hidden");
         $nodeText.addClass("node-text-border");
         $nodeText.prop('disabled', false);
+        $weightText.prop('disabled', false);
         $(".remove-btn").removeClass("hidden");
         $(".node").removeClass("in-view-mode");
+        $weightText.removeClass("hidden");
         this.editMode = true;
         this.resetGraph();
     }
@@ -261,6 +264,7 @@ class VisualNode {
         $(".remove-btn").addClass("hidden");
         $(".node").addClass("in-view-mode");
         this.editMode = false;
+        this.setWeights();
     }
 
     /**
@@ -521,6 +525,21 @@ class VisualNode {
     switchToPauseButton() {
         $('#play-btn').hide();
         $('#pause-btn').show();
+    }
+
+    /**
+     * Checks whether weights are used or not and shows or hides them
+     */
+    setWeights() {
+        const weightsUsed = this.graph.checkWeights();
+        const $weightText = $('.weight-text');
+        if (weightsUsed === false) {
+            $weightText.addClass('hidden');
+            this.graph.tblEdgeList.hideColumn(WEIGHT);
+        } else {
+            this.graph.tblEdgeList.showColumn(WEIGHT);
+            $weightText.prop('disabled', true);
+        }
     }
 
     //Getters and setters
