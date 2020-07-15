@@ -512,12 +512,29 @@ class GenericGraph {
         let components = [];
         let source, target;
         let sum = 0;
+        let minimum;
+        let temp;
         //sort the edge list
-        this.edgeList.sort((a, b) => {
-            if (a.weight < b.weight)
-                return -1;
-            return 1;
-        });
+        for (let i = 0; i < this.edgeList.length - 1; i++) {
+            if (this.edgeList[i] !== undefined) {
+                minimum = i;
+                for (let j = i + 1; j < this.edgeList.length; j++) {
+                    if (this.edgeList[j] !== undefined && this.edgeList[j].weight < this.edgeList[minimum].weight) minimum = j;
+                }
+                temp = this.edgeList[i];
+                this.edgeList[i] = this.edgeList[minimum];
+                this.edgeList[minimum] = temp;
+
+                this.tblEdgeList.updateTable((i + 1).toString(), SOURCE, VisualNode.getValueByNodeId(this.edgeList[i].source));
+                this.tblEdgeList.updateTable((i + 1).toString(), TARGET, VisualNode.getValueByNodeId(this.edgeList[i].target));
+                this.tblEdgeList.updateTable((i + 1).toString(), WEIGHT, this.edgeList[i].weight.toString());
+
+                this.tblEdgeList.updateTable((minimum + 1).toString(), SOURCE, VisualNode.getValueByNodeId(this.edgeList[minimum].source));
+                this.tblEdgeList.updateTable((minimum + 1).toString(), TARGET, VisualNode.getValueByNodeId(this.edgeList[minimum].target));
+                this.tblEdgeList.updateTable((minimum + 1).toString(), WEIGHT, this.edgeList[minimum].weight.toString());
+            }
+
+        }
 
         this.algorithmOutput.push({
             log: EDGE_LIST_SORT

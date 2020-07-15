@@ -482,10 +482,15 @@ class VisualNode {
      */
     initAnimation() {
         if (menuItems.selectedAlgorithm === ID_KRUSKAL) {
-            this.graph.runAlgorithm(menuItems.selectedAlgorithm);
-            this.animationInitialized = true;
-            this.animationTimer = setInterval(() => this.goOneStepForward(), STEP_TIME);
-            this.switchToPauseButton();
+            if (this.editMode == true) {
+                this.showMessage(EDIT_MODE_ON_WARNING_MSG);
+                this.removeMessage(3000);
+            }else {
+                this.graph.runAlgorithm(menuItems.selectedAlgorithm);
+                this.animationInitialized = true;
+                this.animationTimer = setInterval(() => this.goOneStepForward(), STEP_TIME);
+                this.switchToPauseButton();
+            }
         } else {
 
             if (Object.keys(this.graph.adjacencyList) === undefined || Object.keys(this.graph.adjacencyList).length == 0) {
