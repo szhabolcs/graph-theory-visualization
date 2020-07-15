@@ -1,7 +1,7 @@
 //CONSTANTS
 const MIN_ZOOM_VALUE = 50;
 const MAX_ZOOM_VALUE = 300;
-const STEP_TIME = 300;
+const STEP_TIME = 500;
 
 //MESSAGES
 const STARTUP_NODE_MSG = "choose-node";
@@ -21,6 +21,7 @@ const UNDIRECTED_GRAPH = "undirected";
 const MENU_ROOT = "root";
 const SOURCE = "source";
 const TARGET = "target";
+const WEIGHT = "weight";
 
 //IDS
 const ID_BOOLE_MATRIX = "pont-pont-matrix";
@@ -51,6 +52,12 @@ const TYPE_RIGHT = 1;
 const ROW_LEFT = '1';
 const ROW_RIGHT = '2';
 
+//CSS CLASS
+const CLASS_HIDDEN = "hidden";
+
+//BOOLEANS
+const HIDDEN = true;
+
 //CONSTANT HTML
 const REMOVE_BTN_HTML = "<div class='remove-btn'>" +
     "<i class='fas fa-minus-circle'></i>" +
@@ -73,6 +80,10 @@ const MENU_CARD = '<div class="container navbar-card my-auto">' +
     '      </div>' +
     '      <a href="" class="read-more-link"><div class="read-more"><i class="fas fa-info-circle"></i></div></a>' +
     '    </div>';
+
+const WEIGHT_INPUT_HTML = "<div class='input-group mx-auto'>" +
+    "<input type='text' value='1' class='weight-text text-center weight-text-border'>" +
+    "</div>";
 
 const TABLE_SECTION = "<div class='representation-section'>" +
     "<span class='section-header'></span>" +

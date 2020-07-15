@@ -11,7 +11,7 @@ class TableHandler {
     numberOfColumns = 0;
 
     /**
-     * 
+     *
      * @param {String} sectionId the id of the section to be created
      * @param {String} sectionName the name to be displayed at the section
      */
@@ -82,9 +82,13 @@ class TableHandler {
      * Adds a column to the DOM table
      * @param {string} j Id of the column
      * @param {string} value Value of the column header
+     * @param {boolean} hidden Set this to HIDDEN if you want to hide the column
      */
-    addColumn(j, value) {
+    addColumn(j, value, hidden = false) {
         this.DOMTable.children("tr").append("<td data-j=" + j + ">0</td>");
+        if (hidden === HIDDEN) {
+            this.addTableClass(0, j, CLASS_HIDDEN);
+        }
         this.updateTable(0, j, value);
         this.numberOfColumns++;
     }
@@ -115,6 +119,42 @@ class TableHandler {
      */
     updateTable(i, j, value) {
         this.DOMTable.find("tr[data-i=" + i + "]" + ">" + "td[data-j=" + j + "]").text(value);
+    }
+
+    /**
+     * Adds a CSS Class to a specific entry in the table
+     * @param {string} i Id of the row
+     * @param {string} j Id of the column
+     * @param {string} cssClass CSS Class to be added
+     */
+    addTableClass(i, j, cssClass) {
+        this.DOMTable.find("tr[data-i=" + i + "]" + ">" + "td[data-j=" + j + "]").addClass(cssClass);
+    }
+
+    /**
+     * Shows a hidden column
+     * @param {string} j Id of the column
+     */
+    showColumn(j) {
+        $('td[data-j=' + j + ']').removeClass(CLASS_HIDDEN);
+    }
+
+    /**
+     * Hides a hidden column
+     * @param {string} j Id of the column
+     */
+    hideColumn(j) {
+        $('td[data-j=' + j + ']').addClass(CLASS_HIDDEN);
+    }
+
+    /**
+     * Removes a CSS Class from a specific entry in the table
+     * @param {string} i Id of the row
+     * @param {string} j Id of the column
+     * @param {string} cssClass CSS Class to be removed
+     */
+    removeTableClass(i, j, cssClass) {
+        this.DOMTable.find("tr[data-i=" + i + "]" + ">" + "td[data-j=" + j + "]").removeClass(cssClass);
     }
 
     /**

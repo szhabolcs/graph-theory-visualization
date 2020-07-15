@@ -33,8 +33,17 @@ class VisualNode {
                 this.jspInstance.select(removeButtonOverlay.component).removeClass("connection-hover");
             }
         },
-        location: 0.5,
+        location: 0.75,
         id: "remove-button-overlay"
+    }];
+
+    weightInputOverlay = ["Custom", {
+        create: (component) => {
+            return $(WEIGHT_INPUT_HTML);
+        },
+
+        location: 0.25,
+        id: "weight-input-overlay"
     }];
 
     /**
@@ -52,6 +61,8 @@ class VisualNode {
 
         //Binding the event listeners
         this.jspInstance.bind("connection", (eventInfo) => this.onConnect(eventInfo));
+        $Document.off("change", ".weight-text");
+        $Document.on("change", ".weight-text", (eventInfo) => this.onWeightChange(eventInfo));
     }
 
     //Event Listeners
@@ -61,6 +72,14 @@ class VisualNode {
      * @param {Object} eventInfo Information about the event
      */
     onConnect(eventInfo) {
+
+        //Adds source and target to overlay metadata
+        const $weightInputOverlay = $(eventInfo.connection._jsPlumb.overlays['weight-input-overlay'].canvas);
+        $weightInputOverlay.data({
+            "source": eventInfo.sourceId,
+            "target": eventInfo.targetId
+        });
+
         if (this.sameEndpoint === false) {
             this.jspInstance.selectEndpoints(
                 {
@@ -107,6 +126,25 @@ class VisualNode {
                 this.graph.tblEdgeList.updateTable((Number.parseInt(i) + 1).toString(), TARGET, nodeText);
         }
 
+    }
+
+    /**
+     * onWeightChange Event Listener Callback
+     * Changes the weight of the edge in memory.
+     * @param {Object} eventInfo Information about the event
+     */
+    onWeightChange(eventInfo) {
+        const $weightInput = $(eventInfo.target);
+        const $weightInputOverlay = $weightInput.parent();
+        let indexOfEdge;
+        let edge = {
+            source: $weightInputOverlay.data("source"),
+            target: $weightInputOverlay.data("target"),
+            weight: $weightInput.val()
+        };
+        indexOfEdge = this.graph.searchEdge(edge);
+        this.graph.updateWeight(edge, indexOfEdge);
+        this.graph.updateWeightInTables(edge, indexOfEdge);
     }
 
     //Base and Helper functions
@@ -430,7 +468,6 @@ class VisualNode {
     play() {
         if (this.animationInitialized === false) {
             this.initAnimation();
-            this.animationInitialized = true;
         } else {
             this.animationTimer = setInterval(() => this.goOneStepForward(), STEP_TIME);
             this.switchToPauseButton();
@@ -449,6 +486,7 @@ class VisualNode {
             this.removeMessage(3000);
         } else {
             this.selectNode(STARTUP_NODE_MSG);
+            this.animationInitialized = true;
         }
 
     }
@@ -560,7 +598,8 @@ class DirectedNode extends VisualNode {
         } else {
             const edge = {
                 source: $(eventInfo.source).attr("id"),
-                target: $(eventInfo.target).attr("id")
+                target: $(eventInfo.target).attr("id"),
+                weight: 1
             };
             this.graph.addNewEdge(edge);
             this.graph.addEdgeToTable(edge);
@@ -591,7 +630,8 @@ class DirectedNode extends VisualNode {
             connector: "Straight",
             connectorOverlays: [
                 ["PlainArrow", {width: 15, location: 1, height: 10, id: "arrow"}],
-                this.removeBtnOverlay
+                this.removeBtnOverlay,
+                this.weightInputOverlay
             ]
         });
     }
@@ -633,7 +673,8 @@ class UnDirectedNode extends VisualNode {
         } else {
             const edge = {
                 source: $(eventInfo.source).attr("id"),
-                target: $(eventInfo.target).attr("id")
+                target: $(eventInfo.target).attr("id"),
+                weight: 1
             };
             this.graph.addNewEdge(edge);
             this.graph.addEdgeToTable(edge);
@@ -666,7 +707,8 @@ class UnDirectedNode extends VisualNode {
             allowLoopback: false,
             connectorOverlays: [
                 ["PlainArrow", {width: 15, location: 1, height: 10, id: "arrow", cssClass: "hidden"}],
-                this.removeBtnOverlay
+                this.removeBtnOverlay,
+                this.weightInputOverlay
             ]
         });
     }

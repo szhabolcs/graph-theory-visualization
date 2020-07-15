@@ -90,6 +90,21 @@ html{
 .node-text-border {
     border-bottom: 1.5px solid !important;
 }
+.weight-text {
+    width: 40px;
+    height: 40px;
+    font-size: 2em;
+    font-weight: 500;
+    opacity: 1;
+    background-color: white !important;
+    border: none !important;
+    border-radius: 0px !important;
+    padding: 0px !important;
+    color: black;
+}
+.weight-text-border {
+    border-bottom: 1.5px solid !important;
+}
 .remove-btn{
     position: absolute;
     color: var(--danger);

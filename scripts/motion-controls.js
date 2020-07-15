@@ -185,6 +185,7 @@ function loadMotionControls() {
     DOMContainer.on("wheel", (event) => onScroll(event));
     $Document.on("mousedown", "#container", (event) => onMouseDown(event));
     $Document.on("mousedown", ".node-text", (eventInfo) => eventInfo.stopPropagation());
+    $Document.on("mousedown", ".weight-text", (eventInfo) => eventInfo.stopPropagation());
 }
 
 /**

@@ -55,6 +55,7 @@
     "right": "Dreapta",
     "source": "De la",
     "target": "La",
+    "weight": "Cost",
     "choose-node": "Alege un nod",
     "choose-root": "Alege o rădăcină",
     "disable-edit-mode-warning": "Dezactivează mai întâi modul de editare",

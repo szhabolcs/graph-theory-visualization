@@ -55,6 +55,7 @@
     "right": "Jobb",
     "source": "Honnan",
     "target": "Hova",
+    "weight": "Súly",
     "choose-node": "Válassz ki egy csomópontot",
     "choose-root": "Válassz ki egy gyökeret",
     "disable-edit-mode-warning": "Kapcsold ki a szerkesztő módot előbb",

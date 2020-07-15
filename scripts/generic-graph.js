@@ -85,7 +85,6 @@ class GenericGraph {
         this.numberOfEdges++;
 
         //Adding the edge to the boole matrix
-        //todo Weight goes here
         this.booleMatrix[edge.source][edge.target] = 1;
 
         //Adding the edge to the incidence matrix
@@ -114,7 +113,6 @@ class GenericGraph {
         const targetNode = $("div[id='" + target + "']");
 
         //Boole matrix
-        //todo weight goes here
         this.tblBooleMatrix.updateTable(source, target, '1');
 
         //Incidence matrix
@@ -129,6 +127,7 @@ class GenericGraph {
         this.tblEdgeList.pushRow((this.edgeList.length).toString());
         this.tblEdgeList.updateTable((this.edgeList.length).toString(), SOURCE, VisualNode.getValueFromNode(sourceNode));
         this.tblEdgeList.updateTable((this.edgeList.length).toString(), TARGET, VisualNode.getValueFromNode(targetNode));
+        this.tblEdgeList.updateTable((this.edgeList.length).toString(), WEIGHT, '1');
 
     }
 
@@ -188,11 +187,7 @@ class GenericGraph {
 
         //Remove from the edge list
         if (indexOfEdge === null) {
-            for (let i in this.edgeList) {
-                if (this.edgeList[i].source === edge.source &&
-                    this.edgeList[i].target === edge.target)
-                    indexOfEdge = i;
-            }
+            indexOfEdge = this.searchEdge(edge);
         }
         delete this.edgeList[indexOfEdge];
 
@@ -228,6 +223,19 @@ class GenericGraph {
 
         //Edge list
         this.tblEdgeList.removeRow((Number.parseInt(indexOfEdge) + 1).toString());
+    }
+
+    /**
+     * Updates the weight values in the representation tables
+     * @param {Object} edge The edge we update in the tables with included weight value
+     */
+    updateWeightInTables(edge, indexOfEdge){
+        //Boole matrix
+        this.tblBooleMatrix.updateTable(edge.source, edge.target, edge.weight);
+
+        //Edge list
+        indexOfEdge++;
+        this.tblEdgeList.updateTable(indexOfEdge.toString(), WEIGHT, edge.weight.toString());
     }
 
     /**
@@ -284,6 +292,7 @@ class GenericGraph {
         //Init Edge list
         this.tblEdgeList.addColumn(SOURCE, $.i18n("source"));
         this.tblEdgeList.addColumn(TARGET, $.i18n("target"));
+        this.tblEdgeList.addColumn(WEIGHT, $.i18n("weight"), HIDDEN);
     }
 
     /**
@@ -315,6 +324,20 @@ class GenericGraph {
                 this.kruskal();
                 break;
         }
+    }
+
+    /**
+     * Searches for an edge in the edge list and returns its index
+     * @param {Object} edge The actual edge we search for
+     */
+    searchEdge(edge) {
+        let indexOfEdge;
+        for (let i in this.edgeList) {
+            if (this.edgeList[i].source === edge.source &&
+                this.edgeList[i].target === edge.target)
+                indexOfEdge = i;
+        }
+        return indexOfEdge;
     }
 
     //2. Basic Algorithms
@@ -522,7 +545,6 @@ class UndirectedGraph extends GenericGraph {
         super.addNewEdge(edge);
         //Adding reverse edges where is necessary
         //Boole matrix
-        //todo Weight goes here
         this.booleMatrix[edge.target][edge.source] = 1;
 
         //Adjacency list
@@ -542,7 +564,6 @@ class UndirectedGraph extends GenericGraph {
         const sourceNode = $("div[id='" + source + "']");
 
         //Boole matrix
-        //todo weight goes here
         this.tblBooleMatrix.updateTable(target, source, '1');
 
         //Adjacency list
@@ -575,7 +596,7 @@ class UndirectedGraph extends GenericGraph {
         //Boole matrix
         this.tblBooleMatrix.updateTable(edge.target, edge.source, '0');
 
-        //todo Adjacency list
+        //Adjacency list
         this.tblAdjacencyList.removeElement(edge.target, edge.source);
 
     }
@@ -586,6 +607,20 @@ class UndirectedGraph extends GenericGraph {
      */
     removeNode(indexOfNode) {
         super.removeNode(indexOfNode);
+
+    }
+    /**
+     * Update a weight in memory
+     * @param {Object} edge The actual edge we want to update with included weight information
+     * @param {number} indexOfEdge The index of the edge we want to edit
+     */
+    updateWeight(edge, indexOfEdge) {
+        //Boole matrix
+        this.booleMatrix[edge.source][edge.target] = edge.weight;
+        this.booleMatrix[edge.target][edge.source] = edge.weight;
+
+        //Edge list
+        this.edgeList[indexOfEdge].weight = edge.weight;
 
     }
 
@@ -638,6 +673,19 @@ class DirectedGraph extends GenericGraph {
         super.removeNode(indexOfNode);
     }
 
+    /**
+     * Update a weight in memory
+     * @param {Object} edge The actual edge we want to update with included weight information
+     * @param {number} indexOfEdge The index of the edge we want to edit
+     */
+    updateWeight(edge, indexOfEdge) {
+        //Boole matrix
+        this.booleMatrix[edge.source][edge.target] = edge.weight;
+
+        //Edge list
+        this.edgeList[indexOfEdge].weight = edge.weight;
+
+    }
 
 }
 
@@ -871,7 +919,7 @@ class BinaryTree extends GenericGraph {
                 this.inorderSearch(this.root);
                 break;
             case ID_GET_HEIGHT:
-                $("#output-body").text($("#output-body").text() + $.i18n("tree-height-output-text") +": " + this.getHeight(this.root));
+                $("#output-body").text($("#output-body").text() + $.i18n("tree-height-output-text") + ": " + this.getHeight(this.root));
                 break;
             case ID_GET_LEAVES:
                 this.getLeaves();
