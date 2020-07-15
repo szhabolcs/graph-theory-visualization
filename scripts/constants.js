@@ -12,6 +12,7 @@ const NO_MORE_STEPS_MSG = "no-more-steps-warning";
 const NO_PREVIOUS_STEPS_MSG = "no-previous-steps-warning";
 const ALGORITHM_NOT_STARTED_MSG = "algorithm-not-started-warning";
 const GRAPH_ROOT_SELECTED_MSG = "graph-root-selected"
+const EDGE_LIST_SORT = "edge-list-sort";
 
 //CONSTANT STRINGS
 const BINARY_TREE = "binaris";
@@ -22,6 +23,7 @@ const MENU_ROOT = "root";
 const SOURCE = "source";
 const TARGET = "target";
 const WEIGHT = "weight";
+const EDGE_SEPARATOR = " -> ";
 
 //IDS
 const ID_BOOLE_MATRIX = "pont-pont-matrix";

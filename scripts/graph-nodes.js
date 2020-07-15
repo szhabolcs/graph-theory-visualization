@@ -422,7 +422,7 @@ class VisualNode {
         } else if (this.editMode == true) {
             this.showMessage(EDIT_MODE_ON_WARNING_MSG);
             this.removeMessage(3000);
-        } else if (this.selectedNode == "n/a") {
+        } else if (this.selectedNode === "n/a" && menuItems.selectedAlgorithm !== ID_KRUSKAL) {
             this.showMessage(ALGORITHM_NOT_STARTED_MSG);
             this.removeMessage(3000);
         } else {
@@ -478,17 +478,24 @@ class VisualNode {
      * Initializes the animation
      */
     initAnimation() {
-        if (Object.keys(this.graph.adjacencyList) === undefined || Object.keys(this.graph.adjacencyList).length == 0) {
-            this.showMessage(EMPTY_GRAPH_WARNING_MSG);
-            this.removeMessage(2000);
-        } else if (this.editMode == true) {
-            this.showMessage(EDIT_MODE_ON_WARNING_MSG);
-            this.removeMessage(3000);
-        } else {
-            this.selectNode(STARTUP_NODE_MSG);
+        if (menuItems.selectedAlgorithm === ID_KRUSKAL) {
+            this.graph.runAlgorithm(menuItems.selectedAlgorithm);
             this.animationInitialized = true;
-        }
+            this.animationTimer = setInterval(() => this.goOneStepForward(), STEP_TIME);
+            this.switchToPauseButton();
+        } else {
 
+            if (Object.keys(this.graph.adjacencyList) === undefined || Object.keys(this.graph.adjacencyList).length == 0) {
+                this.showMessage(EMPTY_GRAPH_WARNING_MSG);
+                this.removeMessage(2000);
+            } else if (this.editMode == true) {
+                this.showMessage(EDIT_MODE_ON_WARNING_MSG);
+                this.removeMessage(3000);
+            } else {
+                this.selectNode(STARTUP_NODE_MSG);
+                this.animationInitialized = true;
+            }
+        }
     }
 
     /**

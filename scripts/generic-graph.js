@@ -497,6 +497,43 @@ class GenericGraph {
      * Kruskal algorithm
      */
     kruskal() {
+        let components = [];
+        let source, target;
+        let sum = 0;
+        //sort the edge list
+        this.edgeList.sort((a, b) => {
+            if (a.weight < b.weight)
+                return -1;
+            return 1;
+        });
+
+        this.algorithmOutput.push({
+            log: EDGE_LIST_SORT
+        });
+
+        for (let i in this.booleMatrix) {
+            components[i] = i;
+        }
+
+        for (let i in this.edgeList) {
+            source = this.edgeList[i].source;
+            target = this.edgeList[i].target;
+            if (components[source] !== components[target]) {
+                let temp = components[target];
+                for (let j in this.booleMatrix) {
+                    if (components[j] === temp)
+                        components[j] = components[source];
+
+                }
+                this.algorithmOutput.push({
+                    from: source,
+                    to: target,
+                    log: VisualNode.getValueByNodeId(source) + EDGE_SEPARATOR + VisualNode.getValueByNodeId(target)
+                })
+                sum += this.edgeList[i].weight;
+            }
+        }
+
 
     }
 
