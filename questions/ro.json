@@ -1,0 +1,79 @@
+{
+    "language":{
+        "goodAnswerMessage": "Răspuns corect",
+        "badAnswerMessage": "Răspuns greșit",
+        "next": "Următoarea întrebare",
+        "tryAgain": "Încearcă din nou",
+        "numberOfPoints": "Scorul tău total",
+        "startQuizMessage": "Testează-ți cunoștințele",
+        "play": "Start"
+    },
+    "questionGroup1":{
+        "questions":[
+            {
+                "text": "Az elso a jo valasz",
+                "answers": [
+                    "lorem",
+                    "dolor",
+                    "ipsum",
+                    "amet"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "text": "Masodik a jo valasz",
+                "answers": [
+                    "amet",
+                    "dolor",
+                    "sit",
+                    "loren"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "text": "Harmadik a jo valasz",
+                "answers": [
+                    "amet",
+                    "dolor",
+                    "sit",
+                    "loren"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "text": "Negyedik a jo valasz",
+                "answers": [
+                    "amet",
+                    "dolor",
+                    "sit",
+                    "loren"
+                ],
+                "correctAnswer": 4
+            }
+        ]
+    },
+    "questionGroup2":{
+        "questions":[
+            {
+                "text": "Az elso a jo valasz",
+                "answers": [
+                    "lorem",
+                    "dolor",
+                    "ipsum",
+                    "amet"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "text": "Masodik a jo valasz",
+                "answers": [
+                    "amet",
+                    "dolor",
+                    "sit",
+                    "loren"
+                ],
+                "correctAnswer": 2
+            }
+        ]
+    }
+}
