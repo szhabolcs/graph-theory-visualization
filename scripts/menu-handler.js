@@ -349,7 +349,7 @@ $(".menu-back").on("click", () => {
  * Starts the application
  */
 $("#start-btn").on("click", () => {
-    if (menuItems.selectedAlgorithm == "none") alert("Nincs semmi kivalasztva");
+    if (menuItems.selectedAlgorithm == "none") $("#no-algorithm-modal").modal({backdrop: "static",show: true});
     else {
         initGraph(DOMContainer);
         $.when($("#start-modal").fadeOut(200)).then(() => {

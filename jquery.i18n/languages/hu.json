@@ -64,5 +64,8 @@
     "no-previous-steps-warning": "Nincs előző lépés",
     "algorithm-not-started-warning": "Indítsd el az algoritmust a <i class='fas fa-play'></i> gombbal előbb",
     "graph-root-selected": "A fa gyökere kiválasztva",
-    "tree-height-output-text": "A fa magassága"
+    "tree-height-output-text": "A fa magassága",
+    "close-ok": "OK",
+    "no-algorithm-selected-title": "Vigyázat",
+    "no-algorithm-selected-body": "Nem választottál ki egy algoritmust."
 }
