@@ -574,6 +574,13 @@ class VisualNode {
         }
     }
 
+    /**
+     * Resets the indexing for nodes
+     */
+    resetNodeIndex(){
+        this.nodeIndex=0;
+    }
+
     //Getters and setters
     /**
      * Gives a new index to a new node

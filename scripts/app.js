@@ -145,6 +145,7 @@ $(document).ready(function () {
      */
     $("#reset-graph-btn").on("click", () => {
         graph.deleteGraph();
+        jspNode.resetNodeIndex();
     });
 
     /**
