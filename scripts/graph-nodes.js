@@ -408,17 +408,32 @@ class VisualNode {
      */
     goOneStepForward() {
         let step;
+        let connection;
         if (this.step < this.graph.algorithmOutput.length - 1) {
             ++this.step;
             step = this.step;
             const algorithmStep = this.graph.algorithmOutput[step];
-            const connection = {
-                source: algorithmStep.from,
-                target: algorithmStep.to
-            };
-            this.nodeMarkOn(algorithmStep.from);
-            this.connectionMarkOn(connection);
-            this.nodeMarkOn(algorithmStep.to);
+
+            if (algorithmStep.hasOwnProperty("unmark")) {
+
+                for (let i = 1; i < algorithmStep.unmark.length; i++) {
+                    connection = {
+                        source: algorithmStep.unmark[i - 1],
+                        target: algorithmStep.unmark[i]
+                    }
+                    this.connectionMarkOff(connection);
+                }
+
+            } else {
+                connection = {
+                    source: algorithmStep.from,
+                    target: algorithmStep.to
+                };
+                this.nodeMarkOn(algorithmStep.from);
+                this.connectionMarkOn(connection);
+                this.nodeMarkOn(algorithmStep.to);
+            }
+
         } else if (Object.keys(this.graph.adjacencyList) === undefined || Object.keys(this.graph.adjacencyList).length == 0) {
             this.showMessage(EMPTY_GRAPH_WARNING_MSG);
             this.removeMessage(2000);
@@ -441,14 +456,27 @@ class VisualNode {
      */
     goOneStepBackwards() {
         const step = this.step;
+        let connection;
         if (step >= 0) {
             const algorithmStep = this.graph.algorithmOutput[step];
-            const connection = {
-                source: algorithmStep.from,
-                target: algorithmStep.to
-            };
-            this.nodeMarkOff(algorithmStep.to);
-            this.connectionMarkOff(connection);
+            if (algorithmStep.hasOwnProperty("unmark")) {
+
+                for (let i = 1; i < algorithmStep.unmark.length; i++) {
+                    connection = {
+                        source: algorithmStep.unmark[i - 1],
+                        target: algorithmStep.unmark[i]
+                    }
+                    this.connectionMarkOn(connection);
+                }
+
+            } else {
+                connection = {
+                    source: algorithmStep.from,
+                    target: algorithmStep.to
+                };
+                this.nodeMarkOff(algorithmStep.to);
+                this.connectionMarkOff(connection);
+            }
             this.step--;
         } else if (Object.keys(this.graph.adjacencyList) === undefined || Object.keys(this.graph.adjacencyList).length == 0) {
             this.showMessage(EMPTY_GRAPH_WARNING_MSG);
@@ -485,7 +513,7 @@ class VisualNode {
             if (this.editMode == true) {
                 this.showMessage(EDIT_MODE_ON_WARNING_MSG);
                 this.removeMessage(3000);
-            }else {
+            } else {
                 this.graph.runAlgorithm(menuItems.selectedAlgorithm);
                 this.animationInitialized = true;
                 this.animationTimer = setInterval(() => this.goOneStepForward(), STEP_TIME);
@@ -792,6 +820,7 @@ class UnDirectedNode extends VisualNode {
             target: connection.source
         }).removeClass("connection-mark");
     }
+
     /**
      * Disables the edit mode for the graph editor.
      * Sets new connection endpoint to invisible, disables the text input on the node,

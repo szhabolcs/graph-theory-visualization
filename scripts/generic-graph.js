@@ -455,11 +455,14 @@ class GenericGraph {
      * Dijkstra algorithm
      * @param {String} starterNode The node we start the algorithm from
      */
+
     dijkstra(starterNode) {
         let routeSizes = [], visitedNodes = [];
         let ok;
         let minimum;
         let k;
+        let oldRoute=[];
+        let routes=[];
         this.algorithmOutput.push({
             from: null,
             to: starterNode,
@@ -473,6 +476,7 @@ class GenericGraph {
                     to: i,
                     log: VisualNode.getValueByNodeId(i)
                 });
+                routes[i] = [starterNode, i];
             } else routeSizes[i] = Infinity;
         }
         routeSizes[starterNode] = 0;
@@ -494,6 +498,14 @@ class GenericGraph {
                     if (this.booleMatrix[k][i] > 0)
                         if (minimum + this.booleMatrix[k][i] < routeSizes[i]) {
                             routeSizes[i] = minimum + this.booleMatrix[k][i];
+                            oldRoute=Object.assign([], routes[i])
+                            routes[i] = Object.assign([], routes[k]);
+                            routes[i].push(i);
+                            if(oldRoute.length>0) {
+                                this.algorithmOutput.push({
+                                    unmark: oldRoute
+                                });
+                            }
                             this.algorithmOutput.push({
                                 from: k,
                                 to: i,
