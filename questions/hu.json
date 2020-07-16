@@ -11,66 +11,102 @@
     "questionGroup1":{
         "questions":[
             {
-                "text": "Az elso a jo valasz",
+                "text": "Ha n egy 2-nél nagyobb páratlan szám, akkor egy n csomópontból álló irányítatlan gráf, amelyben minden csomópontnak pontosan n-1 szomszédja van:",
                 "answers": [
-                    "lorem",
-                    "dolor",
-                    "ipsum",
-                    "amet"
-                ],
-                "correctAnswer": 1
-            },
-            {
-                "text": "Masodik a jo valasz",
-                "answers": [
-                    "amet",
-                    "dolor",
-                    "sit",
-                    "loren"
+                    "fa",
+                    "Euler-féle gráf",
+                    "nem összefüggő gráf",
+                    "körmentes gráf (nem tartalmaz egyetlen zárt sétát sem)"
                 ],
                 "correctAnswer": 2
             },
             {
-                "text": "Harmadik a jo valasz",
+                "text": "A következő tulajdonságok közül, melyik igaz egy n csomópontú és n élű (n>3) irányított gráfban, amelyben van egy n hosszúságú irányított zárt séta:",
                 "answers": [
-                    "amet",
-                    "dolor",
-                    "sit",
-                    "loren"
+                    "létezik egy csomópont, amely fokszáma n-1",
+                    "bármely csomópontra a be-fokszám egyenlő a ki-fokszámmal",
+                    "a gráf nem tartalmaz olyan irányított sétát, amelynek hossza szigorúan nagyobb, mint 2",
+                    "bármely csomópont be-fokszáma 2"
                 ],
-                "correctAnswer": 3
+                "correctAnswer": 2
             },
             {
-                "text": "Negyedik a jo valasz",
+                "text": "Tekintsünk egy 6 csomópontból álló irányított gráfot (csomópontjai 1-től 6-ig vannak számozva) melynek irányított élei: (2,1),(3,6),(4,1),(4,3),(4,5),(5,2), (6,4). Melyik állítás HAMIS? ",
                 "answers": [
-                    "amet",
-                    "dolor",
-                    "sit",
-                    "loren"
+                    "a 6-os csomópont egy irányított zárt sétához tartozik",
+                    "az 1-es csomópont kifoka 0",
+                    "a 4-es csomópont befoka 1",
+                    "a gráfban nincsenek irányított zárt séták"
                 ],
                 "correctAnswer": 4
-            }
-        ]
-    },
-    "questionGroup2":{
-        "questions":[
+            },
             {
-                "text": "Az elso a jo valasz",
+                "text": "Adott egy 101 csúcsot és 101 élet tartalmazó irányítás nélküli gráf. A gráf izolált csúcsainak maximális száma: ",
                 "answers": [
-                    "lorem",
-                    "dolor",
-                    "ipsum",
-                    "amet"
+                    "0",
+                    "10",
+                    "50",
+                    "86"
+                ],
+                "correctAnswer": 4
+            },
+            {
+                "text": "A következő kijelentések közül melyik igaz bármely 5 csúcsot és 6 élet tartalmazó irányítatlan G gráf esetén? ",
+                "answers": [
+                    "G-ben van legalább egy zárt séta",
+                    "G összefüggő",
+                    "G minden csúcsának fokszáma páros szám",
+                    "G-nek nem lehet 0 fokszámú csúcsa"
                 ],
                 "correctAnswer": 1
             },
             {
-                "text": "Masodik a jo valasz",
+                "text": "Ha G egy 8 csúcsot és 2 összefüggő komponenst tartalmazó irányítatlan gráf, akkor a gráf éleinek maximális száma:",
                 "answers": [
-                    "amet",
-                    "dolor",
-                    "sit",
-                    "loren"
+                    "12",
+                    "16",
+                    "21",
+                    "28"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "text": "Legyen n egy természetes szám, n>4. Bármely n csúcsot és n élet tartalmazó irányítatlan gráf:",
+                "answers": [
+                    "minden csúcsának fokszáma páros szám",
+                    "összefüggő",
+                    "tartalmaz legalább egy zárt sétát",
+                    "fa"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "text": "Egy irányítatlan gráf csúcsainak halmaza: X={1,2,3,4,5} éleinek halmaza: U={[1,2], [1,5], [2,3], [2,4], [3,4], [4,5]}. A következő kijelentések közül melyik igaz?",
+                "answers": [
+                    "A gráf Euler-féle de nem Hamilton-féle.",
+                    "A gráf Hamilton-féle de nem Euler-féle.",
+                    "A gráf Hamilton-féle és Euler-féle.",
+                    "A gráf nem Hamilton-féle és nem Euler-féle."
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "text": "Adott egy 5 csúcsot és 3 élet tartalmazó irányítás nélküli gráf. Maximum hány 1 fokszámú csúcsa lehet a gráfnak?",
+                "answers": [
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "text": "Legkevesebb hány élet kell eltávolítani egy 100 csúcsot tartalmazó, teljes, irányítás nélküli gráfból ahhoz, hogy a kapott részgráf Euler-féle legyen?",
+                "answers": [
+                    "0",
+                    "50",
+                    "100",
+                    "4851"
                 ],
                 "correctAnswer": 2
             }
