@@ -51,7 +51,8 @@ class TableHandler {
      * @param {string} j Id of the column
      */
     pushColumn(j) {
-        this.addColumn(j, (this.numberOfColumns + 1).toString());
+        const lastNumber = Number.parseInt(this.DOMTable.find("tr:first > td:last").attr("data-j"));
+        this.addColumn(j, (lastNumber + 1).toString());
     }
 
     /**
@@ -59,7 +60,8 @@ class TableHandler {
      * @param {string} i Id of the row
      */
     pushRow(i) {
-        this.addRow(i, (this.numberOfRows + 1).toString());
+        const lastNumber = Number.parseInt(this.DOMTable.find("tr:last").attr("data-i"));
+        this.addRow(i, (lastNumber + 1).toString());
     }
 
     /**
