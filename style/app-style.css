@@ -96,14 +96,11 @@ html{
     font-size: 2em;
     font-weight: 500;
     opacity: 1;
-    background-color: white !important;
-    border: none !important;
+    background-color: transparent !important;
+    border: none;
     border-radius: 0px !important;
     padding: 0px !important;
-    color: black;
-}
-.weight-text-border {
-    border-bottom: 1.5px solid !important;
+    color: var(--dropdown-body-color);
 }
 .remove-btn{
     position: absolute;

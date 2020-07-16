@@ -39,7 +39,9 @@ class VisualNode {
 
     weightInputOverlay = ["Custom", {
         create: (component) => {
-            return $(WEIGHT_INPUT_HTML);
+            const $weightInput = $(WEIGHT_INPUT_HTML);
+            $weightInput.find('.weight-text').inputfit();
+            return $weightInput;
         },
 
         location: 0.25,
@@ -241,6 +243,7 @@ class VisualNode {
         const $weightText = $(".weight-text");
         $(".tilde").removeClass("hidden");
         $nodeText.addClass("node-text-border");
+        $weightText.addClass("node-text-border");
         $nodeText.prop('disabled', false);
         $weightText.prop('disabled', false);
         $(".remove-btn").removeClass("hidden");
@@ -258,8 +261,10 @@ class VisualNode {
      */
     disableEditMode() {
         const $nodeText = $(".node-text");
+        const $weightText = $(".weight-text");
         $(".tilde").addClass("hidden");
         $nodeText.removeClass("node-text-border");
+        $weightText.removeClass("node-text-border");
         $nodeText.prop('disabled', true);
         $(".remove-btn").addClass("hidden");
         $(".node").addClass("in-view-mode");

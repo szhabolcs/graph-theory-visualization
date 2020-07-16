@@ -84,7 +84,7 @@ const MENU_CARD = '<div class="container navbar-card my-auto">' +
     '    </div>';
 
 const WEIGHT_INPUT_HTML = "<div class='input-group mx-auto'>" +
-    "<input type='text' value='1' class='weight-text text-center weight-text-border'>" +
+    "<input type='text' value='1' class='weight-text text-center node-text-border'>" +
     "</div>";
 
 const TABLE_SECTION = "<div class='representation-section'>" +
