@@ -24,6 +24,8 @@ let menuItems = {
 
                     //Algorith change function here
                     jspNode.resetGraph();
+                    jspNode.clearOutput();
+                    jspNode.clearSteps();
                 } else if (menuItems.graphType == BINARY_TREE) {
                     menuItems.selectedAlgorithm = newAlgorith;
 

@@ -23,7 +23,8 @@ const MENU_ROOT = "root";
 const SOURCE = "source";
 const TARGET = "target";
 const WEIGHT = "weight";
-const EDGE_SEPARATOR = " -> ";
+const EDGE_SEPARATOR = " ";
+const NEW_LINE = "<br>";
 
 //IDS
 const ID_BOOLE_MATRIX = "pont-pont-matrix";

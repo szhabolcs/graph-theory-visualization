@@ -356,6 +356,8 @@ class VisualNode {
         DOMContainer.undelegate(".node", "mouseenter mouseleave");
         this.removeMessage();
         this.graph.runAlgorithm(menuItems.selectedAlgorithm);
+        this.loadSteps();
+        this.loadOutput();
         this.animationTimer = setInterval(() => this.goOneStepForward(), STEP_TIME);
         this.switchToPauseButton();
     }
@@ -396,6 +398,8 @@ class VisualNode {
         clearInterval(this.animationTimer);
         this.switchToPlayButton();
         this.clearSelectedNode();
+        this.clearSteps();
+        this.clearOutput();
         this.graph.resetAlgorithm();
         this.step = -1;
         for (let i in graph.edgeList) {
@@ -409,16 +413,77 @@ class VisualNode {
     }
 
     /**
+     * Load the steps of the algorithm to the step section
+     */
+    loadSteps() {
+        const algorithmOutput = this.graph.algorithmOutput;
+        const $stepsBody = $('#steps-body');
+        let from;
+        let to;
+        let fromValue;
+        let toValue;
+        for (let i=0; i<algorithmOutput.length; i++) {
+
+            if(algorithmOutput[i].hasOwnProperty("info")){
+                $stepsBody.append("<div class=\"step\"><span>" + algorithmOutput[i].info +
+                    "</span></div>");
+            }else if(!algorithmOutput.hasOwnProperty("unmark")){
+
+                from = algorithmOutput[i].from;
+                to = algorithmOutput[i].to;
+                if (from !== null) {
+                    fromValue = VisualNode.getValueByNodeId(from);
+                    toValue = VisualNode.getValueByNodeId(to);
+                    $stepsBody.append("<div class=\"step\"><span>" + fromValue +
+                        " <i class=\"fas fa-long-arrow-alt-right\"></i> " + toValue +
+                        "</span></div>");
+                }
+            }
+        }
+    }
+
+    /**
+     * Loads the output of the algorithm to the DOM
+     */
+    loadOutput(){
+        const algorithmOutput = this.graph.algorithmOutput;
+        const $outputBody = $('#output-body');
+        for(let i in algorithmOutput.log){
+            $outputBody.append(algorithmOutput.log[i] + " ");
+        }
+    }
+
+    /**
+     * Clears the steps DOM section
+     */
+    clearSteps() {
+        $("#steps-body").text("");
+    }
+
+    /**
+     * Clears the output DOM section
+     */
+    clearOutput(){
+        $("#output-body").text("");
+    }
+    /**
      * Goes one step forward in the animation
      */
     goOneStepForward() {
         let step;
         let connection;
+        let $step;
         if (this.step < this.graph.algorithmOutput.length - 1) {
             ++this.step;
             step = this.step;
             const algorithmStep = this.graph.algorithmOutput[step];
-
+            if(algorithmStep.hasOwnProperty("info")){
+                $step = $("#steps-body").find(".step:not(.active-step):first");
+                $step.addClass("active-step");
+            } else if (algorithmStep.from !== null) {
+                $step = $("#steps-body").find(".step:not(.active-step):first");
+                $step.addClass("active-step");
+            }
             if (algorithmStep.hasOwnProperty("unmark")) {
 
                 for (let i = 1; i < algorithmStep.unmark.length; i++) {
@@ -462,8 +527,15 @@ class VisualNode {
     goOneStepBackwards() {
         const step = this.step;
         let connection;
+        let $step;
         if (step >= 0) {
             const algorithmStep = this.graph.algorithmOutput[step];
+
+            if (algorithmStep.from !== null) {
+                $step = $("#steps-body").find(".active-step:last");
+                $step.removeClass("active-step");
+            }
+
             if (algorithmStep.hasOwnProperty("unmark")) {
 
                 for (let i = 1; i < algorithmStep.unmark.length; i++) {
@@ -520,6 +592,8 @@ class VisualNode {
                 this.removeMessage(3000);
             } else {
                 this.graph.runAlgorithm(menuItems.selectedAlgorithm);
+                this.loadSteps();
+                this.loadOutput();
                 this.animationInitialized = true;
                 this.animationTimer = setInterval(() => this.goOneStepForward(), STEP_TIME);
                 this.switchToPauseButton();
@@ -582,8 +656,8 @@ class VisualNode {
     /**
      * Resets the indexing for nodes
      */
-    resetNodeIndex(){
-        this.nodeIndex=0;
+    resetNodeIndex() {
+        this.nodeIndex = 0;
     }
 
     //Getters and setters
@@ -1012,6 +1086,8 @@ class BinaryNode extends VisualNode {
         clearInterval(this.animationTimer);
         this.switchToPlayButton();
         this.clearSelectedNode();
+        this.clearSteps();
+        this.clearOutput();
         this.graph.resetAlgorithm();
         this.step = -1;
         for (let i in graph.parentArray) {
@@ -1025,10 +1101,33 @@ class BinaryNode extends VisualNode {
     }
 
     /**
+     * Load the steps of the algorithm to the step section
+     */
+    loadSteps() {
+        const algorithmOutput = this.graph.algorithmOutput;
+        const $stepsBody = $('#steps-body');
+        let fromValue;
+        let toValue;
+        for (let i = 1; i < algorithmOutput.length; i++) {
+
+
+
+                fromValue = VisualNode.getValueByNodeId(algorithmOutput[i - 1].node);
+                toValue = VisualNode.getValueByNodeId(algorithmOutput[i].node);
+                $stepsBody.append("<div class=\"step\"><span>" + fromValue +
+                    " <i class=\"fas fa-long-arrow-alt-right\"></i> " + toValue +
+                    "</span></div>");
+
+        }
+    }
+
+
+    /**
      * Goes one step forward in the animation
      */
     goOneStepForward() {
         let step;
+        let $step;
         if (this.step < this.graph.algorithmOutput.length - 1) {
             ++this.step;
             step = this.step;
@@ -1037,6 +1136,10 @@ class BinaryNode extends VisualNode {
                 source: this.graph.getParentArray()[algorithmStep.node],
                 target: algorithmStep.node
             };
+            if (connection.source!== 0) {
+                $step = $("#steps-body").find(".step:not(.active-step):first");
+                $step.addClass("active-step");
+            }
             this.nodeMarkOn(algorithmStep.node);
             this.connectionMarkOn(connection);
         } else if (Object.keys(this.graph.standardForm) === undefined || Object.keys(this.graph.standardForm).length == 0) {
@@ -1061,12 +1164,17 @@ class BinaryNode extends VisualNode {
      */
     goOneStepBackwards() {
         const step = this.step;
+        let $step;
         if (step > -1) {
             const algorithmStep = this.graph.algorithmOutput[step];
             const connection = {
                 source: this.graph.getParentArray()[algorithmStep.node],
                 target: algorithmStep.node
             };
+            if (connection.source !== 0) {
+                $step = $("#steps-body").find(".active-step:last");
+                $step.removeClass("active-step");
+            }
             this.nodeMarkOff(algorithmStep.node);
             this.connectionMarkOff(connection);
             this.step--;

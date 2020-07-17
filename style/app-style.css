@@ -45,20 +45,22 @@ body {
     font-family: 'Roboto', sans-serif;
     margin: 0px;
 }
-html{
+
+html {
     height: 100%;
     position: relative;
 }
+
 #container {
     padding: 20px;
     background-color: var(--background-color);
     position: absolute;
     height: 200%;
     width: 200%;
-    top: -50%;      /* Pushes back the container */
-    left: -50%;     /* so the view can be in the middle*/
-    transition: transform .2s;    /* Makes zooming smooth */
-    border: 5px solid var(--light-green);      /* Bounding box for container */
+    top: -50%; /* Pushes back the container */
+    left: -50%; /* so the view can be in the middle*/
+    transition: transform .2s; /* Makes zooming smooth */
+    border: 5px solid var(--light-green); /* Bounding box for container */
 }
 
 /* Node code */
@@ -70,6 +72,7 @@ html{
     position: absolute;
     cursor: pointer;
 }
+
 .input-group {
     width: 40px;
     top: 20px;
@@ -87,9 +90,11 @@ html{
     padding: 0px !important;
     color: white;
 }
+
 .node-text-border {
     border-bottom: 1.5px solid !important;
 }
+
 .weight-text {
     width: 40px;
     height: 40px;
@@ -102,7 +107,8 @@ html{
     padding: 0px !important;
     color: var(--dropdown-body-color);
 }
-.remove-btn{
+
+.remove-btn {
     position: absolute;
     color: var(--danger);
     width: 25px;
@@ -113,28 +119,35 @@ html{
     z-index: 3;
     cursor: pointer;
 }
-.remove-btn i{
+
+.remove-btn i {
     background-color: white;
     line-height: 0.3;
     width: 17px;
 }
-.remove-btn i:before{
+
+.remove-btn i:before {
     margin-left: -1px;
 }
-.hidden{
+
+.hidden {
     display: none;
 }
-.jtk-endpoint{
+
+.jtk-endpoint {
     transform: scale(0.6);
     z-index: 2;
 }
-.tilde{
+
+.tilde {
     transform: scale(1) !important;
 }
-.tilde svg circle{
+
+.tilde svg circle {
     fill: var(--green);
 }
-.tilde::after{
+
+.tilde::after {
     content: "~";
     width: 20px;
     height: 20px;
@@ -150,48 +163,53 @@ html{
     background-image: url("../images/grid.svg");
     background-size: 40px;
 }
-.nav-item > div > i{
+
+.nav-item > div > i {
     transition: all .3s;
-}
-.btn-on{
-    opacity: 1 !important;
-}
-.fa-moon, .fa-border-none, #edit-btn{
-    opacity: 0.5;
-}
-.fa-moon:hover, .fa-border-none:hover, #edit-btn:hover{
-    opacity: 1;
-}
-#edit-btn{
-    transition: all .3s;
-}
-.slow-transition{
-    transition: transform .2s, margin .5s !important;  /* Makes setting back the container smooth */
 }
 
-.container-dragging{
+.btn-on {
+    opacity: 1 !important;
+}
+
+.fa-moon, .fa-border-none, #edit-btn {
+    opacity: 0.5;
+}
+
+.fa-moon:hover, .fa-border-none:hover, #edit-btn:hover {
+    opacity: 1;
+}
+
+#edit-btn {
+    transition: all .3s;
+}
+
+.slow-transition {
+    transition: transform .2s, margin .5s !important; /* Makes setting back the container smooth */
+}
+
+.container-dragging {
     cursor: move;
 }
 
 /* Custom scrollbar */
-::-webkit-scrollbar
-{
-  width: 5px;
-  height: 5px;
-  background-color: var(--gray);
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-color: var(--gray);
 }
 
-::-webkit-scrollbar-thumb
-{
+::-webkit-scrollbar-thumb {
     background-color: var(--dropdown-body-color);
     border-radius: 5px;
 }
 
 /* Navbar */
-.navbar-nav{
-    flex-direction: row;    /* Overrides default flex-direction: column;*/
+.navbar-nav {
+    flex-direction: row; /* Overrides default flex-direction: column;*/
 }
-.navbar{
+
+.navbar {
     height: 55px;
     background-color: var(--light-green);
     padding-left: 50px;
@@ -200,14 +218,17 @@ html{
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     transition: all .3s;
 }
-.nav-item div{
+
+.nav-item div {
     font-size: 30px;
     margin-right: 50px;
 }
-#navbar-btn > i{
+
+#navbar-btn > i {
     transition: all .3s;
 }
-#navbar-content{
+
+#navbar-content {
     height: 0px;
     width: 100%;
     position: fixed;
@@ -219,29 +240,34 @@ html{
     color: var(--dropdown-body-color);
     margin: 0px;
 }
-.navbar-content-open{
+
+.navbar-content-open {
     height: 200px !important;
 }
-#current-operation{
+
+#current-operation {
     font-weight: 500;
     font-size: 25px;
 
     margin-right: 40px;
 }
-.navbar-text i{
+
+.navbar-text i {
     font-size: 35px;
 }
-.navbar-text{
+
+.navbar-text {
     padding: 0px !important;
 }
-.navbar div{
+
+.navbar div {
     cursor: pointer;
     vertical-align: middle;
     padding-bottom: 8px;
 }
 
 /* Floating items */
-.floating-dropdown{
+.floating-dropdown {
     width: 220px;
     height: 50px;
     z-index: 1;
@@ -249,22 +275,27 @@ html{
     font-size: 20px;
     line-height: 50px; /* Same as height. Centers the text*/
 }
-.floating-dropdown > span > div > i{
+
+.floating-dropdown > span > div > i {
     transition: all .3s;
     cursor: pointer;
 }
-.floating-dropdown span{
+
+.floating-dropdown span {
     padding-left: 25px;
     padding-right: 25px;
 }
-.floating-dropdown span div{
+
+.floating-dropdown span div {
     padding-right: 25px;
 }
-.floating-dropdown div{
+
+.floating-dropdown div {
     float: right;
     font-size: 28px;
 }
-.display-none{
+
+.display-none {
     display: none;
 }
 
@@ -275,7 +306,8 @@ html{
     position: fixed;
     z-index: 1;
 }
-#representation{
+
+#representation {
     height: 100%;
     width: 55px;
     min-width: 55px;
@@ -285,19 +317,21 @@ html{
     background-color: var(--gray);
     overflow: hidden;
 }
-#representation-body{
+
+#representation-body {
     height: calc(100% - 120px) !important;
     padding: 15px;
     padding-top: 0px;
 }
+
 #left-splitter {
     width: 18px;
-    background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/vsizegrip.png)
-        center center no-repeat var(--dark-green);
+    background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/vsizegrip.png) center center no-repeat var(--dark-green);
     height: 100%;
     cursor: col-resize;
     float: left;
 }
+
 #representation > div:first-child {
     width: 100%;
     color: var(--dropdown-body-color);
@@ -307,13 +341,15 @@ html{
     text-align: right;
     white-space: nowrap;
 }
-#representation > div:first-child > .fas{
+
+#representation > div:first-child > .fas {
     transition: all .3s;
     padding-left: 20px;
     padding-right: 20px;
     cursor: pointer;
 }
-#representation-icon{
+
+#representation-icon {
     float: left;
     color: var(--dropdown-body-color);
     padding-left: 12px;
@@ -329,7 +365,8 @@ html{
     z-index: 1;
     right: 0px;
 }
-#resizable-right-body{
+
+#resizable-right-body {
     height: 100%;
     width: 55px;
     min-width: 55px;
@@ -339,7 +376,8 @@ html{
     background-color: var(--gray);
     overflow: hidden;
 }
-#steps{
+
+#steps {
     height: 50%;
     width: 100%;
     max-height: calc(100% - 75px);
@@ -349,22 +387,25 @@ html{
     background-color: var(--gray);
     overflow: hidden;
 }
-.steps-open{
+
+.steps-open {
     min-width: 230px !important;
 }
-#steps-body{
+
+#steps-body {
     height: calc(100% - 120px) !important;
     padding: 15px;
     padding-top: 0px;
 }
+
 #right-splitter {
     width: 18px;
-    background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/vsizegrip.png)
-        center center no-repeat var(--dark-green);
+    background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/vsizegrip.png) center center no-repeat var(--dark-green);
     height: 100%;
     cursor: col-resize;
     float: right;
 }
+
 #steps > div:first-child {
     width: 100%;
     color: var(--dropdown-body-color);
@@ -374,13 +415,15 @@ html{
     text-align: left;
     white-space: nowrap;
 }
-#steps > div:first-child > .fas{
+
+#steps > div:first-child > .fas {
     transition: all .3s;
     padding-left: 19px;
     padding-right: 20px;
     cursor: pointer;
 }
-#steps-icon{
+
+#steps-icon {
     float: left;
     color: var(--dropdown-body-color);
     padding-left: 15px;
@@ -388,15 +431,15 @@ html{
     width: 100%;
     border-bottom: 2px solid var(--dark-green);
 }
-#middle-splitter{
+
+#middle-splitter {
     width: 100%;
-    background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/hsizegrip.png)
-        center center no-repeat var(--dark-green);
+    background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/hsizegrip.png) center center no-repeat var(--dark-green);
     height: 18px;
     cursor: row-resize;
 }
 
-#output{
+#output {
     height: 50%;
     width: 100%;
     min-width: 55px;
@@ -405,6 +448,7 @@ html{
     background-color: var(--gray);
     overflow: hidden;
 }
+
 #output > div:first-child {
     width: 100%;
     color: var(--dropdown-body-color);
@@ -415,7 +459,8 @@ html{
     border-bottom: 2px solid var(--dark-green);
     white-space: nowrap;
 }
-#output-icon{
+
+#output-icon {
     float: left;
     color: var(--dropdown-body-color);
     padding-left: 17px;
@@ -423,7 +468,7 @@ html{
     font-size: 25px;
 }
 
-.dropdown-body{
+.dropdown-body {
     background-color: var(--gray);
     overflow-y: scroll;
     font-size: 16px !important;
@@ -431,49 +476,59 @@ html{
     color: var(--dropdown-body-color);
     width: 100%;
 }
-.dropdown-body::-webkit-scrollbar{
+
+.dropdown-body::-webkit-scrollbar {
     border-bottom-right-radius: 5px;
 }
-#output-body{
+
+#output-body {
     line-height: 1.5em;
     width: 100%;
     padding: 15px;
 }
-.dropdown-body-closed{
+
+.dropdown-body-closed {
     max-height: 0px;
 }
-.dropdown-steps-body-open{
+
+.dropdown-steps-body-open {
     max-height: calc(50vh - 125px) !important;
     padding: 15px;
 }
-.dropdown-output-body-open{
+
+.dropdown-output-body-open {
     max-height: calc(50vh - 55px) !important;
     padding: 15px;
 }
-.dropdown-open{
+
+.dropdown-open {
     min-width: 350px !important;
 }
-.navbar-open{
+
+.navbar-open {
     bottom: 200px;
 }
 
 /* Dropdown tables */
-.representation-section{
+.representation-section {
     float: none !important;
     overflow: auto;
 }
-.section-header{
+
+.section-header {
     padding: 0px !important;
     width: 100%;
     font-size: 24px;
 }
-.section-header > i{
+
+.section-header > i {
     float: right;
     padding-top: 15px;
     font-size: 20px;
     cursor: pointer;
 }
-.table{
+
+.table {
     font-size: 20px;
     color: var(--dropdown-body-color);
     display: none;
@@ -481,22 +536,28 @@ html{
     min-width: 50%;
     margin: auto;
 }
-.table > tbody > tr:first-child{
+
+.table > tbody > tr:first-child {
     background-color: var(--dark-green);
 }
+
 .table > tbody > tr > td:first-child {
     background-color: var(--dark-green);
 }
-.table-bordered td, .table-bordered th{
-    border:2px solid var(--dropdown-body-color) !important;
-  }
-.table-open{
+
+.table-bordered td, .table-bordered th {
+    border: 2px solid var(--dropdown-body-color) !important;
+}
+
+.table-open {
     display: table;
 }
+
 .table td {
     text-align: center;
 }
-.divider-line{
+
+.divider-line {
     width: 100%;
     background-color: var(--dropdown-body-color);
     height: 3px;
@@ -505,8 +566,9 @@ html{
 }
 
 /* Navbar cards */
-.navbar-card{
-    width: 300px; height: 104px;
+.navbar-card {
+    width: 300px;
+    height: 104px;
     border: 2px solid var(--dropdown-body-color);
     border-radius: 5px;
     margin: 0px;
@@ -521,10 +583,11 @@ html{
     display: inline-block;
 }
 
-.navbar-card .row .col-sm{
+.navbar-card .row .col-sm {
     padding: 0px;
 }
-.navbar-card-text{
+
+.navbar-card-text {
     width: 50px;
     margin-left: 15px !important;
     margin-right: 15px !important;
@@ -532,11 +595,13 @@ html{
     font-weight: 500;
     white-space: normal;
 }
+
 /* Fix for the divider line */
 .nav-item:nth-child(4) > div {
     cursor: default !important;
 }
-.read-more{
+
+.read-more {
     color: var(--light-green);
     padding: 0px !important;
     position: absolute;
@@ -545,37 +610,44 @@ html{
     font-size: 20px;
     transition: color .3s;
 }
-.read-more:hover{
+
+.read-more:hover {
     color: var(--dropdown-body-color);
 }
 
-#text-nav{
+#text-nav {
     padding: 0px !important;
     margin: 0px !important;
 }
-#navbar-content > .row{
+
+#navbar-content > .row {
     margin: 10px !important;
 }
-#card-holder{
+
+#card-holder {
     overflow: auto;
     white-space: nowrap;
 }
-.menu-back{
+
+.menu-back {
     cursor: pointer;
     color: var(--menu-back-color);
     transition: color .3s;
 }
-.menu-back:hover{
+
+.menu-back:hover {
     color: var(--dropdown-body-color) !important;
 }
-#modal-navigation{
+
+#modal-navigation {
     font-size: 1.3em;
 }
 
-.selected-menu-item{
+.selected-menu-item {
     border-color: var(--light-green);
 }
-.selected-menu-item:after{
+
+.selected-menu-item:after {
     content: "\f00c";
     position: absolute;
     background-color: var(--light-green);
@@ -587,10 +659,12 @@ html{
     top: 0;
     left: 0;
 }
-.fixed-bottom{
+
+.fixed-bottom {
     z-index: 3 !important;
 }
-#start-modal{
+
+#start-modal {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -599,46 +673,56 @@ html{
     color: var(--dropdown-body-color);
     padding: 20px;
 }
-#start-modal-holder{
+
+#start-modal-holder {
     padding: 30px;
     overflow-y: auto;
     height: 90vh !important;
 }
-#start-modal-holder .container{
+
+#start-modal-holder .container {
     margin-bottom: 10px !important;
 }
-.navbar-card .row{
+
+.navbar-card .row {
     background-color: var(--gray);
     color: var(--dropdown-body-color);
 }
-#modal-navigation .menu-back{
+
+#modal-navigation .menu-back {
     width: fit-content;
     display: inline-block;
 }
-#modal-menu{
+
+#modal-menu {
     display: none;
     text-align: center;
 }
-#modal-intro .container .row .col{
-    background-color: var(--black); 
-    border-radius: 5px; 
+
+#modal-intro .container .row .col {
+    background-color: var(--black);
+    border-radius: 5px;
     padding: 15px;
     color: var(--white);
 }
-a:not([href]):hover{
+
+a:not([href]):hover {
     text-decoration: underline;
     cursor: pointer;
 }
-#start-btn{
+
+#start-btn {
     cursor: pointer;
     color: var(--black);
     transition: color .3s;
 }
-#start-btn:hover{
+
+#start-btn:hover {
     color: var(--dropdown-body-color) !important;
 }
+
 /* UI helper buttons */
-.ui-helper-btn{
+.ui-helper-btn {
     width: 50px;
     border-radius: 5px;
     background-color: var(--light-green);
@@ -651,57 +735,70 @@ a:not([href]):hover{
     cursor: pointer;
     bottom: 65px;
 }
-#node-add-btn{
+
+#node-add-btn {
     left: 50%;
     margin-left: -53px; /* Half of width */
 }
-#reset-graph-btn{
+
+#reset-graph-btn {
     left: 50%;
     margin-left: 3px; /* Half of width */
 }
-#zoom-in{
+
+#zoom-in {
     right: 184px
 }
-#zoom-out{
+
+#zoom-out {
     right: 127px;
 }
-#zoom-reset{
+
+#zoom-reset {
     right: 70px;
 }
+
 /* Connector width fix */
-.jtk-connector path:nth-child(1){
+.jtk-connector path:nth-child(1) {
     stroke-width: 3px;
 }
-.connection-hover path{
+
+.connection-hover path {
     stroke: var(--danger);
     fill: var(--danger);
 }
-.connection-mark path{
+
+.connection-mark path {
     stroke: var(--dark-green);
     fill: var(--dark-green);
 }
-.node-remove-hover{
+
+.node-remove-hover {
     background-color: var(--danger);
 }
-.node-mark{
+
+.node-mark {
     background-color: var(--light-green);
 }
+
 /* Graph change modal */
-.modal-content{
+.modal-content {
     background-color: var(--gray);
     color: var(--dropdown-body-color);
     border-radius: 5px;
 }
-.modal-footer{
+
+.modal-footer {
     border-top: none;
 }
-.modal-header .close{
+
+.modal-header .close {
     text-shadow: none;
     color: var(--white);
 }
 
 /* Message popup */
-#message{
+#message {
     position: fixed;
     height: fit-content;
     min-height: 50px;
@@ -721,7 +818,7 @@ a:not([href]):hover{
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 }
 
-.node-hover:before{
+.node-hover:before {
     content: '';
     display: block;
     position: absolute;
@@ -733,7 +830,7 @@ a:not([href]):hover{
     border: 3px solid var(--light-green);
 }
 
-.in-view-mode:after{
+.in-view-mode:after {
     content: '';
     display: block;
     position: absolute;
@@ -746,14 +843,20 @@ a:not([href]):hover{
 }
 
 /* Steps */
-.step{
+.step {
     width: 100%;
     float: left;
     font-size: 25px;
     text-align: center;
     display: inherit;
+    opacity: 0.5;
 }
-.steps > span > .fas{
+
+.active-step {
+    opacity: 1;
+}
+
+.steps > span > .fas {
     padding-left: 10px;
     padding-right: 10px;
 }

@@ -10,7 +10,7 @@ class GenericGraph {
     incidenceMatrix = [];
     adjacencyList = [];
     edgeList = [];
-    algorithmOutput = [];
+    algorithmOutput;
 
     /**
      * Initializes the representation tables
@@ -29,7 +29,7 @@ class GenericGraph {
         this.incidenceMatrix = incidenceMatrix;
         this.adjacencyList = adjacencyList;
         this.edgeList = edgeList;
-
+        this.resetAlgorithm();
         this.initRepresentationTables();
     }
 
@@ -253,6 +253,7 @@ class GenericGraph {
      */
     resetAlgorithm() {
         this.algorithmOutput = [];
+        this.algorithmOutput.log = [];
     }
 
     /**
@@ -373,9 +374,8 @@ class GenericGraph {
         this.algorithmOutput.push({
             from: null,
             to: starterNode,
-            log: VisualNode.getValueByNodeId(starterNode)
         });
-
+        this.algorithmOutput.log.push(VisualNode.getValueByNodeId(starterNode));
         while (firstElement <= lastElement) {
             node = route[firstElement];
             for (let i in this.adjacencyList[node])
@@ -384,8 +384,8 @@ class GenericGraph {
                     this.algorithmOutput.push({
                         from: node,
                         to: this.adjacencyList[node][i],
-                        log: VisualNode.getValueByNodeId(this.adjacencyList[node][i])
                     });
+                    this.algorithmOutput.log.push(VisualNode.getValueByNodeId(this.adjacencyList[node][i]));
                     freq[this.adjacencyList[node][i]]++;
                 }
 
@@ -424,8 +424,8 @@ class GenericGraph {
         this.algorithmOutput.push({
             from: null,
             to: starterNode,
-            log: VisualNode.getValueByNodeId(starterNode)
         });
+        this.algorithmOutput.log.push(VisualNode.getValueByNodeId(starterNode));
 
         while (firstElement >= 0) {
             node = stack[firstElement];
@@ -439,14 +439,13 @@ class GenericGraph {
                     this.algorithmOutput.push({
                         from: node,
                         to: this.adjacencyList[node][i],
-                        log: VisualNode.getValueByNodeId(this.adjacencyList[node][i])
                     });
+                    this.algorithmOutput.log.push(VisualNode.getValueByNodeId(this.adjacencyList[node][i]));
                     freq[this.adjacencyList[node][i]]++;
                     break;
                 }
             if (ok === 0) firstElement--;
         }
-
         return route;
 
     }
@@ -461,8 +460,8 @@ class GenericGraph {
         let ok;
         let minimum;
         let k;
-        let oldRoute=[];
-        let routes=[];
+        let oldRoute = [];
+        let routes = [];
         this.algorithmOutput.push({
             from: null,
             to: starterNode,
@@ -498,10 +497,10 @@ class GenericGraph {
                     if (this.booleMatrix[k][i] > 0)
                         if (minimum + this.booleMatrix[k][i] < routeSizes[i]) {
                             routeSizes[i] = minimum + this.booleMatrix[k][i];
-                            oldRoute=Object.assign([], routes[i])
+                            oldRoute = Object.assign([], routes[i])
                             routes[i] = Object.assign([], routes[k]);
                             routes[i].push(i);
-                            if(oldRoute.length>0) {
+                            if (oldRoute.length > 0) {
                                 this.algorithmOutput.push({
                                     unmark: oldRoute
                                 });
@@ -514,6 +513,9 @@ class GenericGraph {
                         }
                 }
             }
+        }
+        for (let i in routeSizes) {
+            this.algorithmOutput.log.push(VisualNode.getValueByNodeId(i) + ": " + routeSizes[i] + NEW_LINE);
         }
     }
 
@@ -548,9 +550,7 @@ class GenericGraph {
 
         }
 
-        this.algorithmOutput.push({
-            log: EDGE_LIST_SORT
-        });
+        this.algorithmOutput.push({info: EDGE_LIST_SORT});
 
         for (let i in this.booleMatrix) {
             components[i] = i;
@@ -569,8 +569,8 @@ class GenericGraph {
                 this.algorithmOutput.push({
                     from: source,
                     to: target,
-                    log: VisualNode.getValueByNodeId(source) + EDGE_SEPARATOR + VisualNode.getValueByNodeId(target)
                 })
+                this.algorithmOutput.log.push(VisualNode.getValueByNodeId(source) + EDGE_SEPARATOR + VisualNode.getValueByNodeId(target) + NEW_LINE);
                 sum += this.edgeList[i].weight;
             }
         }
@@ -1018,6 +1018,8 @@ class BinaryTree extends GenericGraph {
             this.root = firstRoot;
             $(".node[id='" + firstRoot + "']").addClass("node-hover");
             this.runAlgorithm(menuItems.selectedAlgorithm);
+            this.visualNode.loadSteps();
+            this.visualNode.loadOutput();
             this.visualNode.selectedNode = firstRoot;
             this.visualNode.showMessage(GRAPH_ROOT_SELECTED_MSG);
             this.visualNode.removeMessage(1500);
@@ -1048,7 +1050,7 @@ class BinaryTree extends GenericGraph {
                 $("#output-body").text($("#output-body").text() + $.i18n("tree-height-output-text") + ": " + this.getHeight(this.root));
                 break;
             case ID_GET_LEAVES:
-                this.getLeaves();
+                this.getLeafves();
                 break;
             case ID_GET_DIRECT_CHILDS:
                 this.getDirectChildNodes(this.root);
@@ -1101,9 +1103,9 @@ class BinaryTree extends GenericGraph {
      */
     preorderSearch(node) {
         this.algorithmOutput.push({
-            log: VisualNode.getValueByNodeId(node),
             node: node
         });
+        this.algorithmOutput.log.push(VisualNode.getValueByNodeId(node));
         if (this.standardForm[node].left !== 0) {
             this.preorderSearch(this.standardForm[node].left);
         }
@@ -1121,9 +1123,9 @@ class BinaryTree extends GenericGraph {
             this.inorderSearch(this.standardForm[node].left);
         }
         this.algorithmOutput.push({
-            log: VisualNode.getValueByNodeId(node),
             node: node
         });
+        this.algorithmOutput.log.push(VisualNode.getValueByNodeId(node));
         if (this.standardForm[node].right !== 0) {
             this.inorderSearch(this.standardForm[node].right);
         }
@@ -1139,9 +1141,9 @@ class BinaryTree extends GenericGraph {
         if (this.standardForm[node].right !== 0)
             this.postorderSearch(this.standardForm[node].right);
         this.algorithmOutput.push({
-            log: VisualNode.getValueByNodeId(node),
             node: node
         });
+        this.algorithmOutput.log.push(VisualNode.getValueByNodeId(node));
     }
 
     /**
@@ -1180,9 +1182,9 @@ class BinaryTree extends GenericGraph {
         for (let i in this.standardForm) {
             if (this.standardForm[i].left === 0 && this.standardForm[i].right === 0)
                 this.algorithmOutput.push({
-                    log: VisualNode.getValueByNodeId(i),
                     node: i
                 })
+            this.algorithmOutput.log.push(VisualNode.getValueByNodeId(i));
         }
     }
 
@@ -1197,14 +1199,13 @@ class BinaryTree extends GenericGraph {
         if (this.standardForm[indexOfParentNode].left != 0) array[1] = this.standardForm[indexOfParentNode].left;
         if (this.standardForm[indexOfParentNode].right != 0) array[2] = this.standardForm[indexOfParentNode].right;
         this.algorithmOutput.push({
-            node: array[1],
-            log: VisualNode.getValueByNodeId(array[1])
+            node: array[1]
         });
+        this.algorithmOutput.log.push(VisualNode.getValueByNodeId(array[1]));
         this.algorithmOutput.push({
-            node: array[2],
-            log: VisualNode.getValueByNodeId(array[2])
+            node: array[2]
         });
-
+        this.algorithmOutput.log.push(VisualNode.getValueByNodeId(array[2]));
 
     }
 
@@ -1216,17 +1217,17 @@ class BinaryTree extends GenericGraph {
     getAllChildNodes(indexOfParentNode) {
         if (this.standardForm[indexOfParentNode].left !== 0) {
             this.algorithmOutput.push({
-                node: this.standardForm[indexOfParentNode].left,
-                log: VisualNode.getValueByNodeId(this.standardForm[indexOfParentNode].left)
+                node: this.standardForm[indexOfParentNode].left
             });
+            this.algorithmOutput.log.push(VisualNode.getValueByNodeId(this.standardForm[indexOfParentNode].left));
             this.getAllChildNodes(this.standardForm[indexOfParentNode].left);
         }
 
         if (this.standardForm[indexOfParentNode].right !== 0) {
             this.algorithmOutput.push({
                 node: this.standardForm[indexOfParentNode].right,
-                log: VisualNode.getValueByNodeId(this.standardForm[indexOfParentNode].right)
             });
+            this.algorithmOutput.log.push(VisualNode.getValueByNodeId(this.standardForm[indexOfParentNode].right));
             this.getAllChildNodes(this.standardForm[indexOfParentNode].right);
         }
     }

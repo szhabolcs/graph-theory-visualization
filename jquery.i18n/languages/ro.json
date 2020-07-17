@@ -72,5 +72,6 @@
     "step-bw": "Pas înapoi",
     "close-ok": "OK",
     "no-algorithm-selected-title": "Atenție",
-    "no-algorithm-selected-body": "Nu ai ales un algoritm."
+    "no-algorithm-selected-body": "Nu ai ales un algoritm.",
+    "edge-list-sort": "Sortare lista de muchii"
 }

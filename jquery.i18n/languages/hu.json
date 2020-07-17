@@ -72,5 +72,6 @@
     "play": "Lejátszás",
     "pause": "Szünet",
     "step-fw": "Lépés előre",
-    "step-bw": "Lépés hátra"
+    "step-bw": "Lépés hátra",
+    "edge-list-sort": "Éllista elrendezése"
 }
