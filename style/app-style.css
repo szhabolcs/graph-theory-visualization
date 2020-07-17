@@ -804,13 +804,16 @@ a:not([href]):hover {
     min-height: 50px;
     width: fit-content;
     max-width: 50vw;
-    background-color: var(--light-green);
+    border: 3px solid var(--dark-green);
+    background-color: var(--background-color);
+    color: var(--dropdown-body-color);
     bottom: 65px;
     left: 50%;
     padding: 10px;
     transform: translateX(-50%);
     border-radius: 5px;
     padding-top: 13px;
+    padding-right: 15px;
     font-size: 20px;
     font-weight: 500;
     overflow-wrap: anywhere;

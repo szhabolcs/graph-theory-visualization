@@ -331,7 +331,7 @@ class VisualNode {
      * @param {string} message The message that's going to be displayed
      */
     showMessage(message) {
-        this.DOMMessage.html($.i18n(message));
+        this.DOMMessage.html('<i class="fas fa-exclamation-circle"style="padding:5px;"></i> '+$.i18n(message));
         this.DOMMessage.fadeIn();
     }
 
