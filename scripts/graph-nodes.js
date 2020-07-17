@@ -40,7 +40,6 @@ class VisualNode {
     weightInputOverlay = ["Custom", {
         create: (component) => {
             const $weightInput = $(WEIGHT_INPUT_HTML);
-            $weightInput.find('.weight-text').inputfit();
             return $weightInput;
         },
 
@@ -81,7 +80,8 @@ class VisualNode {
             "source": eventInfo.sourceId,
             "target": eventInfo.targetId
         });
-
+        $weightInputOverlay.children("input").inputfit();
+        
         if (this.sameEndpoint === false) {
             this.jspInstance.selectEndpoints(
                 {
