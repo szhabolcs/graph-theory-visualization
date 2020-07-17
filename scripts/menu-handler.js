@@ -98,13 +98,13 @@ let menuItems = {
         {
             text: "general-graph",
             id: "altalanos",
-            img: "https://via.placeholder.com/150x100.png?text=Graph+img",
+            img: "../images/Generic Graph 150px.png",
             sectionId: "../#sub-content"
         },
         {
             text: "binary-tree",
             id: "binaris",
-            img: "https://via.placeholder.com/150x100.png?text=Graph+img",
+            img: "../images/Binary Tree 150px.png",
             sectionId: "../#section-9"
         }
     ],
@@ -114,13 +114,13 @@ let menuItems = {
             {
                 text: "directed",
                 id: "directed",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
+                img: "../images/Directed Graph 150px.png",
                 sectionId: "../#section-3"
             },
             {
                 text: "undirected",
                 id: "undirected",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
+                img: "../images/Undirected Graph 150px.png",
                 sectionId: "../#section-3"
             }
         ],
@@ -128,25 +128,25 @@ let menuItems = {
             {
                 text: "breadth-first-search",
                 id: "szelessegi-bejaras",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
+                img: "../images/Generic Graph 150px.png",
                 sectionId: "../#section-6-1"
             },
             {
                 text: "depth-first-search",
                 id: "melysegi-bejaras",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
+                img: "../images/Generic Graph 150px.png",
                 sectionId: "../#section-6-2"
             },
             {
                 text: "dijkstra-algorithm",
                 id: "dijkstra-algoritmus",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
+                img: "../images/Generic Graph 150px.png",
                 sectionId: "../#section-7-1"
             },
             {
                 text: "kruskal-algorithm",
                 id: "kruskal-algoritmus",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
+                img: "../images/Generic Graph 150px.png",
                 sectionId: "../#section-8-1"
             }
         ]
@@ -156,44 +156,44 @@ let menuItems = {
             {
                 text: "preorder-search",
                 id: "preorder-bejaras",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
+                img: "../images/Binary Tree 150px.png",
                 sectionId: "../#section-12"
 
             },
             {
                 text: "inorder-search",
                 id: "inorder-bejaras",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
+                img: "../images/Binary Tree 150px.png",
                 sectionId: "../#section-12"
             },
             {
                 text: "postorder-search",
                 id: "postorder-bejaras",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
+                img: "../images/Binary Tree 150px.png",
                 sectionId: "../#section-12"
             },
             {
                 text: "tree-height",
                 id: "fa-magassaga",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
+                img: "../images/Binary Tree 150px.png",
                 sectionId: "../#section-9"
             },
             {
                 text: "tree-leaves",
                 id: "fa-levelei",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
+                img: "../images/Binary Tree 150px.png",
                 sectionId: "../#section-9"
             },
             {
                 text: "direct-child-nodes",
                 id: "kozvetlen-leszarmazott",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
+                img: "../images/Binary Tree 150px.png",
                 sectionId: "../#section-9"
             },
             {
                 text: "indirect-child-nodes",
                 id: "kozvetett-leszarmazott",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
+                img: "../images/Binary Tree 150px.png",
                 sectionId: "../#section-9"
             }
         ]
