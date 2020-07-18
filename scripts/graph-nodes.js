@@ -81,7 +81,7 @@ class VisualNode {
             "target": eventInfo.targetId
         });
         $weightInputOverlay.children("input").inputfit();
-        
+
         if (this.sameEndpoint === false) {
             this.jspInstance.selectEndpoints(
                 {
@@ -422,12 +422,12 @@ class VisualNode {
         let to;
         let fromValue;
         let toValue;
-        for (let i=0; i<algorithmOutput.length; i++) {
+        for (let i = 0; i < algorithmOutput.length; i++) {
 
-            if(algorithmOutput[i].hasOwnProperty("info")){
+            if (algorithmOutput[i].hasOwnProperty("info")) {
                 $stepsBody.append("<div class=\"step\"><span>" + algorithmOutput[i].info +
                     "</span></div>");
-            }else if(!algorithmOutput.hasOwnProperty("unmark")){
+            } else if (!algorithmOutput.hasOwnProperty("unmark")) {
 
                 from = algorithmOutput[i].from;
                 to = algorithmOutput[i].to;
@@ -445,10 +445,10 @@ class VisualNode {
     /**
      * Loads the output of the algorithm to the DOM
      */
-    loadOutput(){
+    loadOutput() {
         const algorithmOutput = this.graph.algorithmOutput;
         const $outputBody = $('#output-body');
-        for(let i in algorithmOutput.log){
+        for (let i in algorithmOutput.log) {
             $outputBody.append(algorithmOutput.log[i] + " ");
         }
     }
@@ -463,9 +463,10 @@ class VisualNode {
     /**
      * Clears the output DOM section
      */
-    clearOutput(){
+    clearOutput() {
         $("#output-body").text("");
     }
+
     /**
      * Goes one step forward in the animation
      */
@@ -477,7 +478,7 @@ class VisualNode {
             ++this.step;
             step = this.step;
             const algorithmStep = this.graph.algorithmOutput[step];
-            if(algorithmStep.hasOwnProperty("info")){
+            if (algorithmStep.hasOwnProperty("info")) {
                 $step = $("#steps-body").find(".step:not(.active-step):first");
                 $step.addClass("active-step");
             } else if (algorithmStep.from !== null) {
@@ -561,7 +562,7 @@ class VisualNode {
         } else if (this.editMode == true) {
             this.showMessage(EDIT_MODE_ON_WARNING_MSG);
             this.removeMessage(3000);
-        } else if (this.selectedNode == "n/a") {
+        } else if (this.selectedNode === "n/a" && menuItems.selectedAlgorithm !== ID_KRUSKAL) {
             this.showMessage(ALGORITHM_NOT_STARTED_MSG);
             this.removeMessage(3000);
         } else {
@@ -587,7 +588,7 @@ class VisualNode {
      */
     initAnimation() {
         if (menuItems.selectedAlgorithm === ID_KRUSKAL) {
-            if (this.editMode == true) {
+            if (this.editMode === true) {
                 this.showMessage(EDIT_MODE_ON_WARNING_MSG);
                 this.removeMessage(3000);
             } else {
@@ -1111,12 +1112,11 @@ class BinaryNode extends VisualNode {
         for (let i = 1; i < algorithmOutput.length; i++) {
 
 
-
-                fromValue = VisualNode.getValueByNodeId(algorithmOutput[i - 1].node);
-                toValue = VisualNode.getValueByNodeId(algorithmOutput[i].node);
-                $stepsBody.append("<div class=\"step\"><span>" + fromValue +
-                    " <i class=\"fas fa-long-arrow-alt-right\"></i> " + toValue +
-                    "</span></div>");
+            fromValue = VisualNode.getValueByNodeId(algorithmOutput[i - 1].node);
+            toValue = VisualNode.getValueByNodeId(algorithmOutput[i].node);
+            $stepsBody.append("<div class=\"step\"><span>" + fromValue +
+                " <i class=\"fas fa-long-arrow-alt-right\"></i> " + toValue +
+                "</span></div>");
 
         }
     }
@@ -1136,7 +1136,7 @@ class BinaryNode extends VisualNode {
                 source: this.graph.getParentArray()[algorithmStep.node],
                 target: algorithmStep.node
             };
-            if (connection.source!== 0) {
+            if (connection.source !== 0) {
                 $step = $("#steps-body").find(".step:not(.active-step):first");
                 $step.addClass("active-step");
             }
@@ -1148,7 +1148,7 @@ class BinaryNode extends VisualNode {
         } else if (this.editMode == true) {
             this.showMessage(EDIT_MODE_ON_WARNING_MSG);
             this.removeMessage(3000);
-        } else if (this.selectedNode == "n/a") {
+        } else if (this.selectedNode === "n/a" && menuItems.selectedAlgorithm !== ID_KRUSKAL) {
             this.showMessage(ALGORITHM_NOT_STARTED_MSG);
             this.removeMessage(3000);
         } else {

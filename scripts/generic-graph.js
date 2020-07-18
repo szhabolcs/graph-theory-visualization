@@ -550,7 +550,7 @@ class GenericGraph {
 
         }
 
-        this.algorithmOutput.push({info: EDGE_LIST_SORT});
+        this.algorithmOutput.push({info: $.i18n(EDGE_LIST_SORT)});
 
         for (let i in this.booleMatrix) {
             components[i] = i;
@@ -1050,7 +1050,7 @@ class BinaryTree extends GenericGraph {
                 $("#output-body").text($("#output-body").text() + $.i18n("tree-height-output-text") + ": " + this.getHeight(this.root));
                 break;
             case ID_GET_LEAVES:
-                this.getLeafves();
+                this.getLeaves();
                 break;
             case ID_GET_DIRECT_CHILDS:
                 this.getDirectChildNodes(this.root);
