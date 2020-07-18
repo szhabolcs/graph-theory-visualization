@@ -87,11 +87,6 @@ $(window).on('load',function(){
             element.scrollIntoView();
         }
 
-        $("#en_flag").click(()=>{
-            let url = window.location.href;
-            let newUrl = url.replace("locale="+locale,"locale=en");
-            window.location.replace(newUrl);
-        });
         $("#hu_flag").click(()=>{
             let url = window.location.href;
             let newUrl = url.replace("locale="+locale,"locale=hu");
@@ -106,6 +101,13 @@ $(window).on('load',function(){
         $('[id^="section"]').click((e)=>{
             e.currentTarget.scrollIntoView();
             window.location.hash = "#"+e.currentTarget.id;
+        });
+
+        $("#app-button").click(()=>{
+            window.location = "https://app."+window.location.hostname+"?locale="+locale;
+        });
+        $("#docs-button").click(()=>{
+            window.location = "https://docs."+window.location.hostname;
         });
 
         $("#side-nav div a").click(changeNav);

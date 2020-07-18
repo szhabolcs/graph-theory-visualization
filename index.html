@@ -46,7 +46,6 @@
         </div>
         <br>
         <a id="hu-link"><img class="flag" src="./images/hu_flag.png"></a>
-        <a id="en-link"><img class="flag" src="./images/en_flag.png"></a>
         <a id="ro-link"><img class="flag" src="./images/ro_flag.png"></a>
     </div>
 </body>
@@ -102,22 +101,6 @@
         document.getElementById("docs-text").innerHTML = "A vizualizáló applikáció dokumentációja.";
         document.getElementById("docs-button").innerHTML = "Olvass bele a dokumentációba";
     }
-    else if(locale == "en"){
-        //h1
-        document.getElementById("header-text").innerHTML = "An interactive and modern graph theory teaching app suite"
-
-        //App
-        document.getElementById("app-text").innerHTML = "An application that visualizes graph theory algorithms.";
-        document.getElementById("app-button").innerHTML = "Start the app";
-
-        //Learn
-        document.getElementById("learn-text").innerHTML = "A page with educational material and helpful quizzes about graph theory.";
-        document.getElementById("learn-button").innerHTML = "Start learning";
-
-        //Docs
-        document.getElementById("docs-text").innerHTML = "The documentation of the visualizer application.";
-        document.getElementById("docs-button").innerHTML = "Read the docs";
-    }
 
     //Button links
     document.getElementById("app-button").href = "https://app."+window.location.hostname+"?locale="+locale;
@@ -130,7 +113,6 @@
     //Flag links
     let url = window.location.href;
     document.getElementById("hu-link").href = url.replace("locale="+locale,"locale=hu");
-    document.getElementById("en-link").href = url.replace("locale="+locale,"locale=en");
     document.getElementById("ro-link").href = url.replace("locale="+locale,"locale=ro");
 
 </script>

@@ -98,14 +98,14 @@ let menuItems = {
         {
             text: "general-graph",
             id: "altalanos",
-            img: "../images/Generic Graph 150px.png",
-            sectionId: "../#sub-content"
+            img: "images/Generic Graph 150px.png",
+            sectionId: "#sub-content"
         },
         {
             text: "binary-tree",
             id: "binaris",
-            img: "../images/Binary Tree 150px.png",
-            sectionId: "../#section-9"
+            img: "images/Binary Tree 150px.png",
+            sectionId: "#section-9"
         }
     ],
 
@@ -114,40 +114,40 @@ let menuItems = {
             {
                 text: "directed",
                 id: "directed",
-                img: "../images/Directed Graph 150px.png",
-                sectionId: "../#section-3"
+                img: "images/Directed Graph 150px.png",
+                sectionId: "#section-3"
             },
             {
                 text: "undirected",
                 id: "undirected",
-                img: "../images/Undirected Graph 150px.png",
-                sectionId: "../#section-3"
+                img: "images/Undirected Graph 150px.png",
+                sectionId: "#section-3"
             }
         ],
         children: [
             {
                 text: "breadth-first-search",
                 id: "szelessegi-bejaras",
-                img: "../images/Generic Graph 150px.png",
-                sectionId: "../#section-6-1"
+                img: "images/Generic Graph 150px.png",
+                sectionId: "#section-6-1"
             },
             {
                 text: "depth-first-search",
                 id: "melysegi-bejaras",
-                img: "../images/Generic Graph 150px.png",
-                sectionId: "../#section-6-2"
+                img: "images/Generic Graph 150px.png",
+                sectionId: "#section-6-2"
             },
             {
                 text: "dijkstra-algorithm",
                 id: "dijkstra-algoritmus",
-                img: "../images/Generic Graph 150px.png",
-                sectionId: "../#section-7-1"
+                img: "images/Generic Graph 150px.png",
+                sectionId: "#section-7-1"
             },
             {
                 text: "kruskal-algorithm",
                 id: "kruskal-algoritmus",
-                img: "../images/Generic Graph 150px.png",
-                sectionId: "../#section-8-1"
+                img: "images/Generic Graph 150px.png",
+                sectionId: "#section-8-1"
             }
         ]
     },
@@ -156,45 +156,45 @@ let menuItems = {
             {
                 text: "preorder-search",
                 id: "preorder-bejaras",
-                img: "../images/Binary Tree 150px.png",
-                sectionId: "../#section-12"
+                img: "images/Binary Tree 150px.png",
+                sectionId: "#section-12"
 
             },
             {
                 text: "inorder-search",
                 id: "inorder-bejaras",
-                img: "../images/Binary Tree 150px.png",
-                sectionId: "../#section-12"
+                img: "images/Binary Tree 150px.png",
+                sectionId: "#section-12"
             },
             {
                 text: "postorder-search",
                 id: "postorder-bejaras",
-                img: "../images/Binary Tree 150px.png",
-                sectionId: "../#section-12"
+                img: "images/Binary Tree 150px.png",
+                sectionId: "#section-12"
             },
             {
                 text: "tree-height",
                 id: "fa-magassaga",
-                img: "../images/Binary Tree 150px.png",
-                sectionId: "../#section-9"
+                img: "images/Binary Tree 150px.png",
+                sectionId: "#section-9"
             },
             {
                 text: "tree-leaves",
                 id: "fa-levelei",
-                img: "../images/Binary Tree 150px.png",
-                sectionId: "../#section-9"
+                img: "images/Binary Tree 150px.png",
+                sectionId: "#section-9"
             },
             {
                 text: "direct-child-nodes",
                 id: "kozvetlen-leszarmazott",
-                img: "../images/Binary Tree 150px.png",
-                sectionId: "../#section-9"
+                img: "images/Binary Tree 150px.png",
+                sectionId: "#section-9"
             },
             {
                 text: "indirect-child-nodes",
                 id: "kozvetett-leszarmazott",
-                img: "../images/Binary Tree 150px.png",
-                sectionId: "../#section-9"
+                img: "images/Binary Tree 150px.png",
+                sectionId: "#section-9"
             }
         ]
     }

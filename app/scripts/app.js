@@ -250,6 +250,24 @@ $(document).ready(function () {
     $("#restart-btn").click(() => {
         jspNode.resetGraph();
     });
+
+    /**
+     * Dynamic docs link
+     */
+    $("#docs-link").click(()=>{
+        window.location = "https://docs."+window.location.hostname;
+    });
+    /**
+     * Dynamic learn link
+     */
+    $("#learn-link").click(()=>{
+        window.location = "https://learn."+window.location.hostname+"?locale="+locale;
+    });
+
+    $("body").on("click",".read-more-link",(e)=>{
+        e.preventDefault();
+        window.location = "https://learn."+window.location.hostname+"?locale="+locale+$(e.currentTarget).prop("hash");
+    });
 });
 //Language init
 /**
