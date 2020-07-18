@@ -105,12 +105,12 @@ $(window).on('load',function(){
 
         $("#app-button").click(()=>{
             let host = window.location.hostname;
-            let newHost = host.replace("app.","");
+            let newHost = host.replace("learn.","");
             window.location = "https://app."+newHost+"?locale="+locale;
         });
         $("#docs-button").click(()=>{
             let host = window.location.hostname;
-        let newHost = host.replace("app.","");
+            let newHost = host.replace("learn.","");
             window.location = "https://docs."+newHost;
         });
 
