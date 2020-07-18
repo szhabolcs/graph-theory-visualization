@@ -255,18 +255,24 @@ $(document).ready(function () {
      * Dynamic docs link
      */
     $("#docs-link").click(()=>{
-        window.location = "https://docs."+window.location.hostname;
+        let host = window.location.hostname;
+        let newHost = host.replace("app.","");
+        window.location = "https://docs."+newHost;
     });
     /**
      * Dynamic learn link
      */
     $("#learn-link").click(()=>{
-        window.location = "https://learn."+window.location.hostname+"?locale="+locale;
+        let host = window.location.hostname;
+        let newHost = host.replace("app.","");
+        window.location = "https://learn."+newHost+"?locale="+locale;
     });
 
     $("body").on("click",".read-more-link",(e)=>{
         e.preventDefault();
-        window.location = "https://learn."+window.location.hostname+"?locale="+locale+$(e.currentTarget).prop("hash");
+        let host = window.location.hostname;
+        let newHost = host.replace("app.","");
+        window.location = "https://learn."+newHost+"?locale="+locale+$(e.currentTarget).prop("hash");
     });
 });
 //Language init

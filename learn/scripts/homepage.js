@@ -104,10 +104,14 @@ $(window).on('load',function(){
         });
 
         $("#app-button").click(()=>{
-            window.location = "https://app."+window.location.hostname+"?locale="+locale;
+            let host = window.location.hostname;
+            let newHost = host.replace("app.","");
+            window.location = "https://app."+newHost+"?locale="+locale;
         });
         $("#docs-button").click(()=>{
-            window.location = "https://docs."+window.location.hostname;
+            let host = window.location.hostname;
+        let newHost = host.replace("app.","");
+            window.location = "https://docs."+newHost;
         });
 
         $("#side-nav div a").click(changeNav);
