@@ -3,3 +3,15 @@
   to = "https://graphviser.tools/app/:splat"
   status = 200
   force = true
+  
+  [[redirects]]
+  from = "https://learn.graphviser.tools/*"
+  to = "https://graphviser.tools/learn/:splat"
+  status = 200
+  force = true
+  
+  [[redirects]]
+  from = "https://docs.graphviser.tools/*"
+  to = "https://graphviser.tools/docs/:splat"
+  status = 200
+  force = true
