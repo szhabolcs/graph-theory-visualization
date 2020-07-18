@@ -699,6 +699,13 @@ html {
     text-align: center;
 }
 
+#modal-intro{
+    height: 100vh;
+    max-height: fit-content;
+    overflow: auto;
+    padding: 36px;
+}
+
 #modal-intro .container .row .col {
     background-color: var(--black);
     border-radius: 5px;
