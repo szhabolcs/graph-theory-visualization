@@ -301,6 +301,24 @@ class VisualNode {
     }
 
     /**
+     * Marks all of the nodes in the visual representation of the graph
+     */
+    markAllNodes() {
+        for (let i in this.graph.booleMatrix) {
+            this.nodeMarkOn(i);
+        }
+    }
+
+    /**
+     * Removes the mark from all of the nodes in the visual representation of the graph
+     */
+    unMarkAllNodes() {
+        for (let i in this.graph.booleMatrix) {
+            this.nodeMarkOff(i);
+        }
+    }
+
+    /**
      * Marks a connection in the visual representation of the graph.
      * Sets the color of it to green
      * @param {jsPlumb|connection} connection The jsPlumb connection to mark
@@ -331,7 +349,7 @@ class VisualNode {
      * @param {string} message The message that's going to be displayed
      */
     showMessage(message) {
-        this.DOMMessage.html('<i class="fas fa-exclamation-circle"style="padding:5px;"></i> '+$.i18n(message));
+        this.DOMMessage.html('<i class="fas fa-exclamation-circle"style="padding:5px;"></i> ' + $.i18n(message));
         this.DOMMessage.fadeIn();
     }
 
@@ -478,6 +496,8 @@ class VisualNode {
             ++this.step;
             step = this.step;
             const algorithmStep = this.graph.algorithmOutput[step];
+            if (algorithmStep.hasOwnProperty("markAll"))
+                this.markAllNodes();
             if (algorithmStep.hasOwnProperty("info")) {
                 $step = $("#steps-body").find(".step:not(.active-step):first");
                 $step.addClass("active-step");
@@ -537,6 +557,9 @@ class VisualNode {
                 $step.removeClass("active-step");
             }
 
+            if (algorithmStep.hasOwnProperty("markAll"))
+                this.unMarkAllNodes();
+
             if (algorithmStep.hasOwnProperty("unmark")) {
 
                 for (let i = 1; i < algorithmStep.unmark.length; i++) {
@@ -552,7 +575,8 @@ class VisualNode {
                     source: algorithmStep.from,
                     target: algorithmStep.to
                 };
-                this.nodeMarkOff(algorithmStep.to);
+                if (menuItems.selectedAlgorithm !== ID_KRUSKAL)
+                    this.nodeMarkOff(algorithmStep.to);
                 this.connectionMarkOff(connection);
             }
             this.step--;
