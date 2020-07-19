@@ -138,15 +138,21 @@ class VisualNode {
     onWeightChange(eventInfo) {
         const $weightInput = $(eventInfo.target);
         const $weightInputOverlay = $weightInput.parent();
+        const weightValue = $weightInput.val();
         let indexOfEdge;
-        let edge = {
-            source: $weightInputOverlay.data("source"),
-            target: $weightInputOverlay.data("target"),
-            weight: Number.parseInt($weightInput.val())
-        };
-        indexOfEdge = this.graph.searchEdge(edge);
-        this.graph.updateWeight(edge, indexOfEdge);
-        this.graph.updateWeightInTables(edge, indexOfEdge);
+        if (weightValue !== Number.parseInt(weightValue).toString()) {
+            this.showMessage(NOT_A_NUMBER_WARNING_MSG);
+            this.removeMessage(2000);
+        } else {
+            let edge = {
+                source: $weightInputOverlay.data("source"),
+                target: $weightInputOverlay.data("target"),
+                weight: Number.parseInt(weightValue)
+            };
+            indexOfEdge = this.graph.searchEdge(edge);
+            this.graph.updateWeight(edge, indexOfEdge);
+            this.graph.updateWeightInTables(edge, indexOfEdge);
+        }
     }
 
     //Base and Helper functions
@@ -368,7 +374,7 @@ class VisualNode {
      * It sets the clicked node as the selected one.
      * @param {Object} eventInfo Information about the event
      */
-    nodeSelect(eventInfo) {
+    nodeSelected(eventInfo) {
         this.selectedNode = eventInfo.currentTarget.id;
         DOMContainer.undelegate(".node", "click");
         DOMContainer.undelegate(".node", "mouseenter mouseleave");
@@ -395,7 +401,7 @@ class VisualNode {
     selectNode(message) {
         this.showMessage(message);
         this.selectedNode = "none";
-        this.DOMContainer.delegate(".node", "click", this.nodeSelect.bind(this));
+        this.DOMContainer.delegate(".node", "click", this.nodeSelected.bind(this));
         this.DOMContainer.delegate(".node", "mouseenter mouseleave", this.nodeHover);
     }
 
@@ -1093,13 +1099,18 @@ class BinaryNode extends VisualNode {
      * It sets the clicked node as the selected one.
      * @param {Object} eventInfo Information about the event
      */
-    nodeSelect(eventInfo) {
+    nodeSelected(eventInfo) {
         this.selectedNode = eventInfo.currentTarget.id;
-        this.root = this.selectedNode;
-        DOMContainer.undelegate(".node", "click", this.nodeSelect);
-        DOMContainer.undelegate(".node", "mouseenter mouseleave", this.nodeHover);
-        this.removeMessage();
-        this.graph.runAlgorithm(menuItems.selectedAlgorithm);
+        DOMContainer.undelegate(".node", "click");
+        DOMContainer.undelegate(".node", "mouseenter mouseleave");
+        if(this.graph.parentArray[this.selectedNode]!==0){
+            this.selectNode(NOT_ROOT_SELECTED_WARNING);
+        }else {
+            this.graph.root = this.selectedNode;
+            this.removeMessage();
+            this.graph.runAlgorithm(menuItems.selectedAlgorithm);
+            this.animationTimer = setInterval(() => this.goOneStepForward(), STEP_TIME);
+        }
     }
 
     /**
@@ -1230,6 +1241,7 @@ class BinaryNode extends VisualNode {
             this.removeMessage(3000);
         } else {
             this.graph.searchRootNode();
+            this.animationInitialized = true;
         }
     }
 

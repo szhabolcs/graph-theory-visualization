@@ -13,6 +13,8 @@ const NO_PREVIOUS_STEPS_MSG = "no-previous-steps-warning";
 const ALGORITHM_NOT_STARTED_MSG = "algorithm-not-started-warning";
 const GRAPH_ROOT_SELECTED_MSG = "graph-root-selected"
 const EDGE_LIST_SORT = "edge-list-sort";
+const NOT_A_NUMBER_WARNING_MSG = "nan-warning";
+const NOT_ROOT_SELECTED_WARNING = "not-root-warning";
 
 //CONSTANT STRINGS
 const BINARY_TREE = "binaris";

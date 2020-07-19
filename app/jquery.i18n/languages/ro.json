@@ -73,5 +73,7 @@
     "close-ok": "OK",
     "no-algorithm-selected-title": "Atenție",
     "no-algorithm-selected-body": "Nu ai ales un algoritm.",
-    "edge-list-sort": "Sortare lista de muchii"
+    "edge-list-sort": "Sortare lista de muchii",
+    "nan-warning": "Costul muchiilor trebuie să fie un număr",
+    "not-root-warning" : "Nodul pe care l-ai selectat, nu este o rădăcină. Alege o rădăcină"
 }
