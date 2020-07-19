@@ -265,6 +265,9 @@ html {
     vertical-align: middle;
     padding-bottom: 8px;
 }
+.navbar-card .row .col-sm:last-child{
+    padding-right: 10px;
+}
 
 /* Floating items */
 .floating-dropdown {
@@ -326,7 +329,7 @@ html {
 
 #left-splitter {
     width: 18px;
-    background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/vsizegrip.png) center center no-repeat var(--dark-green);
+    background: url("../images/vsizegrip.png") center center no-repeat var(--dark-green);
     height: 100%;
     cursor: col-resize;
     float: left;
@@ -400,7 +403,7 @@ html {
 
 #right-splitter {
     width: 18px;
-    background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/vsizegrip.png) center center no-repeat var(--dark-green);
+    background: url("../images/vsizegrip.png") center center no-repeat var(--dark-green);
     height: 100%;
     cursor: col-resize;
     float: right;
@@ -434,7 +437,7 @@ html {
 
 #middle-splitter {
     width: 100%;
-    background: url(https://raw.githubusercontent.com/RickStrahl/jquery-resizable/master/assets/hsizegrip.png) center center no-repeat var(--dark-green);
+    background: url("../images/hsizegrip.png") center center no-repeat var(--dark-green);
     height: 18px;
     cursor: row-resize;
 }
@@ -861,12 +864,28 @@ a:not([href]):hover {
     display: inherit;
     opacity: 0.5;
 }
-
 .active-step {
     opacity: 1;
 }
-
 .steps > span > .fas {
     padding-left: 10px;
     padding-right: 10px;
+}
+
+#open-menu{
+    text-align: center;
+    margin: 30px auto;
+    padding: 15px;
+    border: 3px solid var(--light-green);
+    border-radius: 5px;
+    cursor: pointer;
+    width: fit-content;
+    background-color: var(--black);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    font-size: 1.2rem;
+    transition: border-color .2s;
+    color: var(--white);
+}
+#open-menu:hover{
+    border-color: var(--white);
 }
