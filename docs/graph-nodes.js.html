@@ -39,6 +39,7 @@ class VisualNode {
 
     //Animation
     step = -1;
+    animationInitialized = false;
 
     /**
      * The remove button overlay on the connections
@@ -60,8 +61,18 @@ class VisualNode {
                 this.jspInstance.select(removeButtonOverlay.component).removeClass("connection-hover");
             }
         },
-        location: 0.5,
+        location: 0.75,
         id: "remove-button-overlay"
+    }];
+
+    weightInputOverlay = ["Custom", {
+        create: (component) => {
+            const $weightInput = $(WEIGHT_INPUT_HTML);
+            return $weightInput;
+        },
+
+        location: 0.25,
+        id: "weight-input-overlay"
     }];
 
     /**
@@ -79,6 +90,8 @@ class VisualNode {
 
         //Binding the event listeners
         this.jspInstance.bind("connection", (eventInfo) => this.onConnect(eventInfo));
+        $Document.off("change", ".weight-text");
+        $Document.on("change", ".weight-text", (eventInfo) => this.onWeightChange(eventInfo));
     }
 
     //Event Listeners
@@ -88,6 +101,15 @@ class VisualNode {
      * @param {Object} eventInfo Information about the event
      */
     onConnect(eventInfo) {
+
+        //Adds source and target to overlay metadata
+        const $weightInputOverlay = $(eventInfo.connection._jsPlumb.overlays['weight-input-overlay'].canvas);
+        $weightInputOverlay.data({
+            "source": eventInfo.sourceId,
+            "target": eventInfo.targetId
+        });
+        $weightInputOverlay.children("input").inputfit();
+
         if (this.sameEndpoint === false) {
             this.jspInstance.selectEndpoints(
                 {
@@ -134,6 +156,31 @@ class VisualNode {
                 this.graph.tblEdgeList.updateTable((Number.parseInt(i) + 1).toString(), TARGET, nodeText);
         }
 
+    }
+
+    /**
+     * onWeightChange Event Listener Callback
+     * Changes the weight of the edge in memory.
+     * @param {Object} eventInfo Information about the event
+     */
+    onWeightChange(eventInfo) {
+        const $weightInput = $(eventInfo.target);
+        const $weightInputOverlay = $weightInput.parent();
+        const weightValue = $weightInput.val();
+        let indexOfEdge;
+        if (weightValue !== Number.parseInt(weightValue).toString()) {
+            this.showMessage(NOT_A_NUMBER_WARNING_MSG);
+            this.removeMessage(2000);
+        } else {
+            let edge = {
+                source: $weightInputOverlay.data("source"),
+                target: $weightInputOverlay.data("target"),
+                weight: Number.parseInt(weightValue)
+            };
+            indexOfEdge = this.graph.searchEdge(edge);
+            this.graph.updateWeight(edge, indexOfEdge);
+            this.graph.updateWeightInTables(edge, indexOfEdge);
+        }
     }
 
     //Base and Helper functions
@@ -227,29 +274,35 @@ class VisualNode {
      */
     enableEditMode() {
         const $nodeText = $(".node-text");
+        const $weightText = $(".weight-text");
         $(".tilde").removeClass("hidden");
         $nodeText.addClass("node-text-border");
+        $weightText.addClass("node-text-border");
         $nodeText.prop('disabled', false);
+        $weightText.prop('disabled', false);
         $(".remove-btn").removeClass("hidden");
         $(".node").removeClass("in-view-mode");
+        $weightText.removeClass("hidden");
         this.editMode = true;
+        this.resetGraph();
     }
 
     /**
      * Disables the edit mode for the graph editor.
      * Sets new connection endpoint to invisible, disables the text input on the node,
-     * disables the remove buttons and switches on view mode.
+     * disables the remove buttons and switches in view mode.
      *
      */
     disableEditMode() {
         const $nodeText = $(".node-text");
+        const $weightText = $(".weight-text");
         $(".tilde").addClass("hidden");
         $nodeText.removeClass("node-text-border");
+        $weightText.removeClass("node-text-border");
         $nodeText.prop('disabled', true);
         $(".remove-btn").addClass("hidden");
         $(".node").addClass("in-view-mode");
         this.editMode = false;
-        this.resetGraph();
     }
 
     /**
@@ -282,15 +335,35 @@ class VisualNode {
     }
 
     /**
+     * Marks all of the nodes in the visual representation of the graph
+     */
+    markAllNodes() {
+        for (let i in this.graph.booleMatrix) {
+            this.nodeMarkOn(i);
+        }
+    }
+
+    /**
+     * Removes the mark from all of the nodes in the visual representation of the graph
+     */
+    unMarkAllNodes() {
+        for (let i in this.graph.booleMatrix) {
+            this.nodeMarkOff(i);
+        }
+    }
+
+    /**
      * Marks a connection in the visual representation of the graph.
      * Sets the color of it to green
      * @param {jsPlumb|connection} connection The jsPlumb connection to mark
      */
     connectionMarkOn(connection) {
-        this.jspInstance.select({
-            source: connection.source,
-            target: connection.target
-        }).addClass("connection-mark");
+        if (connection.source != null &amp;&amp; connection.target != null) {
+            this.jspInstance.select({
+                source: connection.source,
+                target: connection.target
+            }).addClass("connection-mark");
+        }
     }
 
     /**
@@ -310,15 +383,18 @@ class VisualNode {
      * @param {string} message The message that's going to be displayed
      */
     showMessage(message) {
-        this.DOMMessage.text(message);
+        this.DOMMessage.html('&lt;i class="fas fa-exclamation-circle"style="padding:5px;">&lt;/i> ' + $.i18n(message));
         this.DOMMessage.fadeIn();
     }
 
     /**
      * Removes the message from the DOM
+     * @param {Number} delay Number of ms to delay before message dissapearance
      */
-    removeMessage() {
-        this.DOMMessage.fadeOut();
+    removeMessage(delay = 0) {
+        setTimeout(() => {
+            this.DOMMessage.fadeOut();
+        }, delay);
     }
 
     /**
@@ -326,12 +402,16 @@ class VisualNode {
      * It sets the clicked node as the selected one.
      * @param {Object} eventInfo Information about the event
      */
-    nodeSelect(eventInfo) {
+    nodeSelected(eventInfo) {
         this.selectedNode = eventInfo.currentTarget.id;
-        DOMContainer.undelegate(".node", "click", this.nodeSelect);
-        DOMContainer.undelegate(".node", "mouseenter mouseleave", this.nodeHover);
+        DOMContainer.undelegate(".node", "click");
+        DOMContainer.undelegate(".node", "mouseenter mouseleave");
         this.removeMessage();
         this.graph.runAlgorithm(menuItems.selectedAlgorithm);
+        this.loadSteps();
+        this.loadOutput();
+        this.animationTimer = setInterval(() => this.goOneStepForward(), STEP_TIME);
+        this.switchToPauseButton();
     }
 
     /**
@@ -349,7 +429,7 @@ class VisualNode {
     selectNode(message) {
         this.showMessage(message);
         this.selectedNode = "none";
-        this.DOMContainer.delegate(".node", "click", this.nodeSelect.bind(this));
+        this.DOMContainer.delegate(".node", "click", this.nodeSelected.bind(this));
         this.DOMContainer.delegate(".node", "mouseenter mouseleave", this.nodeHover);
     }
 
@@ -366,7 +446,12 @@ class VisualNode {
      * and removes the marks from them.
      */
     resetGraph() {
+        this.animationInitialized = false;
+        clearInterval(this.animationTimer);
+        this.switchToPlayButton();
         this.clearSelectedNode();
+        this.clearSteps();
+        this.clearOutput();
         this.graph.resetAlgorithm();
         this.step = -1;
         for (let i in graph.edgeList) {
@@ -380,24 +465,115 @@ class VisualNode {
     }
 
     /**
+     * Load the steps of the algorithm to the step section
+     */
+    loadSteps() {
+        const algorithmOutput = this.graph.algorithmOutput;
+        const $stepsBody = $('#steps-body');
+        let from;
+        let to;
+        let fromValue;
+        let toValue;
+        for (let i = 0; i &lt; algorithmOutput.length; i++) {
+
+            if (algorithmOutput[i].hasOwnProperty("info")) {
+                $stepsBody.append("&lt;div class=\"step\">&lt;span>" + algorithmOutput[i].info +
+                    "&lt;/span>&lt;/div>");
+            } else if (!algorithmOutput.hasOwnProperty("unmark")) {
+
+                from = algorithmOutput[i].from;
+                to = algorithmOutput[i].to;
+                if (from !== null) {
+                    fromValue = VisualNode.getValueByNodeId(from);
+                    toValue = VisualNode.getValueByNodeId(to);
+                    $stepsBody.append("&lt;div class=\"step\">&lt;span>" + fromValue +
+                        " &lt;i class=\"fas fa-long-arrow-alt-right\">&lt;/i> " + toValue +
+                        "&lt;/span>&lt;/div>");
+                }
+            }
+        }
+    }
+
+    /**
+     * Loads the output of the algorithm to the DOM
+     */
+    loadOutput() {
+        const algorithmOutput = this.graph.algorithmOutput;
+        const $outputBody = $('#output-body');
+        for (let i in algorithmOutput.log) {
+            $outputBody.append(algorithmOutput.log[i] + " ");
+        }
+    }
+
+    /**
+     * Clears the steps DOM section
+     */
+    clearSteps() {
+        $("#steps-body").text("");
+    }
+
+    /**
+     * Clears the output DOM section
+     */
+    clearOutput() {
+        $("#output-body").text("");
+    }
+
+    /**
      * Goes one step forward in the animation
      */
     goOneStepForward() {
         let step;
+        let connection;
+        let $step;
         if (this.step &lt; this.graph.algorithmOutput.length - 1) {
             ++this.step;
             step = this.step;
             const algorithmStep = this.graph.algorithmOutput[step];
-            const connection = {
-                source: algorithmStep.from,
-                target: algorithmStep.to
-            };
-            this.nodeMarkOn(algorithmStep.from);
-            this.connectionMarkOn(connection);
-            this.nodeMarkOn(algorithmStep.to);
+            if (algorithmStep.hasOwnProperty("markAll"))
+                this.markAllNodes();
+            if (algorithmStep.hasOwnProperty("info")) {
+                $step = $("#steps-body").find(".step:not(.active-step):first");
+                $step.addClass("active-step");
+            } else if (algorithmStep.from !== null) {
+                $step = $("#steps-body").find(".step:not(.active-step):first");
+                $step.addClass("active-step");
+            }
+            if (algorithmStep.hasOwnProperty("unmark")) {
+
+                for (let i = 1; i &lt; algorithmStep.unmark.length; i++) {
+                    connection = {
+                        source: algorithmStep.unmark[i - 1],
+                        target: algorithmStep.unmark[i]
+                    }
+                    this.connectionMarkOff(connection);
+                }
+
+            } else {
+                connection = {
+                    source: algorithmStep.from,
+                    target: algorithmStep.to
+                };
+                this.nodeMarkOn(algorithmStep.from);
+                this.connectionMarkOn(connection);
+                this.nodeMarkOn(algorithmStep.to);
+            }
+
+        } else if (Object.keys(this.graph.adjacencyList) === undefined || Object.keys(this.graph.adjacencyList).length == 0) {
+            this.showMessage(EMPTY_GRAPH_WARNING_MSG);
+            this.removeMessage(2000);
+        } else if (this.editMode == true) {
+            this.showMessage(EDIT_MODE_ON_WARNING_MSG);
+            this.removeMessage(3000);
+        } else if (this.selectedNode === "n/a" &amp;&amp; menuItems.selectedAlgorithm !== ID_KRUSKAL) {
+            this.showMessage(ALGORITHM_NOT_STARTED_MSG);
+            this.removeMessage(3000);
+        } else {
+            this.showMessage(NO_MORE_STEPS_MSG);
+            clearInterval(this.animationTimer);
+            this.switchToPlayButton();
+            this.removeMessage(2000);
         }
-
-
     }
 
     /**
@@ -405,15 +581,51 @@ class VisualNode {
      */
     goOneStepBackwards() {
         const step = this.step;
+        let connection;
+        let $step;
         if (step >= 0) {
             const algorithmStep = this.graph.algorithmOutput[step];
-            const connection = {
-                source: algorithmStep.from,
-                target: algorithmStep.to
-            };
-            this.nodeMarkOff(algorithmStep.to);
-            this.connectionMarkOff(connection);
+
+            if (algorithmStep.from !== null) {
+                $step = $("#steps-body").find(".active-step:last");
+                $step.removeClass("active-step");
+            }
+
+            if (algorithmStep.hasOwnProperty("markAll"))
+                this.unMarkAllNodes();
+
+            if (algorithmStep.hasOwnProperty("unmark")) {
+
+                for (let i = 1; i &lt; algorithmStep.unmark.length; i++) {
+                    connection = {
+                        source: algorithmStep.unmark[i - 1],
+                        target: algorithmStep.unmark[i]
+                    }
+                    this.connectionMarkOn(connection);
+                }
+
+            } else {
+                connection = {
+                    source: algorithmStep.from,
+                    target: algorithmStep.to
+                };
+                if (menuItems.selectedAlgorithm !== ID_KRUSKAL)
+                    this.nodeMarkOff(algorithmStep.to);
+                this.connectionMarkOff(connection);
+            }
             this.step--;
+        } else if (Object.keys(this.graph.adjacencyList) === undefined || Object.keys(this.graph.adjacencyList).length == 0) {
+            this.showMessage(EMPTY_GRAPH_WARNING_MSG);
+            this.removeMessage(2000);
+        } else if (this.editMode == true) {
+            this.showMessage(EDIT_MODE_ON_WARNING_MSG);
+            this.removeMessage(3000);
+        } else if (this.selectedNode === "n/a" &amp;&amp; menuItems.selectedAlgorithm !== ID_KRUSKAL) {
+            this.showMessage(ALGORITHM_NOT_STARTED_MSG);
+            this.removeMessage(3000);
+        } else {
+            this.showMessage(NO_PREVIOUS_STEPS_MSG);
+            this.removeMessage(2000);
         }
     }
 
@@ -421,23 +633,90 @@ class VisualNode {
      * Plays the animation
      */
     play() {
-        this.selectNode(STARTUP_NODE_MSG);
+        if (this.animationInitialized === false) {
+            this.initAnimation();
+        } else {
+            this.animationTimer = setInterval(() => this.goOneStepForward(), STEP_TIME);
+            this.switchToPauseButton();
+        }
+    }
 
+    /**
+     * Initializes the animation
+     */
+    initAnimation() {
+        if (menuItems.selectedAlgorithm === ID_KRUSKAL) {
+            if (this.editMode === true) {
+                this.showMessage(EDIT_MODE_ON_WARNING_MSG);
+                this.removeMessage(3000);
+            } else {
+                this.graph.runAlgorithm(menuItems.selectedAlgorithm);
+                this.loadSteps();
+                this.loadOutput();
+                this.animationInitialized = true;
+                this.animationTimer = setInterval(() => this.goOneStepForward(), STEP_TIME);
+                this.switchToPauseButton();
+            }
+        } else {
 
+            if (Object.keys(this.graph.adjacencyList) === undefined || Object.keys(this.graph.adjacencyList).length == 0) {
+                this.showMessage(EMPTY_GRAPH_WARNING_MSG);
+                this.removeMessage(2000);
+            } else if (this.editMode == true) {
+                this.showMessage(EDIT_MODE_ON_WARNING_MSG);
+                this.removeMessage(3000);
+            } else {
+                this.selectNode(STARTUP_NODE_MSG);
+                this.animationInitialized = true;
+            }
+        }
     }
 
     /**
      * Pauses the animation
      */
     pause() {
+        clearInterval(this.animationTimer);
+        this.switchToPlayButton();
+    }
 
+
+    /**
+     * Switches to play button
+     */
+    switchToPlayButton() {
+        $('#pause-btn').hide();
+        $('#play-btn').show();
     }
 
     /**
-     * Continues playing the animation
+     * Switches to pause button
      */
-    continueAnimation() {
+    switchToPauseButton() {
+        $('#play-btn').hide();
+        $('#pause-btn').show();
+    }
 
+    /**
+     * Checks whether weights are used or not and shows or hides them
+     */
+    setWeights() {
+        const weightsUsed = this.graph.checkWeights();
+        const $weightText = $('.weight-text');
+        if (weightsUsed === false) {
+            $weightText.addClass('hidden');
+            this.graph.tblEdgeList.hideColumn(WEIGHT);
+        } else {
+            this.graph.tblEdgeList.showColumn(WEIGHT);
+            $weightText.prop('disabled', true);
+        }
+    }
+
+    /**
+     * Resets the indexing for nodes
+     */
+    resetNodeIndex() {
+        this.nodeIndex = 0;
     }
 
     //Getters and setters
@@ -522,7 +801,8 @@ class DirectedNode extends VisualNode {
         } else {
             const edge = {
                 source: $(eventInfo.source).attr("id"),
-                target: $(eventInfo.target).attr("id")
+                target: $(eventInfo.target).attr("id"),
+                weight: 1
             };
             this.graph.addNewEdge(edge);
             this.graph.addEdgeToTable(edge);
@@ -553,11 +833,22 @@ class DirectedNode extends VisualNode {
             connector: "Straight",
             connectorOverlays: [
                 ["PlainArrow", {width: 15, location: 1, height: 10, id: "arrow"}],
-                this.removeBtnOverlay
+                this.removeBtnOverlay,
+                this.weightInputOverlay
             ]
         });
     }
 
+    /**
+     * Disables the edit mode for the graph editor.
+     * Sets new connection endpoint to invisible, disables the text input on the node,
+     * disables the remove buttons and switches in view mode.
+     *
+     */
+    disableEditMode() {
+        super.disableEditMode();
+        this.setWeights();
+    }
 }
 
 /**
@@ -595,7 +886,8 @@ class UnDirectedNode extends VisualNode {
         } else {
             const edge = {
                 source: $(eventInfo.source).attr("id"),
-                target: $(eventInfo.target).attr("id")
+                target: $(eventInfo.target).attr("id"),
+                weight: 1
             };
             this.graph.addNewEdge(edge);
             this.graph.addEdgeToTable(edge);
@@ -628,11 +920,62 @@ class UnDirectedNode extends VisualNode {
             allowLoopback: false,
             connectorOverlays: [
                 ["PlainArrow", {width: 15, location: 1, height: 10, id: "arrow", cssClass: "hidden"}],
-                this.removeBtnOverlay
+                this.removeBtnOverlay,
+                this.weightInputOverlay
             ]
         });
     }
 
+    /**
+     * Marks a connection in the visual representation of the graph.
+     * Sets the color of it to green
+     * This one overrides the original function, in order to fix issue #2
+     * @param {jsPlumb|connection} connection The jsPlumb connection to mark
+     */
+    connectionMarkOn(connection) {
+        if (connection.source != null &amp;&amp; connection.target != null) {
+            this.jspInstance.select({
+                source: connection.source,
+                target: connection.target
+            }).addClass("connection-mark");
+
+            this.jspInstance.select({
+                source: connection.target,
+                target: connection.source
+            }).addClass("connection-mark");
+        }
+
+    }
+
+
+    /**
+     * Removes a mark from a connection in the visual representation of the graph.
+     * Resets the color of it from green
+     * This one overrides the original function, in order to fix issue #2
+     * @param {jsPlumb|connection} connection The jsPlumb connection to remove the mark from
+     */
+    connectionMarkOff(connection) {
+        this.jspInstance.select({
+            source: connection.source,
+            target: connection.target
+        }).removeClass("connection-mark");
+
+        this.jspInstance.select({
+            source: connection.target,
+            target: connection.source
+        }).removeClass("connection-mark");
+    }
+
+    /**
+     * Disables the edit mode for the graph editor.
+     * Sets new connection endpoint to invisible, disables the text input on the node,
+     * disables the remove buttons and switches in view mode.
+     *
+     */
+    disableEditMode() {
+        super.disableEditMode();
+        this.setWeights();
+    }
 }
 
 /**
@@ -716,9 +1059,7 @@ class BinaryNode extends VisualNode {
         this.jspInstance.addEndpoint(insertedBox, {
             isTarget: true,
             anchor: [
-                [0.5, 0, 0, 0],
-                [0.2, 0.1, 0, 0],
-                [0.8, 0.1, 0, 0]
+                [0.5, 0, 0, 0]
             ],
             deleteEndpointsOnDetach: false,
             allowLoopback: false,
@@ -786,13 +1127,18 @@ class BinaryNode extends VisualNode {
      * It sets the clicked node as the selected one.
      * @param {Object} eventInfo Information about the event
      */
-    nodeSelect(eventInfo) {
+    nodeSelected(eventInfo) {
         this.selectedNode = eventInfo.currentTarget.id;
-        this.root = this.selectedNode;
-        DOMContainer.undelegate(".node", "click", this.nodeSelect);
-        DOMContainer.undelegate(".node", "mouseenter mouseleave", this.nodeHover);
-        this.removeMessage();
-        this.graph.runAlgorithm(menuItems.selectedAlgorithm);
+        DOMContainer.undelegate(".node", "click");
+        DOMContainer.undelegate(".node", "mouseenter mouseleave");
+        if(this.graph.parentArray[this.selectedNode]!==0){
+            this.selectNode(NOT_ROOT_SELECTED_WARNING);
+        }else {
+            this.graph.root = this.selectedNode;
+            this.removeMessage();
+            this.graph.runAlgorithm(menuItems.selectedAlgorithm);
+            this.animationTimer = setInterval(() => this.goOneStepForward(), STEP_TIME);
+        }
     }
 
     /**
@@ -800,7 +1146,12 @@ class BinaryNode extends VisualNode {
      * and removes the marks from them.
      */
     resetGraph() {
+        this.animationInitialized = false;
+        clearInterval(this.animationTimer);
+        this.switchToPlayButton();
         this.clearSelectedNode();
+        this.clearSteps();
+        this.clearOutput();
         this.graph.resetAlgorithm();
         this.step = -1;
         for (let i in graph.parentArray) {
@@ -814,10 +1165,32 @@ class BinaryNode extends VisualNode {
     }
 
     /**
+     * Load the steps of the algorithm to the step section
+     */
+    loadSteps() {
+        const algorithmOutput = this.graph.algorithmOutput;
+        const $stepsBody = $('#steps-body');
+        let fromValue;
+        let toValue;
+        for (let i = 1; i &lt; algorithmOutput.length; i++) {
+
+
+            fromValue = VisualNode.getValueByNodeId(algorithmOutput[i - 1].node);
+            toValue = VisualNode.getValueByNodeId(algorithmOutput[i].node);
+            $stepsBody.append("&lt;div class=\"step\">&lt;span>" + fromValue +
+                " &lt;i class=\"fas fa-long-arrow-alt-right\">&lt;/i> " + toValue +
+                "&lt;/span>&lt;/div>");
+
+        }
+    }
+
+
+    /**
      * Goes one step forward in the animation
      */
     goOneStepForward() {
         let step;
+        let $step;
         if (this.step &lt; this.graph.algorithmOutput.length - 1) {
             ++this.step;
             step = this.step;
@@ -826,11 +1199,27 @@ class BinaryNode extends VisualNode {
                 source: this.graph.getParentArray()[algorithmStep.node],
                 target: algorithmStep.node
             };
+            if (connection.source !== 0) {
+                $step = $("#steps-body").find(".step:not(.active-step):first");
+                $step.addClass("active-step");
+            }
             this.nodeMarkOn(algorithmStep.node);
             this.connectionMarkOn(connection);
+        } else if (Object.keys(this.graph.standardForm) === undefined || Object.keys(this.graph.standardForm).length == 0) {
+            this.showMessage(EMPTY_GRAPH_WARNING_MSG);
+            this.removeMessage(2000);
+        } else if (this.editMode == true) {
+            this.showMessage(EDIT_MODE_ON_WARNING_MSG);
+            this.removeMessage(3000);
+        } else if (this.selectedNode === "n/a" &amp;&amp; menuItems.selectedAlgorithm !== ID_KRUSKAL) {
+            this.showMessage(ALGORITHM_NOT_STARTED_MSG);
+            this.removeMessage(3000);
+        } else {
+            this.showMessage(NO_MORE_STEPS_MSG);
+            clearInterval(this.animationTimer);
+            this.switchToPlayButton();
+            this.removeMessage(2000);
         }
-
-
     }
 
     /**
@@ -838,24 +1227,50 @@ class BinaryNode extends VisualNode {
      */
     goOneStepBackwards() {
         const step = this.step;
+        let $step;
         if (step > -1) {
             const algorithmStep = this.graph.algorithmOutput[step];
             const connection = {
                 source: this.graph.getParentArray()[algorithmStep.node],
                 target: algorithmStep.node
             };
+            if (connection.source !== 0) {
+                $step = $("#steps-body").find(".active-step:last");
+                $step.removeClass("active-step");
+            }
             this.nodeMarkOff(algorithmStep.node);
             this.connectionMarkOff(connection);
             this.step--;
+        } else if (Object.keys(this.graph.standardForm) === undefined || Object.keys(this.graph.standardForm).length == 0) {
+            this.showMessage(EMPTY_GRAPH_WARNING_MSG);
+            this.removeMessage(2000);
+        } else if (this.editMode == true) {
+            this.showMessage(EDIT_MODE_ON_WARNING_MSG);
+            this.removeMessage(3000);
+        } else if (this.selectedNode == "n/a") {
+            this.showMessage(ALGORITHM_NOT_STARTED_MSG);
+            this.removeMessage(3000);
+        } else {
+            this.showMessage(NO_PREVIOUS_STEPS_MSG);
+            this.removeMessage(2000);
         }
     }
 
 
     /**
-     * Plays the animation
+     * Initializes the animation
      */
-    play() {
-        this.graph.searchRootNode();
+    initAnimation() {
+        if (Object.keys(this.graph.standardForm) === undefined || Object.keys(this.graph.standardForm).length == 0) {
+            this.showMessage(EMPTY_GRAPH_WARNING_MSG);
+            this.removeMessage(2000);
+        } else if (this.editMode == true) {
+            this.showMessage(EDIT_MODE_ON_WARNING_MSG);
+            this.removeMessage(3000);
+        } else {
+            this.graph.searchRootNode();
+            this.animationInitialized = true;
+        }
     }
 
 }</code></pre>
@@ -868,13 +1283,13 @@ class BinaryNode extends VisualNode {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BinaryNode.html">BinaryNode</a></li><li><a href="BinaryTree.html">BinaryTree</a></li><li><a href="DirectedGraph.html">DirectedGraph</a></li><li><a href="DirectedNode.html">DirectedNode</a></li><li><a href="GenericGraph.html">GenericGraph</a></li><li><a href="TableHandler.html">TableHandler</a></li><li><a href="UndirectedGraph.html">UndirectedGraph</a></li><li><a href="UnDirectedNode.html">UnDirectedNode</a></li><li><a href="VisualNode.html">VisualNode</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bindEventsForDrag">bindEventsForDrag</a></li><li><a href="global.html#calculateMarginSizes">calculateMarginSizes</a></li><li><a href="global.html#calculateZoomedMarginSize">calculateZoomedMarginSize</a></li><li><a href="global.html#changeNav">changeNav</a></li><li><a href="global.html#changeTheme">changeTheme</a></li><li><a href="global.html#getSelectedItems">getSelectedItems</a></li><li><a href="global.html#initGraph">initGraph</a></li><li><a href="global.html#loadCards">loadCards</a></li><li><a href="global.html#loadMotionControls">loadMotionControls</a></li><li><a href="global.html#makeCard">makeCard</a></li><li><a href="global.html#menuItems">menuItems</a></li><li><a href="global.html#nodes">nodes</a></li><li><a href="global.html#onMouseDown">onMouseDown</a></li><li><a href="global.html#onMouseMove">onMouseMove</a></li><li><a href="global.html#onMouseUp">onMouseUp</a></li><li><a href="global.html#onScroll">onScroll</a></li><li><a href="global.html#refitContainer">refitContainer</a></li><li><a href="global.html#setJsPlumbInstanceForMotion">setJsPlumbInstanceForMotion</a></li><li><a href="global.html#setZoom">setZoom</a></li><li><a href="global.html#unbindEventsForDrag">unbindEventsForDrag</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BinaryNode.html">BinaryNode</a></li><li><a href="BinaryTree.html">BinaryTree</a></li><li><a href="DirectedGraph.html">DirectedGraph</a></li><li><a href="DirectedNode.html">DirectedNode</a></li><li><a href="GenericGraph.html">GenericGraph</a></li><li><a href="TableHandler.html">TableHandler</a></li><li><a href="UndirectedGraph.html">UndirectedGraph</a></li><li><a href="UnDirectedNode.html">UnDirectedNode</a></li><li><a href="VisualNode.html">VisualNode</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bindEventsForDrag">bindEventsForDrag</a></li><li><a href="global.html#calculateMarginSizes">calculateMarginSizes</a></li><li><a href="global.html#calculateZoomedMarginSize">calculateZoomedMarginSize</a></li><li><a href="global.html#getSelectedItems">getSelectedItems</a></li><li><a href="global.html#initGraph">initGraph</a></li><li><a href="global.html#loadCards">loadCards</a></li><li><a href="global.html#loadMotionControls">loadMotionControls</a></li><li><a href="global.html#makeCard">makeCard</a></li><li><a href="global.html#menuItems">menuItems</a></li><li><a href="global.html#onMouseDown">onMouseDown</a></li><li><a href="global.html#onMouseMove">onMouseMove</a></li><li><a href="global.html#onMouseUp">onMouseUp</a></li><li><a href="global.html#onScroll">onScroll</a></li><li><a href="global.html#refitContainer">refitContainer</a></li><li><a href="global.html#setJsPlumbInstanceForMotion">setJsPlumbInstanceForMotion</a></li><li><a href="global.html#setLocale">setLocale</a></li><li><a href="global.html#setZoom">setZoom</a></li><li><a href="global.html#unbindEventsForDrag">unbindEventsForDrag</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Jun 11 2020 11:24:48 GMT+0300 (GMT+03:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Sun Jul 19 2020 16:20:15 GMT+0300 (GMT+03:00)
 </footer>
 
 <script> prettyPrint(); </script>

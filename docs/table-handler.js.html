@@ -39,7 +39,7 @@ class TableHandler {
     numberOfColumns = 0;
 
     /**
-     * 
+     *
      * @param {String} sectionId the id of the section to be created
      * @param {String} sectionName the name to be displayed at the section
      */
@@ -79,7 +79,8 @@ class TableHandler {
      * @param {string} j Id of the column
      */
     pushColumn(j) {
-        this.addColumn(j, (this.numberOfColumns + 1).toString());
+        const lastNumber = Number.parseInt(this.DOMTable.find("tr:first > td:last").attr("data-j"));
+        this.addColumn(j, (lastNumber + 1).toString());
     }
 
     /**
@@ -87,7 +88,8 @@ class TableHandler {
      * @param {string} i Id of the row
      */
     pushRow(i) {
-        this.addRow(i, (this.numberOfRows + 1).toString());
+        const lastNumber = Number.parseInt(this.DOMTable.find("tr:last").attr("data-i"));
+        this.addRow(i, (lastNumber + 1).toString());
     }
 
     /**
@@ -110,9 +112,13 @@ class TableHandler {
      * Adds a column to the DOM table
      * @param {string} j Id of the column
      * @param {string} value Value of the column header
+     * @param {boolean} hidden Set this to HIDDEN if you want to hide the column
      */
-    addColumn(j, value) {
+    addColumn(j, value, hidden = false) {
         this.DOMTable.children("tr").append("&lt;td data-j=" + j + ">0&lt;/td>");
+        if (hidden === HIDDEN) {
+            this.addTableClass(0, j, CLASS_HIDDEN);
+        }
         this.updateTable(0, j, value);
         this.numberOfColumns++;
     }
@@ -143,6 +149,42 @@ class TableHandler {
      */
     updateTable(i, j, value) {
         this.DOMTable.find("tr[data-i=" + i + "]" + ">" + "td[data-j=" + j + "]").text(value);
+    }
+
+    /**
+     * Adds a CSS Class to a specific entry in the table
+     * @param {string} i Id of the row
+     * @param {string} j Id of the column
+     * @param {string} cssClass CSS Class to be added
+     */
+    addTableClass(i, j, cssClass) {
+        this.DOMTable.find("tr[data-i=" + i + "]" + ">" + "td[data-j=" + j + "]").addClass(cssClass);
+    }
+
+    /**
+     * Shows a hidden column
+     * @param {string} j Id of the column
+     */
+    showColumn(j) {
+        $('td[data-j=' + j + ']').removeClass(CLASS_HIDDEN);
+    }
+
+    /**
+     * Hides a hidden column
+     * @param {string} j Id of the column
+     */
+    hideColumn(j) {
+        $('td[data-j=' + j + ']').addClass(CLASS_HIDDEN);
+    }
+
+    /**
+     * Removes a CSS Class from a specific entry in the table
+     * @param {string} i Id of the row
+     * @param {string} j Id of the column
+     * @param {string} cssClass CSS Class to be removed
+     */
+    removeTableClass(i, j, cssClass) {
+        this.DOMTable.find("tr[data-i=" + i + "]" + ">" + "td[data-j=" + j + "]").removeClass(cssClass);
     }
 
     /**
@@ -179,13 +221,13 @@ class TableHandler {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BinaryNode.html">BinaryNode</a></li><li><a href="BinaryTree.html">BinaryTree</a></li><li><a href="DirectedGraph.html">DirectedGraph</a></li><li><a href="DirectedNode.html">DirectedNode</a></li><li><a href="GenericGraph.html">GenericGraph</a></li><li><a href="TableHandler.html">TableHandler</a></li><li><a href="UndirectedGraph.html">UndirectedGraph</a></li><li><a href="UnDirectedNode.html">UnDirectedNode</a></li><li><a href="VisualNode.html">VisualNode</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bindEventsForDrag">bindEventsForDrag</a></li><li><a href="global.html#calculateMarginSizes">calculateMarginSizes</a></li><li><a href="global.html#calculateZoomedMarginSize">calculateZoomedMarginSize</a></li><li><a href="global.html#changeNav">changeNav</a></li><li><a href="global.html#changeTheme">changeTheme</a></li><li><a href="global.html#getSelectedItems">getSelectedItems</a></li><li><a href="global.html#initGraph">initGraph</a></li><li><a href="global.html#loadCards">loadCards</a></li><li><a href="global.html#loadMotionControls">loadMotionControls</a></li><li><a href="global.html#makeCard">makeCard</a></li><li><a href="global.html#menuItems">menuItems</a></li><li><a href="global.html#nodes">nodes</a></li><li><a href="global.html#onMouseDown">onMouseDown</a></li><li><a href="global.html#onMouseMove">onMouseMove</a></li><li><a href="global.html#onMouseUp">onMouseUp</a></li><li><a href="global.html#onScroll">onScroll</a></li><li><a href="global.html#refitContainer">refitContainer</a></li><li><a href="global.html#setJsPlumbInstanceForMotion">setJsPlumbInstanceForMotion</a></li><li><a href="global.html#setZoom">setZoom</a></li><li><a href="global.html#unbindEventsForDrag">unbindEventsForDrag</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BinaryNode.html">BinaryNode</a></li><li><a href="BinaryTree.html">BinaryTree</a></li><li><a href="DirectedGraph.html">DirectedGraph</a></li><li><a href="DirectedNode.html">DirectedNode</a></li><li><a href="GenericGraph.html">GenericGraph</a></li><li><a href="TableHandler.html">TableHandler</a></li><li><a href="UndirectedGraph.html">UndirectedGraph</a></li><li><a href="UnDirectedNode.html">UnDirectedNode</a></li><li><a href="VisualNode.html">VisualNode</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bindEventsForDrag">bindEventsForDrag</a></li><li><a href="global.html#calculateMarginSizes">calculateMarginSizes</a></li><li><a href="global.html#calculateZoomedMarginSize">calculateZoomedMarginSize</a></li><li><a href="global.html#getSelectedItems">getSelectedItems</a></li><li><a href="global.html#initGraph">initGraph</a></li><li><a href="global.html#loadCards">loadCards</a></li><li><a href="global.html#loadMotionControls">loadMotionControls</a></li><li><a href="global.html#makeCard">makeCard</a></li><li><a href="global.html#menuItems">menuItems</a></li><li><a href="global.html#onMouseDown">onMouseDown</a></li><li><a href="global.html#onMouseMove">onMouseMove</a></li><li><a href="global.html#onMouseUp">onMouseUp</a></li><li><a href="global.html#onScroll">onScroll</a></li><li><a href="global.html#refitContainer">refitContainer</a></li><li><a href="global.html#setJsPlumbInstanceForMotion">setJsPlumbInstanceForMotion</a></li><li><a href="global.html#setLocale">setLocale</a></li><li><a href="global.html#setZoom">setZoom</a></li><li><a href="global.html#unbindEventsForDrag">unbindEventsForDrag</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Jun 11 2020 11:24:48 GMT+0300 (GMT+03:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Sun Jul 19 2020 16:20:15 GMT+0300 (GMT+03:00)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -52,6 +52,8 @@ let menuItems = {
 
                     //Algorith change function here
                     jspNode.resetGraph();
+                    jspNode.clearOutput();
+                    jspNode.clearSteps();
                 } else if (menuItems.graphType == BINARY_TREE) {
                     menuItems.selectedAlgorithm = newAlgorith;
 
@@ -122,105 +124,105 @@ let menuItems = {
     },
     root: [
         {
-            text: "Általános gráfok",
+            text: "general-graph",
             id: "altalanos",
-            img: "https://via.placeholder.com/150x100.png?text=Graph+img",
-            sectionId: "../#sub-content"
+            img: "images/Generic Graph 150px.png",
+            sectionId: "#sub-content"
         },
         {
-            text: "Bináris fák",
+            text: "binary-tree",
             id: "binaris",
-            img: "https://via.placeholder.com/150x100.png?text=Graph+img",
-            sectionId: "../#section-9"
+            img: "images/Binary Tree 150px.png",
+            sectionId: "#section-9"
         }
     ],
 
     altalanos: {
         choice: [
             {
-                text: "Irányított",
+                text: "directed",
                 id: "directed",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
-                sectionId: "../#section-3"
+                img: "images/Directed Graph 150px.png",
+                sectionId: "#section-3"
             },
             {
-                text: "Irányitatlan",
+                text: "undirected",
                 id: "undirected",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
-                sectionId: "../#section-3"
+                img: "images/Undirected Graph 150px.png",
+                sectionId: "#section-3"
             }
         ],
         children: [
             {
-                text: "Szélességi bejárás",
+                text: "breadth-first-search",
                 id: "szelessegi-bejaras",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
-                sectionId: "../#section-6-1"
+                img: "images/Generic Graph 150px.png",
+                sectionId: "#section-6-1"
             },
             {
-                text: "Mélységi bejárás",
+                text: "depth-first-search",
                 id: "melysegi-bejaras",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
-                sectionId: "../#section-6-2"
+                img: "images/Generic Graph 150px.png",
+                sectionId: "#section-6-2"
             },
             {
-                text: "Dijkstra algoritmus",
+                text: "dijkstra-algorithm",
                 id: "dijkstra-algoritmus",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
-                sectionId: "../#section-7-1"
+                img: "images/Generic Graph 150px.png",
+                sectionId: "#section-7-1"
             },
             {
-                text: "Kruskal algoritmus",
+                text: "kruskal-algorithm",
                 id: "kruskal-algoritmus",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
-                sectionId: "../#section-8-1"
+                img: "images/Generic Graph 150px.png",
+                sectionId: "#section-8-1"
             }
         ]
     },
     binaris: {
         children: [
             {
-                text: "Preorder bejárás",
+                text: "preorder-search",
                 id: "preorder-bejaras",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
-                sectionId: "../#section-12"
+                img: "images/Binary Tree 150px.png",
+                sectionId: "#section-12"
 
             },
             {
-                text: "Inorder bejárás",
+                text: "inorder-search",
                 id: "inorder-bejaras",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
-                sectionId: "../#section-12"
+                img: "images/Binary Tree 150px.png",
+                sectionId: "#section-12"
             },
             {
-                text: "Postorder bejárás",
+                text: "postorder-search",
                 id: "postorder-bejaras",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
-                sectionId: "../#section-12"
+                img: "images/Binary Tree 150px.png",
+                sectionId: "#section-12"
             },
             {
-                text: "Fa magassága",
+                text: "tree-height",
                 id: "fa-magassaga",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
-                sectionId: "../#section-9"
+                img: "images/Binary Tree 150px.png",
+                sectionId: "#section-9"
             },
             {
-                text: "Fa levelei",
+                text: "tree-leaves",
                 id: "fa-levelei",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
-                sectionId: "../#section-9"
+                img: "images/Binary Tree 150px.png",
+                sectionId: "#section-9"
             },
             {
-                text: "Közvetlen leszármazottak",
+                text: "direct-child-nodes",
                 id: "kozvetlen-leszarmazott",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
-                sectionId: "../#section-9"
+                img: "images/Binary Tree 150px.png",
+                sectionId: "#section-9"
             },
             {
-                text: "Közvetett leszármazottak",
+                text: "indirect-child-nodes",
                 id: "kozvetett-leszarmazott",
-                img: "https://via.placeholder.com/150x100.png?text=Graph+img",
-                sectionId: "../#section-9"
+                img: "images/Binary Tree 150px.png",
+                sectionId: "#section-9"
             }
         ]
     }
@@ -286,7 +288,7 @@ function makeCard(id, img, text, sectionId) {
 
     menuCardAppend = $(menuCardAppend).attr("id", id);
     menuCardAppend = $(menuCardAppend).find("img").attr("src", img).end()[0].outerHTML;
-    menuCardAppend = $(menuCardAppend).find(".navbar-card-text").text(text).end()[0].outerHTML;
+    menuCardAppend = $(menuCardAppend).find(".navbar-card-text").text($.i18n(text)).end()[0].outerHTML;
     menuCardAppend = $(menuCardAppend).find(".read-more-link").attr("href", sectionId).end()[0].outerHTML;
 
     return menuCardAppend;
@@ -377,7 +379,7 @@ $(".menu-back").on("click", () => {
  * Starts the application
  */
 $("#start-btn").on("click", () => {
-    if (menuItems.selectedAlgorithm == "none") alert("Nincs semmi kivalasztva");
+    if (menuItems.selectedAlgorithm == "none") $("#no-algorithm-modal").modal({backdrop: "static",show: true});
     else {
         initGraph(DOMContainer);
         $.when($("#start-modal").fadeOut(200)).then(() => {
@@ -407,13 +409,13 @@ $("#open-menu").on("click", () => {
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BinaryNode.html">BinaryNode</a></li><li><a href="BinaryTree.html">BinaryTree</a></li><li><a href="DirectedGraph.html">DirectedGraph</a></li><li><a href="DirectedNode.html">DirectedNode</a></li><li><a href="GenericGraph.html">GenericGraph</a></li><li><a href="TableHandler.html">TableHandler</a></li><li><a href="UndirectedGraph.html">UndirectedGraph</a></li><li><a href="UnDirectedNode.html">UnDirectedNode</a></li><li><a href="VisualNode.html">VisualNode</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bindEventsForDrag">bindEventsForDrag</a></li><li><a href="global.html#calculateMarginSizes">calculateMarginSizes</a></li><li><a href="global.html#calculateZoomedMarginSize">calculateZoomedMarginSize</a></li><li><a href="global.html#changeNav">changeNav</a></li><li><a href="global.html#changeTheme">changeTheme</a></li><li><a href="global.html#getSelectedItems">getSelectedItems</a></li><li><a href="global.html#initGraph">initGraph</a></li><li><a href="global.html#loadCards">loadCards</a></li><li><a href="global.html#loadMotionControls">loadMotionControls</a></li><li><a href="global.html#makeCard">makeCard</a></li><li><a href="global.html#menuItems">menuItems</a></li><li><a href="global.html#nodes">nodes</a></li><li><a href="global.html#onMouseDown">onMouseDown</a></li><li><a href="global.html#onMouseMove">onMouseMove</a></li><li><a href="global.html#onMouseUp">onMouseUp</a></li><li><a href="global.html#onScroll">onScroll</a></li><li><a href="global.html#refitContainer">refitContainer</a></li><li><a href="global.html#setJsPlumbInstanceForMotion">setJsPlumbInstanceForMotion</a></li><li><a href="global.html#setZoom">setZoom</a></li><li><a href="global.html#unbindEventsForDrag">unbindEventsForDrag</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="BinaryNode.html">BinaryNode</a></li><li><a href="BinaryTree.html">BinaryTree</a></li><li><a href="DirectedGraph.html">DirectedGraph</a></li><li><a href="DirectedNode.html">DirectedNode</a></li><li><a href="GenericGraph.html">GenericGraph</a></li><li><a href="TableHandler.html">TableHandler</a></li><li><a href="UndirectedGraph.html">UndirectedGraph</a></li><li><a href="UnDirectedNode.html">UnDirectedNode</a></li><li><a href="VisualNode.html">VisualNode</a></li></ul><h3>Global</h3><ul><li><a href="global.html#bindEventsForDrag">bindEventsForDrag</a></li><li><a href="global.html#calculateMarginSizes">calculateMarginSizes</a></li><li><a href="global.html#calculateZoomedMarginSize">calculateZoomedMarginSize</a></li><li><a href="global.html#getSelectedItems">getSelectedItems</a></li><li><a href="global.html#initGraph">initGraph</a></li><li><a href="global.html#loadCards">loadCards</a></li><li><a href="global.html#loadMotionControls">loadMotionControls</a></li><li><a href="global.html#makeCard">makeCard</a></li><li><a href="global.html#menuItems">menuItems</a></li><li><a href="global.html#onMouseDown">onMouseDown</a></li><li><a href="global.html#onMouseMove">onMouseMove</a></li><li><a href="global.html#onMouseUp">onMouseUp</a></li><li><a href="global.html#onScroll">onScroll</a></li><li><a href="global.html#refitContainer">refitContainer</a></li><li><a href="global.html#setJsPlumbInstanceForMotion">setJsPlumbInstanceForMotion</a></li><li><a href="global.html#setLocale">setLocale</a></li><li><a href="global.html#setZoom">setZoom</a></li><li><a href="global.html#unbindEventsForDrag">unbindEventsForDrag</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Thu Jun 11 2020 11:24:48 GMT+0300 (GMT+03:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Sun Jul 19 2020 16:20:15 GMT+0300 (GMT+03:00)
 </footer>
 
 <script> prettyPrint(); </script>
