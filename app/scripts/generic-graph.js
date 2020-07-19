@@ -550,7 +550,7 @@ class GenericGraph {
 
         }
 
-        this.algorithmOutput.push({info: $.i18n(EDGE_LIST_SORT)});
+        this.algorithmOutput.push({info: $.i18n(EDGE_LIST_SORT), markAll: true});
 
         for (let i in this.booleMatrix) {
             components[i] = i;
