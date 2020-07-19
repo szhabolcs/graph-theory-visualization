@@ -15,6 +15,7 @@ body {
 #content{
   width: 100%;
   height: fit-content;
+  height: -moz-fit-content;
   min-height: 100%;
   background-color: #2228313b;
   position: absolute;

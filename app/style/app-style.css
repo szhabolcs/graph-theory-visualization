@@ -265,9 +265,6 @@ html {
     vertical-align: middle;
     padding-bottom: 8px;
 }
-.navbar-card .row .col-sm:last-child{
-    padding-right: 10px;
-}
 
 /* Floating items */
 .floating-dropdown {
@@ -694,6 +691,7 @@ html {
 
 #modal-navigation .menu-back {
     width: fit-content;
+    width: -moz-fit-content;
     display: inline-block;
 }
 
@@ -705,6 +703,7 @@ html {
 #modal-intro{
     height: 100vh;
     max-height: fit-content;
+    max-height: -moz-fit-content;
     overflow: auto;
     padding: 36px;
 }
@@ -811,8 +810,10 @@ a:not([href]):hover {
 #message {
     position: fixed;
     height: fit-content;
+    height: -moz-fit-content;
     min-height: 50px;
     width: fit-content;
+    width: -moz-fit-content;
     max-width: 50vw;
     border: 3px solid var(--dark-green);
     background-color: var(--background-color);
@@ -880,6 +881,7 @@ a:not([href]):hover {
     border-radius: 5px;
     cursor: pointer;
     width: fit-content;
+    width: -moz-fit-content;
     background-color: var(--black);
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     font-size: 1.2rem;
