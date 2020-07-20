@@ -52,7 +52,7 @@ body {
   box-shadow: 0 0 0 0.2rem rgba(0, 255, 220, 0.5) !important;
 }
 .flag{
-  height: 24px;
+  height: 32px;
 }
 @media only screen and (max-width: 768px) {
   h1{

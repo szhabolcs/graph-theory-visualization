@@ -705,7 +705,6 @@ html {
     max-height: fit-content;
     max-height: -moz-fit-content;
     overflow: auto;
-    padding: 36px;
 }
 
 #modal-intro .container .row .col {
