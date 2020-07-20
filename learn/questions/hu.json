@@ -111,5 +111,109 @@
                 "correctAnswer": 2
             }
         ]
+    },
+    "questionGroup2":{
+        "questions":[
+            {
+                "text": "Adott egy 6 pontos gyökeres fa, melynek csomópontjai 1-től 6-ig vannak számozva, és amelynek az “apák” tömbje: T=(3,4,0,3,3,5). Válasszátok ki a helyes kijelentést:",
+                "answers": [
+                    "a 4 és 6 csomópontok levelek",
+                    "a 3-as csomópontnak egyetlen közvetlen leszármazottja (fia) van",
+                    "a 6-os csomópont az 5-ös csomópont apja",
+                    "az 1, 2, 6 csomópontok levelek"
+                ],
+                "correctAnswer": 4
+            },
+            {
+                "text": "A G gyökeres fa a következő „ősvektorral” van megadva: T=(2,0,4,2,4,7,2). Melyik igaz a következő kijelentések közül?",
+                "answers": [
+                    "Az 1., 4. és 6. csúcsok testvérek.",
+                    "A G gráf összefüggő és egy tetszőleges él elhagyásával kapott gráf nem összefüggő.",
+                    "A [6,7] él elhagyásával kapott részgráf összefüggő.",
+                    "A G fának 5 levele van."
+                ],
+                "correctAnswer": 2
+            },
+			{
+                "text": "Adott egy 11 pontos fa, melynek csomópontjai 1-től 11-ig vannak számozva, és amelynek az “apák” tömbje: (2,5,5,3,0,2,4,6,6,2,3). Melyik a 8-as csomópont őseinek halmaza?",
+                "answers": [
+                    "{1, 2, 5, 6, 10}",
+                    "{6, 2, 5}",
+                    "{6}",
+                    "{5, 2}"
+                ],
+                "correctAnswer": 2
+            },
+			{
+                "text": "Adott egy 18 pontos gyökeres fa, melynek csomópontjai 1-től 18-ig vannak számozva, és amelynek az “apák” tömbje: T=(8,8,0,3,4,3,4,7,1,2,3,3,7,8,3,5,6,8). A 3-as csomópont összes leszármazottjainak száma: ",
+                "answers": [
+                    "3",
+                    "6",
+                    "17",
+                    "18"
+                ],
+                "correctAnswer": 3
+            },
+			{
+                "text": "Ha a T gyökeres fának 100 csomópontja van, mennyi lehet a T leveleinek minimális száma?",
+                "answers": [
+                    "1",
+                    "2",
+                    "99",
+                    "100"
+                ],
+                "correctAnswer": 1
+            },
+			{
+                "text": "Adott egy gyökeres fa, amelyben csak 13 csomópontnak van pontosan 2 közvetlen leszármazottja (fia), a többi csomópontnak legtöbb egy közvetlen leszármazottja (fia) van. Hány levele van a fának?",
+                "answers": [
+                    "4",
+                    "7",
+                    "8",
+                    "14"
+                ],
+                "correctAnswer": 4
+            },
+			{
+                "text": "Mennyi lehet egy n (n>1) csomópontból álló fában egy csomópont fokszámának legnagyobb és legkisebb értéke?",
+                "answers": [
+                    "n-1, 1",
+                    "n, 1",
+                    "n, 0",
+                    "n-1, 0"
+                ],
+                "correctAnswer": 1
+            },
+			{
+                "text": "Egy gyökeres fában egy csomópont szintje egyenlő annak a gyökérből a csomóponthoz vezető sétának a hosszával, melyben a csomópontok nem ismétlődnek. A gyökér a nulladik szinten található. Hány csomópontja van annak a fának, amelyiknek minden levele a harmadik szinten található és bármely nem levél csomópontnak a k. szintről k+1 közvetlen leszármazottja van?",
+                "answers": [
+                    "6",
+                    "8",
+                    "9",
+                    "10"
+                ],
+                "correctAnswer": 4
+            },
+			{
+                "text": "Adott egy 10 pontos gyökeres fa, melynek csomópontjai 1-től 10-ig vannak számozva. A fa gyökere a 10-es csomópont és az összes többi csomópont között fennáll a következő kapcsolat: az i+1. csomópont, az i csomópont apja, ahol i={1,2,3,4,5,6,7,8,9}. Melyik a következő tömbök közül e fa „apák” tömbje? ",
+                "answers": [
+                    "(0,1,2,3,4,5,6,7,8,9)",
+                    "(1,2,3,4,5,6,7,8,9,0)",
+                    "(2,3,4,5,6,7,8,9,10,0)",
+                    "(9,8,7,6,5,4,3,2,1,0)"
+                ],
+                "correctAnswer": 3
+            },
+			{
+                "text": "Egy 1-től 9-ig sorszámozott 9 csúcsot tartalmazó gyökeres fa ősvektora: T=(9,3,4,7,3,9,0,7,2). Legkevesebb hány élet kell elhagyni ahhoz, hogy a gyökértől induló leghosszabb út hossza 3 legyen és az így kapott részgráf fa maradjon?",
+                "answers": [
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                ],
+                "correctAnswer": 2
+            }
+        ]
     }
 }
