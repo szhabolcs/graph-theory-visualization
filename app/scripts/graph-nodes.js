@@ -1109,6 +1109,8 @@ class BinaryNode extends VisualNode {
             this.graph.root = this.selectedNode;
             this.removeMessage();
             this.graph.runAlgorithm(menuItems.selectedAlgorithm);
+            this.loadSteps();
+            this.loadOutput();
             this.animationTimer = setInterval(() => this.goOneStepForward(), STEP_TIME);
         }
     }
