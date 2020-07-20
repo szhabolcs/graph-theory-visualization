@@ -51,6 +51,7 @@ let menuItems = {
                         $("#" + menuItems.selectedAlgorithm).addClass("selected-menu-item");
                         $("#current-operation").text($("#" + menuItems.selectedAlgorithm).find(".navbar-card-text").text());
 
+                        jspNode.resetGraph();
                         graph.deleteGraph();
                         graph.dropRepresentationTables();
                         $("#edit-btn").removeClass("btn-on");
@@ -78,6 +79,7 @@ let menuItems = {
                     $("#" + menuItems.selectedAlgorithm).addClass("selected-menu-item");
                     $("#current-operation").text($("#" + menuItems.selectedAlgorithm).find(".navbar-card-text").text());
 
+                    jspNode.resetGraph();
                     graph.deleteGraph();
                     graph.dropRepresentationTables();
                     $("#edit-btn").removeClass("btn-on");

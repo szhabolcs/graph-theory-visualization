@@ -431,7 +431,7 @@ class GenericGraph {
             node = stack[firstElement];
             ok = 0;
 
-            for (let i in this.adjacencyList[node][0])
+            for (let i in this.adjacencyList[node])
                 if (freq[this.adjacencyList[node][i]] === 0) {
                     ok = 1;
                     stack[++firstElement] = this.adjacencyList[node][i];
@@ -988,8 +988,6 @@ class BinaryTree extends GenericGraph {
         //Init Standard form
         this.tblStandardForm.addRow(ROW_LEFT.toString(), $.i18n("left"));
         this.tblStandardForm.addRow(ROW_RIGHT.toString(), $.i18n("right"));
-        //Init Binary form
-        this.tblBinaryForm.addColumn('1', null);
 
     }
 

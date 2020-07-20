@@ -167,6 +167,15 @@ function setZoom(scale) {
 }
 
 /**
+ * On window resize listener callback
+ * Recalculates the margins for panning when the window resizes
+ */
+function onWindowResize(){
+    calculateMarginSizes(iZoom / 100);
+    refitContainer();
+}
+
+/**
  * Initializes dragging and zooming, binds the necessary listeners for these operations
  */
 function loadMotionControls() {
@@ -186,6 +195,7 @@ function loadMotionControls() {
     $Document.on("mousedown", "#container", (event) => onMouseDown(event));
     $Document.on("mousedown", ".node-text", (eventInfo) => eventInfo.stopPropagation());
     $Document.on("mousedown", ".weight-text", (eventInfo) => eventInfo.stopPropagation());
+    $(window).on("resize", () => onWindowResize());
 }
 
 /**
