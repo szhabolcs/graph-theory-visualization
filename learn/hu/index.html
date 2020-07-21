@@ -16,23 +16,23 @@
           <a href="#section-4-4" class="side-section-2">4.4. Szomszédsági lista</a>
 
       <a href="#section-5" class="side-section-1">5. Átalakítások</a>
-          <a href="#section-5-1" class="side-section-2">5.1. Szomszédsági mátrix → Pont-él mátrix</a>
+          <a href="#section-5-1" class="side-section-2">5.1. Szomszédsági mátrix → Illeszkedési mátrix</a>
           <a href="#section-5-2" class="side-section-2">5.2. Szomszédsági mátrix → Éllista</a>
           <a href="#section-5-3" class="side-section-2">5.3. Szomszédsági mátrix → Szomszédsági lista</a>
           <a href="#section-5-4" class="side-section-2">5.4. Éllista → Szomszédsági lista</a> 
-          <a href="#section-5-5" class="side-section-2">5.5. Pont-él matrix → Éllista</a>
+          <a href="#section-5-5" class="side-section-2">5.5. Illeszkedési mátrix → Éllista</a>
           <a href="#section-5-6" class="side-section-2">5.6. Szomszédsági lista → Szomszédsági mátrix</a>
-          <a href="#section-5-7" class="side-section-2">5.7. Pont-él matrix → Szomszédsági lista</a>
+          <a href="#section-5-7" class="side-section-2">5.7. Illeszkedési mátrix → Szomszédsági lista</a>
           <a href="#section-5-8" class="side-section-2">5.8 Szomszédsági lista → Éllista</a>
-          <a href="#section-5-9" class="side-section-2">5.9 Szomszédsági lista → Pont-él mátrix</a>
+          <a href="#section-5-9" class="side-section-2">5.9 Szomszédsági lista → Illeszkedési mátrix</a>
       
       <a href="#section-6" class="side-section-1">6. Gráfok bejárása</a>
           <a href="#section-6-1" class="side-section-2">6.1. Szélességi bejárás</a>
           <a href="#section-6-2" class="side-section-2">6.2. Mélységi bejárás</a>
-          <a href="#section-6-3" class="side-section-2">6.3. Útmátrix</a>
 
       <a href="#section-7" class="side-section-1">7. Legrövidebb utak meghatározása</a>
           <a href="#section-7-1" class="side-section-2">7.1. Dijkstra algoritmusa</a>
+          <a href="#section-7-2" class="side-section-2">7.2. Útmátrix</a>
 
           <a href="#section-8" class="side-section-1">8. Minimális feszítőfák</a>
           <a href="#section-8-1" class="side-section-2">8.1. Kruskal algoritmusa</a>
@@ -1164,123 +1164,6 @@
         </div> 
       </div>    
 
-      <h2 id="section-6-3">Útmátrix</h2>
-        <p>Egy adott gráfhoz hozzárendelhető egy <i>n</i> sorból és oszlopból álló kétdimenzióstömb, a következő szabályok alapján:</p>
-        <img src="./images/fgvszeruseg3.jpg" class="img-fluid">
-     
-          <ul>
-            <li>Az útmátrix meghatározására a <b><i>Roy-Warshall</i></b> algoritmust használjuk. Az algoritmus meghatározza az adott gráfban található sétákat, tehát azt, hogy egy pontból eljuthatunk-e egy másikba.</li>
-            <li>A gráfot boole-mátrix segítségével tároljuk.</li>
-          </ul>
-        
-
-   <div class="container">
-    <div class="row">
-       <div class="col-sm">
-        <table style="float: left;">
-          <tr style="background-color: var(--dark-green);">
-            <th> </th>
-            <th>1</th>
-            <th>2</th>
-            <th>3</th>
-            <th>4</th>
-            <th>5</th>
-            <th>6</th>
-            <th>7</th>
-          </tr>
-          <tr>
-            <th style="background-color: var(--dark-green);">1</th>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <th style="background-color: var(--dark-green);">2</th>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <th style="background-color: var(--dark-green);">3</th>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <th style="background-color: var(--dark-green);">4</th>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>1</td>
-            <td>0</td>
-            <td>1</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <th style="background-color: var(--dark-green);">5</th>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <th style="background-color: var(--dark-green);">6</th>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>1</td>
-            <td>0</td>
-            <td>1</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <th style="background-color: var(--dark-green);">7</th>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>1</td>
-            <td>0</td>
-            <td>1</td>
-            <td>1</td>
-          </tr>
-        </table> 
-      </div>
-
-        <div class="col-sm"> 
-          <svg style="float: right; width: 70%;" class="img-fluid" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="1237 42.422 543 509.078" width="543pt" height="509.078pt"><defs><clipPath id="_clipPath_05yDDRx4DaxnTzYAGTuXaa3pWe6mfIWb"><rect x="1237" y="42.422" width="543" height="509.078"/></clipPath></defs><g clip-path="url(#_clipPath_05yDDRx4DaxnTzYAGTuXaa3pWe6mfIWb)"><line x1="1365" y1="144" x2="1309" y2="248" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><path d=" M 1299.187 243.852 L 1298.469 267.558 L 1317.865 253.909 Z " fill="rgb(0,173,181)" stroke="none"/><line x1="1549" y1="88" x2="1677" y2="163" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><path d=" M 1672.501 172.657 L 1696.166 174.23 L 1683.225 154.354 Z " fill="rgb(0,173,181)" stroke="none"/><line x1="1375" y1="482" x2="1312" y2="371" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><path d=" M 1320.731 364.895 L 1301.035 351.681 L 1302.282 375.366 Z " fill="rgb(0,173,181)" stroke="none"/><line x1="1736" y1="384" x2="1440" y2="470" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><path d=" M 1436.08 460.094 L 1418.669 476.198 L 1441.999 480.464 Z " fill="rgb(0,173,181)" stroke="none"/><line x1="1736" y1="378" x2="1572" y2="151" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><path d=" M 1580.012 143.978 L 1558.991 132.994 L 1562.817 156.401 Z " fill="rgb(0,173,181)" stroke="none"/><line x1="1736" y1="197" x2="1736" y2="313" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><path d=" M 1725.393 314 L 1736 335.213 L 1746.607 314 Z " fill="rgb(0,173,181)" stroke="none"/><line x1="1614" y1="499" x2="1402" y2="200" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><path d=" M 1410.074 193.049 L 1389.152 181.879 L 1392.769 205.319 Z " fill="rgb(0,173,181)" stroke="none"/><line x1="1284" y1="313" x2="1554" y2="486" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><path d=" M 1549.12 495.47 L 1572.703 497.984 L 1560.564 477.609 Z " fill="rgb(0,173,181)" stroke="none"/><line x1="1375" y1="482" x2="1681" y2="241" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><path d=" M 1688.348 248.714 L 1698.451 227.256 L 1675.223 232.049 Z " fill="rgb(0,173,181)" stroke="none"/><g><circle vector-effect="non-scaling-stroke" cx="1548" cy="87.92187499999997" r="45.5" fill="rgb(70,70,70)"/><text transform="matrix(1,0,0,1,1536.893,100.227)" style="font-family:'Roboto';font-weight:400;font-size:36px;font-style:normal;fill:#ffffff;stroke:none;">1</text></g><g><circle vector-effect="non-scaling-stroke" cx="1617.4999999999998" cy="506" r="45.5" fill="rgb(70,70,70)"/><text transform="matrix(0.999,-0.036,0.036,0.999,1606.845,518.698)" style="font-family:'Roboto';font-weight:400;font-size:36px;font-style:normal;fill:#ffffff;stroke:none;">4</text></g><g><circle vector-effect="non-scaling-stroke" cx="1734.4999999999995" cy="379.5" r="45.5" fill="rgb(70,70,70)"/><text transform="matrix(1,0,0,1,1723.393,391.805)" style="font-family:'Roboto';font-weight:400;font-size:36px;font-style:normal;fill:#ffffff;stroke:none;">3</text></g><g><circle vector-effect="non-scaling-stroke" cx="1282.5" cy="309.65625" r="45.5" fill="rgb(70,70,70)"/><text transform="matrix(1,0,0,1,1271.393,321.961)" style="font-family:'Roboto';font-weight:400;font-size:36px;font-style:normal;fill:#ffffff;stroke:none;">6</text></g><g><circle vector-effect="non-scaling-stroke" cx="1362.4999999999998" cy="143.078125" r="45.5" fill="rgb(70,70,70)"/><text transform="matrix(1,0,0,1,1351.393,155.383)" style="font-family:'Roboto';font-weight:400;font-size:36px;font-style:normal;fill:#ffffff;stroke:none;">7</text></g><g><circle vector-effect="non-scaling-stroke" cx="1734.4999999999998" cy="198" r="45.5" fill="rgb(70,70,70)"/><text transform="matrix(1,0,0,1,1723.393,210.305)" style="font-family:'Roboto';font-weight:400;font-size:36px;font-style:normal;fill:#ffffff;stroke:none;">2</text></g><g><circle vector-effect="non-scaling-stroke" cx="1373.5" cy="482.20254364951427" r="45.5" fill="rgb(70,70,70)"/><text transform="matrix(1,0,0,1,1362.393,494.507)" style="font-family:'Roboto';font-weight:400;font-size:36px;font-style:normal;fill:#ffffff;stroke:none;">5</text></g></g></svg>
-        </div>
-      </div>
-    </div>
-     
-      <pre class="lang-cpp language-markup line-numbers" style="margin:0;">
-          <code>
-           <script type="text/plain">
-            void roy_warshall (int n, int utm[100][100]) 
-            { //n-csomopontok szama
-                int i, j, k;
-
-                for (k = 1; k <= n; k++)
-                for (i = 1; i <= n; i++)
-                  for (j = 1; j <= n; j++)
-                    if (utm[i][j] == 0 && i != j && utm[i][k] > 0 && utm[k][j] > 0)
-                      utm[i][j] = utm[i][k] + utm[k][j];
-            }</script></code>
-        </pre>
      
     <h1 id="section-7">Legrövidebb utak meghatározása</h1>
     <p>Adott egy élsúlyozott irányított gráf. Határozzuk meg a legrövidebb (legkisebb költségű) utak hosszát egy adott csomópontból a többibe.</p>
@@ -1292,13 +1175,12 @@
             <ul>
               <li>Kiválasztjuk a kiinduló csomópontot.</li>
               <li>Feltöltjük az <i>uth</i> tömböt a direkt élek hosszával, illetve 0-át a kezdő csomópont helyére, a többibe pedig egy nagyon-nagy értéket helyezünk.</li>
-              <li>Megkeressük azt a legkisebb értéket az <i>ut</i> tömbben, amelyhez tartozó csomóponton keresztül még nem próbáltunk utat meghatározni. Ha ezen a csomóponton keresztül, létezik egy rövidebb út, aktualizáljuk az <i>ut</i> tömb elemeit.</li>
+              <li>Megkeressük azt a legkisebb értéket az <i>uth</i> tömbben, amelyhez tartozó csomóponton keresztül még nem próbáltunk utat meghatározni. Ha ezen a csomóponton keresztül, létezik egy rövidebb út, aktualizáljuk az <i>uth</i> tömb elemeit.</li>
             </ul>
     <p><b>Adatszerkezet</b></p>
     <ul>
               <li>a gráf ábrázolására használt költségmátrix</li>
               <li>az <i>uth</i> tömb, az utak hosszát tárolja</li>
-              <li>az <i>ut</i> tömb, az utakat alkotó csomópontokat tárolja</li>
               <li>a <i>freq</i> frekvencia tömb, mutatja, hogy egy adott csomópontból próbált-e már utat építeni</li>
             </ul>
         </div>
@@ -1367,6 +1249,124 @@
                                     }
                           }
                       }
+                  }</script></code>
+              </pre>
+
+              <h2 id="section-7-2">Útmátrix</h2>
+              <p>Egy adott gráfhoz hozzárendelhető egy <i>n</i> sorból és oszlopból álló kétdimenzióstömb, a következő szabályok alapján:</p>
+              <img src="./images/fgvszeruseg3.jpg" class="img-fluid">
+           
+                <ul>
+                  <li>Az útmátrix meghatározására a <b><i>Roy-Warshall</i></b> algoritmust használjuk. Az algoritmus meghatározza az adott gráfban található sétákat, tehát azt, hogy egy pontból eljuthatunk-e egy másikba.</li>
+                  <li>A gráfot boole-mátrix segítségével tároljuk.</li>
+                </ul>
+              
+      
+         <div class="container">
+          <div class="row">
+             <div class="col-sm">
+              <table style="float: left;">
+                <tr style="background-color: var(--dark-green);">
+                  <th> </th>
+                  <th>1</th>
+                  <th>2</th>
+                  <th>3</th>
+                  <th>4</th>
+                  <th>5</th>
+                  <th>6</th>
+                  <th>7</th>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">1</th>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">2</th>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">3</th>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">4</th>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">5</th>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">6</th>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+                <tr>
+                  <th style="background-color: var(--dark-green);">7</th>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>0</td>
+                  <td>1</td>
+                  <td>1</td>
+                </tr>
+              </table> 
+            </div>
+      
+              <div class="col-sm"> 
+                <svg style="float: right; width: 70%;" class="img-fluid" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="1237 42.422 543 509.078" width="543pt" height="509.078pt"><defs><clipPath id="_clipPath_05yDDRx4DaxnTzYAGTuXaa3pWe6mfIWb"><rect x="1237" y="42.422" width="543" height="509.078"/></clipPath></defs><g clip-path="url(#_clipPath_05yDDRx4DaxnTzYAGTuXaa3pWe6mfIWb)"><line x1="1365" y1="144" x2="1309" y2="248" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><path d=" M 1299.187 243.852 L 1298.469 267.558 L 1317.865 253.909 Z " fill="rgb(0,173,181)" stroke="none"/><line x1="1549" y1="88" x2="1677" y2="163" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><path d=" M 1672.501 172.657 L 1696.166 174.23 L 1683.225 154.354 Z " fill="rgb(0,173,181)" stroke="none"/><line x1="1375" y1="482" x2="1312" y2="371" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><path d=" M 1320.731 364.895 L 1301.035 351.681 L 1302.282 375.366 Z " fill="rgb(0,173,181)" stroke="none"/><line x1="1736" y1="384" x2="1440" y2="470" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><path d=" M 1436.08 460.094 L 1418.669 476.198 L 1441.999 480.464 Z " fill="rgb(0,173,181)" stroke="none"/><line x1="1736" y1="378" x2="1572" y2="151" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><path d=" M 1580.012 143.978 L 1558.991 132.994 L 1562.817 156.401 Z " fill="rgb(0,173,181)" stroke="none"/><line x1="1736" y1="197" x2="1736" y2="313" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><path d=" M 1725.393 314 L 1736 335.213 L 1746.607 314 Z " fill="rgb(0,173,181)" stroke="none"/><line x1="1614" y1="499" x2="1402" y2="200" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><path d=" M 1410.074 193.049 L 1389.152 181.879 L 1392.769 205.319 Z " fill="rgb(0,173,181)" stroke="none"/><line x1="1284" y1="313" x2="1554" y2="486" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><path d=" M 1549.12 495.47 L 1572.703 497.984 L 1560.564 477.609 Z " fill="rgb(0,173,181)" stroke="none"/><line x1="1375" y1="482" x2="1681" y2="241" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><path d=" M 1688.348 248.714 L 1698.451 227.256 L 1675.223 232.049 Z " fill="rgb(0,173,181)" stroke="none"/><g><circle vector-effect="non-scaling-stroke" cx="1548" cy="87.92187499999997" r="45.5" fill="rgb(70,70,70)"/><text transform="matrix(1,0,0,1,1536.893,100.227)" style="font-family:'Roboto';font-weight:400;font-size:36px;font-style:normal;fill:#ffffff;stroke:none;">1</text></g><g><circle vector-effect="non-scaling-stroke" cx="1617.4999999999998" cy="506" r="45.5" fill="rgb(70,70,70)"/><text transform="matrix(0.999,-0.036,0.036,0.999,1606.845,518.698)" style="font-family:'Roboto';font-weight:400;font-size:36px;font-style:normal;fill:#ffffff;stroke:none;">4</text></g><g><circle vector-effect="non-scaling-stroke" cx="1734.4999999999995" cy="379.5" r="45.5" fill="rgb(70,70,70)"/><text transform="matrix(1,0,0,1,1723.393,391.805)" style="font-family:'Roboto';font-weight:400;font-size:36px;font-style:normal;fill:#ffffff;stroke:none;">3</text></g><g><circle vector-effect="non-scaling-stroke" cx="1282.5" cy="309.65625" r="45.5" fill="rgb(70,70,70)"/><text transform="matrix(1,0,0,1,1271.393,321.961)" style="font-family:'Roboto';font-weight:400;font-size:36px;font-style:normal;fill:#ffffff;stroke:none;">6</text></g><g><circle vector-effect="non-scaling-stroke" cx="1362.4999999999998" cy="143.078125" r="45.5" fill="rgb(70,70,70)"/><text transform="matrix(1,0,0,1,1351.393,155.383)" style="font-family:'Roboto';font-weight:400;font-size:36px;font-style:normal;fill:#ffffff;stroke:none;">7</text></g><g><circle vector-effect="non-scaling-stroke" cx="1734.4999999999998" cy="198" r="45.5" fill="rgb(70,70,70)"/><text transform="matrix(1,0,0,1,1723.393,210.305)" style="font-family:'Roboto';font-weight:400;font-size:36px;font-style:normal;fill:#ffffff;stroke:none;">2</text></g><g><circle vector-effect="non-scaling-stroke" cx="1373.5" cy="482.20254364951427" r="45.5" fill="rgb(70,70,70)"/><text transform="matrix(1,0,0,1,1362.393,494.507)" style="font-family:'Roboto';font-weight:400;font-size:36px;font-style:normal;fill:#ffffff;stroke:none;">5</text></g></g></svg>
+              </div>
+            </div>
+          </div>
+           
+            <pre class="lang-cpp language-markup line-numbers" style="margin:0;">
+                <code>
+                 <script type="text/plain">
+                  void roy_warshall (int n, int utm[100][100]) 
+                  { //n-csomopontok szama
+                      int i, j, k;
+      
+                      for (k = 1; k <= n; k++)
+                      for (i = 1; i <= n; i++)
+                        for (j = 1; j <= n; j++)
+                          if (utm[i][j] == 0 && i != j && utm[i][k] > 0 && utm[k][j] > 0)
+                            utm[i][j] = utm[i][k] + utm[k][j];
                   }</script></code>
               </pre>
     
