@@ -3,74 +3,214 @@
         "goodAnswerMessage": "Răspuns corect",
         "badAnswerMessage": "Răspuns greșit",
         "next": "Următoarea întrebare",
-        "tryAgain": "Încearcă din nou",
-        "numberOfPoints": "Scorul tău total",
-        "startQuizMessage": "Testează-ți cunoștințele",
+        "tryAgain": "Încearcă încă odată",
+        "numberOfPoints": "Punctaj",
+        "startQuizMessage": "Verifică-ți cunoștințele!",
         "play": "Start"
     },
     "questionGroup1":{
         "questions":[
             {
-                "text": "Az elso a jo valasz",
+                "text": "Dacă n este un număr natural impar mai mare decât 2, atunci un graf neorientat cu n noduri, în care fiecare nod este adiacent cu exact n-1 noduri, este întotdeauna:",
                 "answers": [
-                    "lorem",
-                    "dolor",
-                    "ipsum",
-                    "amet"
-                ],
-                "correctAnswer": 1
-            },
-            {
-                "text": "Masodik a jo valasz",
-                "answers": [
-                    "amet",
-                    "dolor",
-                    "sit",
-                    "loren"
+                    "arbore",
+                    "graf eulerian",
+                    "graf neconex",
+                    "graf aciclic (graf care nu conţine niciun ciclu)"
                 ],
                 "correctAnswer": 2
             },
             {
-                "text": "Harmadik a jo valasz",
+                "text": "Care din următoarele proprietăţi este adevărată pentru un graf orientat cu n vârfuri şi n arce (n>3) care are un circuit de lungime n:",
                 "answers": [
-                    "amet",
-                    "dolor",
-                    "sit",
-                    "loren"
+                    "există un vârf cu gradul intern n-1",
+                    "pentru orice vârf gradul intern şi gradul extern sunt egale",
+                    "graful nu are drumuri de lungime strict mai mare decât 2",
+                    "gradul intern al oricărui vârf este egal cu 2"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "text": "Care dintre următoarele propoziţii NU este adevărată pentru graful orientat cu 6 vârfuri, numerotate de la 1 la 6 şi ale cărui arce sunt: (2,1), (3,6), (4,1), (4,3), (4,5), (5,2), (6,4)?",
+                "answers": [
+                    "vârful numerotat cu 6 aparţine unui circuit",
+                    "vârful numerotat cu 1 are gradul extern 0",
+                    "gradul intern al vârfului numerotat cu 4 este 1",
+                    "graful nu are circuite"
+                ],
+                "correctAnswer": 4
+            },
+            {
+                "text": "Se consideră un graf neorientat G cu 101 noduri şi 101 muchii. Numărul maxim de vârfuri izolate ale grafului poate fi:",
+                "answers": [
+                    "0",
+                    "10",
+                    "50",
+                    "86"
+                ],
+                "correctAnswer": 4
+            },
+            {
+                "text": "Care dintre următoarele afirmaţii este adevărată pentru orice graf neorientat G cu 5 noduri şi 6 muchii?",
+                "answers": [
+                    "G are cel puţin un ciclu",
+                    "G este conex",
+                    "G are gradele tuturor nodurilor numere pare",
+                    "G nu poate avea noduri cu gradul 0"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "text": "Dacă G este un graf neorientat cu 8 noduri şi 2 componente conexe, atunci graful are cel mult:",
+                "answers": [
+                    "12",
+                    "16",
+                    "21",
+                    "28"
                 ],
                 "correctAnswer": 3
             },
             {
-                "text": "Negyedik a jo valasz",
+                "text": "Fie n un număr natural, n>4. Orice graf neorientat cu n noduri şi n muchii:",
                 "answers": [
-                    "amet",
-                    "dolor",
-                    "sit",
-                    "loren"
+                    "are gradele tuturor nodurilor numere pare",
+                    "este conex",
+                    "are cel puţin un ciclu",
+                    "este arbore"
                 ],
-                "correctAnswer": 4
+                "correctAnswer": 3
+            },
+            {
+                "text": "Care dintre următoarele afirmaţii este adevărată pentru graful neorientat având mulţimea nodurilor X={1,2,3,4,5} şi mulţimea muchiilor U={[1,2], [1,5], [2,3], [2,4], [3,4], [4,5]}?",
+                "answers": [
+                    "Este graf eulerian, dar nu este hamiltonian.",
+                    "Este graf hamiltonian, dar nu este eulerian.",
+                    "Este şi graf hamiltonian şi graf eulerian.",
+                    "Nu este graf hamiltonian, şi nici nu este graf eulerian."
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "text": "Se consideră un graf neorientat 5 noduri şi 3 muchii. Care este numărul maxim de noduri cu grad 1 care pot exista în graf?",
+                "answers": [
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "text": "Care este numărul minim de muchii care trebuie eliminate dintr-un graf neorientat complet cu 100 de noduri astfel încât graful parţial obţinut să fie eulerian?",
+                "answers": [
+                    "0",
+                    "50",
+                    "100",
+                    "4851"
+                ],
+                "correctAnswer": 2
             }
         ]
     },
     "questionGroup2":{
         "questions":[
             {
-                "text": "Az elso a jo valasz",
+                "text": "Se consideră vectorul de ”taţi” al unui arbore cu rădăcină T=(3,4,0,3,3,5) ale cărui noduri sunt numerotate de la 1 la 6. Alegeţi afirmatia corectă:",
                 "answers": [
-                    "lorem",
-                    "dolor",
-                    "ipsum",
-                    "amet"
+                    "nodurile 4 şi 6 sunt noduri de tip frunză",
+                    "nodul 3 are un singur descendent direct (fiu)",
+                    "nodul 6 este tatăl nodului 5",
+                    "nodurile 1, 2, 6 sunt noduri de tip frunză"
+                ],
+                "correctAnswer": 4
+            },
+            {
+                "text": "Se consideră un arbore G, cu rădăcină, memorat cu ajutorul vectorului de „taţi” următor: T=(2,0,4,2,4,7,2). Care dintre următoarele afirmaţii este adevărată?",
+                "answers": [
+                    "Nodurile 1, 4 şi 6 sunt fraţi.",
+                    "G este conex şi prin eliminarea unei muchii oarecare din G, graful obţinut nu este conex.",
+                    "Prin eliminarea muchiei [6,7] se obţine un graf parţial, conex.",
+                    "Arborele G are 5 frunze."
+                ],
+                "correctAnswer": 2
+            },
+			{
+                "text": "Un arbore cu 11 noduri, numerotate de la 1 la 11, este memorat cu ajutorul vectorului de „taţi” T=(2,5,5,3,0,2,4,6,6,2,3). Mulţimea tuturor ascendenţilor nodului 8 este:",
+                "answers": [
+                    "{1, 2, 5, 6, 10}",
+                    "{6, 2, 5}",
+                    "{6}",
+                    "{5, 2}"
+                ],
+                "correctAnswer": 2
+            },
+			{
+                "text": "Un arbore cu rădăcină are nodurile numerotate de la 1 la 18 şi este reprezentat prin vectorul de „taţi” t=(8,8,0,3,4,3,4,7,1,2,3,3,7,8,3,5,6,8). Numărul tuturor descendenţilor nodului 3 este egal cu:",
+                "answers": [
+                    "3",
+                    "6",
+                    "17",
+                    "18"
+                ],
+                "correctAnswer": 3
+            },
+			{
+                "text": "Dacă T este un arbore cu rădăcină, cu 100 de noduri, care este numărul minim de frunze pe care le poate avea T?",
+                "answers": [
+                    "1",
+                    "2",
+                    "99",
+                    "100"
                 ],
                 "correctAnswer": 1
             },
             {
-                "text": "Masodik a jo valasz",
+                "text": "Se consideră un arbore cu rădăcină în care doar 13 dintre nodurile arborelui au exact 2 descendenţi direcţi (fii), restul nodurilor având cel mult un descendent direct (fiu). Care este numărul frunzelor arborelui?",
                 "answers": [
-                    "amet",
-                    "dolor",
-                    "sit",
-                    "loren"
+                    "4",
+                    "7",
+                    "8",
+                    "14"
+                ],
+                "correctAnswer": 4
+            },
+			{
+                "text": "Care este gradul maxim posibil si care este gradul minim posibil pentru un nod dintr-un graf cu n noduri, care este arbore?",
+                "answers": [
+                    "n-1, 1",
+                    "n, 1",
+                    "n, 0",
+                    "n-1, 0"
+                ],
+                "correctAnswer": 1
+            },
+			{
+                "text": "Într-un arbore cu rădăcină nivelul unui nod este egal cu lungimea lanţului format din noduri distincte care uneşte rădăcina cu acel nod. Rădăcina se află pe nivelul 0. Dacă toate frunzele se află pe nivelul 3 şi oricare nod neterminal aflat pe un nivel k are exact k+1 descendenţi direcţi (fii), care este numărul de noduri din acest arbore?",
+                "answers": [
+                    "6",
+                    "8",
+                    "9",
+                    "10"
+                ],
+                "correctAnswer": 4
+            },
+			{
+                "text": "Într-un arbore cu rădăcină, cu 10 noduri, numerotate de la 1 la 10, nodul 10 este rădăcină, iar între celelalte noduri există relaţia: nodul cu numărul i+1 este tatăl celui cu numărul i, pentru i∈{1,2,3,4,5,6,7,8,9}. Vectorul de „taţi” al arborelui astfel definit, este:",
+                "answers": [
+                    "(0,1,2,3,4,5,6,7,8,9)",
+                    "(1,2,3,4,5,6,7,8,9,0)",
+                    "(2,3,4,5,6,7,8,9,10,0)",
+                    "(9,8,7,6,5,4,3,2,1,0)"
+                ],
+                "correctAnswer": 3
+            },
+			{
+                "text": "Un arbore cu rădăcină, cu 9 noduri, numerotate de la 1 la 9, este memorat cu ajutorul vectorului „de taţi” T=(9,3,4,7,3,9,0,7,2). Care este numărul minim de noduri ce trebuie eliminate pentru ca lungimea celui mai lung lanţ elementar, cu o extremitate în rădăcină, să fie 3 şi subgraful obţinut să fie tot arbore?",
+                "answers": [
+                    "2",
+                    "3",
+                    "4",
+                    "5"
                 ],
                 "correctAnswer": 2
             }
