@@ -116,6 +116,18 @@ $(window).on('load',function(){
 
         $("#side-nav div a").click(changeNav);
 
+        $(window).scroll(function() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                $("#return-to-top").fadeIn();
+              } else {
+                $("#return-to-top").fadeOut();
+              }
+        });
+        $("#return-to-top").click(()=>{
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        });
+
         $.loadScript("./scripts/prism.js");
         $.loadScript("./scripts/jquery.cardslider.min.js");
         $.loadScript("./scripts/quiz-handler.js");

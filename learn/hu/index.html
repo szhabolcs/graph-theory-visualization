@@ -74,7 +74,7 @@
     <img src="./images/logo@10x.png" class="img-fluid" id="header-logo">
 
     <h1 id="header-text" style="border:none;">
-      Gráf tananyag és quiz-ek
+      Egy oldal, amely gráf elmélet tananyagot tartalmaz, segítő kvízekkel
       <br>
       <span style="font-size: 0.5em !important;">Nézd meg a többi oldalunkat is:</span>
     </h1>
@@ -109,6 +109,7 @@
                   <p>A Facebook közösségi portálhoz kapcsolható példa segítségével a gráfelmélet alapfogalmai nagyon jól szemléltethetők.</p>
                   <p>A Facebook-felhasználók a gráf csúcsai. Bejelölésről vagy megjelölésről akkor beszélhetünk, ha egy személy ismerősnek kér fel egy másik embert. Ebben az esetben a kapcsolat még nem kölcsönös, hanem csak egy irányú, amit irányított élek használatával szemléltethetünk. Az irányított él a bejelölő személy felől a megjelölt személy irányába mutat. Az ismeretségek a gráf (irányítatlan) élei.</p>
                   <p>Ha az egyik ember megjelöli a másikat vagy felkéri ismerősnek, úgy a kapcsolat még nem kölcsönös viszont ha a megjelölt személy visszajelöli az őt megjelölő személyt, akkor felőle egy irányított él fog az eredetileg megjelölő személy felé mutatni. Így a két csúcs között már két él van, irányuk ellentétes. A Facebook ezt a zavaró helyzetet a két irányított él „összeolvadásával" oldja fel, és egy irányítatlan él keletkezik, a két személy egymás ismerőse lesz. Ha már két személy ismerős, akkor nem lehet visszakövetni, hogy ki kezdeményezte a kapcsolatot.</p>
+                  <p><i>forrás</i>: <a href="https://hirmagazin.sulinet.hu/hu/tudomany/grafok-mindenhol">https://hirmagazin.sulinet.hu/hu/tudomany/grafok-mindenhol</a></p>
               </div>
           <li><b>vízhálózatok</b></li>
           <li><b>vasúhálózatok</b></li>
@@ -138,11 +139,11 @@
       </ol>
 
       <h1 id="section-3">Irányított és nem irányított gráfok</h1>
-          <p><i style="color: var(--dark-green);">Irányított gráfoknak</i> nevezzük azokat a gráfokat, amelyeket csak az irányok betartásával lehet bejárni, nincs oda-vissza út. (pl. G<sub>2</sub>)</p>
-          <p style="padding-left: 40px;">pl. lehetséges bejárás: x<sub>1</sub> e<sub>1</sub> x<sub>6</sub> e<sub>3</sub> x<sub>2</sub> e<sub>6</sub> x<sub>5</sub> e<sub>10</sub> x<sub>4</sub> e<sub>9</sub> x<sub>3</sub> e<sub>8</sub> x<sub>4</sub></p>
+          <p><i style="color: var(--dark-green);">Irányított gráfoknak</i> nevezzük azokat a gráfokat, amelyeket csak az irányok betartásával lehet bejárni, nincs oda-vissza út. (Például G<sub>2</sub>)</p>
+          <p style="padding-left: 40px;">Például lehetséges bejárás: x<sub>1</sub> e<sub>1</sub> x<sub>6</sub> e<sub>3</sub> x<sub>2</sub> e<sub>6</sub> x<sub>5</sub> e<sub>10</sub> x<sub>4</sub> e<sub>9</sub> x<sub>3</sub> e<sub>8</sub> x<sub>4</sub></p>
           <p style="padding-left: 100px; font-size:80%;">x<sub>1</sub>-ből eljuthatunk x<sub>6</sub>-ba, viszont fordítva nem az e<sub>1</sub> élen keresztül</p>
-          <p><i style="color: var(--dark-green);">Nem irányított gráfoknak </i>nevezzük azokat a gráfokat, amelyek nincsenek iránnyal ellátva, és működik az oda-vissza út. (pl. G<sub>1</sub>)</p>
-          <p style="padding-left: 40px;">pl. lehetséges bejárás: x<sub>1</sub>e<sub>1</sub> x<sub>2</sub> e<sub>7</sub> x<sub>5</sub> e<sub>8</sub> x<sub>1</sub> e<sub>6</sub> x<sub>4</sub> e<sub>3</sub> x<sub>3</sub></p>
+          <p><i style="color: var(--dark-green);">Nem irányított gráfoknak </i>nevezzük azokat a gráfokat, amelyek nincsenek iránnyal ellátva, és működik az oda-vissza út. (Például G<sub>1</sub>)</p>
+          <p style="padding-left: 40px;">Például lehetséges bejárás: x<sub>1</sub>e<sub>1</sub> x<sub>2</sub> e<sub>7</sub> x<sub>5</sub> e<sub>8</sub> x<sub>1</sub> e<sub>6</sub> x<sub>4</sub> e<sub>3</sub> x<sub>3</sub></p>
           <p style="padding-left: 100px; font-size:80%; padding-top: 0px;">x<sub>1</sub>-ből eljuthatunk x<sub>2</sub>-be és fordítva is az e<sub>1</sub> élen keresztül</p>
       
       <h1 id="section-4">Gráfok ábrázolási módjai</h1>
@@ -1599,10 +1600,10 @@
                   <p><b>Jellemzők:</b></p>
                       <ul>
                         <li><b>szint:</b> azt jelöli, hogy egy csomópont hány él távolságra van a gyökértől (a gyökér tetszés szerint és feladattól függően lehet a 0. vagy az 1. szinten)</li>
-                        <li><b>magasság:</b> a gyökér és a tőle legtávolabb eső csomópont közötti élek száma → pl. 4</li>
-                        <li><b>leszármazott; ős</b> → pl. 3 őse az 1 csp</li>
+                        <li><b>magasság:</b> a gyökér és a tőle legtávolabb eső csomópont közötti élek száma → Például 4</li>
+                        <li><b>leszármazott; ős</b> → Például 3 őse az 1 csp</li>
                         <li><b>közvetlen (direkt) leszármazott:</b> 1 él távolságra levő leszármazott</li>
-                        <li><b>levél:</b> olyan csomópont, amelynek nincs leszármazottja → pl. 4 5 8 9 11 12 13</li>
+                        <li><b>levél:</b> olyan csomópont, amelynek nincs leszármazottja → Például 4 5 8 9 11 12 13</li>
                         <li><b>gyökér:</b> olyan csomópont, amelynek nincs szülője → 1</li>
                       </ul>
                 </ol>
@@ -1760,6 +1761,7 @@
       </div>
 
       <div id="quiz-group-2" class="cardslider-container" data-question-group="questionGroup2"></div>
+      <div id="return-to-top"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="svg-inline--fa fa-arrow-up fa-w-14 fa-7x"><path fill="currentColor" d="M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z" class=""></path></svg></div>
 </div>
 </div>
 <footer>
