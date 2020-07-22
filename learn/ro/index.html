@@ -16,7 +16,7 @@
           <a href="#section-4-4" class="side-section-2">4.4. Liste de adiacență</a>
 
       <a href="#section-5" class="side-section-1">5. Transformări între diferite reprezentări</a>
-          <a href="#section-5-1" class="side-section-2">5.1. Matricea de adiacență→ Matricea de incidență</a>
+          <a href="#section-5-1" class="side-section-2">5.1. Matricea de adiacență → Matricea de incidență</a>
           <a href="#section-5-2" class="side-section-2">5.2. Matricea de adiacență → Lista de muchii</a>
           <a href="#section-5-3" class="side-section-2">5.3. Matricea de adiacență → Liste de adiacență</a>
           <a href="#section-5-4" class="side-section-2">5.4. Lista de muchii → Liste de adiacență</a> 
@@ -754,15 +754,15 @@
       <pre class="lang-cpp language-markup line-numbers">
        <code>
         <script type="text/plain">
-          void pont_el_alakit (int n, int pp_mat[100][100], int pe_mat[100][100] ) //n-csomopontok szama
+          void mat_de_incidenta_transf (int n, int mat_ad[100][100], int mat_in[100][100] ) //n-număr de noduri
           {
-              int ind = 0;
+              int ind = 0; 
                 for (int i = 0; i < n; i++)
                     for (int j = 0; j < n; j++)
-                      if (pp_mat[i][j] == 1)
+                      if (mat_ad[i][j] == 1)
                       {
-                          pe_mat[i][ind] = 1;
-                          pe_mat[j][ind++] = 1;
+                        mat_in[i][ind] = 1;
+                        mat_in[j][ind++] = 1;
                       }
           } </script></code>
         </pre>
@@ -771,18 +771,18 @@
       <pre class="lang-cpp language-markup line-numbers">
       <code>
        <script type="text/plain">
-        void ellista_alakit (int n, int t[100][2], int mat[100][100]) //n-csomopontok szama
+        void lista_de_muchii_transf (int n, int t[100][2], int mat[100][100]) //n-număr de noduri
         {
-            int i, j, ind=0;
+            int i, j, index=0; 
         
               for (i = 0; i < n; i++)
                 for (j = 0; j < n; j++)
                   {
                       if (mat[i][j] == 1)
                     { 
-                        t[ind][0] = i + 1;
-                        t[ind][1] = j + 1;
-                        ind++;
+                        t[index][0] = i + 1;
+                        t[index][1] = j + 1;
+                        index++;
                     }
                   }
         }</script></code>
@@ -792,15 +792,15 @@
       <pre class="lang-cpp language-markup line-numbers">
       <code>
        <script type="text/plain">
-        void szl_alakit (int szl[100][100], int ppm[100][100], int n) //n-csomopontok szama
+        void liste_de_adiacenta_transf (int liste_ad[100][100], int mat_ad[100][100], int n) //n-număr de noduri
         {
             for (int i = 1; i <= n; i++)
                 for (int j = 1; j <= n; j++)
                 {
-                    if (ppm[i][j] == 1)
+                    if (mat_ad[i][j] == 1)
                     {
-                        szl[i][0]++;
-                        szl[i][szl[i][0]] = j;
+                      liste_ad[i][0]++;
+                      liste_ad[i][liste_ad[i][0]] = j;
                     }
                 }
         }</script></code>
@@ -810,23 +810,23 @@
       <pre class="lang-cpp language-markup line-numbers">
       <code>
        <script type="text/plain">
-        void alakit (int m, int el[100][2], int szl[100][100]) // m-elek szama
+        void transf (int m, int lista_muchii[100][2], int liste_ad[100][100]) // m-număr de muchii
         {
             for (int i = 1; i <= m; i++)
             {
-                //elso
-                szl [el[i][1]] [0] ++;  
-                szl [el[i][1]] [szl[el[i][1]][0]] = el[i][2];
+                //prima
+                liste_ad [lista_muchii[i][1]] [0] ++;  
+                liste_ad [lista_muchii[i][1]] [liste_ad[lista_muchii[i][1]][0]] = lista_muchii[i][2];
 
-                //masodik
-                szl[el[i][2]] [0]++;
-                szl[el[i][2]] [szl[el[i][2]][0]] = el[i][1];
+                //a doua
+                liste_ad[lista_muchii[i][2]] [0]++;
+                liste_ad[lista_muchii[i][2]] [liste_ad[lista_muchii[i][2]][0]] = lista_muchii[i][1];
             }
         }
 
         void bblsort (int t[100][100], int i)
         {
-          int ok = 0, s;
+          int ok = 0;
 
           while (ok == 0)
             {         
@@ -836,11 +836,11 @@
             }
         }
 
-        void rendezes (int szl[100][100], int n)
+        void sortare (int liste_ad[100][100], int n) //n-număr de noduri
         {
             for (int i = 1; i <= n; i++)
             {
-                bblsort (szl, i);
+                bblsort (liste_ad, i);
             }
         }</script></code>
        </pre>
@@ -849,16 +849,16 @@
       <pre class="lang-cpp language-markup line-numbers">
       <code>
        <script type="text/plain">
-        void ellista_alakit (int n, int m, int pe_mat[100][100], int el_mat[100][2]) //n-csomopontok szama, m-elek szama
-        {
+        void lista_de_muchii_transf (int n, int m, int mat_in[100][100], int lista_muchii[100][2]) //n-număr de noduri 
+        {                                                                                          //m-număr de muchii
             for (int j = 0; j < m; j++)
             {
                 int ok = 0;
                 for (int i = 0; i < n; i++)
                     {
-                      if (pe_mat[i][j] == 1) el_mat[j][0] = i + 1;
-                      else if (pe_mat[i][j] == -1) {el_mat[j][1] = i + 1; ok = 1;}
-                      if (ok == 0) el_mat[j][1] = el_mat[j][0];
+                      if (mat_in[i][j] == 1) lista_muchii[j][0] = i + 1;
+                      else if (mat_in[i][j] == -1) {lista_muchii[j][1] = i + 1; ok = 1;}
+                      if (ok == 0) lista_muchii[j][1] = lista_muchii[j][0];
                     }
             }
         }</script></code>
@@ -868,12 +868,12 @@
      <pre class="lang-cpp language-markup line-numbers">
       <code>
        <script type="text/plain">
-        void boole_alakit (int n, int szl[][100], int ppm[][100]) //n-csomopontok szama
+        void mat_adiacenta_transf (int n, int liste_ad[][100], int mat_ad[][100]) //n-număr de noduri
         {    
           for (int i = 1; i <= n; i++)
             {   
               for (int j = 1; j <= n; j++)
-                if (szl[i][j] != 0) ppm[szl[i][j]][i]++;
+                if (liste_ad[i][j] != 0) mat_ad[liste_ad[i][j]][i]++;
             }
         }</script></code>
        </pre>
@@ -882,26 +882,26 @@
      <pre class="lang-cpp language-markup line-numbers">
       <code>
        <script type="text/plain">
-        void tolt (int n, int m, int pem[100][100], int szl[100][100]) //n-csomopontok szama, m-elek szama
-        {
-            int e, u; 
+        void transf (int n, int m, int mat_in[100][100], int liste_ad[100][100]) //n-număr de noduri 
+        {                                                                        //m-număr de muchii
+            int p, u; //p-prima, u-ultima
             for (int j = 1; j <= m; j++)
             {
-                e = 0; u = 0;
+                p = 0; u = 0;
           
                 for (int i = 1; i <= n; i++)
                 {
-                    if (e == 0 && pem[i][j] == 1) e = i;
-                    else if (u == 0 && pem[i][j] == 1) u = i;
+                    if (p == 0 && mat_in[i][j] == 1) p = i;
+                    else if (u == 0 && mat_in[i][j] == 1) u = i;
                 }
 
-                //elso
-                szl[e][0]++;
-                szl[e][szl[e][0]] = u;
+                //prima
+                liste_ad[p][0]++;
+                liste_ad[p][liste_ad[p][0]] = u;
 
-                //utolso
-                szl[u][0]++;
-                szl[u][szl[u][0]] = e;
+                //ultima
+                liste_ad[u][0]++;
+                liste_ad[u][liste_ad[u][0]] = p;
 
             }
         }</script></code>
@@ -911,20 +911,20 @@
      <pre class="lang-cpp language-markup line-numbers">
       <code>
        <script type="text/plain">
-        int tolt (int szl[100][100], int el[100][3], int n) //n-csomopontok szama
+        int transf (int liste_ad[100][100], int lista_muchii[100][3], int n) //n-număr de noduri
         {
             int index = 1;
 
               for (int i = 1; i <= n; i++)
               {
-                  for (int j = 1; j <= szl[i][0]; j++)
+                  for (int j = 1; j <= liste_ad[i][0]; j++)
                     {
-                        if (i > szl[i][j])
+                        if (i > liste_ad[i][j])
                         {
-                            el[index][1] = szl[i][j];
-                            el[index][2] = i;
+                          lista_muchii[index][1] = liste_ad[i][j];
+                          lista_muchii[index][2] = i;
 
-                            index++;
+                          index++;
                         }
                     }
               }
@@ -936,22 +936,22 @@
      <pre class="lang-cpp language-markup line-numbers">
       <code>
        <script type="text/plain">
-        int tolt (int szl[100][100], int pem[100][100], int n) //n-csomopontok szama
+        int transf (int liste_ad[100][100], int mat_in[100][100], int n) //n-număr de noduri
         {
-            int index = 1; //elek szama
+            int index = 1; //număr de muchii
 
-            for(int i=1; i <= n; i++)
+            for (int i = 1; i <= n; i++)
             {
-                for(int j=1; j <= szl[i][0]; j++)
-            {
-                      if(i > szl[i][j])
+              for (int j = 1; j <= liste_ad[i][0]; j++)
+               {
+                 if (i > liste_ad[i][j])
                   {
-                      pem[szl[i][j]][index] = 1;
-                      pem[i][index] = 1;
+                    mat_in[liste_ad[i][j]][index] = 1;
+                    mat_in[i][index] = 1;
 
-                      index++;
+                    index++;
                   }
-                }
+               }
             }
             return index;
         }</script></code>
@@ -969,7 +969,7 @@
           </ul>  
           <p><b>Structuri de date folosite</b></p>
             <ul>
-              <li>apentru stocarea grafului de exemplu, lista de adiacențe</li>
+              <li>pentru stocarea grafului de exemplu, lista de adiacențe</li>
               <li>variabila <i>drum</i> un vector de tip coadă</li>
               <li>vectorul de frecvență <i>freq</i> care indică dacă un nod a fost vizitat sau nu</li>
               <li><i>e</i> - indică poziția elementului prelucrat în vectorul <i>drum</i></li>
@@ -1031,27 +1031,27 @@
         <pre class="lang-cpp language-markup line-numbers" style="margin:0;">
           <code>
            <script type="text/plain">
-            void BF (int szl[][50], int n, int kp) //kp-nod de pornire, kp=1
-            {                                              //n-număr de noduri
-              int e = 0, u = 0, csp; //csp-nod  
+            void breadth_first (int liste_ad[][50], int n, int np) //np-nod de pornire, np=1
+            {                                                      //n-număr de noduri
+              int p = 0, u = 0, nod; //p-prima, u-ultima
               int freq[50] = {0}, drum[50];
 
               //inițializare
-              drum[0] = kp;
-              freq[kp]++;
+              drum[0] = np;
+              freq[np]++;
 
-              while (e <= u)
+              while (p <= u)
                {
-                  csp = drum[e];
-                  for (int i = 1; i <= szl[csp][0]; i++)
+                  nod = drum[p];
+                  for (int i = 1; i <= liste_ad[nod][0]; i++)
                     {
-                       if (freq[ szl[csp][i] ] == 0)
+                       if (freq[ liste_ad[nod][i] ] == 0)
                       {
-                          drum[++u] = szl[csp][i];
-                          freq[ szl[csp][i] ]++;
+                          drum[++u] = liste_ad[nod][i];
+                          freq[ liste_ad[nod][i] ]++;
                       }
                      }
-                  e++;
+                  p++;
                }
             }</script></code>
            </pre>
@@ -1151,33 +1151,33 @@
         <pre class="lang-cpp language-markup line-numbers" style="margin:0;">
           <code>
            <script type="text/plain">
-            void DF (int szl[50][50], int n, int kp) //kp=1, nod inițial
-            {                                        //n-număr de noduri
-                int e = 0, u = 1, ok = 0;
+            void depth_first (int liste_ad[50][50], int n, int np) //np-nod de pornire, np=1
+            {                                                      //n-număr de noduri
+                int p = 0, u = 1, ok = 0; //p-prima, u-ultima
                 int freq[50]={0}, st[50], drum[50];
 
                 //inițializare
-                drum[0] = kp;
-                freq[kp]++;
-                st[0] = kp;
+                drum[0] = np;
+                freq[np]++;
+                st[0] = np;
 
-                int csp; //nod
-                while (e >= 0)
+                int nod; 
+                while (p >= 0)
                 {
-                    csp = st[e];
+                    nod = st[p];
                     ok = 0;
 
-                    for (int i = 1; i <= szl[csp][0] && ok == 0; i++)
+                    for (int i = 1; i <= liste_ad[nod][0] && ok == 0; i++)
                     {
-                        if (freq[ szl[csp][i] ] == 0)
+                        if (freq[ liste_ad[nod][i] ] == 0)
                         {
                             ok = 1;
-                            st[++e] = szl[csp][i];
-                            drum[u++] = szl[csp][i];
-                            freq[ szl[csp][i] ]++;
+                            st[++p] = liste_ad[nod][i];
+                            drum[u++] = liste_ad[nod][i];
+                            freq[ liste_ad[nod][i] ]++;
                         }
                     }
-                    if (ok == 0) e--;
+                    if (ok == 0) p--;
                 }
             }</script></code>
            </pre> 
@@ -1234,19 +1234,19 @@
               <pre class="lang-cpp language-markup line-numbers">
                 <code>
                 <script type="text/plain">
-                  void dijkstra (int ppm[50][50], int n, int kp) //kp=2, nod inițial
+                  void dijkstra (int mat_ad[50][50], int n, int np) //np-nod de pornire, np=2
                   { //n-număr de noduri
                     //ldrum-lungimea (costul) drumurilor
+
                       int ok, ldrum[7], freq[7]={0}, mini, k;
 
-                      //ldrum kezdoertekek
                       for (int i = 1; i <= n; i++)
-                          if (ppm[kp][i] > 0) ldrum[i] = ppm[kp][i];
+                          if (mat_ad[np][i] > 0) ldrum[i] = mat_ad[np][i];
                           else ldrum[i] = maxi; //valoare foarte mare
                     
                       //inițializare ldrum
-                      ldrum[kp] = 0;
-                      freq[kp]++;
+                      ldrum[np] = 0;
+                      freq[np]++;
                       ok = 1;
 
                       while(ok == 1)
@@ -1264,9 +1264,9 @@
                           else {
                               freq[k]++;
                               for (int i = 1; i <= n; i++)
-                                  if (ppm[k][i] > 0 && mini + ppm[k][i] < ldrum[i])
+                                  if (mat_ad[k][i] > 0 and mini + mat_ad[k][i] < ldrum[i])
                                     {
-                                          ldrum[i] = mini + ppm[k][i];  
+                                          ldrum[i] = mini + mat_ad[k][i];  
                                     }
                           }
                       }
@@ -1378,30 +1378,30 @@
       <pre class="lang-cpp language-markup line-numbers" style="margin:0;">
           <code>
            <script type="text/plain">
-            void roy_warshall (int n, int utm[100][100]) 
+            void roy_warshall (int n, int drum_mat[100][100]) 
             { //n-numărul nodurilor
                 int i, j, k;
 
                 for (k = 1; k <= n; k++)
                 for (i = 1; i <= n; i++)
                   for (j = 1; j <= n; j++)
-                    if (utm[i][j] == 0 && i != j && utm[i][k] > 0 && utm[k][j] > 0)
-                      utm[i][j] = utm[i][k] + utm[k][j];
+                    if (drum_mat[i][j] == 0 && i != j && drum_mat[i][k] > 0 && drum_mat[k][j] > 0)
+                         drum_mat[i][j] = drum_mat[i][k] + drum_mat[k][j];
             }</script></code>
         </pre>
 		 <p>Algoritmul lui <b>Roy-Floyd</b> pornește de la matricea costurilor și printr-o deducție asemănătoare algoritmului lui <b>Roy-Warshall</b>, determină costul minim al drumurilor între oricare două noduri din graf.</p>
           <pre class="lang-cpp language-markup line-numbers" style="margin:0;">
           <code>
            <script type="text/plain">
-            void roy_floyd (int n, int utm[100][100]) 
+            void roy_floyd (int n, int drum_mat[100][100]) 
             { //n-numărul nodurilor
                 int i, j, k;
 
                 for (k = 1; k <= n; k++)
                 for (i = 1; i <= n; i++)
                   for (j = 1; j <= n; j++)
-                    if (utm[i][j]>utm[i][k]+utm[k][j])
-                      utm[i][j] = utm[i][k] + utm[k][j];					  
+                    if (drum_mat[i][j] > drum_mat[i][k] + drum_mat[k][j])
+                         drum_mat[i][j] = drum_mat[i][k] + drum_mat[k][j];					  
             }</script></code>
         </pre>
 	
@@ -1509,26 +1509,26 @@
             <pre class="lang-cpp language-markup line-numbers">
               <code>
               <script type="text/plain">
-                void bblsort(int el[10][4], int m)
+                void bblsort(int lista_muchii[10][4], int m)
                 {
                     int ok = 0;
                     while(ok == 0)
                     {
                         ok = 1;
                         for (int i = 1; i <= m; i++)
-                          if (el[i][3] > el[i+1][3])
+                          if (lista_muchii[i][3] > lista_muchii[i+1][3])
                           {
-                              swap (el[i], el[i+1]);
+                              swap (lista_muchii[i], lista_muchii[i+1]);
                               ok = 0;
                           }
                     }
                 }
                 
-                void kruskal (int n, int m, int el[10][4]) //n-numărul de noduri
-                {                                          //m-numărul de muchii
+                void kruskal (int n, int m, int lista_muchii[10][4]) //n-numărul de noduri
+                {                                                    //m-numărul de muchii
                     int comp[10];
                     int a, b; 
-                    bblsort(el,m); 
+                    bblsort(lista_muchii,m); 
                     int s = 0;
 
                     //componente inițiale
@@ -1537,16 +1537,16 @@
 
                     for (int i = 1; i <= m; i++)
                     {
-                        if (comp[el[i][1]] != comp[el[i][2]])
+                        if (comp[lista_muchii[i][1]] != comp[lista_muchii[i][2]])
                         {
-                            a = comp[el[i][1]];
-                            b = comp[el[i][2]];
+                            a = comp[lista_muchii[i][1]];
+                            b = comp[lista_muchii[i][2]];
                             for (int j = 1; j <= n; j++)
                                 if (comp[j] == b) comp[j] = a;
 
-                            s += el[i][3];
+                            s += lista_muchii[i][3];
                         }
-                        else el[i][3] = 0;
+                        else lista_muchii[i][3] = 0;
                     }</script></code>
               </pre>
               </div>
@@ -1581,28 +1581,28 @@
           <pre class="lang-cpp language-markup line-numbers">
             <code>
             <script type="text/plain">
-              void prim (int el[][5], int m, int n, int kp) //n-numărul de noduri
-              {                                             //m-numărul de muchii
-                  int i=1, s=0, mini, ind;                  //kp-nod inițial, kp=1
+              void prim (int lista_muchii[][5], int m, int n, int np) //n-numărul de noduri
+              {                                                       //m-numărul de muchii
+                  int i=1, s=0, mini, ind;                            //np-nod de pornire, np=1
                   int freq[7]={0};
 
-                  freq[kp]++;
+                  freq[np]++;
                   
                   while (i < n)
                   {
                       mini = maxi; //o valoare foarte mare
 
                       for (int j = 1; j <= m; j++)
-                            if ((freq[el[j][1]] == 1 and freq[el[j][2]] == 0 or freq[el[j][2]] == 1 and freq[el[j][1]] == 0) and el[j][3] < mini)
+                            if ((freq[lista_muchii[j][1]] == 1 and freq[lista_muchii[j][2]] == 0 or freq[lista_muchii[j][2]] == 1 and freq[lista_muchii[j][1]] == 0) and lista_muchii[j][3] < mini)
                         {
-                              mini = el[j][3];
+                              mini = lista_muchii[j][3];
                               ind = j;
                         }
 
-                      freq[el[ind][1]] = 1;
-                      freq[el[ind][2]] = 1;
+                      freq[lista_muchii[ind][1]] = 1;
+                      freq[lista_muchii[ind][2]] = 1;
                       s += mini;
-                      el[ind][4] = 1;
+                      lista_muchii[ind][4] = 1;
                       i++;
                   }
               }</script></code>
@@ -1658,8 +1658,8 @@
              <ol start="3">
               <li><b>Arbori binari</b></li>
                 <p>Un arbore în care fiecare nod are cel mult doi descendenți se numește <b>arbore binar</b>.</p>
-				<p>Descendenții se numesc <b>descendentul stânga</b> respectiv <b>descendentul dreapta</b>.</p
-            </ol>
+				        <p>Descendenții se numesc <b>descendentul stânga</b> respectiv <b>descendentul dreapta</b>.</p
+              </ol>
         </div>
       </div>
     </div>
@@ -1668,7 +1668,7 @@
       <div class="row">
         <div class="col-sm">
           <figure class="figure">   
-            <svg class="figure-img img-fluid rounded" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate; width:85%;" viewBox="364 162.989 413.5 284.511" width="413.5pt" height="284.511pt"><defs><clipPath id="_clipPath_dmrMpDzlyLlsxktm1WPClZgPxNToldmg"><rect x="364" y="162.989" width="413.5" height="284.511"/></clipPath></defs><g clip-path="url(#_clipPath_dmrMpDzlyLlsxktm1WPClZgPxNToldmg)"><line x1="555" y1="179" x2="646" y2="241" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="763" y1="369" x2="705" y2="296" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="642" y1="369" x2="595" y2="301" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="468" y1="241" x2="507" y2="296" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="468" y1="241" x2="428" y2="296" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="601" y1="301" x2="560" y2="364" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="705" y1="301" x2="646" y2="245" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="646" y1="369" x2="691" y2="431" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="468" y1="241" x2="555" y2="179" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="595" y1="301" x2="646" y2="241" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="642" y1="369" x2="601" y2="431" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="381" y1="369" x2="421" y2="301" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><circle vector-effect="non-scaling-stroke" cx="554.284090909091" cy="180.73864017833353" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="559.409100445834" cy="367.7500000000001" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="511.5" cy="298.25" r="17.75000000000003" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="759.75" cy="367.7500000000001" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="420.1590909090909" cy="298.25" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="701.6590909090909" cy="298.25" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="467.9090985384854" cy="241.23864065517074" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="381.75" cy="367.75000000000006" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="600.5" cy="298.25" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="687.25" cy="429.75" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="641.7840909090909" cy="367.75000000000006" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="603.1590928164395" cy="429.75" r="17.75" fill="rgb(57,62,70)"/><text transform="matrix(1,0,0,1,593.5,307.377)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">6 </text><text transform="matrix(1,0,0,1,412.659,307.377)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">4 </text><text transform="matrix(1,0,0,1,694.159,307.377)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">7 </text><text transform="matrix(1,0,0,1,552.5,376.877)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">9 </text><text transform="matrix(1,0,0,1,590.534,438.877)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">11 </text><text transform="matrix(1,0,0,1,747.125,376.877)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">13 </text><text transform="matrix(1,0,0,1,674.625,438.877)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">12 </text><circle vector-effect="non-scaling-stroke" cx="644.5340909090909" cy="241.23864065517074" r="17.75" fill="rgb(57,62,70)"/><text transform="matrix(1,0,0,1,629.375,376.877)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">10 </text><text transform="matrix(1,0,0,1,460.5,250.491)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">2 </text><text transform="matrix(1,0,0,1,547.5,188.616)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">1 </text><text transform="matrix(1,0,0,1,504,307.377)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">5 </text><text transform="matrix(1,0,0,1,638.5,250.127)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">3 </text><text transform="matrix(1,0,0,1,374.25,376.877)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">8 </text></g></svg>
+            <svg class="figure-img img-fluid rounded" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate; width:150%;" viewBox="364 162.989 413.5 284.511" width="413.5pt" height="284.511pt"><defs><clipPath id="_clipPath_dmrMpDzlyLlsxktm1WPClZgPxNToldmg"><rect x="364" y="162.989" width="413.5" height="284.511"/></clipPath></defs><g clip-path="url(#_clipPath_dmrMpDzlyLlsxktm1WPClZgPxNToldmg)"><line x1="555" y1="179" x2="646" y2="241" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="763" y1="369" x2="705" y2="296" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="642" y1="369" x2="595" y2="301" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="468" y1="241" x2="507" y2="296" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="468" y1="241" x2="428" y2="296" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="601" y1="301" x2="560" y2="364" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="705" y1="301" x2="646" y2="245" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="646" y1="369" x2="691" y2="431" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="468" y1="241" x2="555" y2="179" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="595" y1="301" x2="646" y2="241" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="642" y1="369" x2="601" y2="431" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><line x1="381" y1="369" x2="421" y2="301" vector-effect="non-scaling-stroke" stroke-width="2" stroke="rgb(0,173,181)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/><circle vector-effect="non-scaling-stroke" cx="554.284090909091" cy="180.73864017833353" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="559.409100445834" cy="367.7500000000001" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="511.5" cy="298.25" r="17.75000000000003" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="759.75" cy="367.7500000000001" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="420.1590909090909" cy="298.25" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="701.6590909090909" cy="298.25" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="467.9090985384854" cy="241.23864065517074" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="381.75" cy="367.75000000000006" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="600.5" cy="298.25" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="687.25" cy="429.75" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="641.7840909090909" cy="367.75000000000006" r="17.75" fill="rgb(57,62,70)"/><circle vector-effect="non-scaling-stroke" cx="603.1590928164395" cy="429.75" r="17.75" fill="rgb(57,62,70)"/><text transform="matrix(1,0,0,1,593.5,307.377)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">6 </text><text transform="matrix(1,0,0,1,412.659,307.377)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">4 </text><text transform="matrix(1,0,0,1,694.159,307.377)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">7 </text><text transform="matrix(1,0,0,1,552.5,376.877)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">9 </text><text transform="matrix(1,0,0,1,590.534,438.877)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">11 </text><text transform="matrix(1,0,0,1,747.125,376.877)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">13 </text><text transform="matrix(1,0,0,1,674.625,438.877)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">12 </text><circle vector-effect="non-scaling-stroke" cx="644.5340909090909" cy="241.23864065517074" r="17.75" fill="rgb(57,62,70)"/><text transform="matrix(1,0,0,1,629.375,376.877)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">10 </text><text transform="matrix(1,0,0,1,460.5,250.491)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">2 </text><text transform="matrix(1,0,0,1,547.5,188.616)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">1 </text><text transform="matrix(1,0,0,1,504,307.377)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">5 </text><text transform="matrix(1,0,0,1,638.5,250.127)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">3 </text><text transform="matrix(1,0,0,1,374.25,376.877)" style="font-family:'Roboto';font-weight:400;font-size:20px;font-style:normal;fill:#ffffff;stroke:none;">8 </text></g></svg>
             <figcaption class="figure-caption text-right"><i>figura b.</i></figcaption>
           </figure>   
         </div> 
