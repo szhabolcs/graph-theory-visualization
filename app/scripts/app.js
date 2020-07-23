@@ -272,7 +272,7 @@ $(document).ready(function () {
         e.preventDefault();
         let host = window.location.hostname;
         let newHost = host.replace("app.","");
-        window.location = "https://learn."+newHost+"?locale="+locale+$(e.currentTarget).prop("hash");
+       window.open("https://learn."+newHost+"?locale="+locale+$(e.currentTarget).prop("hash"), "_blank");
     });
 });
 //Language init

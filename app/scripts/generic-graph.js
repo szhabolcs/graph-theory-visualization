@@ -1012,7 +1012,6 @@ class BinaryTree extends GenericGraph {
     initRepresentationTables() {
         this.tblParentArray = new TableHandler(ID_PARENT_ARRAY, $.i18n("parent-array"));
         this.tblStandardForm = new TableHandler(ID_STANDARD_FORM, $.i18n("standard-form"));
-        this.tblBinaryForm = new TableHandler(ID_BINARY_FORM, $.i18n("binary-form"));
         //Init Parent array
         this.tblParentArray.addRow('1', null);
         //Init Standard form
