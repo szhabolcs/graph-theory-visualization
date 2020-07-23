@@ -66,7 +66,7 @@ Aplicația este securizată printr-o conexiune SSL (Secure Sockets Layer), iar c
 ![securitate](https://user-images.githubusercontent.com/54114237/88283766-bf317f00-ccf4-11ea-9ad5-34f33fae075d.png)
 
 ## Interfață și design:
-Interfața este una modernă, ușor de folosită, la care s-a luat în considerare audiența țintă (elevi/studenți). De pildă modul dark și icons
+Interfața este una modernă, ușor de folosit, la care s-a luat în considerare audiența țintă (elevi/studenți).
 
 ![icons](https://user-images.githubusercontent.com/54114237/88283888-fdc73980-ccf4-11ea-978f-3af8dea13131.png)
 Butoanele conțin iconuri care sunt percepute ușor de utilizatori și care oferă un aspect curat interfaței.
@@ -76,7 +76,7 @@ Pentru accesibilitate, fiecare butom afișează funcția sa cât timp cursorul e
 
 ![left menu](https://user-images.githubusercontent.com/54114237/88284895-dd987a00-ccf6-11ea-906b-202cadf45614.png)
 ![right menu](https://user-images.githubusercontent.com/54114237/88285046-1df7f800-ccf7-11ea-910f-83a3aeb3c6be.png)<br>
-Meniurile laterale sunt concepută în fel ca utilizatorul să le poate deschide sau închide, dar și să le poate redimensiona, după preferința sa.
+Meniurile laterale sunt concepute în fel ca utilizatorul să le poate deschide sau închide, dar și să le poate redimensiona, după preferința sa.
 
 ![normal zoom](https://user-images.githubusercontent.com/54114237/88285196-57306800-ccf7-11ea-9381-eab482ce3d88.png)
 ![zoomed in](https://user-images.githubusercontent.com/54114237/88285218-5dbedf80-ccf7-11ea-8710-bde4087b8d4e.png)<br>
@@ -101,8 +101,9 @@ Următoarele caracteristici sunt comparate cu soluții deja existente.
 6. Oferă informații ușor de accesibile despre grafuri și algoritmi
 7. Conține posibilitatea de testare a cunoștințelor
 
+## Resurse:
 <details>
-  <summary><h2>Resurse:</h2></summary>
+  <summary>Clic pentru a extinde</summary>
   
 JSPlumb:
 
