@@ -1,5 +1,6 @@
-# <img src="https://github.com/ToastedWaffle/graph-theory-visualization/blob/master/images/Icon%404x.png" width="50" height="50" /> Graphviser tools
-
+![logo@10x](https://user-images.githubusercontent.com/54114237/88288457-77aef100-ccfc-11ea-901d-2728b84d5401.png)
+<br>
+<br>
 ## Despre aplicație
 Aplicația noastră a fost creată ca parte a unui proiect școlar.
 <br>
