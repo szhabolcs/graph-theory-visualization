@@ -355,11 +355,11 @@ class GenericGraph {
 
     /**
      * It's a helper function for generating dijkstra algorithm output.
-     * Finds the elements that are not in the second array but in the first array aat the sam position.
+     * Finds the elements that are not in the second array but in the first array at the same position.
      * The first element in the result array will be the last equal element in the two arrays, same position.
-     * @param {[]|string} firstArray The first array to be compared
-     * @param {[]|string} secondArray The second array to be compared
-     * @returns {[]|string} resultArray The result of the comparison
+     * @param {String[]} firstArray The first array to be compared
+     * @param {String[]} secondArray The second array to be compared
+     * @returns {String[]} resultArray The result of the comparison
      */
     findTheDifference(firstArray, secondArray){
         let ok=0;
