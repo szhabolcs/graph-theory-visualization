@@ -353,6 +353,31 @@ class GenericGraph {
         return false;
     }
 
+    /**
+     * It's a helper function for generating dijkstra algorithm output.
+     * Finds the elements that are not in the second array but in the first array at the same position.
+     * The first element in the result array will be the last equal element in the two arrays, same position.
+     * @param {String[]} firstArray The first array to be compared
+     * @param {String[]} secondArray The second array to be compared
+     * @returns {String[]} resultArray The result of the comparison
+     */
+    findTheDifference(firstArray, secondArray){
+        let ok=0;
+        let resultArray=[];
+        for(let i in secondArray){
+            if(firstArray[i]!==secondArray[i]){
+                if(ok===0){
+                    resultArray.push(firstArray[i-1]);
+                    ok=1;
+                    resultArray.push(firstArray[i]);
+                }
+            }
+            if(ok===1)
+                resultArray.push(firstArray[i]);
+        }
+        return resultArray;
+    }
+
     //2. Basic Algorithms
     /**
      * Breadth First Search algorithm
@@ -500,7 +525,12 @@ class GenericGraph {
                             oldRoute = Object.assign([], routes[i])
                             routes[i] = Object.assign([], routes[k]);
                             routes[i].push(i);
-                            if (oldRoute.length > 0) {
+                            if (oldRoute.length > 2) {
+                                oldRoute = this.findTheDifference(oldRoute, routes[i]);
+                                this.algorithmOutput.push({
+                                    unmark: oldRoute
+                                });
+                            } else if (oldRoute.length > 0) {
                                 this.algorithmOutput.push({
                                     unmark: oldRoute
                                 });
@@ -866,8 +896,6 @@ class BinaryTree extends GenericGraph {
         //Standard form
         this.tblStandardForm.addColumn(indexOfNode, nodeValue);
 
-        //Binary form
-        this.tblBinaryForm.addRow(indexOfNode, nodeValue);
     }
 
     /**
@@ -982,7 +1010,6 @@ class BinaryTree extends GenericGraph {
     initRepresentationTables() {
         this.tblParentArray = new TableHandler(ID_PARENT_ARRAY, $.i18n("parent-array"));
         this.tblStandardForm = new TableHandler(ID_STANDARD_FORM, $.i18n("standard-form"));
-        this.tblBinaryForm = new TableHandler(ID_BINARY_FORM, $.i18n("binary-form"));
         //Init Parent array
         this.tblParentArray.addRow('1', null);
         //Init Standard form
@@ -997,7 +1024,6 @@ class BinaryTree extends GenericGraph {
     dropRepresentationTables() {
         this.tblParentArray.drop();
         this.tblStandardForm.drop();
-        this.tblBinaryForm.drop();
     }
 
     /**

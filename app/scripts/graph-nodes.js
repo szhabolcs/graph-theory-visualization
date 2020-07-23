@@ -112,13 +112,21 @@ class VisualNode {
         graph.tblIncidenceMatrix.updateTable(nodeId, '0', nodeText);
 
         //Adjacency list
-        graph.tblAdjacencyList.updateTable(nodeId, '0', nodeText);
-        const connections = this.jspInstance.select({
+        this.graph.tblAdjacencyList.updateTable(nodeId, '0', nodeText);
+        //Adjacency list
+        let connections = this.jspInstance.select({
             target: nodeId
         });
         connections.each((connection) => {
-            this.graph.tblAdjacencyList.updateTable(connection.sourceId, connection.targetId, nodeText);
+            this.graph.tblAdjacencyList.updateTable(connection.sourceId, connection.targetId, nodeText);//*/
         });
+        connections = this.jspInstance.select({
+            source: nodeId
+        });
+        connections.each((connection) => {
+            this.graph.tblAdjacencyList.updateTable(connection.targetId, connection.sourceId, nodeText);
+        });
+
 
         //Edge list
         for (let i in graph.edgeList) {
@@ -451,7 +459,7 @@ class VisualNode {
             if (algorithmOutput[i].hasOwnProperty("info")) {
                 $stepsBody.append("<div class=\"step\"><span>" + algorithmOutput[i].info +
                     "</span></div>");
-            } else if (!algorithmOutput.hasOwnProperty("unmark")) {
+            } else if (!algorithmOutput[i].hasOwnProperty("unmark")) {
 
                 from = algorithmOutput[i].from;
                 to = algorithmOutput[i].to;
@@ -1103,9 +1111,9 @@ class BinaryNode extends VisualNode {
         this.selectedNode = eventInfo.currentTarget.id;
         DOMContainer.undelegate(".node", "click");
         DOMContainer.undelegate(".node", "mouseenter mouseleave");
-        if(this.graph.parentArray[this.selectedNode]!==0){
+        if (this.graph.parentArray[this.selectedNode] !== 0) {
             this.selectNode(NOT_ROOT_SELECTED_WARNING);
-        }else {
+        } else {
             this.graph.root = this.selectedNode;
             this.removeMessage();
             this.graph.runAlgorithm(menuItems.selectedAlgorithm);
