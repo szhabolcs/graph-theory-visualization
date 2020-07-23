@@ -1,6 +1,9 @@
 ![logo@10x](https://user-images.githubusercontent.com/54114237/88288457-77aef100-ccfc-11ea-901d-2728b84d5401.png)
 <br>
 <br>
+## Manual de utilizare
+Manualul de utilizare este disponibil [aici](https://github.com/ToastedWaffle/graph-theory-visualization/wiki/Manual-de-utilizare).
+
 ## Despre aplicație
 Aplicația noastră a fost creată ca parte a unui proiect școlar.
 <br>
@@ -22,6 +25,8 @@ Pentru folosirea aplicației noastre este necesar un dispozitiv cu acces la inte
 Unica cerință hardware este ca dispozitivul să poată rula un web browser cu versiunea minimă afișată în tabel.
 
 ## Implementarea aplicației:
+Documentația codului este disponibil [aici](https://docs.graphviser.tools/).
+<br>
 Aplicația se bazează pe trei framework-uri principale:
 1. **jQuery**: folosit la crearea animațiilor și la navigarea și manipularea elementelor din Document Object Model (DOM)
 2. **jsPlumb Community Edition**: folosit la vizualizarea grafurilor, având ca funcționalitate conectarea vizuală a elementelor și stocarea informațiilor despre aceste conexiuni
