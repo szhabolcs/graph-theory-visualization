@@ -119,14 +119,12 @@ class VisualNode {
         });
         connections.each((connection) => {
             this.graph.tblAdjacencyList.updateTable(connection.sourceId, connection.targetId, nodeText);//*/
-            console.log(connection.sourceId, connection.targetId);
         });
         connections = this.jspInstance.select({
             source: nodeId
         });
         connections.each((connection) => {
             this.graph.tblAdjacencyList.updateTable(connection.targetId, connection.sourceId, nodeText);
-            console.log(connection.sourceId, connection.targetId);
         });
 
 
