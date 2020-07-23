@@ -451,7 +451,7 @@ class VisualNode {
             if (algorithmOutput[i].hasOwnProperty("info")) {
                 $stepsBody.append("<div class=\"step\"><span>" + algorithmOutput[i].info +
                     "</span></div>");
-            } else if (!algorithmOutput.hasOwnProperty("unmark")) {
+            } else if (!algorithmOutput[i].hasOwnProperty("unmark")) {
 
                 from = algorithmOutput[i].from;
                 to = algorithmOutput[i].to;
