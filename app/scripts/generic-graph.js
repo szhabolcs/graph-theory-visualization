@@ -896,8 +896,6 @@ class BinaryTree extends GenericGraph {
         //Standard form
         this.tblStandardForm.addColumn(indexOfNode, nodeValue);
 
-        //Binary form
-        this.tblBinaryForm.addRow(indexOfNode, nodeValue);
     }
 
     /**
@@ -1026,7 +1024,6 @@ class BinaryTree extends GenericGraph {
     dropRepresentationTables() {
         this.tblParentArray.drop();
         this.tblStandardForm.drop();
-        this.tblBinaryForm.drop();
     }
 
     /**
