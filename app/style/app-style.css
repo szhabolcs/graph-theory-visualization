@@ -234,7 +234,7 @@ html {
     position: fixed;
     bottom: 0;
     background-color: var(--gray);
-    z-index: 2;
+    z-index: 21 ;
     transition: all .3s;
     padding: 20px;
     color: var(--dropdown-body-color);
@@ -304,7 +304,7 @@ html {
     min-width: 55px;
     height: calc(100% - 55px);
     position: fixed;
-    z-index: 1;
+    z-index: 20;
 }
 
 #representation {
@@ -362,7 +362,7 @@ html {
     min-width: 55px;
     height: calc(100% - 55px);
     position: fixed;
-    z-index: 1;
+    z-index: 20;
     right: 0px;
 }
 
@@ -661,7 +661,7 @@ html {
 }
 
 .fixed-bottom {
-    z-index: 3 !important;
+    z-index: 22 !important;
 }
 
 #start-modal {
@@ -669,7 +669,7 @@ html {
     width: 100%;
     height: 100%;
     background-color: var(--modal-background);
-    z-index: 4;
+    z-index: 30;
     color: var(--dropdown-body-color);
     padding: 20px;
 }
@@ -735,7 +735,7 @@ a:not([href]):hover {
     border-radius: 5px;
     background-color: var(--light-green);
     position: fixed;
-    z-index: 1;
+    z-index: 20;
     font-size: 20px;
     padding: 5px;
     text-align: center;
