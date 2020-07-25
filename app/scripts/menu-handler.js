@@ -278,6 +278,13 @@ function loadCards() {
         let cards = getSelectedItems(selected);
         let card;
 
+        if($("#start-modal") && (group == MENU_ROOT || group == GENERIC_GRAPH)){
+            $('[data-i18n="choose-graph-type"]').text($.i18n("choose-graph-type"));
+        }
+        else{
+            $('[data-i18n="choose-graph-type"]').text($.i18n("choose-algorithm"));
+        }
+
         for (let i in cards) {
             card = cards[i];
             $(container).append(makeCard(card.id, card.img, card.text, card.sectionId))
