@@ -80,8 +80,8 @@ Butoanele conțin iconuri care sunt percepute ușor de utilizatori și care ofer
 ![tooltip](https://user-images.githubusercontent.com/54114237/88283932-1a637180-ccf5-11ea-880b-42d6672d7955.png)<br>
 Pentru accesibilitate, fiecare buton afișează funcția sa atâta timp, cât cursorul este ținut peste el.
 
-![left menu](https://user-images.githubusercontent.com/54114237/88284895-dd987a00-ccf6-11ea-906b-202cadf45614.png)
-![right menu](https://user-images.githubusercontent.com/54114237/88285046-1df7f800-ccf7-11ea-910f-83a3aeb3c6be.png)<br>
+![left menu](https://user-images.githubusercontent.com/54114237/88456650-dfde0e00-ce87-11ea-9bb3-7fb06877b8f6.png)
+![right menu](https://user-images.githubusercontent.com/54114237/88456651-e2406800-ce87-11ea-8f8f-8e0fb38b4432.png)<br>
 Meniurile laterale sunt concepute astfel încât utilizatorul să le poate deschide sau închide și redimensiona, după preferință.
 
 ![normal zoom](https://user-images.githubusercontent.com/54114237/88285196-57306800-ccf7-11ea-9381-eab482ce3d88.png)
