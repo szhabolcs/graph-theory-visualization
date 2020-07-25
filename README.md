@@ -49,6 +49,9 @@ Conține clasele necesare pentru manipularea și gestionarea elementelor din DOM
 
 #### Motion Controls: gestionează suprafața de lucru
 * Se ocupă de acțiunile pan și zoom (mișcare, micșorare/mărire) a suprafeței de lucru.
+![Group 1](https://user-images.githubusercontent.com/54114237/88455588-35fa8380-ce7f-11ea-89df-ebf2e77a5001.png)
+
+![animation](https://user-images.githubusercontent.com/54114237/88455595-44e13600-ce7f-11ea-89f6-fccbf6c5ffde.gif)
 
 ### 2. Gestionarea memoriei:
 #### GenericGraph:
@@ -63,7 +66,7 @@ Conține clasele necesare pentru manipularea și gestionarea elementelor din DOM
 Aplicația a fost testată în mod continuu în timpul dezvoltării atât de către realizatori cât și de către colegii de clasă respectiv de profesorul de la clasă.
 
 ## Version Control:
-Dezvoltarea aplicației a fost realizată prin ajutorul servicilor GitHub, care ne-au permis să lucrăm în același timp. Codul este accesibil pe pagina de GitHub [graph-theory-visualization](github.com/ToastedWaffle/graph-theory-visualization).
+Dezvoltarea aplicației a fost realizată prin ajutorul servicilor GitHub, care ne-au permis să lucrăm mai mulți în paralel. Codul este accesibil pe pagina de GitHub [graph-theory-visualization](github.com/ToastedWaffle/graph-theory-visualization).
 
 ## Securitatea aplicației:
 Aplicația este securizată printr-o conexiune SSL (Secure Sockets Layer), iar certificatul nostru de SSL este emis de Let’s Encrypt Authority X3.
@@ -71,7 +74,7 @@ Aplicația este securizată printr-o conexiune SSL (Secure Sockets Layer), iar c
 ![securitate](https://user-images.githubusercontent.com/54114237/88283766-bf317f00-ccf4-11ea-9ad5-34f33fae075d.png)
 
 ## Interfață și design:
-Interfața este una modernă, ușor de folosit, la care s-a luat în considerare grup țintă (elevi/studenți).
+Interfața este una modernă, ușor de folosit, la care s-a luat în considerare grupul țintă (elevi/studenți).
 
 ![icons](https://user-images.githubusercontent.com/54114237/88283888-fdc73980-ccf4-11ea-978f-3af8dea13131.png)
 Butoanele conțin iconuri care sunt percepute ușor de utilizatori și care oferă un aspect lizibil interfeței.
@@ -94,16 +97,16 @@ Fiecare card din meniu conține un link ![info](https://user-images.githubuserco
 Aplicația respectiv pagina cu materialul educativ au un design responsive, astfel asigurând compatibilitatea cu dispozitivele mobile și desktop.
 
 ![quiz](https://user-images.githubusercontent.com/54114237/88285386-a8405c00-ccf7-11ea-9bbb-e1c8666a61e3.png)<br>
-Pagina cu materialul educativ conține și quiz-uri, care au rolul de a ajuta utilizatorul de să-și verifice cunoștințele.
+Pagina cu materialul educativ conține și quiz-uri, care au rolul de a ajuta utilizatorul să-și verifice cunoștințele.
 
 ## Caracteristici inovative:
 1. Interfață prietenoasă.
-2. Asigură posibilitatea desenării grafurilor și animare a algoritmilor.
-3. Animația se realizează în pași, utilizatorul le poate urmări atât în meniul din dreapda, cât și pe graful desenat.
+2. Asigură posibilitatea desenării grafurilor și de animare a algoritmilor.
+3. Animația se realizează în pași, utilizatorul le poate urmări atât în meniul din dreapta cât și pe graful desenat.
 4. Reprezentările grafurilor sunt realizate în timp real.
 5. Suportă toate tipurile de grafuri.
 6. Oferă informații ușor accesibile despre grafuri și algoritmi.
-7. Asigură posibilitatea de testare a cunoștințelor, oferă feedback despre rezultatul opținut.
+7. Asigură posibilitatea de testare a cunoștințelor, oferă feedback despre rezultatul obținut.
 
 ## Resurse:
 <details>
