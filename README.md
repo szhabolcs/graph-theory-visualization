@@ -148,15 +148,19 @@ Prism.js:
 
 Particles.js:
 
-1. [Dynamic Point Mesh Animation with HTML5 Canvas](https://codepen.io/dudleystorey/pen/NbNjjX)
+* [Dynamic Point Mesh Animation with HTML5 Canvas](https://codepen.io/dudleystorey/pen/NbNjjX)
 
 jquery.inputfit.js:
 
-1. [vxsx/jquery.inputfit.js: Fit value in input](https://github.com/vxsx/jquery.inputfit.js)
+* [vxsx/jquery.inputfit.js: Fit value in input](https://github.com/vxsx/jquery.inputfit.js)
 
 jquery-resizable.js:
 
-1. [RickStrahl/jquery-resizable: A small jQuery plug-in to make DOM components resizable](https://github.com/vxsx/jquery.inputfit.js)
+* [RickStrahl/jquery-resizable: A small jQuery plug-in to make DOM components resizable](https://github.com/vxsx/jquery.inputfit.js)
+
+jquery.i18n:
+
+* [jQuery based internationalization library](https://github.com/wikimedia/jquery.i18n)
 
 jQuery:
 
