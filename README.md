@@ -7,12 +7,12 @@ Manualul de utilizare este disponibil [aici](https://github.com/ToastedWaffle/gr
 ## Despre aplicație
 Aplicația noastră a fost creată ca parte a unui proiect școlar.
 <br>
-Scopul ei este de a preda teoria grafurilor într-un mod interactiv și modern.
+Scopul ei este de a prezenta teoria grafurilor într-un mod interactiv și modern.
 
 ## Arhitectura aplicației:
-Aplicația a fost creată folosind tehnologii web, cu scopul de a putea rula pe dispozitive desktop cât și mobile. Interfața a fost realizată în HTML5 și CSS3, iar funcționalitatea în JavaScript (versiunea [ES2019](https://en.wikipedia.org/wiki/ECMAScript#10th_Edition_%E2%80%93_ECMAScript_2019)). 
+Aplicația a fost creată folosind tehnologii web, cu scopul de a putea rula atât pe dispozitive desktop cât și pe mobile. Interfața a fost realizată în HTML5 și CSS3, iar funcționalitatea este asigurată prin JavaScript (versiunea [ES2019](https://en.wikipedia.org/wiki/ECMAScript#10th_Edition_%E2%80%93_ECMAScript_2019)). 
 <br>
-Ea este accesibilă la domain-ul [graphviser.tools](https://graphviser.tools) cu ajutorul serviciilor Netlify, care preiau sursele de pe GitHub și le transmit la o varietate de [CDN](https://en.wikipedia.org/wiki/Content_delivery_network)-uri din lume. Mai mult despre cum funcționează [aici](https://agilitycms.com/resources/posts/what-is-netlify-and-why-should-you-care-as-an-editor).
+Este accesibil prin domain-ul [graphviser.tools](https://graphviser.tools) cu ajutorul serviciilor Netlify, care preiau sursele de pe GitHub și le transmit la o varietate de [CDN](https://en.wikipedia.org/wiki/Content_delivery_network)-uri din lume. Mai mult despre cum funcționează [aici](https://agilitycms.com/resources/posts/what-is-netlify-and-why-should-you-care-as-an-editor).
 
 ## Cerințe de sistem:
 Pentru folosirea aplicației noastre este necesar un dispozitiv cu acces la internet și un browser web care suportă [ES2019](https://en.wikipedia.org/wiki/ECMAScript#10th_Edition_%E2%80%93_ECMAScript_2019).
@@ -22,45 +22,45 @@ Pentru folosirea aplicației noastre este necesar un dispozitiv cu acces la inte
 <br>
 ![tabel](https://user-images.githubusercontent.com/54114237/88282385-2568d280-ccf2-11ea-880e-c4b90d329ca0.png)
 <br>
-Unica cerință hardware este ca dispozitivul să poată rula un web browser cu versiunea minimă afișată în tabel.
+Unica cerință hardware este ca dispozitivul să poată rula un browser web cu versiunea minimă afișată în tabel.
 
 ## Implementarea aplicației:
 Documentația codului este disponibil [aici](https://docs.graphviser.tools/).
 <br>
 Aplicația se bazează pe trei framework-uri principale:
-1. **jQuery**: folosit la crearea animațiilor și la navigarea și manipularea elementelor din Document Object Model (DOM)
-2. **jsPlumb Community Edition**: folosit la vizualizarea grafurilor, având ca funcționalitate conectarea vizuală a elementelor și stocarea informațiilor despre aceste conexiuni
-3. **Bootstrap**: folosit la crearea interfeței responsive a aplicației și a pagini cu materiale educative 
+1. **jQuery**: folosit la crearea animațiilor, la navigare și la manipularea elementelor din Document Object Model (DOM).
+2. **jsPlumb Community Edition**: folosit la vizualizarea grafurilor, având ca funcționalitate conectarea vizuală a elementelor și stocarea informațiilor despre aceste conexiuni.
+3. **Bootstrap**: folosit la crearea interfeței responsive a aplicației și a paginii cu materiale educative.
 
-Ea este alcătuită din două părți esențiale:
+Este alcătuit din două părți esențiale:
 ### 1. Interfața editorului:
 Conține clasele necesare pentru manipularea și gestionarea elementelor din DOM.
 <br>
 #### VisualNode: gestionează reprezentarea vizuală a grafurilor
-1. conține toate funcțiile de bază pentru editarea grafurilor (adăugare/ștergere de noduri și muchii, setarea costurilor, schimbarea modului de editare)
-2. toate funcțiile necesare pentru animare (inițializare, pornire, oprire, pas înainte și înapoi)
-3. Event listeners pentru modificarea grafurilor
+1. Conține toate funcțiile de bază pentru editarea grafurilor (adăugare/ștergere de noduri și muchii, setarea costurilor, schimbarea modului de editare).
+2. Toate funcțiile necesare pentru animare (inițializare, pornire, oprire, pas înainte și înapoi).
+3. Event listeners pentru modificarea grafurilor.
 
 #### TableHandler: gestionează reprezentarea în tabeluri a grafurilor
-1. conține funcțiile necesare pentru gestionarea în timp real (adăugare/ștergere rânduri și coloane, actualizarea celulelor)
+* Conține funcțiile necesare pentru gestionarea în timp real (adăugare/ștergere rânduri și coloane, actualizarea celulelor).
 
 #### MenuHandler: gestionează meniul
-1. se ocupă de funcționarea meniului și inițializarea grafului la pornirea aplicației sau la schimbarea tipului de graf
+* Se ocupă de funcționarea meniului și inițializarea grafului la pornirea aplicației sau la schimbarea tipului grafului.
 
 #### Motion Controls: gestionează suprafața de lucru
-1. se ocupă de acțiunile pan și zoom (mișcare, micșorare/mărire) a suprafeței de lucru
+* Se ocupă de acțiunile pan și zoom (mișcare, micșorare/mărire) a suprafeței de lucru.
 
 ### 2. Gestionarea memoriei:
 #### GenericGraph:
-1. conține toate reprezentările grafurilor în memorie
-2. se ocupă de operațiile de editare
-3. rulează algoritmi
-4. interacționează cu TableHandler pentru actualizarea tabelelor
+1. Conține toate reprezentările grafurilor în memorie.
+2. Se ocupă de operațiile de editare.
+3. Rulează algoritmii.
+4. Interacționează cu TableHandler pentru actualizarea tabelelor.
 
 ### Reprezentare schematică:
-![reprezentare schematică](https://user-images.githubusercontent.com/54114237/88283579-56e29d80-ccf4-11ea-8bf7-0ca9cb4b5ff9.png)
+![reprezentare schematica](https://user-images.githubusercontent.com/54114237/88454320-6b02d800-ce77-11ea-8cfd-b39c654ef121.png)
 ## Testarea aplicației:
-Aplicația a fost testată în mod continuu în timpul dezvoltării.
+Aplicația a fost testată în mod continuu în timpul dezvoltării atât de către realizatori cât și de către colegii de clasă respectiv de profesorul de la clasă.
 
 ## Version Control:
 Dezvoltarea aplicației a fost realizată prin ajutorul servicilor GitHub, care ne-au permis să lucrăm în același timp. Codul este accesibil pe pagina de GitHub [graph-theory-visualization](github.com/ToastedWaffle/graph-theory-visualization).
@@ -71,46 +71,45 @@ Aplicația este securizată printr-o conexiune SSL (Secure Sockets Layer), iar c
 ![securitate](https://user-images.githubusercontent.com/54114237/88283766-bf317f00-ccf4-11ea-9ad5-34f33fae075d.png)
 
 ## Interfață și design:
-Interfața este una modernă, ușor de folosit, la care s-a luat în considerare audiența țintă (elevi/studenți).
+Interfața este una modernă, ușor de folosit, la care s-a luat în considerare grup țintă (elevi/studenți).
 
 ![icons](https://user-images.githubusercontent.com/54114237/88283888-fdc73980-ccf4-11ea-978f-3af8dea13131.png)
-Butoanele conțin iconuri care sunt percepute ușor de utilizatori și care oferă un aspect curat interfaței.
+Butoanele conțin iconuri care sunt percepute ușor de utilizatori și care oferă un aspect lizibil interfeței.
 
 ![tooltip](https://user-images.githubusercontent.com/54114237/88283932-1a637180-ccf5-11ea-880b-42d6672d7955.png)<br>
-Pentru accesibilitate, fiecare butom afișează funcția sa cât timp cursorul este ținut peste el.
+Pentru accesibilitate, fiecare buton afișează funcția sa atâta timp, cât cursorul este ținut peste el.
 
 ![left menu](https://user-images.githubusercontent.com/54114237/88284895-dd987a00-ccf6-11ea-906b-202cadf45614.png)
 ![right menu](https://user-images.githubusercontent.com/54114237/88285046-1df7f800-ccf7-11ea-910f-83a3aeb3c6be.png)<br>
-Meniurile laterale sunt concepute în fel ca utilizatorul să le poate deschide sau închide, dar și să le poate redimensiona, după preferința sa.
+Meniurile laterale sunt concepute astfel încât utilizatorul să le poate deschide sau închide și redimensiona, după preferință.
 
 ![normal zoom](https://user-images.githubusercontent.com/54114237/88285196-57306800-ccf7-11ea-9381-eab482ce3d88.png)
 ![zoomed in](https://user-images.githubusercontent.com/54114237/88285218-5dbedf80-ccf7-11ea-8710-bde4087b8d4e.png)<br>
-Spațiul de lucru se poate micsora, mări, dar se poate și muta, oferind un spațiu flexibil pentru crearea grafurilor.
+Spațiul de lucru se poate micșora, mări și muta, oferind un spațiu flexibil pentru crearea grafurilor.
 
 ![card](https://user-images.githubusercontent.com/54114237/88284198-ac6b7a00-ccf5-11ea-819d-4771b97e43b1.png)<br>
-Fiecare card din meniu conține un link ![info](https://user-images.githubusercontent.com/54114237/88284224-bbeac300-ccf5-11ea-838b-4d7d68a8d49a.png) spre secțiunea respectivă din pagina cu material educativ.
+Fiecare card din meniu conține un link ![info](https://user-images.githubusercontent.com/54114237/88284224-bbeac300-ccf5-11ea-838b-4d7d68a8d49a.png) spre secțiunea respectivă din pagina cu materialul educativ.
 
 ![mockup](https://user-images.githubusercontent.com/54114237/88288175-10913c80-ccfc-11ea-8ac7-78b9b6c1ada1.png)<br>
-Aplicația cât și pagina cu material educativ, au un design responsive, astfel asigurând compatibilitate pe dispozitive mobile și desktop.
+Aplicația respectiv pagina cu materialul educativ au un design responsive, astfel asigurând compatibilitatea cu dispozitivele mobile și desktop.
 
 ![quiz](https://user-images.githubusercontent.com/54114237/88285386-a8405c00-ccf7-11ea-9bbb-e1c8666a61e3.png)<br>
-Pagina cu material educativ, conține și quiz-uri care au rolul de a ajuta utilizatorul de a-și verifica cunoștințele.
+Pagina cu materialul educativ conține și quiz-uri, care au rolul de a ajuta utilizatorul de să-și verifice cunoștințele.
 
 ## Caracteristici inovative:
-Următoarele caracteristici sunt comparate cu soluții deja existente.
-1. Interfață ușor de folosit
-2. Oferă desenare, cât și animare a algoritmurilor
-3. Animația se realizează în pași, pe care utilizatorul le poate vedea în meniul din dreapda, cât și pe graful desenat 
-4. Reprezentările grafurilor sunt create în timp real
-5. Suportă toate tipurile de graf
-6. Oferă informații ușor de accesibile despre grafuri și algoritmi
-7. Conține posibilitatea de testare a cunoștințelor
+1. Interfață prietenoasă.
+2. Asigură posibilitatea desenării grafurilor și animare a algoritmilor.
+3. Animația se realizează în pași, utilizatorul le poate urmări atât în meniul din dreapda, cât și pe graful desenat.
+4. Reprezentările grafurilor sunt realizate în timp real.
+5. Suportă toate tipurile de grafuri.
+6. Oferă informații ușor accesibile despre grafuri și algoritmi.
+7. Asigură posibilitatea de testare a cunoștințelor, oferă feedback despre rezultatul opținut.
 
 ## Resurse:
 <details>
   <summary>Clic pentru a extinde</summary>
   
-JSPlumb:
+jsPlumb Community Edition:
 
 1. [jsPlumb Community Edition Documentation](https://docs.jsplumbtoolkit.com/community/current/index.html)
 2. [Snap to Grid in jsplumb](https://stackoverflow.com/questions/22065756/snap-to-grid-in-jsplumb)
@@ -198,4 +197,11 @@ Educative.io:
 
 1. [JavaScript in Practice: Getting Started - Learn Interactively](https://www.educative.io/courses/javascript-in-practice-getting-started)
 2. [JavaScript In Practice: ES6 And Beyond - Learn Interactively](https://www.educative.io/courses/javascript-in-practice-es6-and-beyond)
+
+Alte resurse:
+1. [https://www.pbinfo.ro/](https://www.pbinfo.ro/)
+2. [https://profs.info.uaic.ro/~vcosmin/pagini/resurse_pregatire/resurse/graf_definitii.pdf](https://profs.info.uaic.ro/~vcosmin/pagini/resurse_pregatire/resurse/graf_definitii.pdf)
+3. [https://www.tutorialspoint.com/graph_theory/graph_theory_traversability.htm](https://www.tutorialspoint.com/graph_theory/graph_theory_traversability.htm)
+4. Manual de Informatică, pentru clasa a XI-a informatică intensiv (editura Abel, 2006, autori Ignát Judit Anna, Incze Katalin, Jakab Irma Tünde)
+5. Bazele informaticii Grafuri și elemente de combinatorică (editura Petrion, 1995, autori Cornelia Ivasc, Mona Pruna)
 </details>
