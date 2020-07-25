@@ -1182,8 +1182,18 @@ class BinaryTree extends GenericGraph {
         if (this.standardForm[node].left !== 0) leftTmp = this.getHeight(this.standardForm[node].left);
         if (this.standardForm[node].right !== 0) rightTmp = this.getHeight(this.standardForm[node].right);
 
-        return this.findMaxNumber(leftTmp, rightTmp);
+        //show message
+        $("#steps-body").removeClass("display-none");
+        $("#output-body").removeClass("display-none");
+        $("#steps").addClass("steps-open");
+        $("#steps > div .fa-chevron-left").addClass("fa-rotate-180");
+        $("#right-splitter").removeClass("display-none");
+        $("#steps-icon > span").removeClass("display-none");
+        $("#resizable-right-body").addClass("steps-open");
+        $("#middle-splitter").removeClass("display-none");
+        
 
+        return this.findMaxNumber(leftTmp, rightTmp);        
     }
 
     /**
