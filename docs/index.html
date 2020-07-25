@@ -155,8 +155,10 @@
   }
 
   //Button links
-  document.getElementById("app-button").href = "https://app."+window.location.hostname+"?locale="+locale;
-  document.getElementById("learn-button").href = "https://learn."+window.location.hostname+"?locale="+locale;
+  let host = window.location.hostname;
+  let newHost = host.replace("docs.","");
+  document.getElementById("app-button").href = "https://app."+newHost+"?locale="+locale;
+  document.getElementById("learn-button").href = "https://learn."+newHost+"?locale="+locale;
 
   //Flag hiding
   document.getElementById(locale+"-link").style.display = "none";
