@@ -951,3 +951,50 @@ input.search-input:focus {
   display: flex;
   padding-top: 1em;
 }
+.card{
+    display: inline-block;
+    margin: 20px;
+    background-color: #393E46;
+}
+.img-fluid{
+  margin-top: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.btn{
+  background-color: #2BCED6;
+  border-color: #2BCED6;
+  color: #393E46;
+  font-weight: 500;
+}
+.btn:hover{
+  background-color: #2399a0;
+  border-color: #2399a0;
+}
+.btn:active{
+  background-color: #2399a0 !important;
+  border-color: #2399a0 !important;
+}
+.btn:focus{
+  box-shadow: 0 0 0 0.2rem rgba(0, 255, 220, 0.5) !important;
+}
+.flag{
+  height: 32px;
+}
+@media only screen and (max-width: 768px) {
+  h1{
+    font-size: 1.5em;
+  }
+}
+@media only screen and (max-width: 679px) {
+  .img-fluid{
+    padding: 0px;
+  }
+  .card{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}
+.card-body h5,p{
+    color: white;
+}

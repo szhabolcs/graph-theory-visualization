@@ -257,7 +257,7 @@ $(document).ready(function () {
     $("#docs-link").click(()=>{
         let host = window.location.hostname;
         let newHost = host.replace("app.","");
-        window.location = "https://docs."+newHost;
+        window.location = "https://docs."+newHost+"?locale="+locale;
     });
     /**
      * Dynamic learn link
@@ -318,6 +318,6 @@ $(window).on('load', function () {
             [key]: "./jquery.i18n/languages/" + locale + ".json"
         };
     $.i18n().load(file).done(() => {
-        $('body').i18n({"debug":true});
+        $("body").i18n();
     });
 });

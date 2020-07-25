@@ -111,7 +111,7 @@ $(window).on('load',function(){
         $("#docs-button").click(()=>{
             let host = window.location.hostname;
             let newHost = host.replace("learn.","");
-            window.location = "https://docs."+newHost;
+            window.location = "https://docs."+newHost+"?locale="+locale;
         });
 
         $("#side-nav div a").click(changeNav);
