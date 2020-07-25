@@ -49,8 +49,6 @@ Conține clasele necesare pentru manipularea și gestionarea elementelor din DOM
 
 #### Motion Controls: gestionează suprafața de lucru
 * Se ocupă de acțiunile pan și zoom (mișcare, micșorare/mărire) a suprafeței de lucru.
-![Group 1](https://user-images.githubusercontent.com/54114237/88455588-35fa8380-ce7f-11ea-89df-ebf2e77a5001.png)
-
 ![animation](https://user-images.githubusercontent.com/54114237/88455595-44e13600-ce7f-11ea-89f6-fccbf6c5ffde.gif)
 
 ### 2. Gestionarea memoriei:
