@@ -366,8 +366,7 @@ $("#start-btn").on("click", () => {
         $.when($("#start-modal").fadeOut(200)).then(() => {
             $("#start-modal").remove();
             container = "#card-holder";
-            selected = MENU_ROOT;
-            group = MENU_ROOT;
+            selected = group;
             loadCards();
         });
     }
