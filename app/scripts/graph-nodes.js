@@ -1111,7 +1111,7 @@ class BinaryNode extends VisualNode {
         this.selectedNode = eventInfo.currentTarget.id;
         DOMContainer.undelegate(".node", "click");
         DOMContainer.undelegate(".node", "mouseenter mouseleave");
-        if (this.graph.parentArray[this.selectedNode] !== 0) {
+        if (this.graph.parentArray[this.selectedNode] !== 0 && (menuItems.selectedAlgorithm !== ID_GET_DIRECT_CHILDS && menuItems.selectedAlgorithm !== ID_GET_INDIRECT_CHILDS)) {
             this.selectNode(NOT_ROOT_SELECTED_WARNING);
         } else {
             this.graph.root = this.selectedNode;
@@ -1250,7 +1250,12 @@ class BinaryNode extends VisualNode {
             this.showMessage(EDIT_MODE_ON_WARNING_MSG);
             this.removeMessage(3000);
         } else {
-            this.graph.searchRootNode();
+            if(menuItems.selectedAlgorithm == ID_GET_DIRECT_CHILDS || menuItems.selectedAlgorithm == ID_GET_INDIRECT_CHILDS){
+                this.selectNode(STARTUP_NODE_MSG);
+            }
+            else{
+                this.graph.searchRootNode();
+            }
             this.animationInitialized = true;
         }
     }
