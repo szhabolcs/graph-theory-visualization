@@ -378,7 +378,7 @@ html {
 }
 
 #steps {
-    height: 50%;
+    height: calc(50% - 9px);
     width: 100%;
     max-height: calc(100% - 75px);
     min-width: 55px;
@@ -389,7 +389,7 @@ html {
 }
 
 .steps-open {
-    min-width: 230px !important;
+    min-width: 260px !important;
 }
 
 #steps-body {
