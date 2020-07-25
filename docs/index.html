@@ -78,6 +78,14 @@
 
     </h1>
     <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="./images/user-manual.png" alt="Card image cap">
+        <div class="card-body">
+        <h5 class="card-title" id="user-manual-title">User manual</h5>
+        <p class="card-text" id="user-manual-text"></p>
+        <a class="btn btn-primary" id="user-manual-button" href="https://github.com/ToastedWaffle/graph-theory-visualization/wiki/Manual-de-utilizare"></a>
+        </div>
+    </div>
+    <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="./images/app.png" alt="Card image cap">
         <div class="card-body">
         <h5 class="card-title">Graphviser app</h5>
@@ -140,6 +148,11 @@
       //Learn
       document.getElementById("learn-text").innerHTML = "O pagină cu toate informațiile despre teoria grafurilor și quiz-uri ajutătoare.";
       document.getElementById("learn-button").innerHTML = "Începe să înveți";
+
+      //User manual
+      document.getElementById("user-manual-title").innerHTML = "Manual de utilizare";
+      document.getElementById("user-manual-text").innerHTML = "Manualul de utilizare al aplicației.<br><br><br>";
+      document.getElementById("user-manual-button").innerHTML = "Deschide manualul";
   }
   else if(locale == "hu"){
       //h1
@@ -152,6 +165,11 @@
       //Learn
       document.getElementById("learn-text").innerHTML = "Egy oldal, amely gráf elmélet tananyagot tartalmaz, segítő kvízekkel.";
       document.getElementById("learn-button").innerHTML = "Kezdj el tanulni";
+
+      //User manual
+      document.getElementById("user-manual-title").innerHTML = "Felhasználói kézikönyv";
+      document.getElementById("user-manual-text").innerHTML = "Az alkalmás felhasználói kézikönyve.<br><br>";
+      document.getElementById("user-manual-button").innerHTML = "Kézikönyv megnyitása";
   }
 
   //Button links
