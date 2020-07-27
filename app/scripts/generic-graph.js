@@ -246,6 +246,8 @@ class GenericGraph {
             this.removeNode(i);
             this.visualNode.removeNode(i);
         }
+        this.edgeList = [];
+        this.incidenceMatrix = [];
     }
 
     /**
@@ -361,18 +363,18 @@ class GenericGraph {
      * @param {String[]} secondArray The second array to be compared
      * @returns {String[]} resultArray The result of the comparison
      */
-    findTheDifference(firstArray, secondArray){
-        let ok=0;
-        let resultArray=[];
-        for(let i in secondArray){
-            if(firstArray[i]!==secondArray[i]){
-                if(ok===0){
-                    resultArray.push(firstArray[i-1]);
-                    ok=1;
+    findTheDifference(firstArray, secondArray) {
+        let ok = 0;
+        let resultArray = [];
+        for (let i in secondArray) {
+            if (firstArray[i] !== secondArray[i]) {
+                if (ok === 0) {
+                    resultArray.push(firstArray[i - 1]);
+                    ok = 1;
                     resultArray.push(firstArray[i]);
                 }
             }
-            if(ok===1)
+            if (ok === 1)
                 resultArray.push(firstArray[i]);
         }
         return resultArray;
@@ -1191,9 +1193,9 @@ class BinaryTree extends GenericGraph {
         $("#steps-icon > span").removeClass("display-none");
         $("#resizable-right-body").addClass("steps-open");
         $("#middle-splitter").removeClass("display-none");
-        
 
-        return this.findMaxNumber(leftTmp, rightTmp);        
+
+        return this.findMaxNumber(leftTmp, rightTmp);
     }
 
     /**
