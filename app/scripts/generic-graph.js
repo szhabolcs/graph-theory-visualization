@@ -962,7 +962,7 @@ class BinaryTree extends GenericGraph {
         this.tblStandardForm.removeColumn(indexOfNode);
 
         //Binary form
-        this.tblBinaryForm.removeRow(indexOfNode);
+        //this.tblBinaryForm.removeRow(indexOfNode);
     }
 
     /**
