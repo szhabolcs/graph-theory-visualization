@@ -153,6 +153,34 @@ b, strong{
   border-bottom: 3px solid var(--light-green);
   cursor: pointer;
 }
+.navbar-top #table-of-contents svg{
+  transform: translateY(3.5px);
+  height: 28px;padding: 0px;
+}
+.navbar-top #table-of-contents span{
+  position: relative;
+  top: -4px;
+  padding-left: 5px;
+}
+.navbar-top .language-flag {
+  float: right;
+  height: 69px;
+}
+.navbar-top .language-flag img{
+  height: 28px;
+  padding: 0px;
+  position: relative;
+  transform: translateY(3.5px);
+}
+.navbar-top #theme-btn{
+  float: right;
+}
+.navbar-top #theme-btn svg{
+  height: 28px;
+  padding: 0px;
+  position: relative;
+  transform: translateY(3.5px);
+}
 
 #sub-content{
   padding-top: 80px !important;
