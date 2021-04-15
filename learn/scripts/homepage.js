@@ -35,14 +35,21 @@ function changeTheme(){
  * This function toggles the side navigation (table of contents)
  */
 function changeNav() {
+    let windowWidth = window.innerWidth;
+
     if(menuIsOpen){
         document.getElementById("side-nav").style.width = "0";
         $(".navbar-top > a:first").css("margin-left","0px");
         menuIsOpen = false;
     }
     else{
-        document.getElementById("side-nav").style.width = "400px";
-        $(".navbar-top > a:first").css("margin-left","400px");
+        if(windowWidth > 576){
+            document.getElementById("side-nav").style.width = "400px";
+            $(".navbar-top > a:first").css("margin-left","400px");
+        }
+        else
+            document.getElementById("side-nav").style.width = `${windowWidth}px`;
+            
         menuIsOpen = true;
     }
 }
