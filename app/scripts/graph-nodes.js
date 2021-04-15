@@ -193,7 +193,7 @@ class VisualNode {
 
 
         //Binding event listeners
-        insertedBox.on("click", ".remove-btn", (eventInfo) => this.removeNode(eventInfo.delegateTarget));
+        insertedBox.on("click", ".remove-btn", (eventInfo) => this.removeNode(eventInfo.delegateTarget, true));
         insertedBox.on("mouseover", ".remove-btn", (eventInfo) => $(eventInfo.delegateTarget).addClass("node-remove-hover"));
         insertedBox.on("mouseout", ".remove-btn", (eventInfo) => $(eventInfo.delegateTarget).removeClass("node-remove-hover"));
         insertedBox.on("change", ".node-text", (eventInfo) => this.onNodeTextChange(eventInfo));
@@ -217,12 +217,14 @@ class VisualNode {
      * Removes a node from the visualized graph.
      * Removes the node from the DOM and from the memory.
      * @param {string} nodeId Id of the node to remove
+     * @param {boolean} removeFromMemory It removes the given node from memory if true
      */
-    removeNode(nodeId) {
+    removeNode(nodeId, removeFromMemory = false) {
         this.jspInstance.deleteConnectionsForElement(nodeId);
         this.jspInstance.removeAllEndpoints(nodeId);
         this.jspInstance.remove(nodeId);
-        this.graph.removeNode($(nodeId).attr("id"));
+        if (removeFromMemory)
+            this.graph.removeNode($(nodeId).attr("id"));
     }
 
     /**
@@ -1250,10 +1252,9 @@ class BinaryNode extends VisualNode {
             this.showMessage(EDIT_MODE_ON_WARNING_MSG);
             this.removeMessage(3000);
         } else {
-            if(menuItems.selectedAlgorithm == ID_GET_DIRECT_CHILDS || menuItems.selectedAlgorithm == ID_GET_INDIRECT_CHILDS){
+            if (menuItems.selectedAlgorithm == ID_GET_DIRECT_CHILDS || menuItems.selectedAlgorithm == ID_GET_INDIRECT_CHILDS) {
                 this.selectNode(STARTUP_NODE_MSG);
-            }
-            else{
+            } else {
                 this.graph.searchRootNode();
             }
             this.animationInitialized = true;

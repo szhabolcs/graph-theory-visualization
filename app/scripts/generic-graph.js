@@ -884,6 +884,9 @@ class BinaryTree extends GenericGraph {
             left: 0,
             right: 0
         };
+
+        //Adding the node to the binary form
+        this.binaryForm[indexOfNode] = BINARY_ROOT;
     }
 
     /**
@@ -897,6 +900,10 @@ class BinaryTree extends GenericGraph {
 
         //Standard form
         this.tblStandardForm.addColumn(indexOfNode, nodeValue);
+
+        //Binary Form
+        this.tblBinaryForm.addRow(indexOfNode, nodeValue);
+        this.tblBinaryForm.updateTable(indexOfNode, COLUMN_BINARY_FORM, BINARY_ROOT);
 
     }
 
@@ -916,6 +923,14 @@ class BinaryTree extends GenericGraph {
         else if (childType === TYPE_RIGHT)
             this.standardForm[edge.source].right = edge.target;
 
+        //Adding the edge to the binary form
+        if (childType === TYPE_LEFT) {
+            this.binaryForm[edge.target] = this.binaryForm[edge.source] + BINARY_LEFT;
+        }
+        if (childType === TYPE_RIGHT) {
+            this.binaryForm[edge.target] = this.binaryForm[edge.source] + BINARY_RIGHT;
+        }
+        this.setBinaryForm(edge.target);
     }
 
     /**
@@ -934,6 +949,8 @@ class BinaryTree extends GenericGraph {
         else if (childType === TYPE_RIGHT)
             this.tblStandardForm.updateTable(ROW_RIGHT, edge.source, VisualNode.getValueFromNode(targetNode));
 
+        //Binary Form
+        this.tblBinaryForm.updateTable(edge.target, COLUMN_BINARY_FORM, this.binaryForm[edge.target]);
     }
 
     /**
@@ -941,11 +958,30 @@ class BinaryTree extends GenericGraph {
      * @param {string} indexOfNode Index of the node to remove
      */
     removeNode(indexOfNode) {
+        let childLeft;
+        let childRight;
+        if (this.standardForm[indexOfNode].left !== 0) {
+            childLeft = this.standardForm[indexOfNode].left;
+            if (this.standardForm[childLeft] !== undefined) {
+                this.binaryForm[childLeft] = BINARY_ROOT;
+                this.setBinaryForm(childLeft);
+            }
+        }
+        if (this.standardForm[indexOfNode].right !== 0) {
+            childRight = this.standardForm[indexOfNode].right;
+            if (this.standardForm[childRight] !== undefined) {
+                this.binaryForm[childRight] = BINARY_ROOT;
+                this.setBinaryForm(childRight);
+            }
+        }
+        delete this.binaryForm[indexOfNode];
+
         //Removing the node from the parent array
         delete this.parentArray[indexOfNode];
 
         //Removing the node from the standard form
         delete this.standardForm[indexOfNode];
+
 
         this.removeNodeFromTable(indexOfNode);
     }
@@ -962,7 +998,7 @@ class BinaryTree extends GenericGraph {
         this.tblStandardForm.removeColumn(indexOfNode);
 
         //Binary form
-        //this.tblBinaryForm.removeRow(indexOfNode);
+        this.tblBinaryForm.removeRow(indexOfNode);
     }
 
     /**
@@ -977,6 +1013,10 @@ class BinaryTree extends GenericGraph {
         this.standardForm[edge.source].left = 0;
         this.standardForm[edge.source].right = 0;
 
+        //Removing the edge from the binary Form
+        this.binaryForm[edge.target] = BINARY_ROOT;
+        this.setBinaryForm(edge.target);
+
     }
 
     /**
@@ -986,13 +1026,16 @@ class BinaryTree extends GenericGraph {
      */
     removeEdgeFromTable(edge, childType) {
         //Parent array
-        this.tblParentArray.updateTable('1', edge.target, '0');
+        this.tblParentArray.updateTable('1', edge.target, VALUE_NONE);
 
         //Standard form
         if (childType === TYPE_LEFT)
-            this.tblStandardForm.updateTable(ROW_LEFT, edge.source, '0');
+            this.tblStandardForm.updateTable(ROW_LEFT, edge.source, VALUE_NONE);
         else if (childType === TYPE_RIGHT)
-            this.tblStandardForm.updateTable(ROW_RIGHT, edge.source, '0');
+            this.tblStandardForm.updateTable(ROW_RIGHT, edge.source, VALUE_NONE);
+
+        //Binary Form
+        this.tblBinaryForm.updateTable(edge.target, COLUMN_BINARY_FORM, BINARY_ROOT);
 
     }
 
@@ -1012,11 +1055,14 @@ class BinaryTree extends GenericGraph {
     initRepresentationTables() {
         this.tblParentArray = new TableHandler(ID_PARENT_ARRAY, $.i18n("parent-array"));
         this.tblStandardForm = new TableHandler(ID_STANDARD_FORM, $.i18n("standard-form"));
+        this.tblBinaryForm = new TableHandler(ID_BINARY_FORM, $.i18n("binary-form"));
         //Init Parent array
         this.tblParentArray.addRow('1', null);
         //Init Standard form
         this.tblStandardForm.addRow(ROW_LEFT.toString(), $.i18n("left"));
         this.tblStandardForm.addRow(ROW_RIGHT.toString(), $.i18n("right"));
+        //Init Binary Form
+        this.tblBinaryForm.addColumn(COLUMN_BINARY_FORM, $.i18n("binary-form"));
 
     }
 
@@ -1026,6 +1072,37 @@ class BinaryTree extends GenericGraph {
     dropRepresentationTables() {
         this.tblParentArray.drop();
         this.tblStandardForm.drop();
+        this.tblBinaryForm.drop();
+    }
+
+    /**
+     * This function updates a value in the binary form table
+     * It's the table updater of the setBinaryForm method
+     * @param nodeId The node which needs to be updated
+     * @param value The new value of the node
+     */
+    updateBinaryFormTable(nodeId, value) {
+        this.tblBinaryForm.updateTable(nodeId, COLUMN_BINARY_FORM, value);
+    }
+
+    /**
+     * Runs a preorder search to recalculate the binary representation for the graph considering the given node as the new root
+     * It uses standard form to run the algorithm
+     * @param indexOfNode
+     */
+    setBinaryForm(indexOfNode) {
+        if (this.standardForm[indexOfNode].left != 0) {
+            const childLeft = this.standardForm[indexOfNode].left;
+            this.binaryForm[childLeft] = this.binaryForm[indexOfNode] + BINARY_LEFT;
+            this.updateBinaryFormTable(childLeft, this.binaryForm[childLeft]);
+            this.setBinaryForm(childLeft);
+        }
+        if (this.standardForm[indexOfNode].right != 0) {
+            const childRight = this.standardForm[indexOfNode].right;
+            this.binaryForm[childRight] = this.binaryForm[indexOfNode] + BINARY_RIGHT;
+            this.updateBinaryFormTable(childRight, this.binaryForm[childRight]);
+            this.setBinaryForm(childRight);
+        }
     }
 
     /**

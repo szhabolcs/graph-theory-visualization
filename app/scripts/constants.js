@@ -53,9 +53,20 @@ const ID_GET_INDIRECT_CHILDS = "kozvetett-leszarmazott";
 const TYPE_LEFT = 0;
 const TYPE_RIGHT = 1;
 
+//CONSTANT VALUES
+const VALUE_NONE = '0';
+
+//CONSTANTS FOR BINARY FORM BUILDING
+const BINARY_ROOT = "1";
+const BINARY_LEFT = "0";
+const BINARY_RIGHT = "1";
+
 //TABLE ROWS
 const ROW_LEFT = '1';
 const ROW_RIGHT = '2';
+
+//TABLE COLUMNS
+const COLUMN_BINARY_FORM = '1';
 
 //CSS CLASS
 const CLASS_HIDDEN = "hidden";
