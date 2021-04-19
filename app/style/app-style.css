@@ -519,6 +519,9 @@ html {
     padding: 0px !important;
     width: 100%;
     font-size: 24px;
+
+    position: sticky;
+    left: 0;
 }
 
 .section-header > i {
@@ -563,6 +566,9 @@ html {
     height: 3px;
     margin-bottom: 15px;
     margin-top: -10px;
+    
+    position: sticky;
+    left: 0;
 }
 
 /* Navbar cards */
@@ -906,6 +912,7 @@ a:not([href]):hover {
 .dt-content {
     display: none;
     float: none !important;
+    width: max-content;
 }
 
 .dt-content > span {
