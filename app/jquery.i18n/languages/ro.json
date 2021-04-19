@@ -78,5 +78,6 @@
     "edge-list-sort": "Sortare listei de muchii",
     "nan-warning": "Costul muchiilor trebuie să fie un număr",
     "not-root-warning" : "Nodul pe care l-ai selectat, nu este rădăcină. Alege rădăcina",
-    "node-header": "Nod"
+    "node-header": "Nod",
+    "bracket-form": "Scrierea parantezată"
 }

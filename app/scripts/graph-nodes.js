@@ -1102,6 +1102,8 @@ class BinaryNode extends VisualNode {
         //Binary form
         this.graph.tblBinaryForm.updateTable(nodeId, '0', nodeText);
 
+        //TODO Bracket Representation
+        this.graph.dtBracketForm.updateValue(nodeId, nodeText);
     }
 
     /**

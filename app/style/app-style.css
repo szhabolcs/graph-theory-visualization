@@ -890,3 +890,28 @@ a:not([href]):hover {
 #open-menu:hover{
     border-color: var(--white);
 }
+
+.dt-left::before{
+    content: "(";
+}
+
+.dt-left::after{
+    content: ", ";
+}
+
+.dt-right::after{
+    content: ")";
+}
+
+.dt-content {
+    display: none;
+    float: none !important;
+}
+
+.dt-content > span {
+    display: block;
+}
+
+.dt-content span {
+    padding: 0;
+}

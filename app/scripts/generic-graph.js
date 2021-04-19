@@ -905,6 +905,9 @@ class BinaryTree extends GenericGraph {
         this.tblBinaryForm.addRow(indexOfNode, nodeValue);
         this.tblBinaryForm.updateTable(indexOfNode, COLUMN_BINARY_FORM, BINARY_ROOT);
 
+        //TODO Bracket Representation
+        this.dtBracketForm.insert(indexOfNode, nodeValue);
+
     }
 
     /**
@@ -951,6 +954,9 @@ class BinaryTree extends GenericGraph {
 
         //Binary Form
         this.tblBinaryForm.updateTable(edge.target, COLUMN_BINARY_FORM, this.binaryForm[edge.target]);
+
+        //TODO Bracket Representation
+        this.dtBracketForm.moveElement(edge.target, edge.source, childType);
     }
 
     /**
@@ -999,6 +1005,9 @@ class BinaryTree extends GenericGraph {
 
         //Binary form
         this.tblBinaryForm.removeRow(indexOfNode);
+
+        //TODO Bracket Representation
+        this.dtBracketForm.delete(indexOfNode);
     }
 
     /**
@@ -1037,6 +1046,10 @@ class BinaryTree extends GenericGraph {
         //Binary Form
         this.tblBinaryForm.updateTable(edge.target, COLUMN_BINARY_FORM, BINARY_ROOT);
 
+        //TODO Bracket Representation
+        this.dtBracketForm.moveToRoot(edge.target);
+        if ((this.standardForm[edge.source].right === 0 && childType === TYPE_LEFT) || (this.standardForm[edge.source].left === 0 && childType === TYPE_RIGHT))
+            this.dtBracketForm.hideChildren(edge.source);
     }
 
     /**
@@ -1056,6 +1069,7 @@ class BinaryTree extends GenericGraph {
         this.tblParentArray = new TableHandler(ID_PARENT_ARRAY, $.i18n("parent-array"));
         this.tblStandardForm = new TableHandler(ID_STANDARD_FORM, $.i18n("standard-form"));
         this.tblBinaryForm = new TableHandler(ID_BINARY_FORM, $.i18n("binary-form"));
+        this.dtBracketForm = new DynamicTextHandler(ID_BRACKET_REPRESENTATION, $.i18n("bracket-form"));
         //Init Parent array
         this.tblParentArray.addRow('1', null);
         //Init Standard form
@@ -1073,6 +1087,7 @@ class BinaryTree extends GenericGraph {
         this.tblParentArray.drop();
         this.tblStandardForm.drop();
         this.tblBinaryForm.drop();
+        this.dtBracketForm.drop();
     }
 
     /**
