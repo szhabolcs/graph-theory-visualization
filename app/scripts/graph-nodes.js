@@ -702,6 +702,15 @@ class VisualNode {
     }
 
     //Getters and setters
+
+    /**
+     * Returns whether the edit mode is turned on
+     * @returns {boolean} Edit mode
+     */
+    isInEditMode(){
+        return this.editMode;
+    }
+
     /**
      * Gives a new index to a new node
      * @returns {number} Index of a node

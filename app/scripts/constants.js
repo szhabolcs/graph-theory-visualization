@@ -2,6 +2,7 @@
 const MIN_ZOOM_VALUE = 50;
 const MAX_ZOOM_VALUE = 300;
 const STEP_TIME = 500;
+const NODE_RADIUS = 40;
 
 //MESSAGES
 const STARTUP_NODE_MSG = "choose-node";
@@ -55,6 +56,7 @@ const TYPE_RIGHT = 1;
 
 //CONSTANT VALUES
 const VALUE_NONE = '0';
+
 
 //CONSTANTS FOR BINARY FORM BUILDING
 const BINARY_ROOT = "1";

@@ -74,7 +74,6 @@ $(document).ready(function () {
         }, 1000);
     });
 
-    
 
     //Get the DOM elements
     $Document = $(document);
@@ -92,6 +91,18 @@ $(document).ready(function () {
      */
     $("#node-add-btn").on("click", () => {
         jspNode.addNode();
+    });
+
+
+    /**
+     * Double click node adding listener
+     */
+    $("#container").on("dblclick", (eventInfo) => {
+        if (jspNode.isInEditMode()) {
+            const nodeY = (eventInfo.clientY + (iMaxMarginY - iMarginY)) / (iZoom / 100) - NODE_RADIUS;
+            const nodeX = (eventInfo.clientX + (iMaxMarginX - iMarginX)) / (iZoom / 100) - NODE_RADIUS;
+            jspNode.addNode(nodeY, nodeX);
+        }
     });
 
     /**
@@ -120,6 +131,7 @@ $(document).ready(function () {
 
         jspNode.toggleEditMode();
     });
+
 
     /**
      * Left menu open listener
@@ -254,32 +266,32 @@ $(document).ready(function () {
     /**
      * Dynamic docs link
      */
-    $("#docs-link").click(()=>{
+    $("#docs-link").click(() => {
         let host = window.location.hostname;
-        let newHost = host.replace("app.","");
-        window.location = "https://docs."+newHost+"?locale="+locale;
+        let newHost = host.replace("app.", "");
+        window.location = "https://docs." + newHost + "?locale=" + locale;
     });
     /**
      * Dynamic learn link
      */
-    $("#learn-link").click(()=>{
+    $("#learn-link").click(() => {
         let host = window.location.hostname;
-        let newHost = host.replace("app.","");
-        window.location = "https://learn."+newHost+"?locale="+locale;
+        let newHost = host.replace("app.", "");
+        window.location = "https://learn." + newHost + "?locale=" + locale;
     });
 
-    $("body").on("click",".read-more-link",(e)=>{
+    $("body").on("click", ".read-more-link", (e) => {
         e.preventDefault();
         let host = window.location.hostname;
-        let newHost = host.replace("app.","");
-        window.open("https://learn."+newHost+"?locale="+locale+$(e.currentTarget).prop("hash"), "_blank");
+        let newHost = host.replace("app.", "");
+        window.open("https://learn." + newHost + "?locale=" + locale + $(e.currentTarget).prop("hash"), "_blank");
     });
 });
 //Language init
 /**
-* This function returns the value of the given parameter
-* @param {String} name the name of the parameter to read
-*/
+ * This function returns the value of the given parameter
+ * @param {String} name the name of the parameter to read
+ */
 $.urlParam = function (name) {
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
     if (results == null) {
