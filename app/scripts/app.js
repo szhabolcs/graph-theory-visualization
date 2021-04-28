@@ -301,11 +301,11 @@ $.urlParam = function (name) {
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
     if (results == null) {
         var searchParams = new URLSearchParams(window.location.search)
-        searchParams.set("locale", "ro");
+        searchParams.set("locale", "hu");
         var newRelativePathQuery = window.location.pathname + '?' + searchParams.toString();
         history.pushState(null, '', newRelativePathQuery);
 
-        return "ro";
+        return "hu";
     }
     return decodeURI(results[1]) || 0;
 }
