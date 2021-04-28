@@ -2,6 +2,7 @@
 const MIN_ZOOM_VALUE = 50;
 const MAX_ZOOM_VALUE = 300;
 const STEP_TIME = 500;
+const NODE_RADIUS = 40;
 
 //MESSAGES
 const STARTUP_NODE_MSG = "choose-node";
@@ -53,15 +54,32 @@ const ID_GET_INDIRECT_CHILDS = "kozvetett-leszarmazott";
 const TYPE_LEFT = 0;
 const TYPE_RIGHT = 1;
 
+//CONSTANT VALUES
+const VALUE_NONE = '0';
+
+
+//CONSTANTS FOR BINARY FORM BUILDING
+const BINARY_ROOT = "1";
+const BINARY_LEFT = "0";
+const BINARY_RIGHT = "1";
+
 //TABLE ROWS
 const ROW_LEFT = '1';
 const ROW_RIGHT = '2';
+
+//TABLE COLUMNS
+const COLUMN_BINARY_FORM = '1';
 
 //CSS CLASS
 const CLASS_HIDDEN = "hidden";
 
 //BOOLEANS
 const HIDDEN = true;
+
+//DYNAMIC TEXT
+const DT_VALUE = ".dt-value";
+const DT_EMPTY = "*";
+const DT_CONTENT = "dt-content";
 
 //CONSTANT HTML
 const REMOVE_BTN_HTML = "<div class='remove-btn'>" +
@@ -96,4 +114,12 @@ const TABLE_SECTION = "<div class='representation-section'>" +
     "<table class='table table-bordered'>" +
     "<tr data-i='0'><td data-j='0'>&nbsp;</td></tr>" +
     "</table>" +
-    "</div>"
+    "</div>";
+
+const DYNAMIC_TEXT_SECTION = "<div class='representation-section'>" +
+    "<span class='section-header'></span>" +
+    "<div class='divider-line'></div>" +
+    "<div class='dt-content'></div>" +
+    "</div>";
+
+const DYNAMIC_TEXT_ELEMENT = "<span><span class='dt-value'></span><span class='dt-left hidden'>*</span><span class='dt-right hidden'>*</span></span>";

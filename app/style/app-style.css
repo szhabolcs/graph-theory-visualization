@@ -519,6 +519,9 @@ html {
     padding: 0px !important;
     width: 100%;
     font-size: 24px;
+
+    position: sticky;
+    left: 0;
 }
 
 .section-header > i {
@@ -563,6 +566,9 @@ html {
     height: 3px;
     margin-bottom: 15px;
     margin-top: -10px;
+    
+    position: sticky;
+    left: 0;
 }
 
 /* Navbar cards */
@@ -701,7 +707,7 @@ html {
 }
 
 #modal-intro{
-    height: 100vh;
+    min-height: 100vh;
     max-height: fit-content;
     max-height: -moz-fit-content;
     overflow: auto;
@@ -827,7 +833,7 @@ a:not([href]):hover {
     font-size: 20px;
     font-weight: 500;
     overflow-wrap: anywhere;
-    z-index: 5;
+    z-index: 21;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
 }
 
@@ -889,4 +895,30 @@ a:not([href]):hover {
 }
 #open-menu:hover{
     border-color: var(--white);
+}
+
+.dt-left::before{
+    content: "(";
+}
+
+.dt-left::after{
+    content: ", ";
+}
+
+.dt-right::after{
+    content: ")";
+}
+
+.dt-content {
+    display: none;
+    float: none !important;
+    width: max-content;
+}
+
+.dt-content > span {
+    display: block;
+}
+
+.dt-content span {
+    padding: 0;
 }
