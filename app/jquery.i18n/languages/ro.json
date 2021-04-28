@@ -79,5 +79,6 @@
     "nan-warning": "Costul muchiilor trebuie să fie un număr",
     "not-root-warning" : "Nodul pe care l-ai selectat, nu este rădăcină. Alege rădăcina",
     "node-header": "Nod",
-    "bracket-form": "Scrierea parantezată"
+    "bracket-form": "Scrierea parantezată",
+    "mobile-warn":"Pentru o experiență mai bună, vă rugăm să utilizați un dispozitiv desktop."
 }

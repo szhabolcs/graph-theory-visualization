@@ -707,7 +707,7 @@ html {
 }
 
 #modal-intro{
-    height: 100vh;
+    min-height: 100vh;
     max-height: fit-content;
     max-height: -moz-fit-content;
     overflow: auto;

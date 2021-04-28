@@ -79,5 +79,6 @@
     "nan-warning": "Egy él súlya csak egy számérték lehet",
     "not-root-warning": "A csomópont, amit választottál, nem gyökér, válassz ki egy gyökeret",
     "node-header": "Csomópont",
-    "bracket-form": "Teljes zárójeles alak"
+    "bracket-form": "Teljes zárójeles alak",
+    "mobile-warn":"A jobb felhasználói élmény érdekében kérjük, használjon asztali eszközt."
 }
