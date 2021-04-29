@@ -1,0 +1,1903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>
+      DynamicTextHandler - Documentation
+  </title>
+
+  <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+  <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+  <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+  
+
+  
+
+  <!-- start Mixpanel -->
+  <script type="text/javascript">(function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,
+  0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+  for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);
+  mixpanel.init("1919205b2da72e4da3b9b6639b444d59");</script>
+  <!-- end Mixpanel -->
+</head>
+
+<body>
+  <svg style="display: none;">
+    <defs>
+      <symbol id="linkIcon" fill="#706d77" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 0h24v24H0z" fill="none"/>
+          <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+  <label for="nav-trigger" class="navicon-button x">
+    <div class="navicon"></div>
+  </label>
+
+  <label for="nav-trigger" class="overlay"></label>
+
+  <div class="top-nav-wrapper">
+    <ul>
+      <li >
+        <a href="index.html">
+          
+            <svg fill="#6D6D6D" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+              <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+          
+          
+        </a>
+      </li>
+
+      
+
+    </ul>
+  </div>
+
+  <nav>
+    <h3 class="reference-title">
+      Braintree SDK Client Reference
+    </h3>
+
+    
+
+    <h3>Classes</h3><ul><li id="BinaryNode-nav"><a href="BinaryNode.html">BinaryNode</a><ul class='methods'><li data-type="method" id="BinaryNode-addNode-nav"><a href="BinaryNode.html#addNode">addNode</a></li><li data-type="method" id="BinaryNode-checkSourceType-nav"><a href="BinaryNode.html#checkSourceType">checkSourceType</a></li><li data-type="method" id="BinaryNode-clearOutput-nav"><a href="BinaryNode.html#clearOutput">clearOutput</a></li><li data-type="method" id="BinaryNode-clearSelectedNode-nav"><a href="BinaryNode.html#clearSelectedNode">clearSelectedNode</a></li><li data-type="method" id="BinaryNode-clearSteps-nav"><a href="BinaryNode.html#clearSteps">clearSteps</a></li><li data-type="method" id="BinaryNode-connectionMarkOff-nav"><a href="BinaryNode.html#connectionMarkOff">connectionMarkOff</a></li><li data-type="method" id="BinaryNode-connectionMarkOn-nav"><a href="BinaryNode.html#connectionMarkOn">connectionMarkOn</a></li><li data-type="method" id="BinaryNode-disableEditMode-nav"><a href="BinaryNode.html#disableEditMode">disableEditMode</a></li><li data-type="method" id="BinaryNode-enableEditMode-nav"><a href="BinaryNode.html#enableEditMode">enableEditMode</a></li><li data-type="method" id="BinaryNode-goOneStepBackwards-nav"><a href="BinaryNode.html#goOneStepBackwards">goOneStepBackwards</a></li><li data-type="method" id="BinaryNode-goOneStepForward-nav"><a href="BinaryNode.html#goOneStepForward">goOneStepForward</a></li><li data-type="method" id="BinaryNode-hideEndpoint-nav"><a href="BinaryNode.html#hideEndpoint">hideEndpoint</a></li><li data-type="method" id="BinaryNode-initAnimation-nav"><a href="BinaryNode.html#initAnimation">initAnimation</a></li><li data-type="method" id="BinaryNode-isInEditMode-nav"><a href="BinaryNode.html#isInEditMode">isInEditMode</a></li><li data-type="method" id="BinaryNode-loadOutput-nav"><a href="BinaryNode.html#loadOutput">loadOutput</a></li><li data-type="method" id="BinaryNode-loadSteps-nav"><a href="BinaryNode.html#loadSteps">loadSteps</a></li><li data-type="method" id="BinaryNode-markAllNodes-nav"><a href="BinaryNode.html#markAllNodes">markAllNodes</a></li><li data-type="method" id="BinaryNode-nodeHover-nav"><a href="BinaryNode.html#nodeHover">nodeHover</a></li><li data-type="method" id="BinaryNode-nodeMarkOff-nav"><a href="BinaryNode.html#nodeMarkOff">nodeMarkOff</a></li><li data-type="method" id="BinaryNode-nodeMarkOn-nav"><a href="BinaryNode.html#nodeMarkOn">nodeMarkOn</a></li><li data-type="method" id="BinaryNode-nodeSelected-nav"><a href="BinaryNode.html#nodeSelected">nodeSelected</a></li><li data-type="method" id="BinaryNode-onConnect-nav"><a href="BinaryNode.html#onConnect">onConnect</a></li><li data-type="method" id="BinaryNode-onConnectionDetached-nav"><a href="BinaryNode.html#onConnectionDetached">onConnectionDetached</a></li><li data-type="method" id="BinaryNode-onNodeTextChange-nav"><a href="BinaryNode.html#onNodeTextChange">onNodeTextChange</a></li><li data-type="method" id="BinaryNode-onWeightChange-nav"><a href="BinaryNode.html#onWeightChange">onWeightChange</a></li><li data-type="method" id="BinaryNode-pause-nav"><a href="BinaryNode.html#pause">pause</a></li><li data-type="method" id="BinaryNode-play-nav"><a href="BinaryNode.html#play">play</a></li><li data-type="method" id="BinaryNode-removeConnection-nav"><a href="BinaryNode.html#removeConnection">removeConnection</a></li><li data-type="method" id="BinaryNode-removeEndpoint-nav"><a href="BinaryNode.html#removeEndpoint">removeEndpoint</a></li><li data-type="method" id="BinaryNode-removeMessage-nav"><a href="BinaryNode.html#removeMessage">removeMessage</a></li><li data-type="method" id="BinaryNode-removeNode-nav"><a href="BinaryNode.html#removeNode">removeNode</a></li><li data-type="method" id="BinaryNode-resetGraph-nav"><a href="BinaryNode.html#resetGraph">resetGraph</a></li><li data-type="method" id="BinaryNode-resetNodeIndex-nav"><a href="BinaryNode.html#resetNodeIndex">resetNodeIndex</a></li><li data-type="method" id="BinaryNode-selectNode-nav"><a href="BinaryNode.html#selectNode">selectNode</a></li><li data-type="method" id="BinaryNode-setGraph-nav"><a href="BinaryNode.html#setGraph">setGraph</a></li><li data-type="method" id="BinaryNode-setWeights-nav"><a href="BinaryNode.html#setWeights">setWeights</a></li><li data-type="method" id="BinaryNode-showMessage-nav"><a href="BinaryNode.html#showMessage">showMessage</a></li><li data-type="method" id="BinaryNode-switchToPauseButton-nav"><a href="BinaryNode.html#switchToPauseButton">switchToPauseButton</a></li><li data-type="method" id="BinaryNode-switchToPlayButton-nav"><a href="BinaryNode.html#switchToPlayButton">switchToPlayButton</a></li><li data-type="method" id="BinaryNode-toggleEditMode-nav"><a href="BinaryNode.html#toggleEditMode">toggleEditMode</a></li><li data-type="method" id="BinaryNode-unMarkAllNodes-nav"><a href="BinaryNode.html#unMarkAllNodes">unMarkAllNodes</a></li></ul></li><li id="BinaryTree-nav"><a href="BinaryTree.html">BinaryTree</a><ul class='methods'><li data-type="method" id="BinaryTree-addEdgeToTable-nav"><a href="BinaryTree.html#addEdgeToTable">addEdgeToTable</a></li><li data-type="method" id="BinaryTree-addNewEdge-nav"><a href="BinaryTree.html#addNewEdge">addNewEdge</a></li><li data-type="method" id="BinaryTree-addNewNode-nav"><a href="BinaryTree.html#addNewNode">addNewNode</a></li><li data-type="method" id="BinaryTree-addNodeToTable-nav"><a href="BinaryTree.html#addNodeToTable">addNodeToTable</a></li><li data-type="method" id="BinaryTree-breadthFirstSearch-nav"><a href="BinaryTree.html#breadthFirstSearch">breadthFirstSearch</a></li><li data-type="method" id="BinaryTree-checkEdge-nav"><a href="BinaryTree.html#checkEdge">checkEdge</a></li><li data-type="method" id="BinaryTree-checkWeights-nav"><a href="BinaryTree.html#checkWeights">checkWeights</a></li><li data-type="method" id="BinaryTree-deleteGraph-nav"><a href="BinaryTree.html#deleteGraph">deleteGraph</a></li><li data-type="method" id="BinaryTree-depthFirstSearch-nav"><a href="BinaryTree.html#depthFirstSearch">depthFirstSearch</a></li><li data-type="method" id="BinaryTree-dijkstra-nav"><a href="BinaryTree.html#dijkstra">dijkstra</a></li><li data-type="method" id="BinaryTree-dropRepresentationTables-nav"><a href="BinaryTree.html#dropRepresentationTables">dropRepresentationTables</a></li><li data-type="method" id="BinaryTree-findMaxNumber-nav"><a href="BinaryTree.html#findMaxNumber">findMaxNumber</a></li><li data-type="method" id="BinaryTree-findTheDifference-nav"><a href="BinaryTree.html#findTheDifference">findTheDifference</a></li><li data-type="method" id="BinaryTree-getAdjacencyList-nav"><a href="BinaryTree.html#getAdjacencyList">getAdjacencyList</a></li><li data-type="method" id="BinaryTree-getAllChildNodes-nav"><a href="BinaryTree.html#getAllChildNodes">getAllChildNodes</a></li><li data-type="method" id="BinaryTree-getBinaryRepresentation-nav"><a href="BinaryTree.html#getBinaryRepresentation">getBinaryRepresentation</a></li><li data-type="method" id="BinaryTree-getBooleMatrix-nav"><a href="BinaryTree.html#getBooleMatrix">getBooleMatrix</a></li><li data-type="method" id="BinaryTree-getBracketRepresentation-nav"><a href="BinaryTree.html#getBracketRepresentation">getBracketRepresentation</a></li><li data-type="method" id="BinaryTree-getDirectChildNodes-nav"><a href="BinaryTree.html#getDirectChildNodes">getDirectChildNodes</a></li><li data-type="method" id="BinaryTree-getEdgeList-nav"><a href="BinaryTree.html#getEdgeList">getEdgeList</a></li><li data-type="method" id="BinaryTree-getHeight-nav"><a href="BinaryTree.html#getHeight">getHeight</a></li><li data-type="method" id="BinaryTree-getIncidenceMatrix-nav"><a href="BinaryTree.html#getIncidenceMatrix">getIncidenceMatrix</a></li><li data-type="method" id="BinaryTree-getLeaves-nav"><a href="BinaryTree.html#getLeaves">getLeaves</a></li><li data-type="method" id="BinaryTree-getParentArray-nav"><a href="BinaryTree.html#getParentArray">getParentArray</a></li><li data-type="method" id="BinaryTree-getStandardForm-nav"><a href="BinaryTree.html#getStandardForm">getStandardForm</a></li><li data-type="method" id="BinaryTree-initRepresentationTables-nav"><a href="BinaryTree.html#initRepresentationTables">initRepresentationTables</a></li><li data-type="method" id="BinaryTree-inorderSearch-nav"><a href="BinaryTree.html#inorderSearch">inorderSearch</a></li><li data-type="method" id="BinaryTree-isolateNode-nav"><a href="BinaryTree.html#isolateNode">isolateNode</a></li><li data-type="method" id="BinaryTree-kruskal-nav"><a href="BinaryTree.html#kruskal">kruskal</a></li><li data-type="method" id="BinaryTree-postorderSearch-nav"><a href="BinaryTree.html#postorderSearch">postorderSearch</a></li><li data-type="method" id="BinaryTree-preorderSearch-nav"><a href="BinaryTree.html#preorderSearch">preorderSearch</a></li><li data-type="method" id="BinaryTree-removeEdge-nav"><a href="BinaryTree.html#removeEdge">removeEdge</a></li><li data-type="method" id="BinaryTree-removeEdgeFromTable-nav"><a href="BinaryTree.html#removeEdgeFromTable">removeEdgeFromTable</a></li><li data-type="method" id="BinaryTree-removeNode-nav"><a href="BinaryTree.html#removeNode">removeNode</a></li><li data-type="method" id="BinaryTree-removeNodeFromTable-nav"><a href="BinaryTree.html#removeNodeFromTable">removeNodeFromTable</a></li><li data-type="method" id="BinaryTree-resetAlgorithm-nav"><a href="BinaryTree.html#resetAlgorithm">resetAlgorithm</a></li><li data-type="method" id="BinaryTree-runAlgorithm-nav"><a href="BinaryTree.html#runAlgorithm">runAlgorithm</a></li><li data-type="method" id="BinaryTree-searchEdge-nav"><a href="BinaryTree.html#searchEdge">searchEdge</a></li><li data-type="method" id="BinaryTree-searchRootNode-nav"><a href="BinaryTree.html#searchRootNode">searchRootNode</a></li><li data-type="method" id="BinaryTree-setBinaryForm-nav"><a href="BinaryTree.html#setBinaryForm">setBinaryForm</a></li><li data-type="method" id="BinaryTree-setVisualNode-nav"><a href="BinaryTree.html#setVisualNode">setVisualNode</a></li><li data-type="method" id="BinaryTree-updateBinaryFormTable-nav"><a href="BinaryTree.html#updateBinaryFormTable">updateBinaryFormTable</a></li><li data-type="method" id="BinaryTree-updateWeightInTables-nav"><a href="BinaryTree.html#updateWeightInTables">updateWeightInTables</a></li></ul></li><li id="DirectedGraph-nav"><a href="DirectedGraph.html">DirectedGraph</a><ul class='methods'><li data-type="method" id="DirectedGraph-addEdgeToTable-nav"><a href="DirectedGraph.html#addEdgeToTable">addEdgeToTable</a></li><li data-type="method" id="DirectedGraph-addNewEdge-nav"><a href="DirectedGraph.html#addNewEdge">addNewEdge</a></li><li data-type="method" id="DirectedGraph-addNewNode-nav"><a href="DirectedGraph.html#addNewNode">addNewNode</a></li><li data-type="method" id="DirectedGraph-addNodeToTable-nav"><a href="DirectedGraph.html#addNodeToTable">addNodeToTable</a></li><li data-type="method" id="DirectedGraph-breadthFirstSearch-nav"><a href="DirectedGraph.html#breadthFirstSearch">breadthFirstSearch</a></li><li data-type="method" id="DirectedGraph-checkEdge-nav"><a href="DirectedGraph.html#checkEdge">checkEdge</a></li><li data-type="method" id="DirectedGraph-checkWeights-nav"><a href="DirectedGraph.html#checkWeights">checkWeights</a></li><li data-type="method" id="DirectedGraph-deleteGraph-nav"><a href="DirectedGraph.html#deleteGraph">deleteGraph</a></li><li data-type="method" id="DirectedGraph-depthFirstSearch-nav"><a href="DirectedGraph.html#depthFirstSearch">depthFirstSearch</a></li><li data-type="method" id="DirectedGraph-dijkstra-nav"><a href="DirectedGraph.html#dijkstra">dijkstra</a></li><li data-type="method" id="DirectedGraph-dropRepresentationTables-nav"><a href="DirectedGraph.html#dropRepresentationTables">dropRepresentationTables</a></li><li data-type="method" id="DirectedGraph-findTheDifference-nav"><a href="DirectedGraph.html#findTheDifference">findTheDifference</a></li><li data-type="method" id="DirectedGraph-getAdjacencyList-nav"><a href="DirectedGraph.html#getAdjacencyList">getAdjacencyList</a></li><li data-type="method" id="DirectedGraph-getBooleMatrix-nav"><a href="DirectedGraph.html#getBooleMatrix">getBooleMatrix</a></li><li data-type="method" id="DirectedGraph-getEdgeList-nav"><a href="DirectedGraph.html#getEdgeList">getEdgeList</a></li><li data-type="method" id="DirectedGraph-getIncidenceMatrix-nav"><a href="DirectedGraph.html#getIncidenceMatrix">getIncidenceMatrix</a></li><li data-type="method" id="DirectedGraph-initRepresentationTables-nav"><a href="DirectedGraph.html#initRepresentationTables">initRepresentationTables</a></li><li data-type="method" id="DirectedGraph-isolateNode-nav"><a href="DirectedGraph.html#isolateNode">isolateNode</a></li><li data-type="method" id="DirectedGraph-kruskal-nav"><a href="DirectedGraph.html#kruskal">kruskal</a></li><li data-type="method" id="DirectedGraph-removeEdge-nav"><a href="DirectedGraph.html#removeEdge">removeEdge</a></li><li data-type="method" id="DirectedGraph-removeEdgeFromTable-nav"><a href="DirectedGraph.html#removeEdgeFromTable">removeEdgeFromTable</a></li><li data-type="method" id="DirectedGraph-removeNode-nav"><a href="DirectedGraph.html#removeNode">removeNode</a></li><li data-type="method" id="DirectedGraph-removeNodeFromTable-nav"><a href="DirectedGraph.html#removeNodeFromTable">removeNodeFromTable</a></li><li data-type="method" id="DirectedGraph-resetAlgorithm-nav"><a href="DirectedGraph.html#resetAlgorithm">resetAlgorithm</a></li><li data-type="method" id="DirectedGraph-runAlgorithm-nav"><a href="DirectedGraph.html#runAlgorithm">runAlgorithm</a></li><li data-type="method" id="DirectedGraph-searchEdge-nav"><a href="DirectedGraph.html#searchEdge">searchEdge</a></li><li data-type="method" id="DirectedGraph-setVisualNode-nav"><a href="DirectedGraph.html#setVisualNode">setVisualNode</a></li><li data-type="method" id="DirectedGraph-updateWeight-nav"><a href="DirectedGraph.html#updateWeight">updateWeight</a></li><li data-type="method" id="DirectedGraph-updateWeightInTables-nav"><a href="DirectedGraph.html#updateWeightInTables">updateWeightInTables</a></li></ul></li><li id="DirectedNode-nav"><a href="DirectedNode.html">DirectedNode</a><ul class='methods'><li data-type="method" id="DirectedNode-addEndpoint-nav"><a href="DirectedNode.html#addEndpoint">addEndpoint</a></li><li data-type="method" id="DirectedNode-addNode-nav"><a href="DirectedNode.html#addNode">addNode</a></li><li data-type="method" id="DirectedNode-clearOutput-nav"><a href="DirectedNode.html#clearOutput">clearOutput</a></li><li data-type="method" id="DirectedNode-clearSelectedNode-nav"><a href="DirectedNode.html#clearSelectedNode">clearSelectedNode</a></li><li data-type="method" id="DirectedNode-clearSteps-nav"><a href="DirectedNode.html#clearSteps">clearSteps</a></li><li data-type="method" id="DirectedNode-connectionMarkOff-nav"><a href="DirectedNode.html#connectionMarkOff">connectionMarkOff</a></li><li data-type="method" id="DirectedNode-connectionMarkOn-nav"><a href="DirectedNode.html#connectionMarkOn">connectionMarkOn</a></li><li data-type="method" id="DirectedNode-disableEditMode-nav"><a href="DirectedNode.html#disableEditMode">disableEditMode</a></li><li data-type="method" id="DirectedNode-enableEditMode-nav"><a href="DirectedNode.html#enableEditMode">enableEditMode</a></li><li data-type="method" id="DirectedNode-goOneStepBackwards-nav"><a href="DirectedNode.html#goOneStepBackwards">goOneStepBackwards</a></li><li data-type="method" id="DirectedNode-goOneStepForward-nav"><a href="DirectedNode.html#goOneStepForward">goOneStepForward</a></li><li data-type="method" id="DirectedNode-hideEndpoint-nav"><a href="DirectedNode.html#hideEndpoint">hideEndpoint</a></li><li data-type="method" id="DirectedNode-initAnimation-nav"><a href="DirectedNode.html#initAnimation">initAnimation</a></li><li data-type="method" id="DirectedNode-isInEditMode-nav"><a href="DirectedNode.html#isInEditMode">isInEditMode</a></li><li data-type="method" id="DirectedNode-loadOutput-nav"><a href="DirectedNode.html#loadOutput">loadOutput</a></li><li data-type="method" id="DirectedNode-loadSteps-nav"><a href="DirectedNode.html#loadSteps">loadSteps</a></li><li data-type="method" id="DirectedNode-markAllNodes-nav"><a href="DirectedNode.html#markAllNodes">markAllNodes</a></li><li data-type="method" id="DirectedNode-nodeHover-nav"><a href="DirectedNode.html#nodeHover">nodeHover</a></li><li data-type="method" id="DirectedNode-nodeMarkOff-nav"><a href="DirectedNode.html#nodeMarkOff">nodeMarkOff</a></li><li data-type="method" id="DirectedNode-nodeMarkOn-nav"><a href="DirectedNode.html#nodeMarkOn">nodeMarkOn</a></li><li data-type="method" id="DirectedNode-nodeSelected-nav"><a href="DirectedNode.html#nodeSelected">nodeSelected</a></li><li data-type="method" id="DirectedNode-onConnect-nav"><a href="DirectedNode.html#onConnect">onConnect</a></li><li data-type="method" id="DirectedNode-onNodeTextChange-nav"><a href="DirectedNode.html#onNodeTextChange">onNodeTextChange</a></li><li data-type="method" id="DirectedNode-onWeightChange-nav"><a href="DirectedNode.html#onWeightChange">onWeightChange</a></li><li data-type="method" id="DirectedNode-pause-nav"><a href="DirectedNode.html#pause">pause</a></li><li data-type="method" id="DirectedNode-play-nav"><a href="DirectedNode.html#play">play</a></li><li data-type="method" id="DirectedNode-removeConnection-nav"><a href="DirectedNode.html#removeConnection">removeConnection</a></li><li data-type="method" id="DirectedNode-removeEndpoint-nav"><a href="DirectedNode.html#removeEndpoint">removeEndpoint</a></li><li data-type="method" id="DirectedNode-removeMessage-nav"><a href="DirectedNode.html#removeMessage">removeMessage</a></li><li data-type="method" id="DirectedNode-removeNode-nav"><a href="DirectedNode.html#removeNode">removeNode</a></li><li data-type="method" id="DirectedNode-resetGraph-nav"><a href="DirectedNode.html#resetGraph">resetGraph</a></li><li data-type="method" id="DirectedNode-resetNodeIndex-nav"><a href="DirectedNode.html#resetNodeIndex">resetNodeIndex</a></li><li data-type="method" id="DirectedNode-selectNode-nav"><a href="DirectedNode.html#selectNode">selectNode</a></li><li data-type="method" id="DirectedNode-setGraph-nav"><a href="DirectedNode.html#setGraph">setGraph</a></li><li data-type="method" id="DirectedNode-setWeights-nav"><a href="DirectedNode.html#setWeights">setWeights</a></li><li data-type="method" id="DirectedNode-showMessage-nav"><a href="DirectedNode.html#showMessage">showMessage</a></li><li data-type="method" id="DirectedNode-switchToPauseButton-nav"><a href="DirectedNode.html#switchToPauseButton">switchToPauseButton</a></li><li data-type="method" id="DirectedNode-switchToPlayButton-nav"><a href="DirectedNode.html#switchToPlayButton">switchToPlayButton</a></li><li data-type="method" id="DirectedNode-toggleEditMode-nav"><a href="DirectedNode.html#toggleEditMode">toggleEditMode</a></li><li data-type="method" id="DirectedNode-unMarkAllNodes-nav"><a href="DirectedNode.html#unMarkAllNodes">unMarkAllNodes</a></li></ul></li><li id="DynamicTextHandler-nav"><a href="DynamicTextHandler.html">DynamicTextHandler</a><ul class='methods'><li data-type="method" id="DynamicTextHandler-addSectionToDOM-nav"><a href="DynamicTextHandler.html#addSectionToDOM">addSectionToDOM</a></li><li data-type="method" id="DynamicTextHandler-delete-nav"><a href="DynamicTextHandler.html#delete">delete</a></li><li data-type="method" id="DynamicTextHandler-drop-nav"><a href="DynamicTextHandler.html#drop">drop</a></li><li data-type="method" id="DynamicTextHandler-hideChildren-nav"><a href="DynamicTextHandler.html#hideChildren">hideChildren</a></li><li data-type="method" id="DynamicTextHandler-insert-nav"><a href="DynamicTextHandler.html#insert">insert</a></li><li data-type="method" id="DynamicTextHandler-moveElement-nav"><a href="DynamicTextHandler.html#moveElement">moveElement</a></li><li data-type="method" id="DynamicTextHandler-moveToRoot-nav"><a href="DynamicTextHandler.html#moveToRoot">moveToRoot</a></li><li data-type="method" id="DynamicTextHandler-setEmptyValue-nav"><a href="DynamicTextHandler.html#setEmptyValue">setEmptyValue</a></li><li data-type="method" id="DynamicTextHandler-showChildren-nav"><a href="DynamicTextHandler.html#showChildren">showChildren</a></li><li data-type="method" id="DynamicTextHandler-updateValue-nav"><a href="DynamicTextHandler.html#updateValue">updateValue</a></li></ul></li><li id="GenericGraph-nav"><a href="GenericGraph.html">GenericGraph</a><ul class='methods'><li data-type="method" id="GenericGraph-addEdgeToTable-nav"><a href="GenericGraph.html#addEdgeToTable">addEdgeToTable</a></li><li data-type="method" id="GenericGraph-addNewEdge-nav"><a href="GenericGraph.html#addNewEdge">addNewEdge</a></li><li data-type="method" id="GenericGraph-addNewNode-nav"><a href="GenericGraph.html#addNewNode">addNewNode</a></li><li data-type="method" id="GenericGraph-addNodeToTable-nav"><a href="GenericGraph.html#addNodeToTable">addNodeToTable</a></li><li data-type="method" id="GenericGraph-breadthFirstSearch-nav"><a href="GenericGraph.html#breadthFirstSearch">breadthFirstSearch</a></li><li data-type="method" id="GenericGraph-checkEdge-nav"><a href="GenericGraph.html#checkEdge">checkEdge</a></li><li data-type="method" id="GenericGraph-checkWeights-nav"><a href="GenericGraph.html#checkWeights">checkWeights</a></li><li data-type="method" id="GenericGraph-deleteGraph-nav"><a href="GenericGraph.html#deleteGraph">deleteGraph</a></li><li data-type="method" id="GenericGraph-depthFirstSearch-nav"><a href="GenericGraph.html#depthFirstSearch">depthFirstSearch</a></li><li data-type="method" id="GenericGraph-dijkstra-nav"><a href="GenericGraph.html#dijkstra">dijkstra</a></li><li data-type="method" id="GenericGraph-dropRepresentationTables-nav"><a href="GenericGraph.html#dropRepresentationTables">dropRepresentationTables</a></li><li data-type="method" id="GenericGraph-findTheDifference-nav"><a href="GenericGraph.html#findTheDifference">findTheDifference</a></li><li data-type="method" id="GenericGraph-getAdjacencyList-nav"><a href="GenericGraph.html#getAdjacencyList">getAdjacencyList</a></li><li data-type="method" id="GenericGraph-getBooleMatrix-nav"><a href="GenericGraph.html#getBooleMatrix">getBooleMatrix</a></li><li data-type="method" id="GenericGraph-getEdgeList-nav"><a href="GenericGraph.html#getEdgeList">getEdgeList</a></li><li data-type="method" id="GenericGraph-getIncidenceMatrix-nav"><a href="GenericGraph.html#getIncidenceMatrix">getIncidenceMatrix</a></li><li data-type="method" id="GenericGraph-initRepresentationTables-nav"><a href="GenericGraph.html#initRepresentationTables">initRepresentationTables</a></li><li data-type="method" id="GenericGraph-isolateNode-nav"><a href="GenericGraph.html#isolateNode">isolateNode</a></li><li data-type="method" id="GenericGraph-kruskal-nav"><a href="GenericGraph.html#kruskal">kruskal</a></li><li data-type="method" id="GenericGraph-removeEdge-nav"><a href="GenericGraph.html#removeEdge">removeEdge</a></li><li data-type="method" id="GenericGraph-removeEdgeFromTable-nav"><a href="GenericGraph.html#removeEdgeFromTable">removeEdgeFromTable</a></li><li data-type="method" id="GenericGraph-removeNode-nav"><a href="GenericGraph.html#removeNode">removeNode</a></li><li data-type="method" id="GenericGraph-removeNodeFromTable-nav"><a href="GenericGraph.html#removeNodeFromTable">removeNodeFromTable</a></li><li data-type="method" id="GenericGraph-resetAlgorithm-nav"><a href="GenericGraph.html#resetAlgorithm">resetAlgorithm</a></li><li data-type="method" id="GenericGraph-runAlgorithm-nav"><a href="GenericGraph.html#runAlgorithm">runAlgorithm</a></li><li data-type="method" id="GenericGraph-searchEdge-nav"><a href="GenericGraph.html#searchEdge">searchEdge</a></li><li data-type="method" id="GenericGraph-setVisualNode-nav"><a href="GenericGraph.html#setVisualNode">setVisualNode</a></li><li data-type="method" id="GenericGraph-updateWeightInTables-nav"><a href="GenericGraph.html#updateWeightInTables">updateWeightInTables</a></li></ul></li><li id="TableHandler-nav"><a href="TableHandler.html">TableHandler</a><ul class='methods'><li data-type="method" id="TableHandler-addColumn-nav"><a href="TableHandler.html#addColumn">addColumn</a></li><li data-type="method" id="TableHandler-addRow-nav"><a href="TableHandler.html#addRow">addRow</a></li><li data-type="method" id="TableHandler-addSectionToDOM-nav"><a href="TableHandler.html#addSectionToDOM">addSectionToDOM</a></li><li data-type="method" id="TableHandler-addTableClass-nav"><a href="TableHandler.html#addTableClass">addTableClass</a></li><li data-type="method" id="TableHandler-drop-nav"><a href="TableHandler.html#drop">drop</a></li><li data-type="method" id="TableHandler-hideColumn-nav"><a href="TableHandler.html#hideColumn">hideColumn</a></li><li data-type="method" id="TableHandler-pushColumn-nav"><a href="TableHandler.html#pushColumn">pushColumn</a></li><li data-type="method" id="TableHandler-pushElementToRow-nav"><a href="TableHandler.html#pushElementToRow">pushElementToRow</a></li><li data-type="method" id="TableHandler-pushRow-nav"><a href="TableHandler.html#pushRow">pushRow</a></li><li data-type="method" id="TableHandler-removeColumn-nav"><a href="TableHandler.html#removeColumn">removeColumn</a></li><li data-type="method" id="TableHandler-removeElement-nav"><a href="TableHandler.html#removeElement">removeElement</a></li><li data-type="method" id="TableHandler-removeRow-nav"><a href="TableHandler.html#removeRow">removeRow</a></li><li data-type="method" id="TableHandler-removeTableClass-nav"><a href="TableHandler.html#removeTableClass">removeTableClass</a></li><li data-type="method" id="TableHandler-showColumn-nav"><a href="TableHandler.html#showColumn">showColumn</a></li><li data-type="method" id="TableHandler-updateTable-nav"><a href="TableHandler.html#updateTable">updateTable</a></li></ul></li><li id="UndirectedGraph-nav"><a href="UndirectedGraph.html">UndirectedGraph</a><ul class='methods'><li data-type="method" id="UndirectedGraph-addEdgeToTable-nav"><a href="UndirectedGraph.html#addEdgeToTable">addEdgeToTable</a></li><li data-type="method" id="UndirectedGraph-addNewEdge-nav"><a href="UndirectedGraph.html#addNewEdge">addNewEdge</a></li><li data-type="method" id="UndirectedGraph-addNewNode-nav"><a href="UndirectedGraph.html#addNewNode">addNewNode</a></li><li data-type="method" id="UndirectedGraph-addNodeToTable-nav"><a href="UndirectedGraph.html#addNodeToTable">addNodeToTable</a></li><li data-type="method" id="UndirectedGraph-breadthFirstSearch-nav"><a href="UndirectedGraph.html#breadthFirstSearch">breadthFirstSearch</a></li><li data-type="method" id="UndirectedGraph-checkEdge-nav"><a href="UndirectedGraph.html#checkEdge">checkEdge</a></li><li data-type="method" id="UndirectedGraph-checkWeights-nav"><a href="UndirectedGraph.html#checkWeights">checkWeights</a></li><li data-type="method" id="UndirectedGraph-deleteGraph-nav"><a href="UndirectedGraph.html#deleteGraph">deleteGraph</a></li><li data-type="method" id="UndirectedGraph-depthFirstSearch-nav"><a href="UndirectedGraph.html#depthFirstSearch">depthFirstSearch</a></li><li data-type="method" id="UndirectedGraph-dijkstra-nav"><a href="UndirectedGraph.html#dijkstra">dijkstra</a></li><li data-type="method" id="UndirectedGraph-dropRepresentationTables-nav"><a href="UndirectedGraph.html#dropRepresentationTables">dropRepresentationTables</a></li><li data-type="method" id="UndirectedGraph-findTheDifference-nav"><a href="UndirectedGraph.html#findTheDifference">findTheDifference</a></li><li data-type="method" id="UndirectedGraph-getAdjacencyList-nav"><a href="UndirectedGraph.html#getAdjacencyList">getAdjacencyList</a></li><li data-type="method" id="UndirectedGraph-getBooleMatrix-nav"><a href="UndirectedGraph.html#getBooleMatrix">getBooleMatrix</a></li><li data-type="method" id="UndirectedGraph-getEdgeList-nav"><a href="UndirectedGraph.html#getEdgeList">getEdgeList</a></li><li data-type="method" id="UndirectedGraph-getIncidenceMatrix-nav"><a href="UndirectedGraph.html#getIncidenceMatrix">getIncidenceMatrix</a></li><li data-type="method" id="UndirectedGraph-initRepresentationTables-nav"><a href="UndirectedGraph.html#initRepresentationTables">initRepresentationTables</a></li><li data-type="method" id="UndirectedGraph-isolateNode-nav"><a href="UndirectedGraph.html#isolateNode">isolateNode</a></li><li data-type="method" id="UndirectedGraph-kruskal-nav"><a href="UndirectedGraph.html#kruskal">kruskal</a></li><li data-type="method" id="UndirectedGraph-removeEdge-nav"><a href="UndirectedGraph.html#removeEdge">removeEdge</a></li><li data-type="method" id="UndirectedGraph-removeEdgeFromTable-nav"><a href="UndirectedGraph.html#removeEdgeFromTable">removeEdgeFromTable</a></li><li data-type="method" id="UndirectedGraph-removeNode-nav"><a href="UndirectedGraph.html#removeNode">removeNode</a></li><li data-type="method" id="UndirectedGraph-removeNodeFromTable-nav"><a href="UndirectedGraph.html#removeNodeFromTable">removeNodeFromTable</a></li><li data-type="method" id="UndirectedGraph-resetAlgorithm-nav"><a href="UndirectedGraph.html#resetAlgorithm">resetAlgorithm</a></li><li data-type="method" id="UndirectedGraph-runAlgorithm-nav"><a href="UndirectedGraph.html#runAlgorithm">runAlgorithm</a></li><li data-type="method" id="UndirectedGraph-searchEdge-nav"><a href="UndirectedGraph.html#searchEdge">searchEdge</a></li><li data-type="method" id="UndirectedGraph-setVisualNode-nav"><a href="UndirectedGraph.html#setVisualNode">setVisualNode</a></li><li data-type="method" id="UndirectedGraph-updateWeight-nav"><a href="UndirectedGraph.html#updateWeight">updateWeight</a></li><li data-type="method" id="UndirectedGraph-updateWeightInTables-nav"><a href="UndirectedGraph.html#updateWeightInTables">updateWeightInTables</a></li></ul></li><li id="UnDirectedNode-nav"><a href="UnDirectedNode.html">UnDirectedNode</a><ul class='methods'><li data-type="method" id="UnDirectedNode-addEndpoint-nav"><a href="UnDirectedNode.html#addEndpoint">addEndpoint</a></li><li data-type="method" id="UnDirectedNode-addNode-nav"><a href="UnDirectedNode.html#addNode">addNode</a></li><li data-type="method" id="UnDirectedNode-clearOutput-nav"><a href="UnDirectedNode.html#clearOutput">clearOutput</a></li><li data-type="method" id="UnDirectedNode-clearSelectedNode-nav"><a href="UnDirectedNode.html#clearSelectedNode">clearSelectedNode</a></li><li data-type="method" id="UnDirectedNode-clearSteps-nav"><a href="UnDirectedNode.html#clearSteps">clearSteps</a></li><li data-type="method" id="UnDirectedNode-connectionMarkOff-nav"><a href="UnDirectedNode.html#connectionMarkOff">connectionMarkOff</a></li><li data-type="method" id="UnDirectedNode-connectionMarkOn-nav"><a href="UnDirectedNode.html#connectionMarkOn">connectionMarkOn</a></li><li data-type="method" id="UnDirectedNode-disableEditMode-nav"><a href="UnDirectedNode.html#disableEditMode">disableEditMode</a></li><li data-type="method" id="UnDirectedNode-enableEditMode-nav"><a href="UnDirectedNode.html#enableEditMode">enableEditMode</a></li><li data-type="method" id="UnDirectedNode-goOneStepBackwards-nav"><a href="UnDirectedNode.html#goOneStepBackwards">goOneStepBackwards</a></li><li data-type="method" id="UnDirectedNode-goOneStepForward-nav"><a href="UnDirectedNode.html#goOneStepForward">goOneStepForward</a></li><li data-type="method" id="UnDirectedNode-hideEndpoint-nav"><a href="UnDirectedNode.html#hideEndpoint">hideEndpoint</a></li><li data-type="method" id="UnDirectedNode-initAnimation-nav"><a href="UnDirectedNode.html#initAnimation">initAnimation</a></li><li data-type="method" id="UnDirectedNode-isInEditMode-nav"><a href="UnDirectedNode.html#isInEditMode">isInEditMode</a></li><li data-type="method" id="UnDirectedNode-loadOutput-nav"><a href="UnDirectedNode.html#loadOutput">loadOutput</a></li><li data-type="method" id="UnDirectedNode-loadSteps-nav"><a href="UnDirectedNode.html#loadSteps">loadSteps</a></li><li data-type="method" id="UnDirectedNode-markAllNodes-nav"><a href="UnDirectedNode.html#markAllNodes">markAllNodes</a></li><li data-type="method" id="UnDirectedNode-nodeHover-nav"><a href="UnDirectedNode.html#nodeHover">nodeHover</a></li><li data-type="method" id="UnDirectedNode-nodeMarkOff-nav"><a href="UnDirectedNode.html#nodeMarkOff">nodeMarkOff</a></li><li data-type="method" id="UnDirectedNode-nodeMarkOn-nav"><a href="UnDirectedNode.html#nodeMarkOn">nodeMarkOn</a></li><li data-type="method" id="UnDirectedNode-nodeSelected-nav"><a href="UnDirectedNode.html#nodeSelected">nodeSelected</a></li><li data-type="method" id="UnDirectedNode-onConnect-nav"><a href="UnDirectedNode.html#onConnect">onConnect</a></li><li data-type="method" id="UnDirectedNode-onNodeTextChange-nav"><a href="UnDirectedNode.html#onNodeTextChange">onNodeTextChange</a></li><li data-type="method" id="UnDirectedNode-onWeightChange-nav"><a href="UnDirectedNode.html#onWeightChange">onWeightChange</a></li><li data-type="method" id="UnDirectedNode-pause-nav"><a href="UnDirectedNode.html#pause">pause</a></li><li data-type="method" id="UnDirectedNode-play-nav"><a href="UnDirectedNode.html#play">play</a></li><li data-type="method" id="UnDirectedNode-removeConnection-nav"><a href="UnDirectedNode.html#removeConnection">removeConnection</a></li><li data-type="method" id="UnDirectedNode-removeEndpoint-nav"><a href="UnDirectedNode.html#removeEndpoint">removeEndpoint</a></li><li data-type="method" id="UnDirectedNode-removeMessage-nav"><a href="UnDirectedNode.html#removeMessage">removeMessage</a></li><li data-type="method" id="UnDirectedNode-removeNode-nav"><a href="UnDirectedNode.html#removeNode">removeNode</a></li><li data-type="method" id="UnDirectedNode-resetGraph-nav"><a href="UnDirectedNode.html#resetGraph">resetGraph</a></li><li data-type="method" id="UnDirectedNode-resetNodeIndex-nav"><a href="UnDirectedNode.html#resetNodeIndex">resetNodeIndex</a></li><li data-type="method" id="UnDirectedNode-selectNode-nav"><a href="UnDirectedNode.html#selectNode">selectNode</a></li><li data-type="method" id="UnDirectedNode-setGraph-nav"><a href="UnDirectedNode.html#setGraph">setGraph</a></li><li data-type="method" id="UnDirectedNode-setWeights-nav"><a href="UnDirectedNode.html#setWeights">setWeights</a></li><li data-type="method" id="UnDirectedNode-showMessage-nav"><a href="UnDirectedNode.html#showMessage">showMessage</a></li><li data-type="method" id="UnDirectedNode-switchToPauseButton-nav"><a href="UnDirectedNode.html#switchToPauseButton">switchToPauseButton</a></li><li data-type="method" id="UnDirectedNode-switchToPlayButton-nav"><a href="UnDirectedNode.html#switchToPlayButton">switchToPlayButton</a></li><li data-type="method" id="UnDirectedNode-toggleEditMode-nav"><a href="UnDirectedNode.html#toggleEditMode">toggleEditMode</a></li><li data-type="method" id="UnDirectedNode-unMarkAllNodes-nav"><a href="UnDirectedNode.html#unMarkAllNodes">unMarkAllNodes</a></li></ul></li><li id="VisualNode-nav"><a href="VisualNode.html">VisualNode</a><ul class='methods'><li data-type="method" id="VisualNode-getValueByNodeId-nav"><a href="VisualNode.html#.getValueByNodeId">getValueByNodeId</a></li><li data-type="method" id="VisualNode-getValueFromNode-nav"><a href="VisualNode.html#.getValueFromNode">getValueFromNode</a></li><li data-type="method" id="VisualNode-addNode-nav"><a href="VisualNode.html#addNode">addNode</a></li><li data-type="method" id="VisualNode-clearOutput-nav"><a href="VisualNode.html#clearOutput">clearOutput</a></li><li data-type="method" id="VisualNode-clearSelectedNode-nav"><a href="VisualNode.html#clearSelectedNode">clearSelectedNode</a></li><li data-type="method" id="VisualNode-clearSteps-nav"><a href="VisualNode.html#clearSteps">clearSteps</a></li><li data-type="method" id="VisualNode-connectionMarkOff-nav"><a href="VisualNode.html#connectionMarkOff">connectionMarkOff</a></li><li data-type="method" id="VisualNode-connectionMarkOn-nav"><a href="VisualNode.html#connectionMarkOn">connectionMarkOn</a></li><li data-type="method" id="VisualNode-disableEditMode-nav"><a href="VisualNode.html#disableEditMode">disableEditMode</a></li><li data-type="method" id="VisualNode-enableEditMode-nav"><a href="VisualNode.html#enableEditMode">enableEditMode</a></li><li data-type="method" id="VisualNode-goOneStepBackwards-nav"><a href="VisualNode.html#goOneStepBackwards">goOneStepBackwards</a></li><li data-type="method" id="VisualNode-goOneStepForward-nav"><a href="VisualNode.html#goOneStepForward">goOneStepForward</a></li><li data-type="method" id="VisualNode-hideEndpoint-nav"><a href="VisualNode.html#hideEndpoint">hideEndpoint</a></li><li data-type="method" id="VisualNode-initAnimation-nav"><a href="VisualNode.html#initAnimation">initAnimation</a></li><li data-type="method" id="VisualNode-isInEditMode-nav"><a href="VisualNode.html#isInEditMode">isInEditMode</a></li><li data-type="method" id="VisualNode-loadOutput-nav"><a href="VisualNode.html#loadOutput">loadOutput</a></li><li data-type="method" id="VisualNode-loadSteps-nav"><a href="VisualNode.html#loadSteps">loadSteps</a></li><li data-type="method" id="VisualNode-markAllNodes-nav"><a href="VisualNode.html#markAllNodes">markAllNodes</a></li><li data-type="method" id="VisualNode-nodeHover-nav"><a href="VisualNode.html#nodeHover">nodeHover</a></li><li data-type="method" id="VisualNode-nodeMarkOff-nav"><a href="VisualNode.html#nodeMarkOff">nodeMarkOff</a></li><li data-type="method" id="VisualNode-nodeMarkOn-nav"><a href="VisualNode.html#nodeMarkOn">nodeMarkOn</a></li><li data-type="method" id="VisualNode-nodeSelected-nav"><a href="VisualNode.html#nodeSelected">nodeSelected</a></li><li data-type="method" id="VisualNode-onConnect-nav"><a href="VisualNode.html#onConnect">onConnect</a></li><li data-type="method" id="VisualNode-onNodeTextChange-nav"><a href="VisualNode.html#onNodeTextChange">onNodeTextChange</a></li><li data-type="method" id="VisualNode-onWeightChange-nav"><a href="VisualNode.html#onWeightChange">onWeightChange</a></li><li data-type="method" id="VisualNode-pause-nav"><a href="VisualNode.html#pause">pause</a></li><li data-type="method" id="VisualNode-play-nav"><a href="VisualNode.html#play">play</a></li><li data-type="method" id="VisualNode-removeConnection-nav"><a href="VisualNode.html#removeConnection">removeConnection</a></li><li data-type="method" id="VisualNode-removeEndpoint-nav"><a href="VisualNode.html#removeEndpoint">removeEndpoint</a></li><li data-type="method" id="VisualNode-removeMessage-nav"><a href="VisualNode.html#removeMessage">removeMessage</a></li><li data-type="method" id="VisualNode-removeNode-nav"><a href="VisualNode.html#removeNode">removeNode</a></li><li data-type="method" id="VisualNode-resetGraph-nav"><a href="VisualNode.html#resetGraph">resetGraph</a></li><li data-type="method" id="VisualNode-resetNodeIndex-nav"><a href="VisualNode.html#resetNodeIndex">resetNodeIndex</a></li><li data-type="method" id="VisualNode-selectNode-nav"><a href="VisualNode.html#selectNode">selectNode</a></li><li data-type="method" id="VisualNode-setGraph-nav"><a href="VisualNode.html#setGraph">setGraph</a></li><li data-type="method" id="VisualNode-setWeights-nav"><a href="VisualNode.html#setWeights">setWeights</a></li><li data-type="method" id="VisualNode-showMessage-nav"><a href="VisualNode.html#showMessage">showMessage</a></li><li data-type="method" id="VisualNode-switchToPauseButton-nav"><a href="VisualNode.html#switchToPauseButton">switchToPauseButton</a></li><li data-type="method" id="VisualNode-switchToPlayButton-nav"><a href="VisualNode.html#switchToPlayButton">switchToPlayButton</a></li><li data-type="method" id="VisualNode-toggleEditMode-nav"><a href="VisualNode.html#toggleEditMode">toggleEditMode</a></li><li data-type="method" id="VisualNode-unMarkAllNodes-nav"><a href="VisualNode.html#unMarkAllNodes">unMarkAllNodes</a></li></ul></li></ul><h3 id="global-nav">Global</h3><ul><li><a href="global.html#bindEventsForDrag">bindEventsForDrag</a></li><li><a href="global.html#calculateMarginSizes">calculateMarginSizes</a></li><li><a href="global.html#calculateZoomedMarginSize">calculateZoomedMarginSize</a></li><li><a href="global.html#getSelectedItems">getSelectedItems</a></li><li><a href="global.html#initGraph">initGraph</a></li><li><a href="global.html#loadCards">loadCards</a></li><li><a href="global.html#loadMotionControls">loadMotionControls</a></li><li><a href="global.html#makeCard">makeCard</a></li><li><a href="global.html#menuItems">menuItems</a></li><li><a href="global.html#onMouseDown">onMouseDown</a></li><li><a href="global.html#onMouseMove">onMouseMove</a></li><li><a href="global.html#onMouseUp">onMouseUp</a></li><li><a href="global.html#onScroll">onScroll</a></li><li><a href="global.html#onWindowResize">onWindowResize</a></li><li><a href="global.html#refitContainer">refitContainer</a></li><li><a href="global.html#setJsPlumbInstanceForMotion">setJsPlumbInstanceForMotion</a></li><li><a href="global.html#setLocale">setLocale</a></li><li><a href="global.html#setZoom">setZoom</a></li><li><a href="global.html#unbindEventsForDrag">unbindEventsForDrag</a></li></ul>
+  </nav>
+
+  <div id="main">
+    
+      <h1 class="page-title">
+        DynamicTextHandler
+      </h1>
+    
+
+    
+
+<section>
+  <header>
+    
+      <h2>
+        
+        DynamicTextHandler
+        
+      </h2>
+
+      
+        <div class="class-description">
+          DOM Dynamic Text Handler modelThis class's responsibility is to ensure manipulatingthe DOM section with dynamic text data from generic graph models.
+        </div>
+      
+    
+  </header>
+
+  <article>
+    <div class="container-overview">
+      
+        
+
+
+  
+    <h2>Constructor</h2>
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#DynamicTextHandler">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="DynamicTextHandler">
+      <span class="type-signature"></span>new DynamicTextHandler<span class="signature">(sectionId, sectionName)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>sectionId</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      String
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          the id of the section to be created
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>sectionName</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      String
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          the name to be displayed at the section
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="dynamic-text-handler.js.html">dynamic-text-handler.js</a>, <a href="dynamic-text-handler.js.html#line18">line 18</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+      <h3 class="subsection-title">Methods</h3>
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#addSectionToDOM">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="addSectionToDOM">
+      <span class="type-signature"></span>addSectionToDOM<span class="signature">(id, name)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    Adds a DOM section container for the table
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>id</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          The id of the inserted section
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>name</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          The name of the section
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="dynamic-text-handler.js.html">dynamic-text-handler.js</a>, <a href="dynamic-text-handler.js.html#line38">line 38</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#delete">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="delete">
+      <span class="type-signature"></span>delete<span class="signature">(id)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    Deletes a given element from the DOM
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>id</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          The id of the element to be deleted
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="dynamic-text-handler.js.html">dynamic-text-handler.js</a>, <a href="dynamic-text-handler.js.html#line108">line 108</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#drop">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="drop">
+      <span class="type-signature"></span>drop<span class="signature">()</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    Deletes the table from the DOM
+  </div>
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="dynamic-text-handler.js.html">dynamic-text-handler.js</a>, <a href="dynamic-text-handler.js.html#line29">line 29</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#hideChildren">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="hideChildren">
+      <span class="type-signature"></span>hideChildren<span class="signature">(id)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    Hides the brackets and the child elements of a given element
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>id</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          The id of the element
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="dynamic-text-handler.js.html">dynamic-text-handler.js</a>, <a href="dynamic-text-handler.js.html#line148">line 148</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#insert">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="insert">
+      <span class="type-signature"></span>insert<span class="signature">(id, value, parentId)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    This function inserts a new element to the dynamic text section
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>id</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          The id of the new element to be inserted
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>value</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          The text value of the new element to be inserted
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>parentId</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          The id of the parent element where the insertion will occur
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="dynamic-text-handler.js.html">dynamic-text-handler.js</a>, <a href="dynamic-text-handler.js.html#line57">line 57</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#moveElement">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="moveElement">
+      <span class="type-signature"></span>moveElement<span class="signature">(id, parentId, position)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    Moves a dynamic text element to another position
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>id</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          The id of the element to be moved
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>parentId</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          The id of the parent element where the given element will be moved
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>position</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      int
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          The position of the element
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="dynamic-text-handler.js.html">dynamic-text-handler.js</a>, <a href="dynamic-text-handler.js.html#line71">line 71</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#moveToRoot">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="moveToRoot">
+      <span class="type-signature"></span>moveToRoot<span class="signature">(id)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    Moves a given element to the root
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>id</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          The id of the given element
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="dynamic-text-handler.js.html">dynamic-text-handler.js</a>, <a href="dynamic-text-handler.js.html#line92">line 92</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#setEmptyValue">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="setEmptyValue">
+      <span class="type-signature"></span>setEmptyValue<span class="signature">($element)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    Sets the empty value ('*') to a given element
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>$element</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      Object
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          The JQuery element to be set
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="dynamic-text-handler.js.html">dynamic-text-handler.js</a>, <a href="dynamic-text-handler.js.html#line129">line 129</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#showChildren">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="showChildren">
+      <span class="type-signature"></span>showChildren<span class="signature">(id)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    Shows the brackets and the child elements of a given element
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>id</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          The id of the element
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="dynamic-text-handler.js.html">dynamic-text-handler.js</a>, <a href="dynamic-text-handler.js.html#line137">line 137</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#updateValue">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="updateValue">
+      <span class="type-signature"></span>updateValue<span class="signature">(id, value)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    Updates the value of a given element
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>id</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          The id of the element to be updated
+          
+        </td>
+      </tr>
+
+    
+      <tr>
+        
+          <td class="name"><code>value</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      string
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          The new value of the element
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="dynamic-text-handler.js.html">dynamic-text-handler.js</a>, <a href="dynamic-text-handler.js.html#line118">line 118</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    
+
+    
+
+    
+  </article>
+</section>
+
+
+
+
+  </div>
+
+  <br class="clear">
+
+  <footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a>
+  </footer>
+
+  <script src="scripts/linenumber.js"></script>
+  <script src="scripts/pagelocation.js"></script>
+
+  
+
+</body>
+</html>
