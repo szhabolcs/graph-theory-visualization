@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      table-handler.js - Documentation
+      dynamic-text-handler.js - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -81,7 +81,7 @@
   <div id="main">
     
       <h1 class="page-title">
-        table-handler.js
+        dynamic-text-handler.js
       </h1>
     
 
@@ -91,14 +91,14 @@
 <section>
   <article>
     <pre class="prettyprint source linenums"><code>/**
- * DOM Table Handler model
+ * DOM Dynamic Text Handler model
  * This class's responsibility is to ensure manipulating
- * the DOM Table with data from generic graph models.
+ * the DOM section with dynamic text data from generic graph models.
  */
-class TableHandler {
+class DynamicTextHandler {
     //Variables
 
-    DOMTable;
+    DOMContainer;
     numberOfRows = 0;
     numberOfColumns = 0;
 
@@ -116,142 +116,6 @@ class TableHandler {
 
     //Base operations
     /**
-     * Removes an element from the table
-     * At this point we manage the table as a crossword table
-     * @param i Id of the row
-     * @param j Id of the column
-     */
-    removeElement(i, j) {
-        this.DOMTable.children("tr[data-i=" + i + "]").children("td[data-j=" + j + "]").remove();
-    }
-
-    /**
-     * Pushes a single element to a row
-     * At this point we manage the table as a crossword table
-     * @param {string} i Id of the row to add to
-     * @param {string} j Id of the column
-     * @param {string} value Value of the column header
-     */
-    pushElementToRow(i, j, value) {
-        this.DOMTable.children("tr[data-i='" + i + "']").append("&lt;td data-j=" + j + ">0&lt;/td>");
-        this.updateTable(i, j, value);
-        this.numberOfColumns++;
-    }
-
-    /**
-     * Pushes a column to the table with automatic indexing
-     * @param {string} j Id of the column
-     */
-    pushColumn(j) {
-        const lastNumber = Number.parseInt(this.DOMTable.find("tr:first > td:last").attr("data-j"));
-        this.addColumn(j, (lastNumber + 1).toString());
-    }
-
-    /**
-     * Pushes a row to the table with automatic indexing
-     * @param {string} i Id of the row
-     */
-    pushRow(i) {
-        const lastNumber = Number.parseInt(this.DOMTable.find("tr:last").attr("data-i"));
-        this.addRow(i, (lastNumber + 1).toString());
-    }
-
-    /**
-     * Adds a row to the DOM table
-     * @param {string} i Id of the row
-     * @param {string} value Value of the row header
-     */
-    addRow(i, value) {
-        let firstRow = this.DOMTable.children("tr").first().children().clone();
-        firstRow.each((td) => {
-            $(firstRow[td]).text("0");
-        });
-        this.DOMTable.append("&lt;tr data-i=" + i + ">&lt;/tr>");
-        this.DOMTable.children("tr[data-i=" + i + "]").append(firstRow);
-        this.updateTable(i, 0, value);
-        this.numberOfRows++;
-    }
-
-    /**
-     * Adds a column to the DOM table
-     * @param {string} j Id of the column
-     * @param {string} value Value of the column header
-     * @param {boolean} hidden Set this to HIDDEN if you want to hide the column
-     */
-    addColumn(j, value, hidden = false) {
-        this.DOMTable.children("tr").append("&lt;td data-j=" + j + ">0&lt;/td>");
-        if (hidden === HIDDEN) {
-            this.addTableClass(0, j, CLASS_HIDDEN);
-        }
-        this.updateTable(0, j, value);
-        this.numberOfColumns++;
-    }
-
-    /**
-     * Removes a row from the DOM table
-     * @param {string} i Id of the row
-     */
-    removeRow(i) {
-        this.DOMTable.children("tr[data-i=" + i + "]").remove();
-        this.numberOfRows--;
-    }
-
-    /**
-     * Removes a column from the DOM table
-     * @param {string} j Id of the column
-     */
-    removeColumn(j) {
-        this.DOMTable.find("td[data-j=" + j + "]").remove();
-        this.numberOfColumns--;
-    }
-
-    /**
-     * Updates a specific value in the table
-     * @param {string} i Id of the row
-     * @param {string} j Id of the column
-     * @param {string} value Value to be set
-     */
-    updateTable(i, j, value) {
-        this.DOMTable.find("tr[data-i=" + i + "]" + ">" + "td[data-j=" + j + "]").text(value);
-    }
-
-    /**
-     * Adds a CSS Class to a specific entry in the table
-     * @param {string} i Id of the row
-     * @param {string} j Id of the column
-     * @param {string} cssClass CSS Class to be added
-     */
-    addTableClass(i, j, cssClass) {
-        this.DOMTable.find("tr[data-i=" + i + "]" + ">" + "td[data-j=" + j + "]").addClass(cssClass);
-    }
-
-    /**
-     * Shows a hidden column
-     * @param {string} j Id of the column
-     */
-    showColumn(j) {
-        $('td[data-j=' + j + ']').removeClass(CLASS_HIDDEN);
-    }
-
-    /**
-     * Hides a hidden column
-     * @param {string} j Id of the column
-     */
-    hideColumn(j) {
-        $('td[data-j=' + j + ']').addClass(CLASS_HIDDEN);
-    }
-
-    /**
-     * Removes a CSS Class from a specific entry in the table
-     * @param {string} i Id of the row
-     * @param {string} j Id of the column
-     * @param {string} cssClass CSS Class to be removed
-     */
-    removeTableClass(i, j, cssClass) {
-        this.DOMTable.find("tr[data-i=" + i + "]" + ">" + "td[data-j=" + j + "]").removeClass(cssClass);
-    }
-
-    /**
      * Deletes the table from the DOM
      */
     drop() {
@@ -264,17 +128,123 @@ class TableHandler {
      * @param {string} name The name of the section
      */
     addSectionToDOM(id, name) {
-        let sectionHTML = $(TABLE_SECTION);
+        let sectionHTML = $(DYNAMIC_TEXT_SECTION);
 
         sectionHTML.attr("id", id);
         sectionHTML.children(".section-header").append(name + " &lt;i class='fas fa-plus'>&lt;/i>");
         sectionHTML.find(".section-header > i").click((e) => {
-            $(e.currentTarget.parentElement.parentElement).find(".table").fadeToggle();
+            $(e.currentTarget.parentElement.parentElement).find(".dt-content").fadeToggle();
             $(e.currentTarget).toggleClass("fa-plus fa-minus");
         });
 
         $("#representation-body").append(sectionHTML);
     }
+
+    /**
+     * This function inserts a new element to the dynamic text section
+     * @param id {string} The id of the new element to be inserted
+     * @param value {string} The text value of the new element to be inserted
+     * @param parentId {string} The id of the parent element where the insertion will occur
+     */
+    insert(id, value, parentId = DT_CONTENT) {
+        let $element = $(DYNAMIC_TEXT_ELEMENT);
+        $element.find(DT_VALUE).text(value);
+        $element.addClass(id);
+        $("." + parentId).append($element);
+    }
+
+
+    /**
+     * Moves a dynamic text element to another position
+     * @param id {string} The id of the element to be moved
+     * @param parentId {string} The id of the parent element where the given element will be moved
+     * @param position {int} The position of the element
+     */
+    moveElement(id, parentId, position) {
+        let $element = $("." + id);
+        let $targetElement, $parentElement;
+        $parentElement = $element.parent();
+        if (!$parentElement.hasClass(DT_CONTENT))
+            this.setEmptyValue($parentElement);
+        $element.detach();
+        if (position === TYPE_LEFT)
+            $targetElement = $("." + parentId + " > .dt-left");
+        else if (position === TYPE_RIGHT)
+            $targetElement = $("." + parentId + " > .dt-right");
+
+        $targetElement.html($element);
+        this.showChildren(parentId);
+
+    }
+
+    /**
+     * Moves a given element to the root
+     * @param id {string} The id of the given element
+     */
+    moveToRoot(id) {
+        let $element = $("." + id);
+        let $targetElement, $parentElement;
+        $parentElement = $element.parent();
+        if (!$parentElement.hasClass(DT_CONTENT))
+            this.setEmptyValue($parentElement);
+        $targetElement = $('.' + DT_CONTENT);
+        $element.detach();
+        $targetElement.append($element);
+
+    }
+
+    /**
+     * Deletes a given element from the DOM
+     * @param id {string} The id of the element to be deleted
+     */
+    delete(id) {
+        let $element = $("." + id);
+        $element.detach();
+    }
+
+    /**
+     * Updates the value of a given element
+     * @param id {string} The id of the element to be updated
+     * @param value {string} The new value of the element
+     */
+    updateValue(id, value) {
+        let $element = $("." + id + " > .dt-value");
+        $element.text(value);
+    }
+
+    //Helper functions
+
+    /**
+     * Sets the empty value ('*') to a given element
+     * @param $element {Object} The JQuery element to be set
+     */
+    setEmptyValue($element) {
+        $element.text(DT_EMPTY);
+    }
+
+    /**
+     * Shows the brackets and the child elements of a given element
+     * @param id {string} The id of the element
+     */
+    showChildren(id) {
+        let $leftChild = $('.' + id + '> .dt-left');
+        let $rightChild = $('.' + id + '> .dt-right');
+        $leftChild.removeClass('hidden');
+        $rightChild.removeClass('hidden');
+    }
+
+    /**
+     * Hides the brackets and the child elements of a given element
+     * @param id {string} The id of the element
+     */
+    hideChildren(id) {
+        let $leftChild = $('.' + id + '> .dt-left');
+        let $rightChild = $('.' + id + '> .dt-right');
+        $leftChild.addClass('hidden');
+        $rightChild.addClass('hidden');
+    }
+
+
 }</code></pre>
   </article>
 </section>
