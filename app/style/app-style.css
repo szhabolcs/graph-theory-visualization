@@ -922,3 +922,9 @@ a:not([href]):hover {
 .dt-content span {
     padding: 0;
 }
+
+.export-btn {
+    float: left;
+    position: absolute;
+    padding-left: 5px;
+}

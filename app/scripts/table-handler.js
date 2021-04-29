@@ -175,10 +175,14 @@ class TableHandler {
         let sectionHTML = $(TABLE_SECTION);
 
         sectionHTML.attr("id", id);
-        sectionHTML.children(".section-header").append(name + " <i class='fas fa-plus'></i>");
-        sectionHTML.find(".section-header > i").click((e) => {
+        sectionHTML.children(".section-header").append(name + "<i class=\"fas fa-file-export export-btn\"></i> <i class='fas fa-plus rep-toggle'></i>");
+        sectionHTML.find(".section-header > i.rep-toggle").click((e) => {
             $(e.currentTarget.parentElement.parentElement).find(".table").fadeToggle();
             $(e.currentTarget).toggleClass("fa-plus fa-minus");
+        });
+
+        sectionHTML.find(".section-header > i.export-btn").click((e) => {
+            FileHandler.exportRepresentation(graph, id)
         });
 
         $("#representation-body").append(sectionHTML);
