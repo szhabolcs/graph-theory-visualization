@@ -1,17 +1,17 @@
 [[redirects]]
-  from = "https://app.graphviser.tools/*"
-  to = "https://graphviser.tools/app/:splat"
+  from = "https://app.graphviser.app/*"
+  to = "https://graphviser.app/app/:splat"
   status = 200
   force = true
   
   [[redirects]]
-  from = "https://learn.graphviser.tools/*"
-  to = "https://graphviser.tools/learn/:splat"
+  from = "https://learn.graphviser.app/*"
+  to = "https://graphviser.app/learn/:splat"
   status = 200
   force = true
   
   [[redirects]]
-  from = "https://docs.graphviser.tools/*"
-  to = "https://graphviser.tools/docs/:splat"
+  from = "https://docs.graphviser.app/*"
+  to = "https://graphviser.app/docs/:splat"
   status = 200
   force = true
